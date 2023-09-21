@@ -15,7 +15,7 @@ l = int(input("Podaj ktora liczbe chcesz zobaczyc: "))
 print(var1[m])
 print(var1[n])
 print(var1[t])
-print(var1[b])
+print(var1[b]) f
 print(var1[e])
 print(var1[f])
 print(var1[v])
