@@ -1,0 +1,39 @@
+.baner {
+  background-color: gray;
+    vertical-align: top;
+}
+.left{
+    background-color: orange;
+    vertical-align: top;
+    width: 50%;
+    float: left;
+}
+.right{
+    background-color: darkorange ;
+    vertical-align: top;
+    width: 50%;
+    float: right;
+}
+.main {
+    background-color:gray;
+    vertical-align: top;
+
+}
+.footer_left
+{
+    background-color: darkorange;
+    vertical-align: top;
+    width: 50%;
+    float: left;
+}
+.footer_right{
+    background-color: darkorange;
+    vertical-align: top;    
+    width: 50%;
+    float: right;
+}
+.lol
+{border-color: orange;
+border-style: solid ;
+text-align: center ;
+}
