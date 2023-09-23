@@ -1,34 +1,47 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedkowanie - moje hobby</title>
-    <link rel="stylesheet" href="C:/Users/DudeQ/Documents/Programming_C/Programming/programming/CSS/styl5.css" >
+    <title>Wedkowanie-moje hobby</title>
+    <link rel="stylesheet" href="style5.css">
 </head>
 <body>
-    
-    <!-- sciezka do pliku php 
-        C:/XAAAMP/htdocs/programming/zgloszenie.php -->
-<section class="srodkowy">
-    <h1>Zawody wedkarskie!</h1>
-</section>
-<section class="lewy">
-<img src="C:/Users/dudeq/Downloads/lol/pliki3/zawody.jpg" alt="zawody wedkarskie">
-</section>
-<section class="prawy">
-    <a href="https://www.lego.com/cdn/cs/set/assets/bltdbe9230cce3804cf/75331.png?format=webply&fit=bounds&quality=70&width=800&height=800&dpr=1.5" download> Pobierz plik
-</a>
-</section>
-<section class="glowny">
-<h2>Dodaj nowe zawody wedkarskie</h2>
-<form>
-    
-</form>
-</section>
-<section class="footer">
-</section>
+    <section class="srodkowy">
+        <h1>Zawody Wedkarskie</h1>
+    </section>
+    <section class="lewy">
+        <img src="zawody.jpg" alt="zawody wedkarskie">
+    </section>
+    <section class="prawy">
+        <a href="plik.txt" download=>Kliknij by pobrac</a>
+    </section>
+    <section class="glowny">
+        <h2>Dodaj nowe zawody wedkarskie</h2>
+    <form action="zgloszenie.php" method="POST">
+        <label for="numer">Lowisko:</label> </br>
+        <input type="number" name="numer" id="numer" required min="1">
+        <br>
+        <label for="data">Data (rrrr-mm-dd):</label>  </br>
+        <input type="text" name="data" id="data" pattern="\d{4}-\d{2}-\d{2}" required>
+        <br>
+        <label for="sedzia">Sedzia:</label> </br>
+        <input type="text" name="sedzia" id="sedzia" required>
+        <br><br>
+        <button type="reset">Wyczyść</button>
+        <button type="submit">Dodaj</button>
+    </form>
+    <h2>Lista Numerowana</h2>
+    <ol>
+        <li>Zalew wegrowski</li>
+        <li>Zbiornik Bukowka</li>
+        <li>Jeziorko Bartbetowskie</li>
+        <li>Warta-Obrzycko</li>
+    </ol>
+    </section>
+    <section class="footer">
+      <p> Strone przygotował: 0000000000000000000</p> 
+    </section>
+    </html>
 </body>
 </html>
-
-
