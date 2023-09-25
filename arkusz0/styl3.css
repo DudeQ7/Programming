@@ -1,0 +1,30 @@
+.baner{
+background-color: floralwhite;
+}
+.lewy{
+background-color: aliceblue;
+}
+.srodkowy{
+background-color: aliceblue;
+}
+.prawy {
+background-color: blanchedalmond;
+}
+.dane{
+    background-color: blanchedalmond;
+
+}
+.stopka{
+    background-color: blanchedalmond;
+
+}
+table {
+    border-color: black;
+    border-style: solid;
+    border-radius: 5px;
+    text-align: center;
+}
+p{
+    color:pink;
+    font-size: 800px;
+}
