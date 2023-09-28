@@ -21,7 +21,7 @@
 $user = 'root';
 $ip = 'localhost';
 $password = '';
-$dbname = 'db4';
+$dbname = 'db5';
 $query = "Select nazwaPliku,podpis from zdjecia order by(podpis) ASC";
 $conn= mysqli_connect($ip,$user,$password,$dbname);
 $result = mysqli_query($conn,$query);
