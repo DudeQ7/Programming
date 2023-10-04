@@ -23,7 +23,7 @@ $data = mysqli_query($conn, $query);
         <h2>Opinie naszych klientów</h2>
         <?php
         while ($build = mysqli_fetch_array($data)) {
-            echo 'img src=."$build['zdjecie']".alt = "klienci>';
+            echo '<img src="' . $build["zdjecie"] . '" alt="klient">';
             echo $build["opinia"];
         }
         ?>
