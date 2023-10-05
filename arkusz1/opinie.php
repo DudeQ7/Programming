@@ -4,7 +4,7 @@ $password = "";
 $db = "db7";
 $ip = "localhost";
 $conn = mysqli_connect($ip, $user, $password, $db);
-$query = "SELECT zdjecie, imie, opinia FROM klienci INNER JOIN opinie ON klienci.id = opinie.Klienci_id WHERE Typy_id = 2 or Typy_id = 3;";
+$query = "SELECT klienci.zdjecie, klienci.imie, opinie.opinia FROM klienci, opinie WHERE klienci.id=opinie.Klienci_id AND klienci.Typy_id in(2,3) LIMIT 2";
 $data = mysqli_query($conn, $query);
 ?>
 
@@ -22,10 +22,14 @@ $data = mysqli_query($conn, $query);
     <section class="glowny_2">
         <h2>Opinie naszych klientów</h2>
         <?php
-        while ($build = mysqli_fetch_array($data)) {
-            echo '<img src="' . $build["zdjecie"] . '" alt="klient">';
-            echo $build["opinia"];
-        }
+        while ($build = mysqli_fetch_row($data)) {
+            echo "<section class='opinie'>";
+            echo '<img src="' . $build[0] . '" alt="klient">';
+              echo "<blockquota>" . $build[2] ."</blockquota>" ;
+              echo "<h4>".$build[1]."</h4>" ;
+              echo "</section>";
+            }
+        mysqli_close($conn);
         ?>
 
     </section>
@@ -35,9 +39,20 @@ $data = mysqli_query($conn, $query);
     </section>
     <section class="stopka_4">
         <h3>Nasi top klienci </h3>
-        <ul>
-            <li>SKRYPT 2 </li>
-        </ul>
+        <?php 
+$conn2 = mysqli_connect($ip, $user, $password, $db);
+$query_2 = 'SELECT imie,nazwisko,punkty from klienci order by (punkty) DESC LIMIT 3;';
+$data2 = mysqli_query($conn2,$query_2);
+echo "<ol>";
+while ($dziala = mysqli_fetch_array($data2)) {
+  //  echo "MACIEJ to  ". $dziala['imie'];
+echo  "<li>". "Imie: ". $dziala['imie']. " ".  $dziala['nazwisko'] . ",  " . $dziala['punkty'] . " pkt." .  "</li>"   ;
+}
+echo "</ol>";
+
+mysqli_close($conn2);
+
+?>
     </section>
     <section class="stopka_5">
         <h3>Skontaktuj się</h3>

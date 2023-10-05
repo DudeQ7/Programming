@@ -12,42 +12,25 @@ body {
     width: 100%;
     float: left;
 }
-.stopka_3{  background-color: tomato;
-    color: pink;
-    width: 25%;
-    height: 160px;
-float: left;}
-.stopka_4{  background-color: tomato;
+.stopka_3,.stopka_4,.stopka_5,.stopka_6{  
+    background-color: tomato;
     color: white;
     width: 25%;
     height: 160px;
 float: left;}
-.stopka_5{  background-color: tomato;
-    color: white;
-    width: 25%;
-    height: 160px;
-float: left;}
-.stopka_6{  background-color: tomato;
-    color: white;
-    width: 25%;
-    height: 160px;
-float: left;}
-
-.opinie {
-    background-color: white;
+.opinie{
+    background: white;
     color: dimgray;
     width: 60%;
     height: 220px;
-    padding-top: 40px;
-    padding-bottom: auto;
-    box-shadow: 0,5px,dimgray;
-    filter: blur(10px);
+    margin: 40px auto;
+    box-shadow: 0 0 10px 5px dimgray;
 }
-img{text-overflow: right;
+img{float: left;
     padding: 10px;  
     border-radius: 10px
 }
-blockquote{
+blockquota{
     padding: 10px;
     font-size: 150%;
     font-style: italic;
