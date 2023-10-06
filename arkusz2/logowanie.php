@@ -16,14 +16,28 @@
     <section class="prawy_1">
         <h2>Zapisz sie</h2>
         <form>
-            <input type="login" name="login">login:</input>
-            <input type="password"  name="password">haslo: </input>
-            <input type="password" name="password2">powtorz haslo: </input>
-            <input type="submit" name="Zapisz" ></input>
+            <label>login:</label>
+            <input type="login" name="login"></input>  </br>
+            <label>haslo:</label>
+            <input type="password"  name="password"></input>   </br>
+            <label>Powtorz haslo:</label>
+            <input type="password" name="password2"></input>   </br>
+            <input type="submit" name="test" value="Zapisz" ></input>  </br>
         </form>
         SKRYPT HOGWARTU
     </section> </br>
-    <section class="prawy_2"></section>
-    <section class="stopka"></section>
+    <section class="prawy_2">
+        <h2>Zapraszamy wszystkich </h2>
+        <ol>
+            <li>wlascicieli psow </li>
+            <li>weterynarzy </li>
+            <li>tych co chca kupic psa</li>
+            <li>tych co lubia psy </li>
+        </ol>
+        <a hrerf="regulamin.html" target="_blank">Przeczytaj regulamin </a>
+    </section>
+    <section class="stopka">
+        Strone wykonal: JAAAAAAAAAAAA MUHAHAHHAHAHHA
+    </section>
 </body>
 </html>
