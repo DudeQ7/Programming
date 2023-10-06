@@ -6,13 +6,14 @@
     text-align: center;
     float: left;
 }
-.lewy, .prawy {
+.lewy {
     vertical-align: top;
     float: left;
     background-color: rosybrown;
     color: white;
     width: 30%;
     height: 200px;
+    text-align: left;
 }
 .glowny {
     padding: 50px;
@@ -37,3 +38,11 @@ a{
     padding: 20px ;
     line-height: 200px;
 }
+.prawy{
+    vertical-align: top;
+    float: right;
+    background-color: rosybrown;
+    color: white;
+    width: 30%;
+    height: 200px;
+} 
