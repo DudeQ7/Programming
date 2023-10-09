@@ -14,9 +14,9 @@
     <section class="lewy">
         <img src="obraz.jpg" alt="foksterier">
     </section>
-    <section class="prawy_1">
+    <section class="prawy">
         <h2>Zapisz sie</h2>
-        <form class="form">
+        <form class="form" method="POST">
             <label>login:</label>
             <input type="login" name="login"></input>  </br>
             <label>haslo:</label>
@@ -26,20 +26,48 @@
             <input type="submit" name="test" value="Zapisz" ></input>  </br>
         </form>
     <?php 
-    $user = 'root';
     $ip = 'localhost';
+    $user = 'root';
     $password = '';
-    $db = 'psy';
-    $conn = mysqli_connect($ip, $user, $password);
-    $query = "SELECT * FROM uzytkownicy;";
-    echo "<p>" . mysqli_error($conn) . "</p";
+    $db = 'db8';
+    $conn = mysqli_connect($ip, $user, $password,$db);
+    $query = "SELECT login FROM `uzytkownicy`;";
     $potega = mysqli_query($conn, $query);
-    while ($row = mysqli_fetch_array($potega)) {
-        echo $row['uzytkownicy.id'];
+    $handler = 0;
+    $handler_exist = "Login występuje w bazie danych, konto nie zostało dodane!";
+    $handler_pswd = "Hasła nie są takie same, konto nie zostało stworzone!";
+    $handler_sucs = "Konto zostało dodane";
+    $handler_fill = "Wypełnij wszystkie pola!";
+
+    if (!empty($_POST['login']) && !empty($_POST['password']) && !empty($_POST['password2'])) {
+
+        $login = $_POST['login'];
+        $passwd = $_POST['password'];
+        $passwd_r = $_POST['password2'];
+
+        while ($arr = mysqli_fetch_array($potega)) {
+            if ($_POST['login'] == $arr[0]) {
+                echo "<p>$handler_exist</p>" . $conn->error;
+                $handler = 1;
+                break;
+            }
+        }
+
+        if ($passwd != $passwd_r) {
+            echo "<p>$handler_pswd</p>" . $conn->error;
+            $handler = 1;
+        }
+
+        if ($handler == 0) {
+            $hash = password_hash($passwd, PASSWORD_DEFAULT);
+            $result = mysqli_query($conn, "INSERT INTO `uzytkownicy`(`id`, `login`, `haslo`) VALUES ('', '$login', '$hash')");
+            echo "<p>$handler_sucs</p>";
+        }
+    } else {
+        echo "<p>$handler_fill</p>";
+        mysqli_close($conn);
     }
-
     ?>
-
     </section> </br>
     <section class="prawy_2">
         <h2>Zapraszamy wszystkich </h2>
