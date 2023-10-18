@@ -1,5 +1,6 @@
 *{
     font-family:"Verdana";
+    margin: 0;
 }
 .baner_lewy{
     background-color: #29434E;
@@ -14,26 +15,24 @@
     color: white;
     width: 30%;
     height: 70px;
-    float: right;
+    float: left;
 }
 .lista_polecamy,.Filmy_fantastyczne{
     background-color: #B0BEC5;
     height: 320px;
     overflow:scroll ;
-    float: left; 
     clear: both;/* SPRAWDZ TO*/
 }
 .stopka{
     background-color: #29434E;
     color: white;
-    clear: both; 
 }
 .film{
     padding: 5px;
     width: 226px;
     height: 280px;
-    clear: both; /*Sprawdz to  */
-}
+    float: left;
+    }
 h3{
     background-color: #546E7A;
     color: white;
