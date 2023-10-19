@@ -1,15 +1,11 @@
 <?php
-$ip = 'localhost';
-$user = 'root';
-$password = '';
-$db = 'db12';
-$conn = mysqli_connect($ip, $user, $password, $db);
+$conn = mysqli_connect('localhost', 'root', '', 'db14');
 
 if (!$conn) {
     die("Błąd połączenia z bazą danych: " . mysqli_connect_error());
 }
 
-$query = "SELECT id, nazwa, opis, zdjecie FROM produkty WHERE id IN (18, 22, 23, 25)";
+$query = "SELECT id, nazwa, opis, zdjecie FROM produkty WHERE id IN (18, 22, 23, 25);";
 $potega = mysqli_query($conn, $query);
 ?>
 
@@ -21,11 +17,11 @@ $potega = mysqli_query($conn, $query);
     <link rel="stylesheet" href="styl3.css" type="text/css">
 </head>    
 <body>
-<section class="baner_lewy">
+<div class="baner_lewy">
     <h1>Internetowa wypożyczalnia filmów</h1>
-</section>
+</div>
 
-<section class="baner_prawy">
+<div class="baner_prawy">
     <table>
         <tr>
             <td>Kryminał</td>
@@ -38,56 +34,55 @@ $potega = mysqli_query($conn, $query);
             <td>20</td>
         </tr>
     </table>
-</section>
+</div>
 
-<section class="lista_polecamy">
+<div class="lista_polecamy">
     <h3>Polecamy</h3>
     echo "<img src="";
     <?php
     $zmienna_testowa = "film";
     while ($hogwart = mysqli_fetch_array($potega)) {
-        echo "<section class='$zmienna_testowa'>";
+        echo "<div class='$zmienna_testowa'>";
         echo "<h4>" . $hogwart['id'] . $hogwart['nazwa'] . "</h4>";
         echo "<img src='" . $hogwart['zdjecie'] . "' alt='filmy'>";
         echo "<p>" . $hogwart['opis'] . "</p>";
-        echo "</section>";
+        echo "</div>";
     }
     mysqli_close($conn);
     ?>
-</section> 
+</div> 
 
-<section class="Filmy_fantastyczne">
+<div class="Filmy_fantastyczne">
     <h3>Filmy fantastyczne</h3>
     <?php 
-    $conn_2 = mysqli_connect($ip, $user, $password, $db);
+    $conn_2 = mysqli_connect('localhost', 'root', '', 'db12');
 
     if (!$conn_2) {
         die("Błąd połączenia z bazą danych: " . mysqli_connect_error());
     }
 
-    $query_2 = "SELECT id, nazwa, opis, zdjecie FROM produkty WHERE Rodzaje_id = 12";
+    $query_2 = "SELECT id, nazwa, opis, zdjecie FROM produkty WHERE Rodzaje_id = 12;";
     $potega_2 = mysqli_query($conn_2, $query_2);
-
     while ($moc = mysqli_fetch_array($potega_2)) {
         $zmienna = "film";
-        echo "<section class='$zmienna'>";
+        echo "<div class='$zmienna'>";
         echo "<h4>" . $moc['id'] . $moc['nazwa'] . "</h4>";
         echo "<img src='" . $moc['zdjecie'] . "' alt='filmy'>";
         echo "<p>" . $moc['opis'] . "</p>";
-        echo "</section>";
+        echo "</div>";
     }
     mysqli_close($conn_2);
     ?>
-</section>
+</div>
 
-<section class="stopka">
+<footer>
     <form method="post" name="lol">
         Usuń film nr:<input type="number" name="usun">
         <input type="submit" name="wyslij" value="Usuń film">
         <?php
         if (isset($_POST['wyslij'])) {
             $name = $_POST['usun'];
-            $conn_3 = mysqli_connect($ip, $user, $password, $db);
+            $conn_3 = mysqli_connect('localhost', 'root', '', 'dane3');
 
             if (!$conn_3) {
                 die("Błąd połączenia z bazą danych: " . mysqli_connect_error());
@@ -109,7 +104,7 @@ $potega = mysqli_query($conn, $query);
         ?>
     </form>
 
-    Stronę wykonał: <a href="mailto:wow@gmail.com">GOLF :)</a>
-</section>
+    Stronę wykonał: <a href="mailto:wow@gmail.com">Michał Chojnowski</a>
+    </footer>
 </body>
 </html>
