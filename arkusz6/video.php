@@ -3,14 +3,17 @@ $ip = 'localhost';
 $user = 'root';
 $password = '';
 $db = 'db12';
+$otwarcie = fopen('kwerendy.txt', 'r');
+$kwerenda_1 = fgets($otwarcie);
+$kwerenda_2 = fgets($otwarcie);
+fclose($otwarcie);
 $conn = mysqli_connect($ip, $user, $password, $db);
 
 if (!$conn) {
     die("Błąd połączenia z bazą danych: " . mysqli_connect_error());
 }
 
-$query = "SELECT id, nazwa, opis, zdjecie FROM produkty WHERE id IN (18, 22, 23, 25)";
-$potega = mysqli_query($conn, $query);
+$potega = mysqli_query($conn,$kwerenda_1);
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +22,7 @@ $potega = mysqli_query($conn, $query);
     <meta charset="utf-8" />
     <title>Video On Demand</title>
     <link rel="stylesheet" href="styl3.css" type="text/css">
-</head>    
+</head>
 <body>
 <section class="baner_lewy">
     <h1>Internetowa wypożyczalnia filmów</h1>
@@ -53,19 +56,18 @@ $potega = mysqli_query($conn, $query);
     }
     mysqli_close($conn);
     ?>
-</section> 
+</section>
 
 <section class="Filmy_fantastyczne">
     <h3>Filmy fantastyczne</h3>
-    <?php 
+    <?php
     $conn_2 = mysqli_connect($ip, $user, $password, $db);
 
     if (!$conn_2) {
         die("Błąd połączenia z bazą danych: " . mysqli_connect_error());
     }
 
-    $query_2 = "SELECT id, nazwa, opis, zdjecie FROM produkty WHERE Rodzaje_id = 12";
-    $potega_2 = mysqli_query($conn_2, $query_2);
+    $potega_2 = mysqli_query($conn_2, $kwerenda_2);
 
     while ($moc = mysqli_fetch_array($potega_2)) {
         $zmienna = "film";
@@ -81,7 +83,7 @@ $potega = mysqli_query($conn, $query);
 
 <section class="stopka">
     <form method="post" name="lol">
-        Usuń film nr:<input type="number" name="usun">
+        Usuń film nr: <input type="number" name="usun">
         <input type="submit" name="wyslij" value="Usuń film">
         <?php
         if (isset($_POST['wyslij'])) {
@@ -94,7 +96,7 @@ $potega = mysqli_query($conn, $query);
 
             $query_3 = "DELETE FROM produkty WHERE id = $name";
             $ultimate = mysqli_query($conn_3, $query_3);
-            
+
             if ($ultimate) {
                 echo "Usunięto wiersz z id równym " . $name;
             } else {
