@@ -4,7 +4,7 @@ $user = 'root';
 $password = '';
 $ip = 'localhost';
 $conn = mysqli_connect($ip,$user,$password,$db_name);
-$query = 'SELECT zwierzeta.id,zwierzeta.Gromady_id,zwierzeta.gatunek,zwierzeta.wystepowanie FROM zwierzeta INNER JOIN gromady ON zwierzeta.Gromady_id=gromady.id WHERE gromady.id = 4 OR gromady.id = 5 ;';
+$query = 'SELECT zwierzeta.id,zwierzeta.Gromady_id,zwierzeta.gatunek,zwierzeta.wystepowanie,gromady.nazwa FROM zwierzeta INNER JOIN gromady ON zwierzeta.Gromady_id=gromady.id WHERE gromady.id = 4 OR gromady.id = 5 ;';
 $hogwarton = mysqli_query($conn,$query);
 ?>
 <html>
@@ -25,8 +25,8 @@ $hogwarton = mysqli_query($conn,$query);
         <section class="lewy">
             <?php 
             while($hogwart= mysqli_fetch_array($hogwarton)){
-                echo "<p>".$hogwart['id'].$hogwart['gatunek']."</p>";
-                echo "<p>"."Wystepowanie:".$hogwart['wystepowanie']."Gromada:".$hogwart['gromada']."</p>";
+                echo "<p>".$hogwart['id']." " .$hogwart['gatunek']."</p>";
+                echo "<p>"."Wystepowanie:".$hogwart['wystepowanie'].", "."gromada: ".$hogwart['nazwa']."</p>";
             }
             mysqli_close($conn);
             ?>
