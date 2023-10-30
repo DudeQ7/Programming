@@ -2,6 +2,12 @@
 RewriteEngine On
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteCond %{HTTP_HOST} !^www\.(.*)$ [OR,NC]
+RewriteCond %{https} off
+RewriteCond %{HTTP_HOST} ^publishaffordably\.com [NC]
+RewriteCond %{HTTP_HOST} ^.publishaffordably.com [NC]
+RewriteCond %{HTTP_HOST} ^publishaffordably.com [NC]
+RewriteRule ^(.*)$ https://destinedtopublish.com[L,R=301,NC]
 # BEGIN WordPress
 RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 RewriteBase /
@@ -10,3 +16,4 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /index.php [L]
 # END WordPress (edited) 
+

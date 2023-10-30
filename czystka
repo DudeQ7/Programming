@@ -1,0 +1,7 @@
+for i in *; do
+    if [ -f "$i" ]; then
+        echo "Deletion Started for file: $i"
+        rm -v "$i"
+        echo "Deletion Finished for file: $i"
+    fi
+done

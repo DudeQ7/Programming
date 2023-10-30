@@ -1,0 +1,69 @@
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# BEGIN HTTPS Redirection Plugin
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{SERVER_PORT} !^443$
+RewriteCond %{REQUEST_URI} about-us [OR]
+RewriteCond %{REQUEST_URI} products_category/home [OR]
+RewriteCond %{REQUEST_URI} products_category/professional [OR]
+RewriteCond %{REQUEST_URI} serial [OR]
+RewriteCond %{REQUEST_URI} technologies/dma [OR]
+RewriteCond %{REQUEST_URI} technologies/rff-microneedling-voluderm [OR]
+RewriteCond %{REQUEST_URI} technologies/rff-resurfacing-trifractional [OR]
+RewriteCond %{REQUEST_URI} technologies/tripollar [OR]
+RewriteCond %{REQUEST_URI} technology-lobby [OR]
+RewriteCond %{REQUEST_URI} treatments/acne-scars-treatment [OR]
+RewriteCond %{REQUEST_URI} treatments/body-contouring-firming [OR]
+RewriteCond %{REQUEST_URI} treatments/cellulite-reduction [OR]
+RewriteCond %{REQUEST_URI} treatments/fat-and-circumference-reduction [OR]
+RewriteCond %{REQUEST_URI} treatments/fine-lines-and-wrinkle-reduction [OR]
+RewriteCond %{REQUEST_URI} treatments/muscle-toning [OR]
+RewriteCond %{REQUEST_URI} treatments/skin-tightening
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+# END HTTPS Redirection Plugin
+
+# BEGIN WordPress
+# The directives (lines) between "BEGIN WordPress" and "END WordPress" are
+# dynamically generated, and should only be modified via WordPress filters.
+# Any changes to the directives between these markers will be overwritten.
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress
+<Files xmlrpc.php>
+order deny,allow
+deny from all
+#allow from xxx.xxx.xxx.xxx
+</Files>
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Check if browser supports WebP images
+  RewriteCond %{HTTP_ACCEPT} image/webp
+
+  # Check if WebP replacement image exists
+  RewriteCond %{DOCUMENT_ROOT}/$1.webp -f
+
+  # Serve WebP image instead
+  RewriteRule (.+)\.(jpe?g|png|gif)$ $1.webp [T=image/webp,E=REQUEST_image]
+</IfModule>
+
+<IfModule mod_headers.c>
+  # Vary: Accept for all the requests to jpeg, png and gif
+  Header append Vary Accept env=REQUEST_image
+</IfModule>
+
+<IfModule mod_mime.c>
+  AddType image/webp .webp
+</IfModule>
