@@ -15,27 +15,38 @@ $hogwarton = mysqli_query($conn,$query);
     </head>
     <body>
         <section class="menu">
-        <a href="gromady-ryby.html" target="_blank">gromady ryb</a>
-        <a href="gromady-ptaki.html" target="_blank">gromady ptaki</a>
-        <a href="gromady-ssaki.html" target="_blank">gromady ssaki</a>
+        <a href="gromada-ryby.html" target="_blank">gromady ryb</a>
+        <a href="gromada-ptaki.html" target="_blank">gromady ptaki</a>
+        <a href="gromada-ssaki.html" target="_blank">gromady ssaki</a>
         </section>
         <section class="logo">
             <h2>GROMADY KRĘGOWCÓW</h2>
         </section>
         <section class="lewy">
-            <?php 
-            while($hogwart= mysqli_fetch_array($hogwarton)){
-                echo "<p>".$hogwart['id']." " .$hogwart['gatunek']."</p>";
-                echo "<p>"."Wystepowanie:".$hogwart['wystepowanie'].", "."gromada: ".$hogwart['nazwa']."</p>";
-            }
+            <?php  // skrypt_1 :) 
+          while ($hogwart = mysqli_fetch_array($hogwarton)) {
+            echo "<hr>";
+            echo "<p>" . $hogwart['id'] . " " . $hogwart['gatunek'] . "</p>";
+            echo "<p>Występowanie: " . $hogwart['wystepowanie'] . ", gromada: " . $hogwart['nazwa'] . "</p>";
+            echo "<hr>";
+        }
+        
             mysqli_close($conn);
             ?>
         </section>
         <section class="prawy">
             <h1>PTAKI</h1>
-            <ol>
-                <li>Efekt skryptu 2</li>
-            </ol>
+                <?php
+                $conn_2 = mysqli_connect($ip,$user,$password,$db_name);
+                $query_2 = 'SELECT zwierzeta.gatunek, zwierzeta.obraz FROM zwierzeta INNER JOIN gromady ON zwierzeta.Gromady_id=gromady.id WHERE gromady.nazwa = "ptaki";';
+                $golf_ON = mysqli_query($conn_2,$query_2);
+                echo "<ol>";
+                while($golf_mk7_GTI = mysqli_fetch_array($golf_ON)){
+                    echo '<li><a href="' . $golf_mk7_GTI['obraz'] . '" target="_blank">' . $golf_mk7_GTI['gatunek'] . '</a></li>';
+                }
+                echo "</ol>";
+                ?>
+             
             <img src="sroka.jpg" alt="Sroka zwyczajna,gromada ptaki">
 
         </section>
