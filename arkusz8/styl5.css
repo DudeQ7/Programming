@@ -9,12 +9,14 @@ header{
     background-color: #483D8B;
     height: 150px;
     width: 30%;
+    float: left;
 }
 .baner_2{
     background-color: #483D8B;
     color: white;
     height: 150px;
     width: 70%;
+    float: left;
 .main{
     display: flex;
     flex-wrap: wrap;
@@ -26,11 +28,13 @@ header{
     height: 100px;
     margin: 3px;
     border: 1px solid;
+    float: left;
 }
 .stopka{
     background-color: #483D8B;
     color: white;
     padding: 10px;
+    clear: both;
 }
 h5 {
     text-align: center;
