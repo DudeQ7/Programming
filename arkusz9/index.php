@@ -28,12 +28,12 @@ $conn = mysqli_connect($ip, $user, $password, $db_name);
                   <h3>adres</h3>
                   <p>$row[2]</p>
                   <p>$row[3]</p>
-                  <hr>
-                  <p>Rodo:";
-                  if($row[4]== "1") echo "Rodo: podpisano " ;
-                  else echo "Rodo: niepodpisano " ;
-            
-          
+                  <hr>";
+                  if($row[4]== "1") echo "<p> Rodo: podpisano </p>" ;
+                  else echo "<p> Rodo: niepodpisano </p>" ;
+                echo "<p>Badania: </p>";
+                  if($row[5]== "1") echo "<p>Badania: aktualne </p>" ; 
+                  else echo "<p>Badania: nieakutalne </p>";
         }
         mysqli_close($conn);
         
@@ -56,17 +56,23 @@ $conn = mysqli_connect($ip, $user, $password, $db_name);
     <section class="prawy">
       <?php 
       $query_3 = "SELECT id, imie, nazwisko FROM pracownicy WHERE id = 2;";
+      $query_4 = "SELECT pracownicy.id , stanowiska.nazwa,stanowiska.opis FROM pracownicy INNER JOIN stanowiska ON pracownicy.stanowiska_id = stanowiska.id WHERE pracownicy.id = 2;";
       $conn_3 = mysqli_connect($ip, $user, $password, $db_name);
       $SQL_3 = mysqli_query($conn_3, $query_3);
-      
+      $SQL_4 = mysqli_query($conn_3,$query_4);
       while ($row_3 = mysqli_fetch_array($SQL_3)) {
           $obraz = $row_3[0] . '.jpg';
           echo "<img src='$obraz' alt='pracownik'>";
           echo "<h2>" . $row_3[1] . " " . $row_3[2] . "</h2>";
+      } 
+      while ($row_4 = mysqli_fetch_array($SQL_4)) {
+        echo "<h4>$row_4[1]</h4>
+              <h5>$row_4[2]</h5>    ";
       }
-      
+      mysqli_close($conn_3);
       ?> 
     </section>
+    <br>
     <footer>
         Autorem aplikacji jest: Pawel Dutkiewicz 5TiP (GolfGTI :P)
         <ul>
