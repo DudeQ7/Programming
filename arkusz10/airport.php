@@ -59,11 +59,12 @@ if (isset($_COOKIE["ciasteczko"])) {
 } else {
     $cookie_name = "cookie";
     $cookie_value = "";
-    $cookie_time = time() + 60*60*2;
+    $cookie_time = time() + 3600;
     $cookie_path = "";
     $cookie_domain = "";
     $cookie_secure  = false;
     $cookie_httponly = false;
+    setcookie("banas",time()+3600); // cos takiego mr lucas 
     echo "<p><b>Miło nam, że nas znowu odwiedziłeś</b></p>";
 }
 
