@@ -26,7 +26,7 @@ $conn = mysqli_connect($ip,$user,$password,$db_name);
         //zapytanie 3 
         $query = 'SELECT konta.nick,konta.postow FROM konta INNER JOIN pytania on konta.id=pytania.konta_id;
         ';
-        $hogwart = mysqli_query($conn, $query
+        $hogwart = mysqli_query($conn, $query);
         
         ?>
 
