@@ -1,1 +1,0 @@
-   alert("UWAGA USE AT YOUR OWN RISK");
