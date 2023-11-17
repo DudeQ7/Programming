@@ -45,3 +45,6 @@ table,td,tr{
 table{
     width: 90%;
 }
+form{
+    text-align: left;
+}
