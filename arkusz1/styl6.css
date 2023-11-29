@@ -1,45 +1,51 @@
 *{
-    font-family: Georgia;
-    margin: 0;
+    font-family: georgia;
+    
 }
 .lewy{
+   
     background-color: maroon;
     color: white;
     height: 600px;
     width: 30%;
     float: left;
+    padding: 10px;
+
 }
 .prawy{
+   
     background-color: maroon;
     color: white;
     height: 600px;
     width: 70%;
-    overflow: scroll;
+    overflow: auto;
     float: left;
 }
-.stopka{
+.footer{
     background-color: dimgray;
     color: white;
     clear: both;
 }
-.prawy img,ul,select{
-float: left;
-}
-.prawy p {
+.right * {
     float: left;
-    clear: both;
-    padding: 10px;
 }
-.prawy img{
+.right p {
+    float: left;
+}
+p{
+    padding: 10px;
+    clear: both;
+}
+img {
     padding: 10px;
     border: 1px solid white;
 }
-.indigo{
+.indigo {
     background-color: indigo;
 }
-.steel{
+.steel {
     background-color: steelblue;
-}
+     }
 .olive{
     background-color: olive;
 }

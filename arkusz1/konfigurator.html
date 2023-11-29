@@ -7,19 +7,19 @@
     <link rel="stylesheet" href="styl6.css">
     <script src = "main.js"></script>
 </head>
-<body>
+<body id="body">
 <section class="lewy">
-<h1>Konfigurator <br> stylu</h1>
+<h1>Konfigurator  stylu</h1>
 <p>Podaj kolor tła</p>
-<p><button class="indigo" onclick="indigo()">Indigo</button><button class="steel">SteelBlue</button><button class="olive">Olive</button></p>
+<p><button class="indigo" onclick="indigo()">Indigo</button><button class="steel"onclick="steel()">SteelBlue</button><button class="olive" onclick="olive()">Olive</button></p>
 <p>Podaj kolor czcionki</p>
-<select>
-    <option>White</option>
-    <option>Tan</option>
-    <option>Bisque</option>
-    <option>Plum</option>
+<select id="selekcja" onchange="tester()">
+    <option id="white" value="white">White</option>
+    <option id="tan" value="tan">Tan</option>
+    <option id="bisque"  value="bisque">Bisque</option>
+    <option id="plum" value="plum">Plum</option>
 </select>
-<p>Podaj rozmiar czcionki w procentach <br> np. 200%</p>
+<p>Podaj rozmiar czcionki w procentach np. 200%</p>
 <input type="number" value="100">
 <p>Czy rysunek ma mieć ramkę?</p>
 <input type="checkbox" checked="checked"value="Rysuj ramkę">Rysuj ramkę
@@ -37,8 +37,11 @@
 <li>element 2 </li>
 <li>element 3 </li>
 </ul>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+    ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+    qui officia deserunt mollit anim id est laborum.</p>
 
 
 </section>
