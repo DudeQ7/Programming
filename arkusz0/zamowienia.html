@@ -9,7 +9,7 @@
     <script src="main.js"></script>
 </head>
 
-<body>
+<body onload="braki()"> <!--zawsze funkcja braki bedzie ladowana razem z body -->
     <section class="baner">
         <h1>Sieci komputerowe</h1>
     </section>
@@ -19,7 +19,7 @@
         <img src="obraz.png" alt="sieć komputerowa">
     </section>
     <section class="prawy">
-        <table>
+        <table id="tabelka">
             <tr>
                 <th>Produkt</th>
                 <th>Jednostka</th>
@@ -30,30 +30,30 @@
             <tr>
                 <td class="produkt">Skrętka U/UTP drut</td>
                 <td>metr</td>
-                <td class="ilosc">0</td>
-                <td><button class="aktualizuj">Aktualizuj</button></td>
-                <td><button class="zamow">Zamów</button></td>
+                <td class="ilosc">20</td>
+                <td><button class="aktualizuj" onclick="aktualizuj()">Aktualizuj</button></td>
+                <td><button class="zamow" onclick="zamow()">Zamów</button></td>
             </tr>
             <tr>
                 <td class='produkt'>Skrętka U/UTP linka</td>
                 <td>metr</td>
-                <td class="ilosc">0</td>
-                <td><button class="aktualizuj">Aktualizuj</button></td>
-                <td><button class="zamow">Zamów</button></td>
+                <td class="ilosc">2</td>
+                <td><button class="aktualizuj" onclick="aktualizuj()">Aktualizuj</button></td>
+                <td><button class="zamow" onclick="zamow()">Zamów</button></td>
             </tr>
             <tr>
                 <td class='produkt'>Wtyki 8P8C</td>
                 <td>sztuki</td>
-                <td class="ilosc">5</td>
-                <td><button class="aktualizuj">Aktualizuj</button></td>
-                <td><button class="zamow">Zamów</button></td>
+                <td class="ilosc">10</td>
+                <td><button class="aktualizuj" onclick="aktualizuj()">Aktualizuj</button></td>
+                <td><button class="zamow" onclick="zamow()">Zamów</button></td>
             </tr>
             <tr>
                 <td>Moduły Keystone</td>
                 <td>sztuki</td>
-                <td class="ilosc">0</td>
-                <td><button class="aktualizuj">Aktualizuj</button></td>
-                <td><button class="zamow">Zamów</button></td>
+                <td class="ilosc">30</td>
+                <td><button class="aktualizuj" onclick="aktualizuj()">Aktualizuj</button></td>
+                <td><button class="zamow" onclick="zamow()">Zamów</button></td>
             </tr>
         </table>
     </section>
