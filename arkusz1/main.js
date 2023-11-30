@@ -1,23 +1,23 @@
-var indigo = document.getElementById('indigo').onclick ;
-var steel = document.getElementById('steel').onclick ;
-var olive = document.getElementById('olive').onclick ;
+var body = document.getElementById('body');
+var indigoButton = document.getElementById('indigo');
+var steelButton = document.getElementById('steel');
+var oliveButton = document.getElementById('olive');
 var textElements = document.querySelectorAll('body, p, span, div, h1, h2, h3, h4, h5, h6');
 
-
-function indigo(){
+function indigo() {
     body.style.backgroundColor = "indigo";
 }
-function steel(){
+
+function steel() {
     body.style.backgroundColor = "Steelblue";
 }
-function olive(){
-    body.style.backgroundColor = "olive";
 
+function olive() {
+    body.style.backgroundColor = "olive";
 }
+
 function tester() {
     var selectedColor = document.getElementById('selekcja').value;
-    var textElements = document.querySelectorAll('body, p, span, div, h1, h2, h3, h4, h5, h6');
-
     textElements.forEach(function (element) {
         if (selectedColor === document.getElementById('white').value) {
             element.style.color = "white";
@@ -29,4 +29,32 @@ function tester() {
             element.style.color = "plum";
         }
     });
+}
+function rozmiar() {
+    var rozmiarValue = document.getElementById("rozmiar").value;
+    textElements.forEach(function (element) {
+        element.style.fontSize = rozmiarValue + "%";
+    });
+}
+function punktor(){
+    var punktordysk = document.getElementById("dysk");
+    var punktordysk2 = document.getElementById("kwadrat");
+    var modyfikuj = document.getElementById("lista");
+    if(punktordysk.checked){
+           modyfikuj.style.listStyleType ="disc";
+    }
+    else if(punktordysk2.checked){
+        modyfikuj.style.listStyleType ="square";
+    }
+    else{
+        modyfikuj.style.listStyleType ="circle";
+    }
+}
+function border() {
+    var zdjecie = document.getElementById("zdjecik");
+    if (document.getElementById("borderik").checked) {
+        zdjecie.style.border = "1px solid white";
+    } else {
+        zdjecie.style.border = "none";
+    }
 }

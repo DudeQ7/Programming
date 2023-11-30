@@ -2,6 +2,17 @@
     font-family: georgia;
     
 }
+p{
+    padding: 10px;
+    clear: both;
+}
+li{
+    clear: both;
+}
+img {
+    padding: 5px;
+   
+}
 .lewy{
    
     background-color: maroon;
@@ -9,37 +20,25 @@
     height: 600px;
     width: 30%;
     float: left;
-    padding: 10px;
 
 }
 .prawy{
-   
     background-color: maroon;
     color: white;
     height: 600px;
     width: 70%;
-    overflow: auto;
+    overflow: auto ;
     float: left;
 }
-.footer{
+.stopka{
     background-color: dimgray;
     color: white;
     clear: both;
 }
-.right * {
-    float: left;
-}
 .right p {
     float: left;
 }
-p{
-    padding: 10px;
-    clear: both;
-}
-img {
-    padding: 10px;
-    border: 1px solid white;
-}
+
 .indigo {
     background-color: indigo;
 }
