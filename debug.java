@@ -1,7 +1,7 @@
 package programming;
-// EvenAdder.java; //niepotrzebny fragment //POPRAWA
 import java.util.Arrays;
 import java.util.Scanner;
+
 class EvenAdder {
     public static void main(String[] args) {
         int[] array = createEvenArray(5);
@@ -16,16 +16,18 @@ class EvenAdder {
     private static int[] createEvenArray(int size) {
         Scanner scanner = new Scanner(System.in);
         int[] result = new int[size];
-        for (int i = 0; i < result.length; i++) {
+        for (int i = 0; i < result.length; ) {
             System.out.println("Podaj kolejną liczbę:");
             int next = scanner.nextInt();
-            
-            if(isEven(next))
-              result[i] = next; /*   next = result[i]; */ //Poprawa
-              i++ ; 
+
+            if (isEven(next)) {
+                result[i] = next; //POPRAWA
+                i++; //POPRAWA
+            } else {
+                System.out.println("Podana liczba nie jest parzysta. Podaj liczbę parzystą.");
             }
+        }
         return result;
-        
     }
 
     /**
@@ -34,9 +36,7 @@ class EvenAdder {
      * @return true if number is even, or false otherwise
      */
     private static boolean isEven(int number) {
-
-        return number % 2 == 0 ; // spradza czy jest parzysta
-        /*   return number  == 0; */ //Poprawa
+        return number % 2 == 0; //POPRAWA
     }
 
     /**
@@ -45,8 +45,11 @@ class EvenAdder {
      */
     private static int[] reverseArray(int[] array) {
         int[] reversed = new int[array.length];
+        for (int i = 0, j = array.length - 1; i < array.length; i++, j--) {
+            reversed[j] = array[i]; //POPRAWA
+        }
+       
         for (int i = 0; i < array.length; i++) {
-       /*  for (int i = 0; i < reversed.length; i++) { */ // poprawa
             array[i] = reversed[i];
         }
         return reversed;
