@@ -1,0 +1,28 @@
+*{
+    font-family: Georgia;
+}
+.glowny_1,.glowny_2{
+    background-color: rgb(197, 85, 160);
+    text-align: center;
+    width: 50%;
+    height: 180px;
+}
+.baner,footer{
+    background-color: rgb(246, 226, 222);
+    text-align: center;
+    height: 100px;
+    padding: 10px;
+}
+.glowny_1 .glowny_2{
+    background-color: rgb(197, 85, 160);
+    color: white;
+    width: 50%;
+    height: 400px;
+}
+a .zamowienie {
+    background-image: "cukierki1.png";
+    padding-right: 70px;
+    padding-bottom: 120px;
+    font-size: 150%;
+
+}
