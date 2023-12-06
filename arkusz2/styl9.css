@@ -1,7 +1,7 @@
 *{
-    font-family: Georgia;
+    font-family: georgia;
 }
-.glowny_1,.glowny_2{
+.gora_1,.gora_2{
     background-color: rgb(197, 85, 160);
     text-align: center;
     width: 50%;
@@ -11,23 +11,25 @@
 .baner,footer{
     background-color: rgb(246, 226, 222);
     text-align: center;
-    height: 100px;
+    height:100px;
     padding: 10px;
+    width: 100%;
+    clear: both;
 }
-.glowny_1 .glowny_2{
+.glowny_1,.glowny_2{
     background-color: rgb(197, 85, 160);
-    color: white;
+    color: white ;
     width: 50%;
     height: 400px;
+    float: left;
 }
-a .zamowienie {
-    background-image: "cukierki1.png";
+ .zam_1 a  {
+    background: url(cukierki1.png);
     padding-right: 70px;
     padding-bottom: 120px;
     font-size: 150%;
-
 }
-table,tr,td{
+table,td{
     border: 2px solid blue;
     margin: 20px;
     padding: 10px;
@@ -35,10 +37,4 @@ table,tr,td{
 h2{
     letter-spacing: 10px;
     font-size: 200%;
-}
-footer{
-    clear: both;
-}
-.gora_1{
-        clear: both;
 }
