@@ -23,8 +23,8 @@
     height: 400px;
     float: left;
 }
- .zam_1 a  {
-    background: url(cukierki1.png);
+a.zam_1  {
+    background-image: url("cukierki1.png");
     padding-right: 70px;
     padding-bottom: 120px;
     font-size: 150%;
