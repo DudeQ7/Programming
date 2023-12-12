@@ -19,7 +19,7 @@ class EvenAdder {
         for (int i = 0; i < result.length; ) {
             System.out.println("Podaj kolejną liczbę:");
             int next = scanner.nextInt();
-
+        
             if (isEven(next)) {
                 result[i] = next; //POPRAWA
                 i++; //POPRAWA
@@ -27,9 +27,11 @@ class EvenAdder {
                 System.out.println("Podana liczba nie jest parzysta. Podaj liczbę parzystą.");
             }
         }
+        scanner.close();
         return result;
+        
     }
-
+    
     /**
      *
      * @param number - number to be checked
