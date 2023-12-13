@@ -1,14 +1,36 @@
 from pytube import YouTube
-from time import sleep
+from pytube import Playlist
+from pytube.cli import on_progress
 from os.path import expanduser
-url = input("Podaj URL z YouTube'a: ")
+
+print("Filmik: 1 ", "playlista: 2 ")
+wybor = int(input("Wybierz cyfre: "))
 path = expanduser("~/Downloads")
-try:
-    video = YouTube(url).streams.filter(progressive=True, file_extension='mp4').first()
-    if video:
-        video.download(path)
-        print("Download successful! Video saved at:", path)
-    else:
-        print("No progressive MP4 stream available for the given URL.")
-except Exception as e:
-    print("An error occurred:", str(e))
+
+if wybor == 1:
+    link = input('Podaj link do filmiku:')
+    try:
+        yt = YouTube(link, on_progress_callback=on_progress)
+        if yt:
+            yt.streams.filter(progressive=True, file_extension='mp4').first().download(path)
+            print("(:",{yt.title})
+        else:
+            print("Brak formatu mp4 dla tego linku ://")
+    except Exception as e:
+        print("Wystapil blad: ", str(e))
+
+elif wybor == 2:
+    link_p = (input("Podaj link do playlisty: "))
+    try:
+        playlist = Playlist(link_p)
+        for video_url in playlist.video_urls:
+            yt = YouTube(video_url, on_progress_callback=on_progress)
+            if yt:
+                yt.streams.filter(progressive=True, file_extension='mp4').first().download(path)
+                print("(:",{yt.title})
+            else:
+                print("Brak formatu mp4 dla tego linku")
+    except Exception as e:
+        print("Wystapil blad: ", str(e))
+else:
+    print("Zly wybor podaj inna liczbe ")
