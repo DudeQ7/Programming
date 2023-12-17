@@ -25,11 +25,18 @@ $conn = mysqli_connect($ip, $user, $password,$db);
         <a href="cennik.php">CENNIK</a>
         <table>
             <?php
-            $query = "select * from pokoje" ;
+            $query = "SELECT * FROM `pokoje`
+            " ;
             $hogwart = mysqli_query($conn,$query);
-         while($result = mysqli_fetch_array($conn)){
-            echo "<tr> '$result[0]'</tr> ";
+         while($result = mysqli_fetch_array($hogwart)){
+            echo "<tr>";
+            echo "<td>".$result["id"]."</td>";
+            echo "<td>".$result["nazwa"]."</td>";
+            echo "<td>".$result["cena"]."</td>";
+            echo "</tr>";
+            
          }
+         mysqli_close($conn);
             ?>
             </table>
     </section>
