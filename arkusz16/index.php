@@ -2,7 +2,7 @@
 $ip = 'localhost';
 $user='root';
 $passwd ='';
-$dbname = 'db17';
+$dbname = 'db19';
 $conn = mysqli_connect($ip,$user,$passwd,$dbname);
 ?>
 
@@ -35,30 +35,27 @@ $conn = mysqli_connect($ip,$user,$passwd,$dbname);
         <h3>Lista zwierząt</h3>
         <ul>
         <?php
-        $query = 'SELECT zwierzeta.gatunek,odzywianie.rodzaj 
-        FROM zwierzeta INNER JOIN odzywianie 
-        ON zwierzeta.Odzywianie_id = odzywianie.id;';
-        $hogwart = mysqli_query($conn,$query);
-        while ($result = mysqli_fetch_array($hogwart))
-        {
-            echo "<li>".$result[0]."  ".$result[1]."</li>";
-        }
-        mysqli_close($conn);
+          if(!empty($_POST['opcja'])) {
+             $nr = $_POST['opcja'];
+             $wybor = "";
+             if ($nr == 1) $wybor = "Drapieżniki";
+             if ($nr == 2) $wybor = "Roślinożerne";
+             if ($nr == 3) $wybor = "Padlinożerne";
+             if ($nr == 4) $wybor = "Wszystkożerne";
+             $query = "SELECT zwierzeta.id, zwierzeta.gatunek, zwierzeta.wystepowanie FROM zwierzeta, odzywianie WHERE zwierzeta.Odzywianie_id = odzywianie.id AND odzywianie.id = $nr;";
+             echo "<h3>$wybor</h3>";
+             $res2 = mysqli_query($conn, $query);
+             while($tab = mysqli_fetch_array($res2)) {
+                 echo "$tab[0]. $tab[1], $tab[2]<br/>";
+             }
+         }
+         mysqli_close($conn);
+      
         ?>
         <ul>
     </section>
     <section class="glowny_srodek">
-     <?php
-     //skrypt 2 
-     $conn_2 = mysqli_connect($ip,$user,$passwd,$dbname);
-     $opcja_1 =$_POST["opcja_1"];
-     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $wartosc = $_POST['opcja'];
-        if($wartosc == $opcja_1){
-            echo "test";
-        }
-    }
-    ?>
+   
     
 
     </section>
