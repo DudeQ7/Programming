@@ -1,14 +1,14 @@
 <?php
 $ip = "localhost";
 $user ="root";
-$passwd = " ";
+$passwd = '!QAZ2wsx';
 $db_name = "db26";
 $conn = mysqli_connect($ip,$user,$passwd,$db_name);
 //Alter USER 'root'@'localhost'Identified by " " ; 
 
 ?>
 
-<!DOCTYPE html 5>
+<!DOCTYPE html >
 <html lang="PL-pl">
 <head>
     <meta charset="UTF-8">
@@ -24,8 +24,8 @@ $conn = mysqli_connect($ip,$user,$passwd,$db_name);
         <h2>Menu</h2>
         <ol>
             <li><a href="index.html">Strona głowna</a></li>
-            <li><a href="https://www.kwiaty.pl/" target="_blank"></a></li>
-            <li> <a href="znajdz.php"></a>
+            <li><a href="https://www.kwiaty.pl/" target="_blank">Rozpoznaj kwiaty</a></li>
+            <li> <a href="znajdz.php">Znajdź kwiaciarnie</a>
                 <ul>
                     <li>w Warszawie</li>
                     <li>w Malborku</li>
@@ -42,7 +42,12 @@ $conn = mysqli_connect($ip,$user,$passwd,$db_name);
     </form>
     <?php
     $zmienna = $_POST['input'];
-    echo $zmienna ; 
+    $query = "Select nazwa,ulica from kwiaciarnie where miasto = '$zmienna'";
+    $lol =  mysqli_query($conn,$query);
+    while($row = mysqli_fetch_array($lol)){
+    echo "<h3>'$row[0]','$row[1]'</h3>"; 
+}
+    mysqli_close($conn);
     ?>
     </section>
     <footer>
