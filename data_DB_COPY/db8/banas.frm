@@ -1,0 +1,16 @@
+TYPE=VIEW
+query=select `db8`.`specjalista`.`id_sp` AS `id_sp`,`db8`.`specjalista`.`specjalizacja` AS `specjalizacja`,`db8`.`specjalista`.`nazwisko_lekarza` AS `nazwisko_lekarza`,`db8`.`specjalista`.`imie_lekarza` AS `imie_lekarza`,`db8`.`specjalista`.`numer_gabinetu` AS `numer_gabinetu`,`db8`.`specjalista`.`cena_porady` AS `cena_porady` from `db8`.`specjalista`
+md5=eb582a5faab6932a446d1227b53dc930
+updatable=1
+algorithm=0
+definer_user=root
+definer_host=localhost
+suid=2
+with_check_option=0
+timestamp=0001699617643218670
+create-version=2
+source=SELECT * FROM specjalista
+client_cs_name=utf8mb4
+connection_cl_name=utf8mb4_unicode_ci
+view_body_utf8=select `db8`.`specjalista`.`id_sp` AS `id_sp`,`db8`.`specjalista`.`specjalizacja` AS `specjalizacja`,`db8`.`specjalista`.`nazwisko_lekarza` AS `nazwisko_lekarza`,`db8`.`specjalista`.`imie_lekarza` AS `imie_lekarza`,`db8`.`specjalista`.`numer_gabinetu` AS `numer_gabinetu`,`db8`.`specjalista`.`cena_porady` AS `cena_porady` from `db8`.`specjalista`
+mariadb-version=100428
