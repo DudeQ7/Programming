@@ -1,4 +1,4 @@
-public class BootcampOnline extends BootcampOnline{
+public class BootcampOnline extends Course{
 String teacher;
 int consulatationHours;
     
