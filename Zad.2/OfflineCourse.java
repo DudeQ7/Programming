@@ -1,4 +1,4 @@
 public class OfflineCourse extends Course{
-    String city ;
-    int numberOfLesssons;
+    public String city ;
+    public int numberOfLesssons;
 }

@@ -1,5 +1,4 @@
 public class BootcampOnline extends Course{
-String teacher;
-int consulatationHours;
-    
+public String teacher;
+public int consulatationHours;
 }
