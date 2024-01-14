@@ -1,0 +1,51 @@
+h1{
+    display: flex;
+    text-align: center;
+    color: white;
+}
+*{
+    font-family: arial;
+}
+.baner{
+    height: 60px;
+    background-color: rgb(255, 62, 242);
+    clear: both;
+   display: flex;
+}
+
+h2,h3{
+    margin: 0 0 10px 0;
+}
+.panel_boczny{
+    height: 600px;
+    width: 25%;
+    background-color: rgb(255, 184, 236);
+    float: left;
+}
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+th,td{
+    border: 1px solid black;
+    padding: 5px;    
+}
+td:hover{
+    background-color: white;
+}
+.panel_glowny{
+    height: 600px;
+    width: 75%;
+    background-color: rgb(126, 170, 205);
+    float: left;
+}
+form{
+    margin: 50px;
+}
+footer{
+    height: 69px;
+    padding: 6px;
+    background-color: rgb(255, 62, 242);
+    text-align: right;
+    clear: both;
+}
