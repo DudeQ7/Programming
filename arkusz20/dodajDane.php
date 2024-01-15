@@ -1,6 +1,6 @@
 <?php
 $imie = $_POST['imie'];
-$nazwisko = $_POST['$nazwisko'];
+$nazwisko = $_POST['nazwisko'];
 $telefon = $_POST['telefon'];
 $email = $_POST['email'];
 $ip = 'localhost';
