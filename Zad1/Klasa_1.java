@@ -1,3 +1,5 @@
+package Zad1;
+
 public class Klasa_1 {
     public static void main(String[] args) {
         Tire opona = new Tire();

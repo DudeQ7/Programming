@@ -1,4 +1,4 @@
-//java EvenAdder
+package Zad0;//java EvenAdder
 import java.util.Arrays;
 import java.util.Scanner;
 
