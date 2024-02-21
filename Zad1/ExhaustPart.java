@@ -1,3 +1,5 @@
+package Zad1;
+
 public class ExhaustPart extends Part {
     private boolean standard;
 

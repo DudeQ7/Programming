@@ -1,3 +1,5 @@
+package Zad1;
+
 public class Tire extends Part {
     private int rozmiar;
     private double szerokosc;

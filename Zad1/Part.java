@@ -1,3 +1,5 @@
+package Zad1;
+
 public class Part {
     private int id;
     private String producent;
