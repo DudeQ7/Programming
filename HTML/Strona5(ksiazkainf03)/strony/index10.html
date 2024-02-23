@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <form action="parent">
+           <h3>Dane osobowe</h3>
+            <p>Podaj swoje nazwisko i imię:</p>
+            <input name="dane" value="" size="30">
+            <h4>Wyksztalcenie</h4>
+            <input list="Wyksztalcenie" name="wyksz">
+            <datalist id="Wyksztalcenie">
+                <option value="podstawowe"></option>
+                <option value="srednie"></option>
+                <option value="wyzsze"></option>
+            </datalist>
+            <input type="submit" value="Wyslij">
+        </form>
+</body>
+</html>
