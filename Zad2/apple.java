@@ -1,14 +1,14 @@
 public class apple extends fruit {
-    private String variety; // odmiana jabłka
     public static final String TYPE = "jabłkowate";
+    private String variety;
 
     public apple(double weight, String variety) {
-        super(TYPE, weight);
+        super(weight, TYPE);
         this.variety = variety;
     }
 
-
+    @Override
     public String getInfo() {
-        return super.getInfo() + ", odmiana: " + this.variety;
+        return super.getInfo() + ", odmiana: " + variety;
     }
 }

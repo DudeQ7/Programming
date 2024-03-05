@@ -1,13 +1,13 @@
 public class fruit {
-    protected double weight; // waga w gramach
-    protected String type; // typ owocu
+    private double weight;
+    private String type;
 
-    public fruit(String type, double weight) {
-        this.type = type;
+    public fruit(double weight, String type) {
         this.weight = weight;
+        this.type = type;
     }
 
     public String getInfo() {
-        return "Waga: " + this.weight + "g, typ: " + this.type;
+        return "Waga: " + weight + "g, typ: " + type;
     }
 }
