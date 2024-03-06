@@ -1,20 +1,13 @@
-package Zad2;
-
-import java.lang.reflect.Type;
-
 public class fruit {
-    public fruit(String typ, double weight) {
-        this.typ = typ;
+    private double weight;
+    private String type;
+
+    public fruit(double weight, String type) {
         this.weight = weight;
+        this.type = type;
     }
-    public static final String species_Type = "jabłkowate";
-public void getInfo(double weight,String typ){
-    System.out.println("waga: " + weight);
-    System.out.println("Typ:" + typ);
+
+    public String getInfo() {
+        return "Waga: " + weight + "g, typ: " + type;
     }
-    public String typ;
-    public double weight;
-
-    public  String species;
-
 }
