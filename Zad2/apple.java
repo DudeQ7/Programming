@@ -1,5 +1,5 @@
 package Zad2;
-
+import Zad2.fruit;
 public class apple extends fruit {
     public static final String TYPE = "jabłkowate";
     private String variety;
