@@ -16,6 +16,39 @@ public class Hospital {
     public void  addNurse(Nurse nurse){
         nurses[n_count++] = nurse;
     }
+
+    public Doctor[] getDoctors() {
+        return doctors;
+    }
+
+    public void setDoctors(Doctor[] doctors) {
+        this.doctors = doctors;
+    }
+
+    public Nurse[] getNurses() {
+        return nurses;
+    }
+
+    public void setNurses(Nurse[] nurses) {
+        this.nurses = nurses;
+    }
+
+    public int getD_count() {
+        return d_count;
+    }
+
+    public void setD_count(int d_count) {
+        this.d_count = d_count;
+    }
+
+    public int getN_count() {
+        return n_count;
+    }
+
+    public void setN_count(int n_count) {
+        this.n_count = n_count;
+    }
+
     public String getDoctorsInfo() {
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < d_count; i++) {
