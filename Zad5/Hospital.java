@@ -4,13 +4,19 @@ public class Hospital {
     private int count;
 
     public Hospital() {
-        employees = new Person[10];
+        employees = new Person[5];
         count = 0;
+
     }
 
     public void add(Person person) {
-        employees[count] = person;
-        count++;
+        if (count < employees.length){
+            employees[count] = person;
+            count++;
+        }
+     else{
+            System.out.println("Nie mozesz miec wiecej niz 5 pracownikow :( ");
+        }
     }
 
     public String getInfo() {
