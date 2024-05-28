@@ -6,6 +6,6 @@ wydatki4 = 1500 #placeholder
 wydatki5 = 1500 #placeholder
 wydatki6 = 1500 #placeholder
 suma_wydatkow = wydatki1 + wydatki2 +wydatki3 + wydatki4+wydatki5+wydatki6
-print("Konto oszczednosciowe: ",round(suma_wydatkow * 0.30,2))
-print("Obligacje EDO: ",round(suma_wydatkow * 0.70,2))
+print("Konto oszczednosciowe: ",round(suma_wydatkow * 0.25,2))
+print("Obligacje EDO: ",round(suma_wydatkow * 0.75,2))
 print("Calkowita wartosc poduszki bezpieczenstwa: ", round(suma_wydatkow,2))
