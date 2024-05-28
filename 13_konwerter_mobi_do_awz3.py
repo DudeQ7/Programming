@@ -1,16 +1,47 @@
-import os
+from os import listdir, rename
+from os.path import isfile, join
 import subprocess
 
-def convert_to_awz3(directory):
-    for filename in os.listdir(directory):
-        if filename.endswith('.mobi') or filename.endswith('.epub'):
-            file_path = os.path.join(directory, filename)
-            output_path = os.path.splitext(file_path)[0] + '.azw3'
-            try:
-                subprocess.run(['ebook-convert', file_path, output_path], check=True)
-                print(f'Successfully converted {file_path} to {output_path}')
-            except subprocess.CalledProcessError as e:
-                print(f'Failed to convert {file_path} to {output_path}. Error: {e}')
 
-# Example usage:
-convert_to_awz3(r'C:\Users\dudeq\Desktop\manka')
+# return name of file to be kept after conversion.
+# we are just changing the extension. azw3 here.
+def get_final_filename(f):
+    f = f.split(".")
+    filename = ".".join(f[0:-1])
+    processed_file_name = filename+".mobi"
+    return processed_file_name
+
+
+# return file extension. pdf or epub or mobi
+def get_file_extension(f):
+    return f.split(".")[-1]
+
+
+# list of extensions that needs to be ignored.
+ignored_extensions = ["pdf"]
+
+# here all the downloaded files are kept
+mypath = "C:/Users/dudeq/Documents/programming/Epub-to-Mobi-Converter/ebooks/"
+
+# path where converted files are stored
+mypath_converted = "C:/Users/dudeq/Documents/programming/Epub-to-Mobi-Converter/converted-books/"
+
+# path where processed files will be moved to, clearing the downloaded folder
+mypath_processed = "C:/Users/dudeq/Documents/programming/Epub-to-Mobi-Converter/test/"
+
+raw_files = [f for f in listdir(mypath) if isfile(join(mypath, f))]
+converted_files =  [f for f in listdir(mypath_converted) if isfile(join(mypath_converted, f))]
+
+for f in raw_files:
+    final_file_name = get_final_filename(f)
+    extension = get_file_extension(f)
+    if final_file_name not in converted_files and extension not in ignored_extensions:
+        print("Converting : "+f)
+        try:
+            subprocess.call(["ebook-convert",mypath+f,mypath_converted+final_file_name]) 
+            s = rename(mypath+f, mypath_processed+f)
+            print(s)
+        except Exception as e:
+            print(e)
+    else:
+        print("Already exists : "+final_file_name)
