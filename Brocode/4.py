@@ -1,4 +1,6 @@
-zmienna = "klotek"
-#print(len(zmienna)) #wypisuje długość danego stringu 
-#print(zmienna.find("e")) #pozwala znaleźć na którym indeksie w naszej zmiennej znajduje sie szukana rzecz zaczuna od 0 
-#print(zmienna.capitalize()) #zwieksza na duza literke
+import random
+zmienna = random.randrange(0,1)
+if(zmienna== 1):
+    print("Let's go Python")
+else:
+    print("lets go hogwart")
