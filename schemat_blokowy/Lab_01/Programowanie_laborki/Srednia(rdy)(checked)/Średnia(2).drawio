@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/131.0" version="24.8.0">
   <diagram name="Page-1" id="OxJCRmAtMOB0Wc6F7EZ0">
-    <mxGraphModel dx="2123" dy="577" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="2874" dy="1065" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -14,7 +14,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="Re5EivcvyPbVgY1sTL7n-2" value="&lt;div&gt;Zadeklaruj zmienną a,b,c&amp;nbsp;&lt;/div&gt;&lt;div&gt;jako typ zmiennoprzecinkowy,&amp;nbsp;&lt;/div&gt;&lt;div&gt;stwórz zmienną średnia&lt;/div&gt;" style="shape=parallelogram;html=1;strokeWidth=2;perimeter=parallelogramPerimeter;whiteSpace=wrap;rounded=1;arcSize=12;size=0.23;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
-          <mxGeometry x="-208.5" y="190" width="230" height="79" as="geometry" />
+          <mxGeometry x="-208.5" y="170" width="230" height="79" as="geometry" />
         </mxCell>
         <mxCell id="Re5EivcvyPbVgY1sTL7n-13" value="" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;startSize=8;endSize=8;" parent="1" source="Re5EivcvyPbVgY1sTL7n-5" target="Re5EivcvyPbVgY1sTL7n-12" edge="1">
           <mxGeometry relative="1" as="geometry" />
@@ -26,7 +26,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="Re5EivcvyPbVgY1sTL7n-7" value="Odczytaj wartośc zmiennych a,b,c " style="rounded=0;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
-          <mxGeometry x="-251.5" y="329" width="316" height="109" as="geometry" />
+          <mxGeometry x="-251.5" y="290" width="316" height="109" as="geometry" />
         </mxCell>
         <mxCell id="Re5EivcvyPbVgY1sTL7n-16" value="" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;startSize=8;endSize=8;" parent="1" source="Re5EivcvyPbVgY1sTL7n-12" target="Re5EivcvyPbVgY1sTL7n-14" edge="1">
           <mxGeometry relative="1" as="geometry" />
@@ -58,11 +58,13 @@
         <mxCell id="9aYFQ_a00N2DBimDLQjR-10" value="Wypisz &quot; Podana wartość nie jest liczbą&quot;" style="whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;strokeWidth=2;" parent="1" vertex="1">
           <mxGeometry x="-560" y="817" width="160" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="9aYFQ_a00N2DBimDLQjR-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="9aYFQ_a00N2DBimDLQjR-10" target="Re5EivcvyPbVgY1sTL7n-14" edge="1">
+        <mxCell id="9aYFQ_a00N2DBimDLQjR-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="9aYFQ_a00N2DBimDLQjR-10" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="-480" y="1143" />
+              <mxPoint x="-480" y="1050" />
+              <mxPoint x="-142" y="1050" />
             </Array>
+            <mxPoint x="-92" y="1050" as="targetPoint" />
           </mxGeometry>
         </mxCell>
       </root>
