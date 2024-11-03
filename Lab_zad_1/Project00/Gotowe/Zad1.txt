@@ -1,4 +1,5 @@
-Sprawozdanie z zadania nr. 1
+Sprawozdanie z zadania nr. 1 
+Wstęp do programowania - LAB 04         Student: Paweł Dutkiewicz               Grupa: L01
     Wprowadzenie:
         Celem tego sprawozdania jest ocenienie poprawności nazw wybranych zmiennych w języku C++. 
         Po sprawdzeniu podanych przykładów, wskazano ,że zmienne, które korzystają z nazw, niezgodnych z regułami języka C++.
