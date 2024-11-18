@@ -8,9 +8,9 @@ class zadanie2{
         int x,y;
         void pobranie()
         {
-            cout << "Podaj wartość x: ";
+            cout << "Podaj wartosc x: ";
             cin >> x;
-            cout << "Podaj wartość y: ";
+            cout << "Podaj wartosc y: ";
             cin >> y;
         }
         void warunek()
