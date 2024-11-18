@@ -19,7 +19,7 @@ class zadanie4{
     }
     void dzialanie()
     {
-         const string dni[] = {"Niedziela","Sobota","Piatek","Czwartek","Sroda","Wtorek","Poniedzialek"};//bedzie latwiej wywolywac dane dni
+        const string dni[] = {"Niedziela","Sobota","Piatek","Czwartek","Sroda","Wtorek","Poniedzialek"};//bedzie latwiej wywolywac dane dni
 
         if(A>=1&&A<=7)
         {
