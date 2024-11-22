@@ -2,41 +2,46 @@
 using namespace std;
 /*
 Zadanie 2
-Napisz program z klasą sumujący wartości ciągu n liczb podawanych przez użytkownika. Ilość liczb podaje użytkownik jako pierwszą wartość. Musi być to wartość dodatnia (użyj pętli). Wyświetl ilość podanych liczb, ich średnią oraz ilość podanych poprawnie i niepoprawnie liczb (nie dodatnich).
-metody:
-pobierz() - pobiera wartość n, n>0,
-wypelnij() - pobiera wartości od użytkownika, liczy sumę oraz ilość poprawnych i błędnych wartości
-wyswietl() - oblicza srednie, wyświetla średnie i sumy,
+Napisz program z klasą sumujący  
+pobierz() - pobiera wartość n, n>0, done
+wypelnij() - pobiera wartości od użytkownika, liczy sumę oraz ilość poprawnych i błędnych wartości done
+wyswietl() - oblicza srednie, wyświetla średnie i sumy done 
 */
 class zadanie2
 {
     public:
-        int n;
+        int n,suma=0, poprawne = 0 , niepoprawne = 0,liczba = 0 ;
+
             void pobierz()
             {
                 cout << "Podaj wartosc n: ";
-                cin >> n;
-                if(n>0)
-                {
-                    cout << "Podales poprawna liczbe";
-                }
-                else
-                {
-                    cout << "Podales niepoprawna liczbe. Wpisz ponownie.";
-                }
-                
+                cin >> n; //warunek sprawdzajacy poprawnosc danych wejsciowych jest w linii 52
             }
             void wypelnij()
             {
-                int suma = 0 , poprawne = 0 , niepoprawne = 0,liczba = 0; ;
-                for (int i = 0; i <n; i++)
+                for (int i = 1; i <=n; i++)
                 {
-                     
-                    cout << "Podaj liczbe nr: "<<liczba<<" :"<<endl;
-                    liczba++;
-
+                    cout << "Podaj liczbe nr: "<<i<<" = ";
+                    cin >> liczba;
+                    suma+=liczba;
+                        if(liczba>=0)
+                        {
+                            poprawne++;   
+                        }
+                        else
+                        {
+                            niepoprawne++;
+                        }       
                 }
-
+            }
+            void wyswietl()
+            {
+                //liczy sredniem, wyswietla sumy i srednie
+                double srednia = suma /n;
+                cout << "Srednia: " << srednia << endl;
+                cout << "Suma liczb: " << suma << endl;
+                cout << "Liczba poprawnych wartosci: " << poprawne << endl;
+                cout << "Liczba niepoprawnych wartosci: " << niepoprawne << endl;
             }
 };
 using namespace std;
@@ -44,6 +49,27 @@ using namespace std;
 int main() {
     zadanie2 zad;
         zad.pobierz();
-        zad.wypelnij();
+        if(zad.n >0) // ten check ma za zadanie sprawdzic by w przypadku liczby ujemnej nie komunikat wygladal w ten sposob(linia 75)
+        {          
+            zad.wypelnij();
+            zad.wyswietl();
+        }
+        else if(zad.n==0)
+        {
+            cout << "Podales wartosc rowna 0. Wpisz ponownie."<<endl;
+        }
+        else
+        {
+            cout << "Podales wartosc ujemna. Wpisz ponownie."<<endl;
+        }
     return 0;
 }
+  /*
+                    Podaj wartosc n: -3
+                    Podales wartosc ujemna. Wpisz ponownie.
+                    Srednia: 0
+                    Suma liczb: 0
+                    Liczba poprawnych wartosci: 0
+                    Liczba niepoprawnych wartosci: 0
+                    */
+        
