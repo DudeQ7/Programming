@@ -1,0 +1,10 @@
+#include <iostream>
+/* Niech będzie dana zmienna i typu int. Napisz wstawkę asemblerową przypisującą zmiennej i wartość 10.
+Użyj rejestru eax */ 
+int main()
+{
+int i = 10;
+__asm add eax, i;
+std::cout<<add eax, i;
+return 0; 
+}
