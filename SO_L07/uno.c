@@ -35,17 +35,16 @@ int main(int argc,char* argv[])
     }
     if(argc ==2 )
     {
-        printf("Podales poprawna ilosc argumentow!\n")
+        printf("Podales poprawna ilosc argumentow!\n");
     }
     else if (argc==1)
     {
-        printf("Podales tylko jeden argument!\n")
+        printf("Podales tylko jeden argument!\n");
     }
     else
     {
-        printf("Podales niewlasciwe argumenty sprobouj jeszcze raz!\n")
-    }
-    
-    
+        printf("Podales niewlasciwe argumenty sprobouj jeszcze raz!\n");
     return 0;
+}
+TEST
 }
