@@ -38,7 +38,7 @@ int main(int argc, char* argv[])
         else
         {
             printf("Max to:%d",zmienna_1);
-            printf("\nMin to:%d",zmienna_0);
+            printf("\nMin to:%d",zmienna_0); faf
         }
         return 0;
     }
