@@ -3,44 +3,7 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-void print_args(char *argv[],int start,int end)
-{
-    for(int i = start; i<=end; i++)
-    {
-        printf("%s",argv[i]);
-        if(i <end)
-        {
-            printf(" "); //spacje miedzy argumentami
-        }
-    }
-}
-int find_max(char *argv[],int start,int end)
-{
-    int max = atoi(argv[start]);
-        for(int i = start+1;i<=end; i++)
-        {
-            int zmienna_0 = atoi(argv[i]);
-                if(zmienna_0>max)
-                {
-                    max = zmienna_0;
-                } 
-        }
-    return max;
-}
-int find_min(char *argv[],int start,int end)
-{
-    int min = atoi(argv[start]);
-        for(int i = start+1;i<=end; i++)
-        {
-            int zmienna_0 = atoi(argv[i]);
-                if(zmienna_0<min)
-                {
-                    min = zmienna_0;
-                } 
-        }
-    return min;
-}
-//n argumentow wieksze od 1 ale mniejsze od 20 
+#include "funkcje.h"
 int main(int argc, char* argv[])
 {
     if(argc<2)
@@ -48,14 +11,14 @@ int main(int argc, char* argv[])
         printf("Błedna liczba argumentow\n");
         return -100;
     }
-    if(argc ==2)//realnie jeden argument
+    if(argc ==2)
     {
         int zmienna_0=atoi(argv[1]);
             printf("Max to: %d",zmienna_0);
             printf("\nMin to: %d",zmienna_0);
         return 0;
     }
-    if(argc ==3)//realnie dwa argumenty
+    if(argc ==3)
     {
         int zmienna_0 =atoi(argv[1]);
         int zmienna_1 =atoi(argv[2]);
@@ -71,11 +34,11 @@ int main(int argc, char* argv[])
         }
         return 0;
     }
-    int n = argc -1; //odejmujemy argument pierwszy ktorym jest skompliowana nazwa naszego programu 
-    int mid = n / 2 ; //punkt podzialu 
+    int n = argc -1; 
+    int mid = n / 2 ; 
     int first_half = mid; 
     int second_half = mid+1;
-    pid_t pids[4] ; //tablica na procesy 
+    pid_t pids[4] ; 
     int i ;
         for(i=0; i<4; i++)
         {
@@ -89,14 +52,14 @@ int main(int argc, char* argv[])
                     {
                         const char *type;
                         int start,end,result;
-                            if(i==0) //max w 1 polowie
+                            if(i==0) 
                             {
                                 start =1;
                                 end = first_half;
                                 type = "max";
                                 result = find_max(argv,start,end);
                             }
-                            else if(i==1)//max w 2 polowie
+                            else if(i==1)
                             {
                                 start = second_half;
                                 end = n;
@@ -105,7 +68,7 @@ int main(int argc, char* argv[])
                                 
 
                             }
-                            else if(i==2)//min w 1 polowie
+                            else if(i==2)
                             {
                                 start = 1;
                                 end = first_half;
@@ -113,7 +76,7 @@ int main(int argc, char* argv[])
                                 result =find_min(argv,start,end);
 
                             }
-                            else //min w 2 polowie
+                            else 
                             {
                               start = second_half;
                               end = n;
@@ -126,7 +89,7 @@ int main(int argc, char* argv[])
                             exit(result);
                     }   
         }
-        int max_0,max_1,min_0,min_1,status; // kod dla rodzica
+        int max_0,max_1,min_0,min_1,status; 
         for(int i=0; i<4; i++)
         {
             waitpid(pids[i],&status,0);

@@ -7,7 +7,7 @@ void print_args(char *argv[],int start,int end)
         printf("%s",argv[i]);
         if(i <end)
         {
-            printf(" "); //spacje miedzy argumentami
+            printf(" "); 
         }
     }
 }
