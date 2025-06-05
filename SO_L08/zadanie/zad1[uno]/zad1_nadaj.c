@@ -16,6 +16,6 @@ Struktura shmid_ds{} i jej struktury składowe.
 */
 int main()
 {
-    shmget()
+    int shmget()
     return 0;
 }
