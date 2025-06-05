@@ -2,10 +2,10 @@
 CC = gcc #nasz komplator
 CFLAGS = -Wall -g  #lepsze error code'y 
 OBJECTS = main.o print_args.o find_max.o find_min.o #pliki z funkcjami 
-TARGET = tres
+TARGET = zad3
 all: $(TARGET)
-$(TARGET):$(OBJECTS) #tres zostanie ponownie skompliowany jesli zmieni sie ktorys z plikow objektowych
-	$(CC) $OBJECTS -o $(TARGET)  
+$(TARGET):$(OBJECTS)
+	$(CC) $(OBJECTS) -o $(TARGET)  
 main.o: main.c funkcje.h  #main zostanie ponownie skompilowany jesli zmieni sie ktorys z tych 2 plikow
 	$(CC) $(CFLAGS) -c main.c 
 print_args.o: print_args.c funkcje.h #i tak dalej

@@ -1,5 +1,5 @@
-dos: dos.c
-	gcc -Wall -o dos dos.c
+zad2: zad2.c
+	gcc -Wall -o zad2 zad2.c
 
 clean:
-	rm -f dos
+	rm -f zad2

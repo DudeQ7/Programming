@@ -1,4 +1,4 @@
-uno: uno.c
-	gcc -Wall -o uno uno.c
+zad1: zad1.c
+	gcc -Wall -o zad1 zad1.c
 clean:
-	rm -rf uno
+	rm -rf zad1
