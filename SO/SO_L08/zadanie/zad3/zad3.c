@@ -6,146 +6,174 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <sys/wait.h>
-//definicja struktury przekopiowana z instrukcji
+// Definicja struktury shm_perm z instrukcji
 struct shm_perm
 {
     key_t key;
-    ushort uid; /*euid i egid wlascicela*/
+    ushort uid; /* euid i egid właściciela */
     ushort gid;
-    ushort cuid; /*euid i egid twórcy*/
+    ushort cuid; /* euid i egid twórcy */
     ushort cgid;
-    ushort mode; /*9 najmniej znaczących bitów shmflg*/
-    ushort seq; /* numer porządkowy*/      
+    ushort mode; /* 9 najmniej znaczących bitów shmflg */
+    ushort seq; /* numer porządkowy */      
 };
-#define SHM_SIZE 100 //Rozmiar segmentu pamieci wspoldzielonej
+#define SHM_SIZE 100 // Rozmiar segmentu pamięci współdzielonej
 int main()
 {
-   key_t key;
-   int shmid;
-   char *shm;
-   struct shmid_ds shm_info;
-   struct shm_perm perm,new_perm;
-    key = ftok("zad3.c",65);
-    if(key == -1)
+    key_t key;
+    int shmid;
+    char *shm;
+    struct shmid_ds shm_info;
+    struct shm_perm perm, new_perm;
+    // Generowanie klucza dla segmentu pamięci przy użyciu ftok
+    key = ftok("zad3.c", 65);
+    if (key == -1)
     {
-        perror("Blad funkcji ftok");
+        perror("Błąd funkcji ftok"); // Wypisuje błąd, jeśli generowanie klucza się nie powiedzie
         exit(1);
     }
-    //tworzenie segmentu pamieci wspoldzielonej
-    shmid = shmget(key,SHM_SIZE,IPC_CREAT | 0666); //prev value 0777
-    if(shmid == -1)
+    /*Tworzenie segmentu pamięci współdzielonej
+    shget: alokuje segment o rozmiarze SHM_SIZE z flagami IPC_CREAT i 0666
+    */
+    shmid = shmget(key, SHM_SIZE, IPC_CREAT | 0666);
+    if (shmid == -1)
     {
-        perror("Blad shmget");
+        perror("Błąd shmget"); // Wypisuje błąd, jeśli tworzenie segmentu się nie powiedzie
         exit(1);
     }
-    //podlaczanie segmentu pamieci do przestrzeni adresowej
-    shm =(char *)shmat(shmid,NULL,0);
-    if(shm == (char *)-1)
+    /*Podłączanie segmentu pamięci do przestrzeni adresowej procesu
+    shmat: mapuje segment do przestrzeni adresowej, zwracając wskaźnik
+    */
+    shm = (char *)shmat(shmid, NULL, 0);
+    if (shm == (char *)-1)
     {
-        perror("Blad shmat");
+        perror("Błąd shmat"); // Wypisuje błąd, jeśli podłączenie się nie powiedzie
         exit(1);
     }
+    /*Tworzenie procesu potomnego
+    fork: tworzy nowy proces, zwracając PID potomnego lub 0 w potomnym
+    */
     pid_t pid = fork();
-    if(pid == -1)
+    if (pid == -1)
     {
-        printf("Blad fork'u");
+        perror("Błąd fork"); // Wypisuje błąd, jeśli tworzenie procesu się nie powiedzie
         exit(1);
     }
-        if(pid == 0)
-    { 
-        sleep(1);   //opoznienie dla synchronizacji
-        //pobieranie informacji o segmencie pamieci
-        if(shmctl(shmid, IPC_STAT, &shm_info) == -1)
+    if (pid == 0) // Proces potomny
+    {
+        sleep(1); // Opóźnienie dla synchronizacji
+        /*Pobieranie informacji o segmencie pamięci
+        shmctl z IPC_STAT: zapisuje informacje o segmencie do shm_info
+        */
+        if (shmctl(shmid, IPC_STAT, &shm_info) == -1)
         {
-            perror("Blad shmctl");
+            perror("Błąd shmctl"); // Wypisuje błąd, jeśli pobranie informacji się nie powiedzie
             exit(1);
         }
+        // Kopiowanie danych do struktury perm
         perm.key = shm_info.shm_perm.__key;
-        perm.uid = shm_info.shm_perm.uid; //uid wlascicela
-        perm.gid = shm_info.shm_perm.gid; //gid wlasciciela
-        perm.cuid = shm_info.shm_perm.cuid; //uid tworcy obszaru
-        perm.cgid = shm_info.shm_perm.cgid; //gid tworcy
-        perm.mode = shm_info.shm_perm.mode & 0777; //praw dostepu 
-        perm.seq = shm_info.shm_perm.__seq; //numer porzadkowy
-        sprintf(shm,"%d",getpid());
-        //wyswietlanie informacji
+        perm.uid = shm_info.shm_perm.uid; // UID właściciela
+        perm.gid = shm_info.shm_perm.gid; // GID właściciela
+        perm.cuid = shm_info.shm_perm.cuid; // UID twórcy
+        perm.cgid = shm_info.shm_perm.cgid; // GID twórcy
+        perm.mode = shm_info.shm_perm.mode & 0777; // Prawa dostępu
+        perm.seq = shm_info.shm_perm.__seq; // Numer porządkowy
+        // Zapis PID potomnego do pamięci współdzielonej
+        sprintf(shm, "%d", getpid());
+        // Wyświetlanie informacji o segmencie pamięci
         printf("PID potomnego: %d\n", getpid());
-        printf("Informacje o segmencie pamieci wspoldzielonej:\n");
+        printf("Informacje o segmencie pamięci współdzielonej:\n");
         printf("Klucz: %d\n", perm.key);
         printf("UID: %u\n", perm.uid);
         printf("GID: %u\n", perm.gid);
-        printf("UID tworcy: %u\n", perm.cuid);
-        printf("GID tworcy: %u\n", perm.cgid);
-        printf("Prawa dostepu: %o\n", perm.mode);
-        printf("Rozmiar segmentu: %zu bajtow\n", shm_info.shm_segsz);
-        printf("PID ostatniego uzycia: %d\n", shm_info.shm_lpid);
-        printf("PID tworcy: %d\n", shm_info.shm_cpid);
-        printf("Liczba przylaczen: %ld\n", shm_info.shm_nattch);
-        if(shmdt(shm) == -1)
+        printf("UID twórcy: %u\n", perm.cuid);
+        printf("GID twórcy: %u\n", perm.cgid);
+        printf("Prawa dostępu: %o\n", perm.mode);
+        printf("Rozmiar segmentu: %zu bajtów\n", shm_info.shm_segsz);
+        printf("PID ostatniego użycia: %d\n", shm_info.shm_lpid);
+        printf("PID twórcy: %d\n", shm_info.shm_cpid);
+        printf("Liczba przyłączeń: %ld\n", shm_info.shm_nattch);
+        // Odłączanie segmentu pamięci w procesie potomnym
+        if (shmdt(shm) == -1)
         {
-            perror("Blad shmdt w potomnym");
+            perror("Błąd shmdt w potomnym"); // Wypisuje błąd, jeśli odłączenie się nie powiedzie
             exit(1);
         }
-        exit(0);
+        exit(0); // Zakończenie procesu potomnego
     }
-    else
-    {   printf("PID nadrzednego procesu po shmget: %d\n",getpid());
-        sleep(1); //opoznienie dla aktualizacji
-        wait(NULL); // czekanie na zakonczenie procesu potomnego
-        //pobranie aktualnych danych przed dokonaniem zmiany
-        if(shmctl(shmid,IPC_STAT,&shm_info) == -1)
+    else // Proces nadrzędny
+    {
+        printf("PID nadrzędnego procesu po shmget: %d\n", getpid());
+        sleep(1); // Opóźnienie dla synchronizacji
+        wait(NULL); // Czekanie na zakończenie procesu potomnego
+        // Pobranie aktualnych danych o segmencie przed zmianą
+        if (shmctl(shmid, IPC_STAT, &shm_info) == -1)
         {
-            perror("Blad shmctl(pobranie danych");
+            perror("Błąd shmctl (pobranie danych)"); // Wypisuje błąd, jeśli pobranie danych się nie powiedzie
             exit(1);
         }
-        //nowe dane od usera
-        printf("Podaj nowe prawa dostepu(w formacie np. 0666):");
+        /*Pobieranie nowych praw dostępu od użytkownika
+        scanf: odczytuje prawa dostepu (np. 0666)
+        */
+        printf("Podaj nowe prawa dostępu (w formacie np. 0666): ");
         scanf("%ho", &new_perm.mode);
-        shm_info.shm_perm.mode =new_perm.mode; //aktualizacja struktury z nowymi prawami
-        if(shmctl(shmid,IPC_SET,&shm_info)== -1)
+        // Aktualizacja praw dostępu w strukturze
+        shm_info.shm_perm.mode = new_perm.mode;
+        /* Zmiana praw dostępu segmentu pamięci
+         shmctl z IPC_SET: ustawia nowe prawa dostępu
+        */
+        if (shmctl(shmid, IPC_SET, &shm_info) == -1)
         {
-            perror("Blad shmctl(zmiana praw dostepu)");
+            perror("Błąd shmctl (zmiana praw dostępu)"); // Wypisuje błąd, jeśli zmiana się nie powiedzie
             exit(1);
         }
-       sleep(1); 
-       pid_t pid_potomnego = atoi(shm);
-       if(shmctl(shmid,IPC_STAT,&shm_info)== -1 )
-       {
-            perror("Blad shmctl(pobranie danych po zmianie)");
-            exit(1);
-       }
-       perm.key = shm_info.shm_perm.__key;
-       perm.uid = shm_info.shm_perm.uid;
-       perm.gid = shm_info.shm_perm.gid;
-       perm.cuid = shm_info.shm_perm.cuid;
-       perm.mode = shm_info.shm_perm.mode;
-       perm.seq = shm_info.shm_perm.__seq;
-       printf("\nZakutalizowane informacje o segmencie pamieci\n");
-       printf("PID nadrzednego procesu po shmget: %d\n",getpid());
-       printf("PID potomnego: %d\n", pid_potomnego);
-       printf("Informacje o segmencie pamieci wspoldzielonej:\n");
-       printf("Klucz: %d\n",perm.key);
-       printf("UID: %u\n",perm.uid);
-       printf("GID: %u\n",perm.gid);
-       printf("UID tworcy: %u\n",perm.cuid);
-       printf("GID tworcy: %u\n",perm.cgid);
-       printf("Prawa dostepu: %o\n",perm.mode);
-       printf("Rozmiar segmentu: %zu bajtow\n",shm_info.shm_segsz);
-       printf("PID ostatniego uzycia: %d\n",shm_info.shm_lpid);
-       printf("PID tworcy: %d\n",shm_info.shm_cpid);
-       printf("Liczba przylaczen: %ld\n",shm_info.shm_nattch);
-       if(shmdt(shm)==-1)
+        sleep(1); // Opóźnienie dla synchronizacji
+        // Odczyt PID potomnego z pamięci współdzielonej
+        pid_t pid_potomnego = atoi(shm);
+        // Pobranie zaktualizowanych danych o segmencie
+        if (shmctl(shmid, IPC_STAT, &shm_info) == -1)
         {
-            perror("Blad shmdt w procesie nadrzednym");
+            perror("Błąd shmctl (pobranie danych po zmianie)"); // Wypisuje błąd, jeśli pobranie się nie powiedzie
             exit(1);
         }
-        //usuwanie segmentu pamieci
-        if(shmctl(shmid,IPC_RMID,NULL)==-1)
+        // Aktualizacja struktury perm z nowymi danymi
+        perm.key = shm_info.shm_perm.__key;
+        perm.uid = shm_info.shm_perm.uid;
+        perm.gid = shm_info.shm_perm.gid;
+        perm.cuid = shm_info.shm_perm.cuid;
+        perm.cgid = shm_info.shm_perm.cgid;
+        perm.mode = shm_info.shm_perm.mode; // Zaktualizowane prawa dostępu
+        perm.seq = shm_info.shm_perm.__seq;
+        // Wyświetlanie zaktualizowanych informacji
+        printf("\nZaktualizowane informacje o segmencie pamięci\n");
+        printf("PID nadrzędnego procesu po shmget: %d\n", getpid());
+        printf("PID potomnego: %d\n", pid_potomnego);
+        printf("Informacje o segmencie pamięci współdzielonej:\n");
+        printf("Klucz: %d\n", perm.key);
+        printf("UID: %u\n", perm.uid);
+        printf("GID: %u\n", perm.gid);
+        printf("UID twórcy: %u\n", perm.cuid);
+        printf("GID twórcy: %u\n", perm.cgid);
+        printf("Prawa dostępu: %o\n", perm.mode);
+        printf("Rozmiar segmentu: %zu bajtów\n", shm_info.shm_segsz);
+        printf("PID ostatniego użycia: %d\n", shm_info.shm_lpid);
+        printf("PID twórcy: %d\n", shm_info.shm_cpid);
+        printf("Liczba przyłączeń: %ld\n", shm_info.shm_nattch);
+        // Odłączanie segmentu pamięci w procesie nadrzędnym
+        if (shmdt(shm) == -1)
         {
-            perror("Blad shmctl IPC_RMID");
+            perror("Błąd shmdt w procesie nadrzędnym"); // Wypisuje błąd, jeśli odłączenie się nie powiedzie
             exit(1);
         }
-        printf("Segment pamieci wspoldzielonej usuniety\n");
+        /* Usuwanie segmentu pamięci współdzielonej
+         shmctl z IPC_RMID: usuwa segment pamięci
+        */
+         if (shmctl(shmid, IPC_RMID, NULL) == -1)
+        {
+            perror("Błąd shmctl IPC_RMID"); // Wypisuje błąd, jeśli usuwanie się nie powiedzie
+            exit(1);
+        }
+        printf("Segment pamięci współdzielonej usunięty\n");
     }
     return 0;
 }
