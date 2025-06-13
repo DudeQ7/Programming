@@ -1,0 +1,14 @@
+{
+    "workbench.iconTheme": "vscode-icons",
+    "window.zoomLevel": -1,
+    "workbench.colorTheme": "Awaken the Synth-Dragon",
+    "workbench.sideBar.location": "right",
+    "editor.mouseWheelZoom": true,
+    "code-runner.runInTerminal": true,
+    "code-runner.saveFileBeforeRun": true,
+"vscode_custom_css.imports": ["file:///C:/Users/dudeq/.vscode/extensions/sundragontech.awaken-the-synth-dragon-1.0.2/epic-80s-transitions.css"],
+"editor.formatOnSave": true, 
+"files.autoSave": "afterDelay", 
+"files.autoSaveDelay": 1000, 
+"editor.minimap.enabled": false 
+}
