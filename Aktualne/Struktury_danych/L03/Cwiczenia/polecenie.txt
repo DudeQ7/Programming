@@ -1,0 +1,42 @@
+Zad.1
+Stwórz tablicę o wymiarach 4x6.
+Wypełnij ją liczbami losowymi od 0 do 9.
+Wyświetl tablicę.
+Oblicz i wyświetl sumę wartości w każdym wierszu.
+ 
+Zadanie 2
+Stwórz tablicę o wymiarach 5x5 wypełnioną zerami.
+Wyświetl tablicę.
+Uzupełnij automatycznie tablicę wartością 1 po przekątnych (używając pętli) i wyświetl
+ 
+10001
+01010
+00100
+01010
+10001
+ 
+Zadanie 3.
+Stwórz tablicę o wymiarach 5x5 wypełnioną zerami.
+Wyświetl tablicę.
+Uzupełnij automatycznie tablicę wartością 1 po krawędziach (używając pętli) i wyświetl
+ 
+11111
+10001
+10001
+10001
+11111
+ 
+Zadanie 4
+ 
+Stwórz tablice 10x10.
+Wypełnij ją wartościami 0
+User podaje wartość A -  ile liczb wprowadzi (A>5 i A<30)
+Podczas podawania liczb, program losuje miejsce w tablicy, w którym znajdzie się ta liczba. 
+Musi być to puste miejsce (równe 0).
+ 
+Zadanie 5
+ 
+Stwórz pusty wektor intów. Wyświetl jego rozmiar i pojemość. Napisz pętlę, w której dodasz do niego dowolną liczbę całkowitą 
+(użyj push_back lub emplace_back, w tym przypadku jest to bez znaczenia), a następnie wyświetlisz rozmiar i pojemność wektora.
+ 
+Odpowiedz w komentarzu do zadania: Wykonaj ciało pętli np. 100 razy. Jak zmienia się pojemność wektora, gdy jest on zapełniony i dodajesz do niego element?
