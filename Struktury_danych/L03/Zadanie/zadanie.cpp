@@ -12,6 +12,7 @@ void zeruj(int tab[size][size]) //podpunkt 1
         }
     }
 }
+
 void wyswielt(int tab[size][size]) //podpunkt 2
 {
     for(int i=0; i<size; i++)
@@ -58,7 +59,7 @@ void wojna(int t1[size][size],int t2[size][size],int &punkty1,int &punkty2,int &
             {
                 t2[i][j]=0;
                 t1[i][j]++;
-                punkty1++;
+                punkty1++; // p= 0  p -
             }
             else if(t1[i][j] < t2[i][j])
             {
@@ -158,7 +159,6 @@ int main()
         default:
             std::cout<<"Zla opcja, wybierz inna!";
             break;
-   
         }
     }
     return 0;
