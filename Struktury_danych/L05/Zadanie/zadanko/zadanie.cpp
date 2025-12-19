@@ -8,16 +8,7 @@ Nazwij sprawozdanie i kod swoim nazwiskiem (np. kowalski.docx + kowalski.cpp)
 Nie korzystaj z typu auto. 
 Umieść dodatkowo plik z danymi (kowalski.txt) który uzupełni dane w programie
 */
-void eksport_danych(FILE* plik)
-{
-    int numer2=1;
-    for(auto it =wypozyczenie.begin(); it != wypozyczenie.end(); ++it)
-    {
-        plik <<"Rower numer: "<< numer2 <<" wypozyczony dla: " << it->nazwisko<<" to: "   
-        << " (model: " << it->model << ")\n";                
-        numer2++;
-    }
-}
+
 void screen_clear()
 {
     #ifdef _WIN32
@@ -51,6 +42,7 @@ int main()
              <<"5\tWyswietl liste wypozyczonych rowerow\n"
              <<"6\tPosortuj liste wypozyczen wg nazwisk\n"
              <<"7\tZapisz liste do piku tekstowego\n"
+             <<"8\tWczytaj dane z pliku\n"
              <<"9\tZakoncz program\n"
              <<"Twoj wybor: ";
     std::cin>>u_input;
@@ -176,11 +168,52 @@ int main()
             break;
         case 7:
         {
-            std::ofstream eksport("dane.txt");
-            eksport << eksport_danych();
-            eksport.close()
-            std::cout<<"Dane zostaly zapisane!!!";
+            std::ofstream out("dane.txt");
+            if(!out.is_open())
+            {
+                std::cout<<"Nie mozna otworzyc pliku do zapisu!!!";
+            }
+            int number =1;
+            for(std::list<Wypozyczenie>::iterator it = wypozyczenie.begin(); it != wypozyczenie.end(); ++it)
+            {
+                out <<"Rower numer: "<<number
+                <<" wypozyczony dla: "<<it->nazwisko
+                <<" (model: )"<<it->model<<"\n";
+            }
+            std::cout<<"Dane zostaly przypisane do pliku";
             break;
+        }
+        case 8:
+        {
+            std::fstream in("dane2.txt");
+            if(!in.is_open())
+            {
+                std::cout<<"Nie mozna otworzyc pliku do zapisu!!!";
+                break;
+            }
+            wypozyczenie.clear(); //cleanup hardcoded danych przed zaladowaniem ich z pliku 
+            std::string nazwisko,model;
+            while(in >> nazwisko >>model)
+            {
+                Wypozyczenie w;
+                w.nazwisko = nazwisko;
+                w.model = model ;
+                wypozyczenie.push_back(w);
+            } 
+            in.close();
+            std::cout<<"Dane zostaly wczytane z pliku dane2.txt!!!";
+            break;
+        }
+        case 9:
+        {
+            int r_wybor;
+            std::cout<<"Czy chcesz zakonczyc dzialanie programu:(1=Tak,0=Nie) ";
+            std::cin>>r_wybor;
+            if(r_wybor==1)
+            {
+                std::cout<<"Program zostal zakonczony!!!";
+                break;
+            }
         }
         }
         default:
