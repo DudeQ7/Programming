@@ -8,6 +8,16 @@ Nazwij sprawozdanie i kod swoim nazwiskiem (np. kowalski.docx + kowalski.cpp)
 Nie korzystaj z typu auto. 
 Umieść dodatkowo plik z danymi (kowalski.txt) który uzupełni dane w programie
 */
+void eksport_danych(FILE* plik)
+{
+    int numer2=1;
+    for(auto it =wypozyczenie.begin(); it != wypozyczenie.end(); ++it)
+    {
+        plik <<"Rower numer: "<< numer2 <<" wypozyczony dla: " << it->nazwisko<<" to: "   
+        << " (model: " << it->model << ")\n";                
+        numer2++;
+    }
+}
 void screen_clear()
 {
     #ifdef _WIN32
@@ -34,13 +44,14 @@ int main()
     {
     screen_clear();
     std::cout<<"Wybierz dzialanie:\n"
-             <<"1   Dodaj osobe do kolejki oczekujacych (queue<string)\n"
-             <<"2   Wypozycz rower pierwszej osobie z kolejki > dodanie do listy (list)\n"
-             <<"3   Zwroc rower: usuniecie z listy po nazwisku\n"
-             <<"4   Wyswietl kolejke oczekujacych\n"
-             <<"5   Wyswietl liste wypozyczonych rowerow\n"
-             <<"6   Posortuj liste wypozyczen wg nazwisk\n"
-             <<"9   Zakoncz program\n"
+             <<"1\tDodaj osobe do kolejki oczekujacych (queue<string)\n"
+             <<"2\tWypozycz rower pierwszej osobie z kolejki > dodanie do listy (list)\n"
+             <<"3\tZwroc rower: usuniecie z listy po nazwisku\n"
+             <<"4\tWyswietl kolejke oczekujacych\n"
+             <<"5\tWyswietl liste wypozyczonych rowerow\n"
+             <<"6\tPosortuj liste wypozyczen wg nazwisk\n"
+             <<"7\tZapisz liste do piku tekstowego\n"
+             <<"9\tZakoncz program\n"
              <<"Twoj wybor: ";
     std::cin>>u_input;
     switch(u_input)
@@ -163,6 +174,14 @@ int main()
                }
             }
             break;
+        case 7:
+        {
+            std::ofstream eksport("dane.txt");
+            eksport << eksport_danych();
+            eksport.close()
+            std::cout<<"Dane zostaly zapisane!!!";
+            break;
+        }
         }
         default:
             std::cout<<"Podales liczbe spoza zakresu!";
