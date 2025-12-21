@@ -2,6 +2,7 @@
 #include <queue>
 #include <list>
 #include <fstream>
+#include <string>
 /*
 Umieść plik ze sprawozdaniem (format DOC/DOCX) i plik z kodem programu (CPP).
 Nazwij sprawozdanie i kod swoim nazwiskiem (np. kowalski.docx + kowalski.cpp)
@@ -172,6 +173,7 @@ int main()
             if(!out.is_open())
             {
                 std::cout<<"Nie mozna otworzyc pliku do zapisu!!!";
+                break;
             }
             int number =1;
             for(std::list<Wypozyczenie>::iterator it = wypozyczenie.begin(); it != wypozyczenie.end(); ++it)
@@ -180,15 +182,16 @@ int main()
                 <<" wypozyczony dla: "<<it->nazwisko
                 <<" (model: )"<<it->model<<"\n";
             }
+            out.close();
             std::cout<<"Dane zostaly przypisane do pliku";
             break;
         }
         case 8:
         {
-            std::fstream in("dane2.txt");
+            std::fstream in("dutkiewicz.txt");
             if(!in.is_open())
             {
-                std::cout<<"Nie mozna otworzyc pliku do zapisu!!!";
+                std::cout<<"Nie mozna otworzyc pliku do odczytu!!!";
                 break;
             }
             wypozyczenie.clear(); //cleanup hardcoded danych przed zaladowaniem ich z pliku 
@@ -201,7 +204,7 @@ int main()
                 wypozyczenie.push_back(w);
             } 
             in.close();
-            std::cout<<"Dane zostaly wczytane z pliku dane2.txt!!!";
+            std::cout<<"Dane zostaly wczytane z pliku dutkiewicz.txt!!!";
             break;
         }
         case 9:
@@ -212,12 +215,17 @@ int main()
             if(r_wybor==1)
             {
                 std::cout<<"Program zostal zakonczony!!!";
-                break;
+                u_input =9; // 9 dzieki do whilowi przerywa program
             }
+            else
+            {
+                u_input =0;
+            }
+            break;
         }
         }
         default:
-            std::cout<<"Podales liczbe spoza zakresu!";
+            std::cout<<"Podales liczbe spoza zakresu !";
             break; 
     };
     if (u_input != 9)
