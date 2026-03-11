@@ -1,0 +1,1 @@
+#pomocniczy widget do pokazywania obrazu 
