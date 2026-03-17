@@ -1,5 +1,0 @@
-1.W jaki sposób uzyskuje się dostęp do elementów w tablicy, a jak w wektorze? Czy są jakieś różnice?
-2.W jaki sposób dodawanie lub usuwanie elementów różni się między tablicą a wektorem?
-3.Jak wygląda proces alokacji pamięci w przypadku tablic i wektorów? Czy oba typy struktur dynamicznie zarządzają pamięcią?
-4.W jakich przypadkach bardziej optymalne jest użycie tablic, a w jakich wektorów?
-5.Jak zmienia się wydajność przy dużej liczbie operacji dodawania i usuwania elementów w tablicy i wektorze?
