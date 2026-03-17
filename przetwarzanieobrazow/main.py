@@ -3,7 +3,7 @@ import numpy as np
 def rgb(r,g,b):
     return (b,g,r)
 img = np.zeros((400,400,3),dtype=np.uint8)
-image = cv.imread("przetwarzanieobrazow/Projekt/assets/card2.jpg")
+image = cv.imread("przetwarzanieobrazow/Projekt/assets/card.jpg")
 #lewa polowa 
 img[0:200,0:200] = rgb(128,128,128)
 img[0:200,200:400] = rgb(255,0,255)
