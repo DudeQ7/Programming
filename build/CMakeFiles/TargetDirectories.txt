@@ -1,0 +1,3 @@
+C:/Users/DudeQ/Documents/programming/build/CMakeFiles/ExampleTests.dir
+C:/Users/DudeQ/Documents/programming/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/DudeQ/Documents/programming/build/CMakeFiles/ZERO_CHECK.dir
