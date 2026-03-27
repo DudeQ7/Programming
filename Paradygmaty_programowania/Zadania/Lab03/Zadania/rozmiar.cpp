@@ -1,24 +1,30 @@
 #include <iostream>
+#include <limits>
 //wyswietlenie rozmiaru tych zmiennych 
-int     test_zmienna0;
-float   test_zmienna1;
-long long test_zmienna2;
-double  test_zmienna3;
-long    test_zmienna4;
-signed int  test_zmienna5;
-unsigned short  test_zmienna6;
-//enum    test_zmienna7;
+enum   Level
+{
+    Low,
+    Medium,
+    High
+};
 
 int main()
 {
-    std::cout<<"Rozmiar zmiennej int: "<<sizeof(test_zmienna0)<<std::endl;
-    std::cout<<"Rozmiar zmiennej float: "<<sizeof(test_zmienna1)<<std::endl;
-    std::cout<<"Rozmiar zmiennej long long: "<<sizeof(test_zmienna2)<<std::endl;
-    std::cout<<"Rozmiar zmiennej double: "<<sizeof(test_zmienna3)<<std::endl;
-    std::cout<<"Rozmiar zmiennej long: "<<sizeof(test_zmienna4)<<std::endl;
-    std::cout<<"Rozmiar zmiennej signed int: "<<sizeof(test_zmienna5)<<std::endl;
-    std::cout<<"Rozmiar zmiennej unsigned short: "<<sizeof(test_zmienna6)<<std::endl;
-    //std::cout<<"Rozmiar zmiennej enum: "<<sizeof(test_zmienna7)<<std::endl;
- 
+    std::cout<<"Rozmiary typow danych wypisane w kolejnosci: "<<std::endl;
+    std::cout<<"Zakres unsigned short:"<<"\nMin: "<<std::numeric_limits<unsigned short>::min()<<"\nMax: "<<std::numeric_limits<unsigned short>::max()<<std::endl;
+    std::cout<<"Rozmiar zmiennej unsigned short: "<<sizeof(unsigned short)<<std::endl<<std::endl;
+     std::cout<<"Zakres int:"<<"\nMin: "<<std::numeric_limits<int>::min()<<"\nMax: "<<std::numeric_limits<int>::max()<<std::endl;
+    std::cout<<"Rozmiar zmiennej int: "<<sizeof(int)<<std::endl<<std::endl;
+     std::cout<<"Zakres float"<<"\nMin: "<<std::numeric_limits<float>::min()<<"\nMax: "<<std::numeric_limits<float>::max()<<std::endl;
+    std::cout<<"Rozmiar zmiennej float: "<<sizeof(float)<<std::endl<<std::endl;
+     std::cout<<"Zakres long"<<"\nMin: "<<std::numeric_limits<long>::min()<<"\nMax: "<<std::numeric_limits<long>::max()<<std::endl;
+    std::cout<<"Rozmiar zmiennej long: "<<sizeof(long)<<std::endl<<std::endl;
+     std::cout<<"Zakres signed int"<<"\nMin: "<<std::numeric_limits<signed int>::min()<<"\nMax: "<<std::numeric_limits<signed int>::max()<<std::endl;
+    std::cout<<"Rozmiar zmiennej signed int: "<<sizeof(signed int)<<std::endl<<std::endl;
+    std::cout<<"Rozmiar zmiennej enum: "<<sizeof(Level)<<std::endl<<std::endl;
+     std::cout<<"Zakres long long"<<"\nMin: "<<std::numeric_limits<long long>::min()<<"\nMax: "<<std::numeric_limits<long long>::max()<<std::endl;
+    std::cout<<"Rozmiar zmiennej long long: "<<sizeof(long long )<<std::endl<<std::endl;
+     std::cout<<"Zakres zmiennej double"<<"\nMin: "<<std::numeric_limits<double>::min()<<"\nMax: "<<std::numeric_limits<double>::max()<<std::endl;
+    std::cout<<"Rozmiar zmiennej double: "<<sizeof(double)<<std::endl;
     return 0;
 }
