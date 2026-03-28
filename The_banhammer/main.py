@@ -1,10 +1,17 @@
-#pip install mysql-connector-python 
+#pip install dotenv mysql-connector-python
 import mysql.connector
+import os
+from dotenv import load_dotenv
+load_dotenv() 
 mydb = mysql.connector.connect(
-    host="localhost",
-    user="yourusername",
-    password="yourpassword"
-    database="mydatabase"
+    host = os.getenv('HOST_NAME'),
+    user = os.getenv('DB_USER'),
+    password = os.getenv('DB_PASSWORD'),
+    database = os.getenv('DB_NAME')
+  
 )
-kwerenda = mydb.cursor()
-kwerenda.execute("CREATE DATABASE mydatabase")
+mycursor = mydb.cursor()
+mycursor.execute("Select * from twfjqjet.test")
+myresult = mycursor.fetchall()
+for x in myresult:
+    print(x)
