@@ -3,9 +3,11 @@ import csv
 import mysql.connector
 from dotenv import load_dotenv
 import pandas as pd
+#pip install python-dotenv mysql-connector-python   pandas openpyxl
 load_dotenv()
 def append_new_rows_to_csv(filename: str, new_df: pd.DataFrame, key_columns=('id',)):
     """
+    Logika:
     Dopisuje do CSV tylko nowe wiersze z new_df bazując na kolumnach key_columns.
     - Jeśli plik nie istnieje -> tworzy go i zapisuje wszystkie wiersze (z nagłówkiem).
     - Jeśli plik istnieje -> dopisuje tylko te wiersze, których kombinacja wartości w key_columns
@@ -32,7 +34,6 @@ def append_new_rows_to_csv(filename: str, new_df: pd.DataFrame, key_columns=('id
             new_rows = new_df
             break
     else:
-        # Tworzymy zbiór kluczy jako połączenie wartości kolumn (konwersja do str)
         existing_keys = existing_df[list(key_columns)].astype(str).agg('||'.join, axis=1)
         existing_key_set = set(existing_keys.values.tolist())
         new_keys_series = new_df[list(key_columns)].astype(str).agg('||'.join, axis=1)
