@@ -1,6 +1,9 @@
+#l03
 import cv2 as cv 
-image = cv.imread("przetwarzanieobrazow/Projekt/assets/l04/Shopping-basket-info-256.png")
-image2 = cv.imread("przetwarzanieobrazow/Projekt/assets/l04/Shopping-basket-remove-256.png")
+import numpy as np 
+#przetwarzanieobrazow/Projekt/assets/l03/1jpg
+image = cv.imread("przetwarzanieobrazow\\Projekt\\assets\\l03\\1.jpg")
+image_gray = cv.cvtColor(image,cv.COLOR_BGR2GRAY)
 cv.imshow("hyps",image)
-cv.imshow("hyps2",image2)
+cv.imshow("gray",image_gray)
 cv.waitKey(0)
