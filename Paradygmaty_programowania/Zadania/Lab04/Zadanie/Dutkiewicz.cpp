@@ -1,18 +1,24 @@
 #include <iostream>
-#include <vector>
+#include <list>
 #include <stdlib.h>
 #include <algorithm>
 int main()
 {
-    int choice=0;
-    int n = 0;
+    int choice=0,n = 0;
     std::cout <<"Ile liczb chcesz wprowadzic: ";
     std::cin>>n;
-    std::vector<int>numbers(n);
+    if(n<=0)
+    {
+        std::cout<<"Liczbe elementow musi byc wieksza od 0!!!";
+        return 0;
+    }
+    int *tablica = new int[n];
+    std::list<int> lista;
     for(int i=0; i<n; i++)
         {
             std::cout<<"Podaj liczbe["<<i+1<<"/"<<n<<"]: ";
-            std::cin>> numbers[i];
+            std::cin>> tablica[i];
+            lista.push_back(tablica[i]);
         }
     do
     {
@@ -26,12 +32,12 @@ int main()
             //suma i srednia
             //suma
             double suma=0;
-            for(int j=0; j<numbers.size(); j++)
+            for(int j=0; j<n; j++)
             {
-                std::cout<<"Liczby: "<<numbers[j]<<std::endl;
-                suma+=numbers[j];
+                std::cout<<"Liczby: "<<tablica[j]<<std::endl;
+                suma+=tablica[j];
             }
-            double srednia= suma / numbers.size();
+            double srednia= suma / n;
             std::system("cls");
             std::cout<<"\nSuma to: "<<suma<<std::endl;
             std::cout<<"Srednia to: "<<srednia<<std::endl;
@@ -40,8 +46,18 @@ int main()
         }   
         case 2:
         {
-            double max = *std::max_element(numbers.begin(),numbers.end()); //https://stackoverflow.com/questions/9874802/how-can-i-get-the-maximum-or-minimum-value-in-a-vector
-            double  min= *std::min_element(numbers.begin(),numbers.end());
+            double max = tablica[0],min =tablica[0];
+            for(int i =1; i<n;i++)
+            {
+                if(tablica[i]>max)
+                {
+                    max = tablica[i];
+                }
+                if(tablica[i]<min)
+                {
+                    min = tablica[i];
+                }
+            }
             std::system("cls");
             std::cout<<"Wartosc maksimum: "<<max<<std::endl;
             std::cout<<"Wartosc minimum: "<<min<<std::endl;
@@ -50,33 +66,41 @@ int main()
         }   
         case 3:
         {
-            int parzyste=0,ujemne=0,nieparzyste=0;
-            std::system("cls");
-            for(int i=0; i<numbers.size(); i++)
+            system("cls");
+            std::cout<<"Liczby dodatnie: "<<std::endl;
+            for(int i=0; i<n; i++)
             {
-                if(numbers[i]>0)
+                if(tablica[i]>0)
                 {
-                    std::cout<<numbers[i]<<"Jest dodatnie";
-                }
-                else if(numbers[i]<0)
-                {
-                    std::cout<<numbers[i]<<"Jest ujemne";
-                }
-                else
-                {
-                    std::cout<<numbers[i]<<"Jest zerem";
-                }
-                if(numbers[i]%2==0)
-                {
-                    //parzyste 
-                    std::cout<<numbers[i]<<" jest parzyste!"<<std::endl;
-                }
-                else
-                {
-                    std::cout<<numbers[i]<<" jest nieparzyste!"<<std::endl;
+                    std::cout<<tablica[i]<<" ";
                 }
             }
-            std::system("pause");
+            std::cout<<"\nLiczby ujemne: "<<std::endl;
+            for(int i=0; i<n; i++)
+            {
+                if(tablica[i]<0)
+                {
+                    std::cout<<tablica[i]<<" ";
+                }
+            }
+            std::cout<<"\nLiczby parzyste: "<<std::endl;
+            for(int i=0; i<n; i++)
+            {
+                if(tablica[i]%2==0)
+                {
+                    std::cout<<tablica[i]<<" ";
+                }
+            }
+            std::cout<<"\nLiczby nieparzyste: "<<std::endl;
+            for(int i=0; i<n; i++)
+            {
+                if(tablica[i]%2!=0)
+                {
+                    std::cout<<tablica[i]<<" ";
+                }
+            }
+            std::cout<<"\n";
+            system("pause");
             break;
         }   
         case 4:
@@ -85,22 +109,21 @@ int main()
             std::cout<<"Podaj liczbe,ktora chcesz wyszukac: ";
             std::cin>>liczba;
             std::system("cls");
-            for(int i=0; i<numbers.size(); i++)
+            for(int i=0; i<n; i++)
             {
-                if(numbers[i]==liczba)
+                if(tablica[i]==liczba)
                 {
                     ilosc_wystapien++;
                 }
             }
             if(ilosc_wystapien>0)
             {
-                std::cout<<liczba<<" wystepuje: "<<ilosc_wystapien<<" razy!";
+                std::cout<<liczba<<" wystepuje: "<<ilosc_wystapien<<" razy!"<<std::endl;
             }
             else
             {
-                std::cout<<liczba<<" nie wystepuje ani razu";
+                std::cout<<liczba<<" nie wystepuje ani razu"<<std::endl;
             }
-            
             std::system("pause");
             break;
         }   
@@ -113,125 +136,127 @@ int main()
             {
                 case 1:
                 {
-                int wew_wybor=0;
-                std::cout<<"Program ma wyswietlic liczby mniejsze od: ";
+                system("cls");
+                int wew_wybor=0,licznik=0;
+                std::cout<<"Mniejsze od: ";
                 std::cin>>wew_wybor;
                 system("cls");
-                 for(int i=0; i<numbers.size(); i++)
+                 for(int i=0; i<n; i++)
                 {
-                    if(numbers[i]<wew_wybor)
+                    if(tablica[i]<wew_wybor)
                     {
-                        std::cout<<"Liczby mniejsze od: "<<wew_wybor<<numbers[i];
+                        licznik++;
                     }
                 }
+                std::cout<<"liczba elementow mniejszych od: "<<wew_wybor<<" to: "<<licznik<<std::endl;
                 system("pause");
                 break;
                 }
                 case 2:
                 {
-                int wew_wybor=0;
-                std::cout<<"Program ma wyswietlic liczby wieksze od: ";
+                system("cls");
+                int wew_wybor=0,licznik=0;
+                std::cout<<"Wieksze od: ";
                 std::cin>>wew_wybor;
                 system("cls");
-                 for(int i=0; i<numbers.size(); i++)
+                 for(int i=0; i<n; i++)
                 {
-                    if(numbers[i]>wew_wybor)
+                    if(tablica[i]>wew_wybor)
                     {
-                        std::cout<<"Liczby wieksze od: "<<wew_wybor<<numbers[i];
+                        licznik++;
                     }
                 }
+                std::cout<<"Liczba elementow wiekszych od: "<<wew_wybor<<" to: "<<licznik<<std::endl;
                 system("pause");
                 break;
                 }
                 case 3:
                 {
-                 int wew_wybor=0;
-                std::cout<<"Program ma wyswietlic liczby rowne od: ";
+                system("cls");
+                 int wew_wybor=0,powtorzenia=0;
+                std::cout<<"Rowne od: ";
                 std::cin>>wew_wybor;
                 system("cls");
-                 for(int i=0; i<numbers.size(); i++)
+                 for(int i=0; i<n; i++)
                 {
-                    if(numbers[i]==wew_wybor)
+                    if(tablica[i]==wew_wybor)
                     {
-                        std::cout<<"Liczby rowne od: "<<wew_wybor<<numbers[i];
+                        powtorzenia++;
                     }
                 }
+                std::cout<<"Liczba elementow rownych: "<<wew_wybor<<" to: "<<powtorzenia<<std::endl;
                 system("pause");
                 break;
                 }
                 case 4:
                 {
-                int dolny_zakres=0,gorny_zakres=0;
+                int dolny_zakres=0,gorny_zakres=0,licznik=0;
                 system("cls");
                 std::cout<<"Podaj liczbe z dolnego zakresu: ";
                 std::cin>>dolny_zakres;
                 std::cout<<"Podaj liczbe z gornego zakresu: ";
                 std::cin>>gorny_zakres;
                 system("cls");
-                for(int i=0; i<numbers.size(); i++)
+                for(int i=0; i<n; i++)
                 {
-                    if((numbers[i]>dolny_zakres)&&(numbers[i]<gorny_zakres))
+                    if((tablica[i]>=dolny_zakres)&&(tablica[i]<=gorny_zakres))
                     {
-                        std::cout<<numbers[i];
-                    }
-                    else
-                    {
-                        std::cout<<"Brak liczb z tego zakresu!!!";
+                        licznik++;
                     }
                 }
+                std::cout<<"Ilosc liczba, ktora zawiera sie w zakresie od: "<<dolny_zakres<<" do: "<<gorny_zakres<<" to: "<<licznik<<std::endl;
                 system("pause");
                 break;
                 }
                 case 5:
                 {
-                int linczik = 0;
                 system("cls");
-                std::cout<<"Podaj wartosc  liczby , ktora chcesz sprawdzic: ";
-                std::cin>>linczik;
+                int dol=0,gora=0,powtorzenia=0;
+                std::cout<<"Podaj wartosc dolnego zakresu: ";
+                std::cin>>dol;
+                std::cout<<"Podaj wartosc gornego zakresu: ";
+                std::cin>>gora;
                 system("cls");
-                for(int i=0; i<numbers.size(); i++)
+                for(int i=0; i<n; i++)
                 {
-                    if(linczik)
+                    if(tablica[i]<dol || tablica[i]>gora)
                     {
-                        std::cout<<numbers[i]<<"\n";
-                        linczik++;
+                        powtorzenia++;
                     }
                 }
-                if(linczik==0)
-                {
-                    std::cout<<"Brak liczb spelniajacych warunek";
-                }
+                std::cout<<"Ilosc liczb spoza zakresu: "<<dol<<" do: "<<gora<<" to: "<<powtorzenia<<std::endl;
                 system("pause");
                 break;
                 }
                 case 6:
                 {
-                    int rozny=0,wystapienia=0;;
-                    std::cout<<"Podaj wartosc roznej liczby , ktora chcesz sprawdzic: ";
+                    system("cls");
+                    int rozny=0,wystapienia=0;
+                    std::cout<<"Rozne od: ";
                     std::cin>>rozny;
                     system("cls");
-                    for(int i=0; i<numbers.size(); i++)
+                    for(int i=0; i<n; i++)
                     {
-                        if(rozny)
+                        if(tablica[i]!=rozny)
                         {
-                            std::cout<<numbers[i];
-                            rozny++;
-
+                            wystapienia++;
                         }
                     }
-                    if(wystapienia==0)
-                    {
-                         std::cout<<"Nie wystepuja takie liczby!";
-                    }
+                    std::cout<<"Liczba elementow roznych od: "<<rozny<<" to: "<<wystapienia<<std::endl;
                     system("pause");
                 break;
                 }
                 case 7:
+                {
                 std::cout<<"Przerwano dzialanie programu!!!!";
                 break;
+                }
             default:
+            {
+                system("cls");
                 std::cout<<"Podales liczbe spoza zakresu!";
                 break;
+            }
             }
             //policzenie liczby elementów spełniających wybrany warunek
             //mniejsze od ,wieksze od , rowne , z zakresu od do, spoza zakresu od do ,
@@ -245,41 +270,32 @@ int main()
             std::cin>>wybor_sortowania;
             if(wybor_sortowania==1)
             {
-            sort(numbers.begin(),numbers.end());
-            system("cls");
-            //https://www.geeksforgeeks.org/cpp/sorting-a-vector-in-c/
-            for(auto i:numbers)
-            {
-                std::cout<<"Posortowane liczby: "<<i<<std::endl;
-            }
-            system("pause");
+                std::sort(tablica,tablica+n);
             }
             else if(wybor_sortowania==2)
             {
-            sort(numbers.begin(),numbers.end(),std::greater<int>());
-            system("cls");
-            //https://www.geeksforgeeks.org/cpp/sorting-a-vector-in-c/
-            for(auto i:numbers)
-            {
-                std::cout<<"Posortowane liczby: "<<i<<std::endl;
-            }
-            system("pause");
+                std::sort(tablica,tablica+n,std::greater<int>());
             }
             else
             {
-                std::cout<<"Podales wartosc spoza zakresu!";
+                std::cout<<"Wybrales liczbe spoza zakresu!!!!";
+                break;
             }
-            
+            system("cls");
+            for(int i=0; i<n; i++)
+            {
+                std::cout<<"Posortowano: "<<tablica[i]<<std::endl;
+            }
+            system("pause");
             break;
         }   
         case 7:
         {
-            //https://www.geeksforgeeks.org/cpp/stdreverse-in-c/
-            std::reverse(numbers.begin(),numbers.end());
+            std::reverse(tablica,tablica+n);
             system("cls");
-            for(int i: numbers)
+            for(int i=0; i<n; i++)
             {
-                std::cout<<"Odwrocony wektor: "<<i<<std::endl;
+                std::cout<<"Odwrocona: "<<tablica[i]<<std::endl;
             }
             system("pause");
             break;
@@ -294,9 +310,13 @@ int main()
             std::cout<<"Liczba spoza zakresu!!!";
             break;
         }
-      
+        if(choice!=0)
+        {
+            system("cls");
+        }
         }
     } 
     while (choice!=0);
-    
+    delete[] tablica; //zwolnienie pamieci
+    return 0; 
 }
