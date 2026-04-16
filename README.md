@@ -5,12 +5,7 @@ Instead of maintaining many separate repositories, each language or topic is sto
 ---
 ## 📌 Repository Concept
 - Each **branch = one programming language / technology / topic**
-- No single “main application” – this repo acts as a **collection of examples**
-- The code may be:
-  - experimental
-  - educational
-  - exploratory
-  - archival
+-This repo acts as a **collection of examples** for personal purposes
 ---
 ## 🌿 Branch Structure
 Example convention:
