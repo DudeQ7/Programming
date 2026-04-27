@@ -1,0 +1,17 @@
+a { 
+    color:red;
+}
+a::visited {
+    color: green;
+}
+a:hover{
+    color: orange ;
+}
+a:active{
+    color: yellow;
+}
+a::first-line{
+color: aqua;
+background-color: brown;
+}
+a::

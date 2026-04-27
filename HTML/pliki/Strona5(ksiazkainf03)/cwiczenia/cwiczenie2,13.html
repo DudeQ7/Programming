@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>zadanie2,13</title>
+</head>
+<body>
+    <h2>Formularz rejestracyjny:</h2>
+    <form>
+        Podaj swoje nazwisko:<input type="text" size="30" required> <br>
+        Podaj swoje imię:<input type="text" size="20" required><br><br>
+        Wybierz plec:<br>
+        <input type="radio" value="Kobieta">Kobieta<input type="radio" value="Mężczyzna">Mężczyzna <br>
+        Podaj wiek:<br><input list="wiek">
+         <datalist id="wiek">
+            <option value="16-24">
+            <option value="25-39">
+            <option value="40-60">
+            <option value="powyzej 60">
+         </datalist>
+        <br>
+        Podaj adres e-mail:<br><input type="email"><br>
+        <p>Wybierz wykształcenie:</p>  
+        <input type="radio" value="Podstawowe">Podstawowe<br>
+        <input type="radio" value="Średnie">Średnie<br>
+        <input type="radio" value="Wyższ">Wyższe<br><br>
+        <br>
+        <p>Wybierz języki:</p>
+        <select name="jezyki" id="jezyki" size="5">
+            <option value="angielski">Język angielski</option>
+            <option value="niemiecki">Język niemiecki</option>
+            <option value="włoski">Język włoski</option>
+            <option value="rosyjski">Język rosyjski</option>
+            <option value="hiszpański">Język hiszpański</option>
+        </select>
+        <p>Wybierz zainteresowania:</p>
+        <input type="checkbox" value="motoryzacja">motoryzacja<br>
+        <input type="checkbox" value="Sport">sport<br>
+        <input type="checkbox" value="muzyka">muzyka<br>
+        <input type="checkbox"value="taniec">taniec<br>
+        <input type="checkbox" value="gry">Gry komputerowe<br>
+        <input type="checkbox" value="inne">Inne(podaj jakie):<input type="text"  name="inne"> <br>
+        <p>Wpisz swoje uwagi:</p>
+        <textarea name="uwagi" id="uwagi" cols="30" rows="10">
+
+        </textarea> <br>
+        <input type="checkbox" required>Zgadzam sie na przetwarzanie moich danych osobowych <br>
+        <input type="submit" value="Wyślij">
+        <input type="reset" value="Wyczyść"><br>
+    </form>
+</body>
+</html>

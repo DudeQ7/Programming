@@ -1,0 +1,14 @@
+table {
+    background-color: blue;
+    border:  10px ;
+    border-color: black;
+    border-radius: 10px;
+}
+table tr {
+    border: 5px solid ForestGreen;
+
+}
+table td {
+    border: 5px solid blue;
+
+}

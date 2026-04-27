@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Niebieska linia</h3>
+    <canvas id="kanwa" width="200" height="120" style="border: 1px solid #aec5ce;">
+        Brak obslugi canvas
+    </canvas>
+    <script>
+        var x = document.getElementById("kanwa");
+        var xtx = x.getContext('2d');
+        xtx.moveTo(0,0);
+        xtx.lineTo(200,120);
+        xtx.strokeStyle = 'red';
+        xtx.stroke(); 
+    </script>
+    <h3>Rysuje zielony kwadrat</h3>
+    <canvas id="kanwas" width="200" height="120" style="border: 1px solid green;">
+    Brak obslugi canvas
+    </canvas>
+    <script>
+        var k = document.getElementById("kanwas");
+        var kxt = k.getContext('2d');
+        kxt.fillStyle = 'green';
+        kxt.fillRect(50,50,50,50);
+        kxt.strokeStyle = 'black';
+        kxt.strokeRect(40,40,70,70);
+
+    </script>
+</body>
+</html>

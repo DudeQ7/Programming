@@ -1,0 +1,91 @@
+*{
+    font-family: Verdana, sans-serif;
+    margin: auto;
+    width: fit-content;
+  }
+  
+  .head_lewy {
+      background-color: #29434E;
+      color: white;
+      text-align: center;
+      width: 70%;
+      height: 100px;
+      float: left;
+  }
+  
+  .head_prawy {
+      background-color: #29434E;
+      color: white;
+      width: 30%;
+      height: 100px;
+      float: left;
+  }
+  
+  .logo {
+      float: left;
+      width: 100px;
+      height: 100px;
+      padding-left: 30px;
+  }
+  
+  .tlo {
+      float: right;
+      width: 82%;
+  }
+  
+  .lewy{
+      width: 18%;
+      height: 878px;
+      background-color: rgb(21, 114, 143);
+      color: white;
+      float: left;
+  }
+  
+  .h1 {
+      padding-top: 10px;
+      padding-right: 50px;
+  }
+  
+  h1 {
+      float: left;
+      padding-top: 26px;
+      padding-left: 50px;
+  }
+  
+  h2 {
+      padding-top: 0px;
+      font-size: 122%;
+  }
+  
+  table {
+      padding-top: 4px;
+  }
+  
+  td {
+      color: #0b82e4;
+  }
+  
+  td a:visited {
+      padding-top: 8px;
+      color: #0b82e4;
+  }
+  
+  footer {
+      background-color: #29434E;
+      color: rgb(161, 161, 161);
+      text-align: center;
+      width: 100%;
+      height: 100%;
+      float: left;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      clear: both;
+  }
+  
+  a {
+      color: white; 
+  }
+  
+  a:hover {
+      color:orange;
+      background-color:green;
+  }
