@@ -1,3 +1,0 @@
-import random 
-y =random.choice("ksiazka_mocy","matura_probna")
-print(y)
