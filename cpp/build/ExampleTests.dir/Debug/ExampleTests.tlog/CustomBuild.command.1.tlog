@@ -1,0 +1,10 @@
+^C:\USERS\DUDEQ\DOCUMENTS\PROGRAMMING\TESTOWANIE_OPROGRAMOWANIA\PROJECT\TEST\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/DudeQ/Documents/programming/Testowanie_oprogramowania/Project/test -BC:/Users/DudeQ/Documents/programming/build --check-stamp-file C:/Users/DudeQ/Documents/programming/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
