@@ -1,5 +1,4 @@
 #include <chrono>
-#include <iomanip>
 #include <iostream>
 using namespace std::chrono;
 /*
@@ -59,6 +58,7 @@ unsigned long long fibon_rek(unsigned int n)
         return 1;
     return fibon_rek(n - 1) + fibon_rek(n - 2);
 }
+
 template<typename Func>
 long long mierz(Func f, unsigned int n, unsigned int powtorzenia = 100000)
 {
@@ -73,33 +73,17 @@ long long mierz(Func f, unsigned int n, unsigned int powtorzenia = 100000)
 int main()
 {
     int wartosci_n[]= {1,2,3,4,5,8,10,12,15,18,20};
-    std::cout << std::left
-              << std::setw(6) << "n"
-              << std::setw(16) << "Silnia Iter"
-              << std::setw(16) << "Silnia Rek"
-              << std::setw(16) << "Suma Iter"
-              << std::setw(16) << "Suma Rek"
-              << std::setw(16) << "Fibon Iter"
-              << std::setw(16) << "Fibon Rek"
-              << '\n';
-    std::cout << std::string(6 + 16 * 6, '-') << std::endl;
+    std::cout<<"n\t|\tSilnia Iter\t|\tSilnia Rek\t|\tSuma Iter\t|\tSuma Rek\t|\tFibon Iter\n";
+    std::cout<<std::string(75,'-')<<std::endl;
     for(int n : wartosci_n)
     {
-        long long si = mierz(silnia_iter, n);
-        long long sr = mierz(silnia_rek, n);
-        long long sui = mierz(suma_iter, n);
-        long long sur = mierz(suma_rek, n);
-        long long fi = mierz(fibon_iter, n);
-        long long fr = mierz(fibon_rek, n, n <= 30 ? 100000 : 100); 
-        std::cout << std::left
-                  << std::setw(6) << n
-                  << std::setw(16) << (std::to_string(si) + " us")
-                  << std::setw(16) << (std::to_string(sr) + " us")
-                  << std::setw(16) << (std::to_string(sui) + " us")
-                  << std::setw(16) << (std::to_string(sur) + " us")
-                  << std::setw(16) << (std::to_string(fi) + " us")
-                  << std::setw(16) << (std::to_string(fr) + " us")
-                  << '\n';
+        long long si = mierz(silnia_iter, n);  
+        long long sr = mierz(silnia_rek, n);  
+        long long sui = mierz(suma_iter, n);  
+        long long sur = mierz(suma_rek, n);  
+        long long fi = mierz(fibon_iter, n);  
+        long long fr = mierz(fibon_rek, n, n <= 30 ? 100000 : 100); // rek fib bardzo wolny!  
+        std::cout << n << "\t| " << si << " us\t| " << sr << " us\t| " << sui << " us\t| " << sur << " us\t| " << fi << " us\t| " << fr << " us\n";
     }
     return 0;
 }
