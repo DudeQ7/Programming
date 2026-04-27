@@ -1,0 +1,1 @@
+Przykladowe obrazki do samego projektu
