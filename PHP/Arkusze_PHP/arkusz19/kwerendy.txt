@@ -1,0 +1,4 @@
+I zapytanie - SELECT nazwa,opis,cena FROM podzespoly WHERE typy_id = 1;
+II zapytanie - SELECT id,nazwa FROM podzespoly WHERE dostepnosc = 1 AND cena < 400;
+III zapytanie - SELECT podzespoly.nazwa,typy.kategoria FROM podzespoly INNER JOIN typy ON podzespoly.typy_id = typy.id WHERE podzespoly.typy_id = 1;
+IV zapytanie - ALTER TABLE typy ADD COLUMN opis text;

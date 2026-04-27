@@ -1,0 +1,25 @@
+I = SELECT id , name from flowers;
+II : SELECT 
+  f.name, 
+  f.price, 
+  MAX(d.percent_off) AS "maksymalna znizka" 
+FROM 
+  flowers AS f 
+  INNER JOIN discounts AS d ON f.id = d.flower_id 
+WHERE 
+  DATE(d.date_start) <= '2024-01-11' AND DATE(d.date_end) >= '2024-01-11'
+GROUP BY 
+  f.name, 
+  f.price;
+
+III :
+INSERT INTO orders
+(id,flower_id,count,cost,address,phone)
+VALUES
+(null,1,5,null,"ul.Ezdaminowa 420","+48 123123123"); 
+
+IV :
+ INSERT INTO discounts 
+(id,flower_id,percent_off,date_start,date_end)
+VALUES
+(null,2,15,"2024-01-15 00:00:00","2024-01-17 23:59:59");

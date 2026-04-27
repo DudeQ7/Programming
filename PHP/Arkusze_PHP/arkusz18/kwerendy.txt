@@ -1,0 +1,14 @@
+Zapytanie I =  
+CREATE TABLE uzytkownicy (
+   id INT AUTO_INCREMENT NOT NULL,
+   login varchar(50),
+   haslo varchar(50),
+   PRIMARY KEY(id)
+);
+Zapytanie II =
+INSERT INTO uzytkownicy 
+(id,login,haslo)
+VALUES
+(null,"Grzegorz","g");
+Zapytanie III = SELECT login FROM uzytkownicy;
+Zapytanie IV = SELECT id,login FROM uzytkownicy WHERE haslo LIKE "4%";

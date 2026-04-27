@@ -1,0 +1,9 @@
+Zapytanie I = INSERT INTO uzytkownik 
+(id,imie,nazwisko,telefon,email)
+VALUES
+(null,"Jolanta","Jasny","600600600","jolanta@poczta.pl");
+Zapytanie II SELECT tytul,tresc,podkategoria FROM ogloszenie WHERE uzytkownik_id  = 1 AND kategoria =1 ; 
+Zapytanie III :
+CREATE USER 'jolanta'@'localhost' identified by 'jol1@' ; 
+Zapytanie IV:
+GRANT SELECT,UPDATE ON db23.uzytkownik TO'root'@'localhost'; 

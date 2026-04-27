@@ -1,0 +1,42 @@
+*{
+    font-family:Helvetica;
+    margin: 0   ;
+}
+.baner{
+    background-color: darkcyan;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+.formularz{
+    background-color: lightseagreen;
+    text-align: center;
+    padding: 60px;
+}
+.glowny_lewy,.glowny_srodek{
+    float: left;
+}
+
+.glowny_lewy,.glowny_srodek{
+    background-color: teal;
+    color: white;
+    text-align: center;
+    height: 350px;
+    width: 25%;
+}
+.glowny_prawy{
+    background-color: teal;
+    height: 350px;
+    width: 50%;
+    float: left;
+
+}
+footer{
+    background-color: darkcyan;
+    color: white;
+    padding: 40px;
+    clear: both;
+}
+ul{
+    border: 4px dotted rgb(127,255,212);
+}

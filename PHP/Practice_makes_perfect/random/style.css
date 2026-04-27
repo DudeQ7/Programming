@@ -1,0 +1,15 @@
+table {
+    border: 25px solid black; /* Set the table border to a 2px solid black border */
+    border-radius: 10px; /* Adjust the border-radius as needed */
+}
+
+table tr {
+    border: 6px solid ForestGreen; /* Adjust the border properties for table rows */
+}
+
+table td {
+    border: 5px solid blue; /* Adjust the border properties for table cells */
+}
+body {
+    background-color: fuchsia; 
+}
