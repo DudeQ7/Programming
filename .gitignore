@@ -1,0 +1,3 @@
+*.exe #all exe files from cpp 
+*.idea
+*.vscode
