@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <svg id="piechart">
+        <circle id="dupa" onmouseenter="hovered(event)"></circle>
+        <circle id="chuj" onmouseenter="hovered(event)"></circle>
+    </svg>
+    <script>
+        const piechart = document.getElementById("piechart")
+        
+        function hovered(me){
+            console.log(me.target)
+            piechart.insertBefore(me.target, piechart.children[0])
+        }
+
+    </script>
+    <style>
+        #piechart {
+            width: 200px;
+            height: 200px;
+        }
+        circle {
+            stroke: white;
+            r: 25%;
+            cx: 50%;
+            cy: 50%;
+            stroke-width:50%;
+            scale: .5;
+            background-color: aqua;
+        }
+        #chuj{
+            stroke: orange;
+            translate: 100px 100px;
+        }
+        circle:hover{
+            translate: 0 0;
+            scale: 1;
+        }
+    </style>
+</body>
+</html>

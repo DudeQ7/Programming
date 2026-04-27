@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pl-pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Style w JavaScript</title>
+    <link rel="stylesheet" href="styl6.css">
+    <script src="main.js"></script>
+</head>
+
+<body id="body">
+<section class="lewy">
+    <h1>Konfigurator stylu</h1>
+    <p>Podaj kolor tła</p>
+    <p>
+        <button class="indigo" onclick="indigo()">Indigo</button>
+        <button class="steel" onclick="steel()">SteelBlue</button>
+        <button class="olive" onclick="olive()">Olive</button>
+    </p>
+    <p>Podaj kolor czcionki</p>
+    <select id="selekcja" onchange="tester()">
+        <option id="white" value="white">White</option>
+        <option id="tan" value="tan">Tan</option>
+        <option id="bisque" value="bisque">Bisque</option>
+        <option id="plum" value="plum">Plum</option>
+    </select>
+    <p>Podaj rozmiar czcionki w procentach np. 200%</p>
+    <input type="number" value="100" id="rozmiar" oninput="rozmiar()">
+    <script src="main.js">
+        rozmiar();
+    </script>
+    <p>Czy rysunek ma mieć ramkę?</p>
+    <input type="checkbox" id="borderik"  onchange="border()"> Rysuj ramkę
+
+    </input>
+
+    <p>Jaki jest typ punktora listy?</p>
+    dysk <input type="radio" onclick="punktor()" name="styl" checked="checked"  id="dysk" > <br>
+    kwadrat <input type="radio" onclick="punktor()" name="styl" id="kwadrat" > <br>
+    okrąg <input type="radio" onclick="punktor()" name="styl" id="okrag" ><br>
+</section>
+<section class="prawy">
+    <img src="gibraltar.jpg" id="zdjecik" alt="półwysep Gibraltar">
+    <ul id="lista">
+        <li>element 1</li>
+        <li>element 2</li>
+        <li>element 3</li>
+    </ul>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt utlabore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisut aliquip ex ecommodoconsequatDuiaute irure dolor in reprehenderit in voluptate velit essecillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, suntin culpaqui officia deserunt mollit anim id est laborum.
+    </p>
+</section>
+<section class="stopka">
+    Autor: VW Golf 7 GTI
+</section>
+</body>
+</html>
