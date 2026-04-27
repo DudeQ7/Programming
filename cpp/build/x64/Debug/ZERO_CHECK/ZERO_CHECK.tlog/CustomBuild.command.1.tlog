@@ -1,0 +1,10 @@
+^C:\USERS\DUDEQ\DOCUMENTS\PROGRAMMING\BUILD\CMAKEFILES\A4D123B18DD1DD873C56D4F8C9634905\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/DudeQ/Documents/programming/Testowanie_oprogramowania/Project/test -BC:/Users/DudeQ/Documents/programming/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/DudeQ/Documents/programming/build/Project.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
