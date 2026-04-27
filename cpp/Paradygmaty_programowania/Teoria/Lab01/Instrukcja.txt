@@ -1,1 +1,0 @@
-Odpowiedzi na pytania 1 i 3 proszę udzielić w formie sprawozdania, odpowiedź na pytanie 2 – kod w języku C++ wraz z komentarzami. Sprawozdanie (pdf lub doc) i plik (cpp lub txt) umieść na MS Teams. Nazwij je Nazwisko.doc / Nazwisko.cpp. Nie kompresuj plików.
