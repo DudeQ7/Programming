@@ -1,0 +1,17 @@
+﻿#include "pch.h"
+#include "SpeedSource.hpp"
+
+SpeedSource::SpeedSource()
+    : m_speed(0.0)
+{
+}
+
+double SpeedSource::getSpeed()
+{
+    return m_speed;
+}
+
+void SpeedSource::setSpeed(double speed)
+{
+    m_speed = speed;
+}

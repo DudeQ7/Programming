@@ -1,0 +1,17 @@
+#include "pch.h"
+#include "Units.hpp"
+
+Units::Units(SpeedUnit unit)
+    : m_unit(unit)
+{
+}
+
+SpeedUnit Units::getSpeedUnit()
+{
+    return m_unit;
+}
+
+void Units::setSpeedUnit(SpeedUnit unit)
+{
+    m_unit = unit;
+}
