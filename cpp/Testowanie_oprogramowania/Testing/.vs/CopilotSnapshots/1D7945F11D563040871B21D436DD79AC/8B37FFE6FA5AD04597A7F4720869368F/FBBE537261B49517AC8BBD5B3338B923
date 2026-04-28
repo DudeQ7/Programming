@@ -1,0 +1,65 @@
+﻿File: Google_test\SpeedFormatter.hpp
+````````
+#pragma once
+#include "SpeedSourceInterface.hpp"
+#include "UnitsInterface.hpp"
+// Class requirements
+// R1 - speed shall be rounded (from double to integer) using common math rounding rules:    speed >=5 ? up : down
+// R2 - current unit of measurement shall be used
+// R3 - for small speed change its value shall not be changed immediately:
+//       if difference is smaller than 2 (no matter of current units of measurement) then do not change the value until one second elapses
+//       for bigger difference update the value immediately
+
+class SpeedFormatter
+{
+public:
+    SpeedFormatter(SpeedSourceInterface* speedSource, UnitsInterface* units, unsigned int updatesPerSecond);
+    unsigned int getFormattedSpeed();
+private:
+    SpeedSourceInterface* m_speedSource;
+    UnitsInterface* m_units;
+    unsigned int updatesPerSecond;
+};
+````````
+
+This is the description of what the code block changes:
+Fix the missing semicolon in `SpeedFormatter.hpp` and add the required precompiled-header include to the empty `SpeedFormatter.cpp` so the project can build and `test.cpp` can parse correctly.
+
+This is the code block that represents the suggested code change:
+
+````````
+#include "SpeedSourceInterface.hpp"
+#include "UnitsInterface.hpp"
+// Class requirements
+// R1 - speed shall be rounded (from double to integer) using common math rounding rules:    speed >=5 ? up : down
+// R2 - current unit of measurement shall be used
+// R3 - for small speed change its value shall not be changed immediately:
+//       if difference is smaller than 2 (no matter of current units of measurement) then do not change the value until one second elapses
+//       for bigger difference update the value immediately
+
+class SpeedFormatter
+{
+public:
+    SpeedFormatter(SpeedSourceInterface* speedSource, UnitsInterface* units, unsigned int updatesPerSecond);
+    unsigned int getFormattedSpeed();
+private:
+    SpeedSourceInterface* m_speedSource;
+    UnitsInterface* m_units;
+    unsigned int updatesPerSecond;
+};
+````````
+
+
+# Response
+````````
+#include "SpeedFormatter.hpp"
+
+SpeedFormatter::SpeedFormatter(SpeedSourceInterface* speedSource, UnitsInterface* units, unsigned int updatesPerSecond)
+    : m_speedSource(speedSource), m_units(units), updatesPerSecond(updatesPerSecond)
+{
+}
+
+unsigned int SpeedFormatter::getFormattedSpeed()
+{
+    // Implementation of speed formatting based on the requirements
+}

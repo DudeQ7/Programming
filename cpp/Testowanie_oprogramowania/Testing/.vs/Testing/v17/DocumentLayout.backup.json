@@ -1,0 +1,177 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\DudeQ\\Documents\\Programming\\cpp\\Testowanie_oprogramowania\\Testing\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A1E45AFE-8DB6-4A67-A850-8BA8F840D6E7}|Google_test\\Google_test.vcxproj|C:\\Users\\DudeQ\\Documents\\Programming\\cpp\\Testowanie_oprogramowania\\Testing\\Google_test\\test.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A1E45AFE-8DB6-4A67-A850-8BA8F840D6E7}|Google_test\\Google_test.vcxproj|solutionrelative:Google_test\\test.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1E45AFE-8DB6-4A67-A850-8BA8F840D6E7}|Google_test\\Google_test.vcxproj|C:\\Users\\DudeQ\\Documents\\Programming\\cpp\\Testowanie_oprogramowania\\Testing\\Google_test\\SpeedSource.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A1E45AFE-8DB6-4A67-A850-8BA8F840D6E7}|Google_test\\Google_test.vcxproj|solutionrelative:Google_test\\SpeedSource.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1E45AFE-8DB6-4A67-A850-8BA8F840D6E7}|Google_test\\Google_test.vcxproj|C:\\Users\\DudeQ\\Documents\\Programming\\cpp\\Testowanie_oprogramowania\\Testing\\Google_test\\SpeedSourceInterface.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A1E45AFE-8DB6-4A67-A850-8BA8F840D6E7}|Google_test\\Google_test.vcxproj|solutionrelative:Google_test\\SpeedSourceInterface.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1E45AFE-8DB6-4A67-A850-8BA8F840D6E7}|Google_test\\Google_test.vcxproj|C:\\Users\\DudeQ\\Documents\\Programming\\cpp\\Testowanie_oprogramowania\\Testing\\Google_test\\Units.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A1E45AFE-8DB6-4A67-A850-8BA8F840D6E7}|Google_test\\Google_test.vcxproj|solutionrelative:Google_test\\Units.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1E45AFE-8DB6-4A67-A850-8BA8F840D6E7}|Google_test\\Google_test.vcxproj|C:\\Users\\DudeQ\\Documents\\Programming\\cpp\\Testowanie_oprogramowania\\Testing\\Google_test\\UnitsInterface.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A1E45AFE-8DB6-4A67-A850-8BA8F840D6E7}|Google_test\\Google_test.vcxproj|solutionrelative:Google_test\\UnitsInterface.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1E45AFE-8DB6-4A67-A850-8BA8F840D6E7}|Google_test\\Google_test.vcxproj|C:\\Users\\DudeQ\\Documents\\Programming\\cpp\\Testowanie_oprogramowania\\Testing\\Google_test\\SpeedFormatter.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A1E45AFE-8DB6-4A67-A850-8BA8F840D6E7}|Google_test\\Google_test.vcxproj|solutionrelative:Google_test\\SpeedFormatter.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1E45AFE-8DB6-4A67-A850-8BA8F840D6E7}|Google_test\\Google_test.vcxproj|C:\\Users\\DudeQ\\Documents\\Programming\\cpp\\Testowanie_oprogramowania\\Testing\\Google_test\\SpeedSource.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A1E45AFE-8DB6-4A67-A850-8BA8F840D6E7}|Google_test\\Google_test.vcxproj|solutionrelative:Google_test\\SpeedSource.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1E45AFE-8DB6-4A67-A850-8BA8F840D6E7}|Google_test\\Google_test.vcxproj|C:\\Users\\DudeQ\\Documents\\Programming\\cpp\\Testowanie_oprogramowania\\Testing\\Google_test\\SpeedFormatter.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A1E45AFE-8DB6-4A67-A850-8BA8F840D6E7}|Google_test\\Google_test.vcxproj|solutionrelative:Google_test\\SpeedFormatter.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1E45AFE-8DB6-4A67-A850-8BA8F840D6E7}|Google_test\\Google_test.vcxproj|C:\\Users\\DudeQ\\Documents\\Programming\\cpp\\Testowanie_oprogramowania\\Testing\\Google_test\\Units.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A1E45AFE-8DB6-4A67-A850-8BA8F840D6E7}|Google_test\\Google_test.vcxproj|solutionrelative:Google_test\\Units.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "SpeedFormatter.cpp",
+              "DocumentMoniker": "C:\\Users\\DudeQ\\Documents\\Programming\\cpp\\Testowanie_oprogramowania\\Testing\\Google_test\\SpeedFormatter.cpp",
+              "RelativeDocumentMoniker": "Google_test\\SpeedFormatter.cpp",
+              "ToolTip": "C:\\Users\\DudeQ\\Documents\\Programming\\cpp\\Testowanie_oprogramowania\\Testing\\Google_test\\SpeedFormatter.cpp",
+              "RelativeToolTip": "Google_test\\SpeedFormatter.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-04-28T07:41:02.658Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "SpeedSource.cpp",
+              "DocumentMoniker": "C:\\Users\\DudeQ\\Documents\\Programming\\cpp\\Testowanie_oprogramowania\\Testing\\Google_test\\SpeedSource.cpp",
+              "RelativeDocumentMoniker": "Google_test\\SpeedSource.cpp",
+              "ToolTip": "C:\\Users\\DudeQ\\Documents\\Programming\\cpp\\Testowanie_oprogramowania\\Testing\\Google_test\\SpeedSource.cpp",
+              "RelativeToolTip": "Google_test\\SpeedSource.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-04-28T07:50:20.566Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "test.cpp",
+              "DocumentMoniker": "C:\\Users\\DudeQ\\Documents\\Programming\\cpp\\Testowanie_oprogramowania\\Testing\\Google_test\\test.cpp",
+              "RelativeDocumentMoniker": "Google_test\\test.cpp",
+              "ToolTip": "C:\\Users\\DudeQ\\Documents\\Programming\\cpp\\Testowanie_oprogramowania\\Testing\\Google_test\\test.cpp",
+              "RelativeToolTip": "Google_test\\test.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIwAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-04-28T07:40:46.772Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "SpeedFormatter.hpp",
+              "DocumentMoniker": "C:\\Users\\DudeQ\\Documents\\Programming\\cpp\\Testowanie_oprogramowania\\Testing\\Google_test\\SpeedFormatter.hpp",
+              "RelativeDocumentMoniker": "Google_test\\SpeedFormatter.hpp",
+              "ToolTip": "C:\\Users\\DudeQ\\Documents\\Programming\\cpp\\Testowanie_oprogramowania\\Testing\\Google_test\\SpeedFormatter.hpp",
+              "RelativeToolTip": "Google_test\\SpeedFormatter.hpp",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAewA4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-04-28T07:40:01.845Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SpeedSource.hpp",
+              "DocumentMoniker": "C:\\Users\\DudeQ\\Documents\\Programming\\cpp\\Testowanie_oprogramowania\\Testing\\Google_test\\SpeedSource.hpp",
+              "RelativeDocumentMoniker": "Google_test\\SpeedSource.hpp",
+              "ToolTip": "C:\\Users\\DudeQ\\Documents\\Programming\\cpp\\Testowanie_oprogramowania\\Testing\\Google_test\\SpeedSource.hpp",
+              "RelativeToolTip": "Google_test\\SpeedSource.hpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-04-28T07:40:00.204Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SpeedSourceInterface.hpp",
+              "DocumentMoniker": "C:\\Users\\DudeQ\\Documents\\Programming\\cpp\\Testowanie_oprogramowania\\Testing\\Google_test\\SpeedSourceInterface.hpp",
+              "RelativeDocumentMoniker": "Google_test\\SpeedSourceInterface.hpp",
+              "ToolTip": "C:\\Users\\DudeQ\\Documents\\Programming\\cpp\\Testowanie_oprogramowania\\Testing\\Google_test\\SpeedSourceInterface.hpp",
+              "RelativeToolTip": "Google_test\\SpeedSourceInterface.hpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-04-28T07:39:58.465Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Units.cpp",
+              "DocumentMoniker": "C:\\Users\\DudeQ\\Documents\\Programming\\cpp\\Testowanie_oprogramowania\\Testing\\Google_test\\Units.cpp",
+              "RelativeDocumentMoniker": "Google_test\\Units.cpp",
+              "ToolTip": "C:\\Users\\DudeQ\\Documents\\Programming\\cpp\\Testowanie_oprogramowania\\Testing\\Google_test\\Units.cpp",
+              "RelativeToolTip": "Google_test\\Units.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-04-28T07:39:54.657Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UnitsInterface.hpp",
+              "DocumentMoniker": "C:\\Users\\DudeQ\\Documents\\Programming\\cpp\\Testowanie_oprogramowania\\Testing\\Google_test\\UnitsInterface.hpp",
+              "RelativeDocumentMoniker": "Google_test\\UnitsInterface.hpp",
+              "ToolTip": "C:\\Users\\DudeQ\\Documents\\Programming\\cpp\\Testowanie_oprogramowania\\Testing\\Google_test\\UnitsInterface.hpp",
+              "RelativeToolTip": "Google_test\\UnitsInterface.hpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-04-28T07:39:45.92Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Units.hpp",
+              "DocumentMoniker": "C:\\Users\\DudeQ\\Documents\\Programming\\cpp\\Testowanie_oprogramowania\\Testing\\Google_test\\Units.hpp",
+              "RelativeDocumentMoniker": "Google_test\\Units.hpp",
+              "ToolTip": "C:\\Users\\DudeQ\\Documents\\Programming\\cpp\\Testowanie_oprogramowania\\Testing\\Google_test\\Units.hpp",
+              "RelativeToolTip": "Google_test\\Units.hpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-04-28T07:39:42.407Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

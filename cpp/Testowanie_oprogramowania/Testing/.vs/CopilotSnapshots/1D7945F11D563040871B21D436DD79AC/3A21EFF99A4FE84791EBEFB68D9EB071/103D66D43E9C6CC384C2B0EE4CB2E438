@@ -1,0 +1,27 @@
+﻿#pragma once
+
+#include "SpeedSourceInterface.hpp"
+#include "UnitsInterface.hpp"
+#include <chrono>
+
+// Class requirements
+// R1 - speed shall be rounded (from double to integer) using common math rounding rules:    speed >=5 ? up : down
+// R2 - current unit of measurement shall be used
+// R3 - for small speed change its value shall not be changed immediately:
+//       if difference is smaller than 2 (no matter of current units of measurement) then do not change the value until one second elapses
+//       for bigger difference update the value immediately
+
+class SpeedFormatter
+{
+public:
+    SpeedFormatter(SpeedSourceInterface* speedSource, UnitsInterface* units, unsigned int updatesPerSecond);
+    unsigned int getFormattedSpeed();
+
+private:
+    SpeedSourceInterface* m_speedSource;
+    UnitsInterface* m_units;
+    unsigned int updatesPerSecond;
+    unsigned int m_lastFormattedSpeed = 0;
+    std::chrono::steady_clock::time_point m_lastUpdateTime;
+    bool m_initialized = false;
+};

@@ -1,0 +1,22 @@
+﻿#include "pch.h"
+#include "pch.h"
+#include "SpeedFormatter.hpp"
+#include <cmath>
+
+SpeedFormatter::SpeedFormatter(SpeedSourceInterface* speedSource, UnitsInterface* units, unsigned int updatesPerSecond)
+    : m_speedSource(speedSource), m_units(units), updatesPerSecond(updatesPerSecond)
+{
+}
+
+unsigned int SpeedFormatter::getFormattedSpeed()
+{
+    if (!m_speedSource || !m_units)
+        return 0;
+
+    double speed = m_speedSource->getSpeed();
+
+    // R1: Round using common math rounding rules (>= 5 up, < 5 down)
+    unsigned int roundedSpeed = static_cast<unsigned int>(std::round(speed));
+
+    return roundedSpeed;
+}

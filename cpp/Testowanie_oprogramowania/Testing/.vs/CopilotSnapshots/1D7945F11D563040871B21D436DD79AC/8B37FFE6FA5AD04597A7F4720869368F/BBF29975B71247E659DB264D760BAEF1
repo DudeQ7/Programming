@@ -1,0 +1,19 @@
+﻿#include "pch.h"
+#include "SpeedFormatter.hpp"
+#include "SpeedSourceInterface.hpp"
+#include "UnitsInterface.hpp"
+//TEST(SpeedControlSystemTests, R1toR3)
+//{
+//	//tu bedzie kod testowy + testy
+//
+//}
+TEST(ProstyTest, CzyDziala)
+{
+	EXPECT_EQ(1, 1);
+	EXPECT_TRUE(true);
+
+};
+int main()
+{
+	return 0;
+}
