@@ -6,7 +6,8 @@ class Units : public UnitsInterface
 {
 public:
     Units(SpeedUnit unit = SpeedUnit::KPH);
-    SpeedUnit getSpeedUnit() override;
+    SpeedUnit getSpeedUnit() const override;
+    double getMultiplier() const override;
     void setSpeedUnit(SpeedUnit unit);
 
 private:
