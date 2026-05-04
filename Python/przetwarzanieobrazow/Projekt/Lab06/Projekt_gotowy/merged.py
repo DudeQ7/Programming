@@ -257,9 +257,22 @@ class App:
         self._build_ui()
 
     def _build_ui(self):
-        sidebar = tk.Frame(self.root, bg="#181825", width=260)
-        sidebar.pack(side="left", fill="y")
-        sidebar.pack_propagate(False)
+        slider_frame = tk.Frame(self.root, bg="#14121a", width=48)
+        slider_frame.pack(side="left", fill="y")
+        slider_frame.pack_propagate(False)
+
+        sidebar_outer = tk.Frame(self.root, bg="#181825", width=260)
+        sidebar_outer.pack(side="left", fill="y")
+        sidebar_outer.pack_propagate(False)
+        sidebar_canvas = tk.Canvas(sidebar_outer, bg="#181825", bd=0, highlightthickness=0, width=260)
+        sidebar_canvas.pack(side="left", fill="both", expand=True)
+        menu_frame = tk.Frame(sidebar_canvas, bg="#181825")
+        sidebar_canvas.create_window((0,0), window=menu_frame, anchor='nw')
+        def _update_scrollregion(event):
+            sidebar_canvas.configure(scrollregion=sidebar_canvas.bbox("all"))
+        menu_frame.bind("<Configure>", _update_scrollregion)
+        sidebar = menu_frame
+        self._sidebar_canvas = sidebar_canvas
 
         tk.Label(sidebar, text="POC Projekt", bg="#181825", fg="#cdd6f4", font=("Segoe UI", 14, "bold")).pack(pady=(20, 5))
         tk.Label(sidebar, text="Przetwarzanie Obrazów", bg="#181825", fg="#6c7086", font=("Segoe UI", 9)).pack(pady=(0, 20))
@@ -309,6 +322,27 @@ class App:
         self._btn(sidebar, "Filtr minimum",           lambda: self.lab06_filter('min'))
         self._btn(sidebar, "Filtr maksimum",          lambda: self.lab06_filter('max'))
 
+        if not hasattr(self, "_buttons"):
+            self._buttons = []
+        slider_label = tk.Label(slider_frame, text="Suwak", bg="#14121a", fg="#cdd6f4", font=("Segoe UI", 9))
+        slider_label.pack(pady=(8,0))
+        def on_slider(val):
+            try:
+                frac = float(val) / 100.0
+            except Exception:
+                frac = 0.0
+            try:
+                self._sidebar_canvas.yview_moveto(frac)
+            except Exception:
+                pass
+            if len(self._buttons) > 0:
+                idx = int(round(frac * (len(self._buttons) - 1)))
+                for i, b in enumerate(self._buttons):
+                    b.config(bg="#313244" if i != idx else "#6c6ef0")
+        slider = tk.Scale(slider_frame, from_=0, to=100, orient="vertical", command=on_slider, bg="#14121a", fg="#cdd6f4", troughcolor="#45475a", bd=0, highlightthickness=0, length=700)
+        slider.set(0)
+        slider.pack(fill="y", padx=6, pady=10, expand=True)
+
         main_frame = tk.Frame(self.root, bg="#1e1e2e")
         main_frame.pack(side="right", fill="both", expand=True)
 
@@ -323,8 +357,12 @@ class App:
         tk.Label(parent, text=title, bg="#181825", fg="#89b4fa", font=("Segoe UI", 8, "bold"), anchor="w", padx=20).pack(fill="x", pady=(12, 2))
 
     def _btn(self, parent, text, command):
+        if not hasattr(self, "_buttons"):
+            self._buttons = []
         btn = tk.Button(parent, text=text, command=command, bg="#313244", fg="#cdd6f4", relief="flat", font=("Segoe UI", 9), anchor="w", padx=20, pady=6, activebackground="#45475a", activeforeground="#cdd6f4", cursor="hand2")
+        btn._cmd = command
         btn.pack(fill="x", padx=10, pady=1)
+        self._buttons.append(btn)
 
     def _show(self, img_np):
         self.processed_img = img_np
