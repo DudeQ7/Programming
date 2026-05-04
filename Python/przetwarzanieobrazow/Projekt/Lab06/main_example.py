@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import os
 def nonlinear_filter(image, filter_type='median', kernel_size=3):
     """
     Filtracja nieliniowa obrazu.
@@ -37,7 +38,8 @@ def nonlinear_filter(image, filter_type='median', kernel_size=3):
 
 
 # --- Użycie ---
-img = cv2.imread('/mnt/shared/Programming/Python/przetwarzanieobrazow/Projekt/Lab06/test.jpg',cv2.IMREAD_GRAYSCALE)
+script_dir = os.path.dirname(os.path.abspath(__file__))
+img = cv2.imread(os.path.join(script_dir, 'test.jpg'), cv2.IMREAD_GRAYSCALE)
 result_median = nonlinear_filter(img, filter_type='median', kernel_size=3)
 result_min    = nonlinear_filter(img, filter_type='min',    kernel_size=3)
 result_max    = nonlinear_filter(img, filter_type='max',    kernel_size=3)
