@@ -2,7 +2,7 @@ import cv2 as cv
 import numpy as np
 import tkinter as tk
 from tkinter import filedialog, messagebox, simpledialog
-#sudo pacman -S tk
+#sudo pacman -S tk  necessary dla Linuxas
 from algorithms import (
     # Lab 01
     get_rgb_collage, get_channel_view, create_color_grid,
@@ -27,17 +27,10 @@ class App:
         self.root.title("Przetwarzanie Obrazów Cyfrowych – POC Projekt")
         self.root.geometry("1200x800")
         self.root.configure(bg="#1e1e2e")
-
-        self.original_img = None   # Oryginalny obraz BGR (tylko cv.imread)
-        self.processed_img = None  # Aktualnie przetworzony obraz
-        self._tk_img = None        # Referencja dla Tkintera (zapobiega GC)
-
+        self.original_img = None  
+        self.processed_img = None 
+        self._tk_img = None        
         self._build_ui()
-
-    # ------------------------------------------------------------------ #
-    #  BUDOWANIE INTERFEJSU                                                #
-    # ------------------------------------------------------------------ #
-
     def _build_ui(self):
         # ---- SIDEBAR ----
         sidebar = tk.Frame(self.root, bg="#181825", width=260)
@@ -142,27 +135,17 @@ class App:
             cursor="hand2"
         )
         btn.pack(fill="x", padx=10, pady=1)
-
-    # ------------------------------------------------------------------ #
-    #  WYŚWIETLANIE I ZARZĄDZANIE OBRAZEM                                  #
-    # ------------------------------------------------------------------ #
-
     def _show(self, img_np):
-        """Wyświetla obraz NumPy w głównym obszarze aplikacji."""
         self.processed_img = img_np
         self._tk_img = numpy_to_photoimage(img_np, max_size=(900, 700))
         self.canvas_label.config(image=self._tk_img, text="")
-
     def _set_status(self, msg):
         self.status_var.set(msg)
-
     def _require_image(self):
-        """Sprawdza czy obraz jest wczytany. Zwraca True/False."""
         if self.original_img is None:
             messagebox.showwarning("Brak obrazu", "Najpierw wczytaj obraz!")
             return False
         return True
-
     def load_image(self):
         path = filedialog.askopenfilename(
             title="Wybierz obraz",
