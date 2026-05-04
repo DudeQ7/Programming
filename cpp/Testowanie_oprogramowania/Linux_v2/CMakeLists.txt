@@ -11,8 +11,12 @@ include_directories(${GTEST_INCLUDE_DIRS})
 set(SOURCES
     SpeedSource.cpp
     SpeedFormatter.cpp
-    test.cpp
+    TestValues.cpp
+    gTest/test_gmock.cpp
 )
+
+include_directories(${CMAKE_SOURCE_DIR}/gTest)
+include_directories(${CMAKE_SOURCE_DIR})
 
 # Plik wykonywalny
 add_executable(run_tests ${SOURCES})
@@ -21,5 +25,7 @@ add_executable(run_tests ${SOURCES})
 target_link_libraries(run_tests 
     GTest::GTest 
     GTest::Main 
+    GTest::gmock_main
+    GTest::gmock
     pthread
 )

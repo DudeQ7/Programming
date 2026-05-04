@@ -1,11 +1,9 @@
 #pragma once
-
 enum class SpeedUnit
 {
     MPH,
     KPH
 };
-
 class UnitsInterface
 {
 public:
