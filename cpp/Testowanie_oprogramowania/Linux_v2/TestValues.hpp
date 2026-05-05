@@ -1,5 +1,4 @@
 #pragma once
-
 extern const double TV_speed_initial;
 extern const double TV_speed_small_change;
 extern const double TV_speed_big_change;
