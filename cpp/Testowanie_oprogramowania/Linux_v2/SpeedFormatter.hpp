@@ -1,9 +1,6 @@
 #pragma once
-
 #include "SpeedSource.hpp"
 #include "UnitsInterface.hpp"
-
-
 class SpeedFormatter
 {
 public:

@@ -1,8 +1,6 @@
 #pragma once
-
 #include "UnitsInterface.hpp"
 #include "TestValues.hpp"
-
 class MockUnits : public UnitsInterface {
 public:
     MockUnits(SpeedUnit unit = SpeedUnit::KPH) : m_unit(unit) {}
