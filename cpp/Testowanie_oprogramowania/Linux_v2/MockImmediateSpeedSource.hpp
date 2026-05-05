@@ -1,7 +1,5 @@
 #pragma once
-
 #include "SpeedSourceInterface.hpp"
-
 class MockImmediateSpeedSource : public SpeedSourceInterface {
 public:
     MockImmediateSpeedSource(double initial = 0.0) : m_currentSpeed(initial) {}
