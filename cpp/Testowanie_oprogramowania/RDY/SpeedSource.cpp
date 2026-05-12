@@ -1,7 +1,6 @@
 #include "SpeedSource.hpp"
 #include <cmath>
 #include <chrono>
-
 SpeedSource::SpeedSource() : m_currentSpeed(0.0),m_pendingSpeed(0.0),m_isWaiting(false)
 {
     m_lastChangeTime =std::chrono::steady_clock::now();

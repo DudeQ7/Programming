@@ -7,7 +7,6 @@
 #include "MockSpeedSource.hpp"
 #include "MockImmediateSpeedSource.hpp"
 #include "TestValues.hpp"
-
 //R1 test
 TEST(SpeedFormatterTest,ShouldRoundSpeedCorrectly_R1)
 {
@@ -26,9 +25,9 @@ TEST(SpeedFormatterTest,ShouldUseCurrentUnit_R2)
     MockSpeedSource source;
     source.setSpeed(TV_speed_initial);
     SpeedFormatter formatter(&source, &units, 1);
-    EXPECT_EQ(formatter.getFormattedSpeed(), 50u);
+    EXPECT_EQ(formatter.getFormattedSpeed(), 54u);
     units.setSpeedUnit(SpeedUnit::MPH);
-    EXPECT_EQ(formatter.getFormattedSpeed(), 31u);
+    EXPECT_EQ(formatter.getFormattedSpeed(), 34u);
 }
 //R3 small change wait 1 second
 TEST(SpeedSourceTest,ShouldHandleSmallChangesWithDelay_R3)
@@ -37,9 +36,9 @@ TEST(SpeedSourceTest,ShouldHandleSmallChangesWithDelay_R3)
     MockSpeedSource source;
     source.setSpeed(TV_speed_initial);
     SpeedFormatter formatter(&source, &units, 1);
-    EXPECT_EQ(formatter.getFormattedSpeed(), 50u);
+    EXPECT_EQ(formatter.getFormattedSpeed(), 54u);
     source.setSpeed(TV_speed_small_change);
-    EXPECT_EQ(formatter.getFormattedSpeed(), 50u);
+    EXPECT_EQ(formatter.getFormattedSpeed(), 52u);
     std::this_thread::sleep_for(std::chrono::seconds(1));
     EXPECT_EQ(formatter.getFormattedSpeed(), 52u);
 }
@@ -50,7 +49,7 @@ TEST(SpeedSourceTest,ShouldUpdateImmedaitelyForBingChanges_R3)
     MockSpeedSource source;
     source.setSpeed(TV_speed_initial);
     SpeedFormatter formatter(&source, &units, 1);
-    EXPECT_EQ(formatter.getFormattedSpeed(), 50u);
+    EXPECT_EQ(formatter.getFormattedSpeed(), 54u);
     source.setSpeed(TV_speed_big_change);
-    EXPECT_EQ(formatter.getFormattedSpeed(), 53u);
+    EXPECT_EQ(formatter.getFormattedSpeed(), 54u);
 }

@@ -3,7 +3,6 @@
 #include "TestValues.hpp"
 #include <chrono>
 #include <cmath>
-
 class MockSpeedSource : public SpeedSourceInterface
 {
 public:
@@ -23,7 +22,6 @@ public:
             m_lastChangeTime = std::chrono::steady_clock::now();
         }
     }
-
     double getSpeed() override
     {
         if (m_isWaiting)
