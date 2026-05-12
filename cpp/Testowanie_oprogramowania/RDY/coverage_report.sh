@@ -10,20 +10,20 @@ echo "Using build dir: $BUILD_DIR"
 mkdir -p "$BUILD_DIR"
 cd "$BUILD_DIR"
 
-# Configure if needed
+# Configure with explicit source/build dirs
 if [ ! -f CMakeCache.txt ]; then
-  echo "Configuring project with cmake .."
-  cmake ..
+  echo "Configuring project with: cmake -S .. -B ."
+  cmake -S .. -B .
 fi
 
-# Build
-echo "Building project (make -j)"
-make -j || make || true
+# Build using cmake --build
+echo "Building project"
+cmake --build . -- -j || cmake --build . || true
 
-# Prefer CMake-provided 'coverage' target if it exists
-if make -n coverage >/dev/null 2>&1; then
-  echo "Running 'make coverage'"
-  make coverage
+# Prefer CMake-provided 'coverage' target
+if cmake --build . --target coverage >/dev/null 2>&1; then
+  echo "Running 'cmake --build . --target coverage'"
+  cmake --build . --target coverage
   echo "Coverage target finished. See: $BUILD_DIR/coverage_report/index.html"
   exit 0
 fi
@@ -38,7 +38,7 @@ if [ -z "$LCOV_BIN" ] || [ -z "$GENHTML_BIN" ]; then
 fi
 
 # Zero counters
-$LCOV_BIN --directory . --zerocounters
+$LCOV_BIN --directory . --zerocounters || true
 
 # Run tests (expecting test binary at ./run_tests or ./runTests)
 if [ -x ./run_tests ]; then
