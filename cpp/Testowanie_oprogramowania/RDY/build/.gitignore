@@ -9,3 +9,5 @@ Makefile
 run_tests
 coverage_cleaned.info
 coverage.info
+build/
+coverage_report/

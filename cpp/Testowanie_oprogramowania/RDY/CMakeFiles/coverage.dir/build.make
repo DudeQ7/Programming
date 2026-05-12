@@ -70,9 +70,11 @@ CMakeFiles/coverage:
 	/usr/bin/lcov --directory . --zerocounters
 	./run_tests
 	/usr/bin/lcov --directory . --capture --output-file coverage.raw --rc lcov_branch_coverage=1 --ignore-errors inconsistent
-	/usr/bin/lcov --remove coverage.raw '/usr/*' '*/CMakeFiles/*' '*/test*' --output-file coverage.info --rc lcov_branch_coverage=1 --ignore-errors inconsistent
-	/usr/bin/genhtml coverage.info --output-directory coverage_report --branch-coverage --ignore-errors inconsistent
-	echo Raport\ Branch\ Coverage\ gotowy:\ build/coverage_report/index.html
+	/usr/bin/lcov --remove coverage.raw '/usr/*' '*/CMakeFiles/*' '*/test*' --output-file coverage_cleaned.info --rc lcov_branch_coverage=1 --ignore-errors inconsistent
+	/usr/bin/cmake -E remove_directory coverage_report
+	/usr/bin/cmake -E make_directory coverage_report
+	/usr/bin/genhtml coverage_cleaned.info --output-directory coverage_report --branch-coverage --ignore-errors inconsistent
+	/usr/bin/cmake -E echo Raport\ Branch\ Coverage\ gotowy:\ /mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/coverage_report/index.html
 
 CMakeFiles/coverage.dir/codegen:
 .PHONY : CMakeFiles/coverage.dir/codegen
