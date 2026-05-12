@@ -1,3 +1,4 @@
 /mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/run_tests.dir
+/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/coverage.dir
 /mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/edit_cache.dir
 /mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/rebuild_cache.dir

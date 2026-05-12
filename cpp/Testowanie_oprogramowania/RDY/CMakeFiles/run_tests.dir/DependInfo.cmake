@@ -10,7 +10,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/SpeedFormatter.cpp" "CMakeFiles/run_tests.dir/SpeedFormatter.cpp.o" "gcc" "CMakeFiles/run_tests.dir/SpeedFormatter.cpp.o.d"
   "/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/SpeedSource.cpp" "CMakeFiles/run_tests.dir/SpeedSource.cpp.o" "gcc" "CMakeFiles/run_tests.dir/SpeedSource.cpp.o.d"
+  "/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/SpeedSourceInterface_test.cpp" "CMakeFiles/run_tests.dir/SpeedSourceInterface_test.cpp.o" "gcc" "CMakeFiles/run_tests.dir/SpeedSourceInterface_test.cpp.o.d"
   "/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/TestValues.cpp" "CMakeFiles/run_tests.dir/TestValues.cpp.o" "gcc" "CMakeFiles/run_tests.dir/TestValues.cpp.o.d"
+  "/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/test.cpp" "CMakeFiles/run_tests.dir/test.cpp.o" "gcc" "CMakeFiles/run_tests.dir/test.cpp.o.d"
   "/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/test_gmock.cpp" "CMakeFiles/run_tests.dir/test_gmock.cpp.o" "gcc" "CMakeFiles/run_tests.dir/test_gmock.cpp.o.d"
   "" "run_tests" "gcc" "CMakeFiles/run_tests.dir/link.d"
   )

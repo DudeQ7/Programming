@@ -2,199 +2,12 @@
 ---
 events:
   -
-    kind: "find-v1"
-    backtrace:
-      - "/usr/share/cmake/Modules/CMakeDetermineSystem.cmake:12 (find_program)"
-      - "CMakeLists.txt:2 (project)"
-    mode: "program"
-    variable: "CMAKE_UNAME"
-    description: "Path to a program."
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: true
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "uname"
-    candidate_directories:
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/"
-      - "/home/dudeq/.local/bin/"
-      - "/usr/local/bin/"
-      - "/usr/bin/"
-      - "/bin/"
-      - "/usr/local/sbin/"
-      - "/var/lib/flatpak/exports/bin/"
-      - "/usr/bin/site_perl/"
-      - "/usr/bin/vendor_perl/"
-      - "/usr/bin/core_perl/"
-      - "/var/lib/snapd/snap/bin/"
-      - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts/"
-    searched_directories:
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/uname"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/uname"
-      - "/home/dudeq/.local/bin/uname"
-      - "/usr/local/bin/uname"
-    found: "/usr/bin/uname"
-    search_context:
-      ENV{PATH}:
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli"
-        - "/home/dudeq/.local/bin"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli"
-        - "/usr/local/bin"
-        - "/usr/bin"
-        - "/bin"
-        - "/usr/local/sbin"
-        - "/var/lib/flatpak/exports/bin"
-        - "/usr/bin/site_perl"
-        - "/usr/bin/vendor_perl"
-        - "/usr/bin/core_perl"
-        - "/var/lib/snapd/snap/bin"
-        - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts"
-  -
     kind: "message-v1"
     backtrace:
       - "/usr/share/cmake/Modules/CMakeDetermineSystem.cmake:212 (message)"
       - "CMakeLists.txt:2 (project)"
     message: |
-      The system is: Linux - 7.0.3-1-cachyos - x86_64
-  -
-    kind: "find-v1"
-    backtrace:
-      - "/usr/share/cmake/Modules/CMakeUnixFindMake.cmake:5 (find_program)"
-      - "CMakeLists.txt:2 (project)"
-    mode: "program"
-    variable: "CMAKE_MAKE_PROGRAM"
-    description: "Path to a program."
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: true
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "gmake"
-      - "make"
-      - "smake"
-    candidate_directories:
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/"
-      - "/home/dudeq/.local/bin/"
-      - "/usr/local/bin/"
-      - "/usr/bin/"
-      - "/bin/"
-      - "/usr/local/sbin/"
-      - "/var/lib/flatpak/exports/bin/"
-      - "/usr/bin/site_perl/"
-      - "/usr/bin/vendor_perl/"
-      - "/usr/bin/core_perl/"
-      - "/var/lib/snapd/snap/bin/"
-      - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts/"
-    searched_directories:
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/gmake"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/gmake"
-      - "/home/dudeq/.local/bin/gmake"
-      - "/usr/local/bin/gmake"
-      - "/usr/bin/gmake"
-      - "/bin/gmake"
-      - "/usr/local/sbin/gmake"
-      - "/var/lib/flatpak/exports/bin/gmake"
-      - "/usr/bin/site_perl/gmake"
-      - "/usr/bin/vendor_perl/gmake"
-      - "/usr/bin/core_perl/gmake"
-      - "/var/lib/snapd/snap/bin/gmake"
-      - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts/gmake"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/make"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/make"
-      - "/home/dudeq/.local/bin/make"
-      - "/usr/local/bin/make"
-    found: "/usr/bin/make"
-    search_context:
-      ENV{PATH}:
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli"
-        - "/home/dudeq/.local/bin"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli"
-        - "/usr/local/bin"
-        - "/usr/bin"
-        - "/bin"
-        - "/usr/local/sbin"
-        - "/var/lib/flatpak/exports/bin"
-        - "/usr/bin/site_perl"
-        - "/usr/bin/vendor_perl"
-        - "/usr/bin/core_perl"
-        - "/var/lib/snapd/snap/bin"
-        - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts"
-  -
-    kind: "find-v1"
-    backtrace:
-      - "/usr/share/cmake/Modules/CMakeDetermineCompiler.cmake:73 (find_program)"
-      - "/usr/share/cmake/Modules/CMakeDetermineCCompiler.cmake:64 (_cmake_find_compiler)"
-      - "CMakeLists.txt:2 (project)"
-    mode: "program"
-    variable: "CMAKE_C_COMPILER"
-    description: "C compiler"
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: true
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "cc"
-      - "gcc"
-      - "cl"
-      - "bcc"
-      - "xlc"
-      - "icx"
-      - "clang"
-    candidate_directories:
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/"
-      - "/home/dudeq/.local/bin/"
-      - "/usr/local/bin/"
-      - "/usr/bin/"
-      - "/bin/"
-      - "/usr/local/sbin/"
-      - "/var/lib/flatpak/exports/bin/"
-      - "/usr/bin/site_perl/"
-      - "/usr/bin/vendor_perl/"
-      - "/usr/bin/core_perl/"
-      - "/var/lib/snapd/snap/bin/"
-      - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts/"
-    searched_directories:
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/cc"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/cc"
-      - "/home/dudeq/.local/bin/cc"
-      - "/usr/local/bin/cc"
-    found: "/usr/bin/cc"
-    search_context:
-      ENV{PATH}:
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli"
-        - "/home/dudeq/.local/bin"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli"
-        - "/usr/local/bin"
-        - "/usr/bin"
-        - "/bin"
-        - "/usr/local/sbin"
-        - "/var/lib/flatpak/exports/bin"
-        - "/usr/bin/site_perl"
-        - "/usr/bin/vendor_perl"
-        - "/usr/bin/core_perl"
-        - "/var/lib/snapd/snap/bin"
-        - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts"
+      The system is: Linux - 7.0.5-2-cachyos - x86_64
   -
     kind: "find-v1"
     backtrace:
@@ -231,12 +44,12 @@ events:
         - "/usr/bin"
         - "/bin"
         - "/usr/local/sbin"
-        - "/var/lib/flatpak/exports/bin"
         - "/usr/bin/site_perl"
         - "/usr/bin/vendor_perl"
         - "/usr/bin/core_perl"
         - "/var/lib/snapd/snap/bin"
         - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
   -
     kind: "message-v1"
     backtrace:
@@ -259,831 +72,6 @@ events:
       The C compiler identification is GNU, found in:
         /mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/4.3.2/CompilerIdC/a.out
       
-  -
-    kind: "find-v1"
-    backtrace:
-      - "/usr/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
-      - "/usr/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
-      - "CMakeLists.txt:2 (project)"
-    mode: "program"
-    variable: "CMAKE_AR"
-    description: "Path to a program."
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: false
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "ar"
-    candidate_directories:
-      - "/usr/bin/"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/"
-      - "/home/dudeq/.local/bin/"
-      - "/usr/local/bin/"
-      - "/bin/"
-      - "/usr/local/sbin/"
-      - "/var/lib/flatpak/exports/bin/"
-      - "/usr/bin/site_perl/"
-      - "/usr/bin/vendor_perl/"
-      - "/usr/bin/core_perl/"
-      - "/var/lib/snapd/snap/bin/"
-      - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts/"
-    found: "/usr/bin/ar"
-    search_context:
-      ENV{PATH}:
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli"
-        - "/home/dudeq/.local/bin"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli"
-        - "/usr/local/bin"
-        - "/usr/bin"
-        - "/bin"
-        - "/usr/local/sbin"
-        - "/var/lib/flatpak/exports/bin"
-        - "/usr/bin/site_perl"
-        - "/usr/bin/vendor_perl"
-        - "/usr/bin/core_perl"
-        - "/var/lib/snapd/snap/bin"
-        - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts"
-  -
-    kind: "find-v1"
-    backtrace:
-      - "/usr/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
-      - "/usr/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
-      - "CMakeLists.txt:2 (project)"
-    mode: "program"
-    variable: "CMAKE_RANLIB"
-    description: "Path to a program."
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: false
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "ranlib"
-    candidate_directories:
-      - "/usr/bin/"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/"
-      - "/home/dudeq/.local/bin/"
-      - "/usr/local/bin/"
-      - "/bin/"
-      - "/usr/local/sbin/"
-      - "/var/lib/flatpak/exports/bin/"
-      - "/usr/bin/site_perl/"
-      - "/usr/bin/vendor_perl/"
-      - "/usr/bin/core_perl/"
-      - "/var/lib/snapd/snap/bin/"
-      - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts/"
-    found: "/usr/bin/ranlib"
-    search_context:
-      ENV{PATH}:
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli"
-        - "/home/dudeq/.local/bin"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli"
-        - "/usr/local/bin"
-        - "/usr/bin"
-        - "/bin"
-        - "/usr/local/sbin"
-        - "/var/lib/flatpak/exports/bin"
-        - "/usr/bin/site_perl"
-        - "/usr/bin/vendor_perl"
-        - "/usr/bin/core_perl"
-        - "/var/lib/snapd/snap/bin"
-        - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts"
-  -
-    kind: "find-v1"
-    backtrace:
-      - "/usr/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
-      - "/usr/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
-      - "CMakeLists.txt:2 (project)"
-    mode: "program"
-    variable: "CMAKE_STRIP"
-    description: "Path to a program."
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: false
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "strip"
-    candidate_directories:
-      - "/usr/bin/"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/"
-      - "/home/dudeq/.local/bin/"
-      - "/usr/local/bin/"
-      - "/bin/"
-      - "/usr/local/sbin/"
-      - "/var/lib/flatpak/exports/bin/"
-      - "/usr/bin/site_perl/"
-      - "/usr/bin/vendor_perl/"
-      - "/usr/bin/core_perl/"
-      - "/var/lib/snapd/snap/bin/"
-      - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts/"
-    found: "/usr/bin/strip"
-    search_context:
-      ENV{PATH}:
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli"
-        - "/home/dudeq/.local/bin"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli"
-        - "/usr/local/bin"
-        - "/usr/bin"
-        - "/bin"
-        - "/usr/local/sbin"
-        - "/var/lib/flatpak/exports/bin"
-        - "/usr/bin/site_perl"
-        - "/usr/bin/vendor_perl"
-        - "/usr/bin/core_perl"
-        - "/var/lib/snapd/snap/bin"
-        - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts"
-  -
-    kind: "find-v1"
-    backtrace:
-      - "/usr/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
-      - "/usr/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
-      - "CMakeLists.txt:2 (project)"
-    mode: "program"
-    variable: "CMAKE_LINKER"
-    description: "Path to a program."
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: false
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "ld"
-    candidate_directories:
-      - "/usr/bin/"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/"
-      - "/home/dudeq/.local/bin/"
-      - "/usr/local/bin/"
-      - "/bin/"
-      - "/usr/local/sbin/"
-      - "/var/lib/flatpak/exports/bin/"
-      - "/usr/bin/site_perl/"
-      - "/usr/bin/vendor_perl/"
-      - "/usr/bin/core_perl/"
-      - "/var/lib/snapd/snap/bin/"
-      - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts/"
-    found: "/usr/bin/ld"
-    search_context:
-      ENV{PATH}:
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli"
-        - "/home/dudeq/.local/bin"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli"
-        - "/usr/local/bin"
-        - "/usr/bin"
-        - "/bin"
-        - "/usr/local/sbin"
-        - "/var/lib/flatpak/exports/bin"
-        - "/usr/bin/site_perl"
-        - "/usr/bin/vendor_perl"
-        - "/usr/bin/core_perl"
-        - "/var/lib/snapd/snap/bin"
-        - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts"
-  -
-    kind: "find-v1"
-    backtrace:
-      - "/usr/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
-      - "/usr/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
-      - "CMakeLists.txt:2 (project)"
-    mode: "program"
-    variable: "CMAKE_NM"
-    description: "Path to a program."
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: false
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "nm"
-    candidate_directories:
-      - "/usr/bin/"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/"
-      - "/home/dudeq/.local/bin/"
-      - "/usr/local/bin/"
-      - "/bin/"
-      - "/usr/local/sbin/"
-      - "/var/lib/flatpak/exports/bin/"
-      - "/usr/bin/site_perl/"
-      - "/usr/bin/vendor_perl/"
-      - "/usr/bin/core_perl/"
-      - "/var/lib/snapd/snap/bin/"
-      - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts/"
-    found: "/usr/bin/nm"
-    search_context:
-      ENV{PATH}:
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli"
-        - "/home/dudeq/.local/bin"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli"
-        - "/usr/local/bin"
-        - "/usr/bin"
-        - "/bin"
-        - "/usr/local/sbin"
-        - "/var/lib/flatpak/exports/bin"
-        - "/usr/bin/site_perl"
-        - "/usr/bin/vendor_perl"
-        - "/usr/bin/core_perl"
-        - "/var/lib/snapd/snap/bin"
-        - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts"
-  -
-    kind: "find-v1"
-    backtrace:
-      - "/usr/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
-      - "/usr/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
-      - "CMakeLists.txt:2 (project)"
-    mode: "program"
-    variable: "CMAKE_OBJDUMP"
-    description: "Path to a program."
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: false
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "objdump"
-    candidate_directories:
-      - "/usr/bin/"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/"
-      - "/home/dudeq/.local/bin/"
-      - "/usr/local/bin/"
-      - "/bin/"
-      - "/usr/local/sbin/"
-      - "/var/lib/flatpak/exports/bin/"
-      - "/usr/bin/site_perl/"
-      - "/usr/bin/vendor_perl/"
-      - "/usr/bin/core_perl/"
-      - "/var/lib/snapd/snap/bin/"
-      - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts/"
-    found: "/usr/bin/objdump"
-    search_context:
-      ENV{PATH}:
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli"
-        - "/home/dudeq/.local/bin"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli"
-        - "/usr/local/bin"
-        - "/usr/bin"
-        - "/bin"
-        - "/usr/local/sbin"
-        - "/var/lib/flatpak/exports/bin"
-        - "/usr/bin/site_perl"
-        - "/usr/bin/vendor_perl"
-        - "/usr/bin/core_perl"
-        - "/var/lib/snapd/snap/bin"
-        - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts"
-  -
-    kind: "find-v1"
-    backtrace:
-      - "/usr/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
-      - "/usr/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
-      - "CMakeLists.txt:2 (project)"
-    mode: "program"
-    variable: "CMAKE_OBJCOPY"
-    description: "Path to a program."
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: false
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "objcopy"
-    candidate_directories:
-      - "/usr/bin/"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/"
-      - "/home/dudeq/.local/bin/"
-      - "/usr/local/bin/"
-      - "/bin/"
-      - "/usr/local/sbin/"
-      - "/var/lib/flatpak/exports/bin/"
-      - "/usr/bin/site_perl/"
-      - "/usr/bin/vendor_perl/"
-      - "/usr/bin/core_perl/"
-      - "/var/lib/snapd/snap/bin/"
-      - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts/"
-    found: "/usr/bin/objcopy"
-    search_context:
-      ENV{PATH}:
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli"
-        - "/home/dudeq/.local/bin"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli"
-        - "/usr/local/bin"
-        - "/usr/bin"
-        - "/bin"
-        - "/usr/local/sbin"
-        - "/var/lib/flatpak/exports/bin"
-        - "/usr/bin/site_perl"
-        - "/usr/bin/vendor_perl"
-        - "/usr/bin/core_perl"
-        - "/var/lib/snapd/snap/bin"
-        - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts"
-  -
-    kind: "find-v1"
-    backtrace:
-      - "/usr/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
-      - "/usr/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
-      - "CMakeLists.txt:2 (project)"
-    mode: "program"
-    variable: "CMAKE_READELF"
-    description: "Path to a program."
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: false
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "readelf"
-    candidate_directories:
-      - "/usr/bin/"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/"
-      - "/home/dudeq/.local/bin/"
-      - "/usr/local/bin/"
-      - "/bin/"
-      - "/usr/local/sbin/"
-      - "/var/lib/flatpak/exports/bin/"
-      - "/usr/bin/site_perl/"
-      - "/usr/bin/vendor_perl/"
-      - "/usr/bin/core_perl/"
-      - "/var/lib/snapd/snap/bin/"
-      - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts/"
-    found: "/usr/bin/readelf"
-    search_context:
-      ENV{PATH}:
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli"
-        - "/home/dudeq/.local/bin"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli"
-        - "/usr/local/bin"
-        - "/usr/bin"
-        - "/bin"
-        - "/usr/local/sbin"
-        - "/var/lib/flatpak/exports/bin"
-        - "/usr/bin/site_perl"
-        - "/usr/bin/vendor_perl"
-        - "/usr/bin/core_perl"
-        - "/var/lib/snapd/snap/bin"
-        - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts"
-  -
-    kind: "find-v1"
-    backtrace:
-      - "/usr/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
-      - "/usr/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
-      - "CMakeLists.txt:2 (project)"
-    mode: "program"
-    variable: "CMAKE_DLLTOOL"
-    description: "Path to a program."
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: false
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "dlltool"
-    candidate_directories:
-      - "/usr/bin/"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/"
-      - "/home/dudeq/.local/bin/"
-      - "/usr/local/bin/"
-      - "/bin/"
-      - "/usr/local/sbin/"
-      - "/var/lib/flatpak/exports/bin/"
-      - "/usr/bin/site_perl/"
-      - "/usr/bin/vendor_perl/"
-      - "/usr/bin/core_perl/"
-      - "/var/lib/snapd/snap/bin/"
-      - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts/"
-    searched_directories:
-      - "/usr/bin/dlltool"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/dlltool"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/dlltool"
-      - "/home/dudeq/.local/bin/dlltool"
-      - "/usr/local/bin/dlltool"
-      - "/bin/dlltool"
-      - "/usr/local/sbin/dlltool"
-      - "/var/lib/flatpak/exports/bin/dlltool"
-      - "/usr/bin/site_perl/dlltool"
-      - "/usr/bin/vendor_perl/dlltool"
-      - "/usr/bin/core_perl/dlltool"
-      - "/var/lib/snapd/snap/bin/dlltool"
-      - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts/dlltool"
-    found: false
-    search_context:
-      ENV{PATH}:
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli"
-        - "/home/dudeq/.local/bin"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli"
-        - "/usr/local/bin"
-        - "/usr/bin"
-        - "/bin"
-        - "/usr/local/sbin"
-        - "/var/lib/flatpak/exports/bin"
-        - "/usr/bin/site_perl"
-        - "/usr/bin/vendor_perl"
-        - "/usr/bin/core_perl"
-        - "/var/lib/snapd/snap/bin"
-        - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts"
-  -
-    kind: "find-v1"
-    backtrace:
-      - "/usr/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
-      - "/usr/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
-      - "CMakeLists.txt:2 (project)"
-    mode: "program"
-    variable: "CMAKE_ADDR2LINE"
-    description: "Path to a program."
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: false
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "addr2line"
-    candidate_directories:
-      - "/usr/bin/"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/"
-      - "/home/dudeq/.local/bin/"
-      - "/usr/local/bin/"
-      - "/bin/"
-      - "/usr/local/sbin/"
-      - "/var/lib/flatpak/exports/bin/"
-      - "/usr/bin/site_perl/"
-      - "/usr/bin/vendor_perl/"
-      - "/usr/bin/core_perl/"
-      - "/var/lib/snapd/snap/bin/"
-      - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts/"
-    found: "/usr/bin/addr2line"
-    search_context:
-      ENV{PATH}:
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli"
-        - "/home/dudeq/.local/bin"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli"
-        - "/usr/local/bin"
-        - "/usr/bin"
-        - "/bin"
-        - "/usr/local/sbin"
-        - "/var/lib/flatpak/exports/bin"
-        - "/usr/bin/site_perl"
-        - "/usr/bin/vendor_perl"
-        - "/usr/bin/core_perl"
-        - "/var/lib/snapd/snap/bin"
-        - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts"
-  -
-    kind: "find-v1"
-    backtrace:
-      - "/usr/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
-      - "/usr/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
-      - "CMakeLists.txt:2 (project)"
-    mode: "program"
-    variable: "CMAKE_TAPI"
-    description: "Path to a program."
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: false
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "tapi"
-    candidate_directories:
-      - "/usr/bin/"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/"
-      - "/home/dudeq/.local/bin/"
-      - "/usr/local/bin/"
-      - "/bin/"
-      - "/usr/local/sbin/"
-      - "/var/lib/flatpak/exports/bin/"
-      - "/usr/bin/site_perl/"
-      - "/usr/bin/vendor_perl/"
-      - "/usr/bin/core_perl/"
-      - "/var/lib/snapd/snap/bin/"
-      - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts/"
-    searched_directories:
-      - "/usr/bin/tapi"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/tapi"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/tapi"
-      - "/home/dudeq/.local/bin/tapi"
-      - "/usr/local/bin/tapi"
-      - "/bin/tapi"
-      - "/usr/local/sbin/tapi"
-      - "/var/lib/flatpak/exports/bin/tapi"
-      - "/usr/bin/site_perl/tapi"
-      - "/usr/bin/vendor_perl/tapi"
-      - "/usr/bin/core_perl/tapi"
-      - "/var/lib/snapd/snap/bin/tapi"
-      - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts/tapi"
-    found: false
-    search_context:
-      ENV{PATH}:
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli"
-        - "/home/dudeq/.local/bin"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli"
-        - "/usr/local/bin"
-        - "/usr/bin"
-        - "/bin"
-        - "/usr/local/sbin"
-        - "/var/lib/flatpak/exports/bin"
-        - "/usr/bin/site_perl"
-        - "/usr/bin/vendor_perl"
-        - "/usr/bin/core_perl"
-        - "/var/lib/snapd/snap/bin"
-        - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts"
-  -
-    kind: "find-v1"
-    backtrace:
-      - "/usr/share/cmake/Modules/Compiler/GNU-FindBinUtils.cmake:18 (find_program)"
-      - "/usr/share/cmake/Modules/CMakeDetermineCCompiler.cmake:201 (include)"
-      - "CMakeLists.txt:2 (project)"
-    mode: "program"
-    variable: "CMAKE_C_COMPILER_AR"
-    description: "A wrapper around 'ar' adding the appropriate '--plugin' option for the GCC compiler"
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: false
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "gcc-ar-16.1"
-      - "gcc-ar-16"
-      - "gcc-ar16"
-      - "gcc-ar"
-    candidate_directories:
-      - "/usr/bin/"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/"
-      - "/home/dudeq/.local/bin/"
-      - "/usr/local/bin/"
-      - "/bin/"
-      - "/usr/local/sbin/"
-      - "/var/lib/flatpak/exports/bin/"
-      - "/usr/bin/site_perl/"
-      - "/usr/bin/vendor_perl/"
-      - "/usr/bin/core_perl/"
-      - "/var/lib/snapd/snap/bin/"
-      - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts/"
-    searched_directories:
-      - "/usr/bin/gcc-ar-16.1"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ar-16.1"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ar-16.1"
-      - "/home/dudeq/.local/bin/gcc-ar-16.1"
-      - "/usr/local/bin/gcc-ar-16.1"
-      - "/bin/gcc-ar-16.1"
-      - "/usr/local/sbin/gcc-ar-16.1"
-      - "/var/lib/flatpak/exports/bin/gcc-ar-16.1"
-      - "/usr/bin/site_perl/gcc-ar-16.1"
-      - "/usr/bin/vendor_perl/gcc-ar-16.1"
-      - "/usr/bin/core_perl/gcc-ar-16.1"
-      - "/var/lib/snapd/snap/bin/gcc-ar-16.1"
-      - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts/gcc-ar-16.1"
-      - "/usr/bin/gcc-ar-16"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ar-16"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ar-16"
-      - "/home/dudeq/.local/bin/gcc-ar-16"
-      - "/usr/local/bin/gcc-ar-16"
-      - "/bin/gcc-ar-16"
-      - "/usr/local/sbin/gcc-ar-16"
-      - "/var/lib/flatpak/exports/bin/gcc-ar-16"
-      - "/usr/bin/site_perl/gcc-ar-16"
-      - "/usr/bin/vendor_perl/gcc-ar-16"
-      - "/usr/bin/core_perl/gcc-ar-16"
-      - "/var/lib/snapd/snap/bin/gcc-ar-16"
-      - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts/gcc-ar-16"
-      - "/usr/bin/gcc-ar16"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ar16"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ar16"
-      - "/home/dudeq/.local/bin/gcc-ar16"
-      - "/usr/local/bin/gcc-ar16"
-      - "/bin/gcc-ar16"
-      - "/usr/local/sbin/gcc-ar16"
-      - "/var/lib/flatpak/exports/bin/gcc-ar16"
-      - "/usr/bin/site_perl/gcc-ar16"
-      - "/usr/bin/vendor_perl/gcc-ar16"
-      - "/usr/bin/core_perl/gcc-ar16"
-      - "/var/lib/snapd/snap/bin/gcc-ar16"
-      - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts/gcc-ar16"
-    found: "/usr/bin/gcc-ar"
-    search_context:
-      ENV{PATH}:
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli"
-        - "/home/dudeq/.local/bin"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli"
-        - "/usr/local/bin"
-        - "/usr/bin"
-        - "/bin"
-        - "/usr/local/sbin"
-        - "/var/lib/flatpak/exports/bin"
-        - "/usr/bin/site_perl"
-        - "/usr/bin/vendor_perl"
-        - "/usr/bin/core_perl"
-        - "/var/lib/snapd/snap/bin"
-        - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts"
-  -
-    kind: "find-v1"
-    backtrace:
-      - "/usr/share/cmake/Modules/Compiler/GNU-FindBinUtils.cmake:30 (find_program)"
-      - "/usr/share/cmake/Modules/CMakeDetermineCCompiler.cmake:201 (include)"
-      - "CMakeLists.txt:2 (project)"
-    mode: "program"
-    variable: "CMAKE_C_COMPILER_RANLIB"
-    description: "A wrapper around 'ranlib' adding the appropriate '--plugin' option for the GCC compiler"
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: false
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "gcc-ranlib-16.1"
-      - "gcc-ranlib-16"
-      - "gcc-ranlib16"
-      - "gcc-ranlib"
-    candidate_directories:
-      - "/usr/bin/"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/"
-      - "/home/dudeq/.local/bin/"
-      - "/usr/local/bin/"
-      - "/bin/"
-      - "/usr/local/sbin/"
-      - "/var/lib/flatpak/exports/bin/"
-      - "/usr/bin/site_perl/"
-      - "/usr/bin/vendor_perl/"
-      - "/usr/bin/core_perl/"
-      - "/var/lib/snapd/snap/bin/"
-      - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts/"
-    searched_directories:
-      - "/usr/bin/gcc-ranlib-16.1"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ranlib-16.1"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ranlib-16.1"
-      - "/home/dudeq/.local/bin/gcc-ranlib-16.1"
-      - "/usr/local/bin/gcc-ranlib-16.1"
-      - "/bin/gcc-ranlib-16.1"
-      - "/usr/local/sbin/gcc-ranlib-16.1"
-      - "/var/lib/flatpak/exports/bin/gcc-ranlib-16.1"
-      - "/usr/bin/site_perl/gcc-ranlib-16.1"
-      - "/usr/bin/vendor_perl/gcc-ranlib-16.1"
-      - "/usr/bin/core_perl/gcc-ranlib-16.1"
-      - "/var/lib/snapd/snap/bin/gcc-ranlib-16.1"
-      - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts/gcc-ranlib-16.1"
-      - "/usr/bin/gcc-ranlib-16"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ranlib-16"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ranlib-16"
-      - "/home/dudeq/.local/bin/gcc-ranlib-16"
-      - "/usr/local/bin/gcc-ranlib-16"
-      - "/bin/gcc-ranlib-16"
-      - "/usr/local/sbin/gcc-ranlib-16"
-      - "/var/lib/flatpak/exports/bin/gcc-ranlib-16"
-      - "/usr/bin/site_perl/gcc-ranlib-16"
-      - "/usr/bin/vendor_perl/gcc-ranlib-16"
-      - "/usr/bin/core_perl/gcc-ranlib-16"
-      - "/var/lib/snapd/snap/bin/gcc-ranlib-16"
-      - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts/gcc-ranlib-16"
-      - "/usr/bin/gcc-ranlib16"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ranlib16"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ranlib16"
-      - "/home/dudeq/.local/bin/gcc-ranlib16"
-      - "/usr/local/bin/gcc-ranlib16"
-      - "/bin/gcc-ranlib16"
-      - "/usr/local/sbin/gcc-ranlib16"
-      - "/var/lib/flatpak/exports/bin/gcc-ranlib16"
-      - "/usr/bin/site_perl/gcc-ranlib16"
-      - "/usr/bin/vendor_perl/gcc-ranlib16"
-      - "/usr/bin/core_perl/gcc-ranlib16"
-      - "/var/lib/snapd/snap/bin/gcc-ranlib16"
-      - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts/gcc-ranlib16"
-    found: "/usr/bin/gcc-ranlib"
-    search_context:
-      ENV{PATH}:
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli"
-        - "/home/dudeq/.local/bin"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli"
-        - "/usr/local/bin"
-        - "/usr/bin"
-        - "/bin"
-        - "/usr/local/sbin"
-        - "/var/lib/flatpak/exports/bin"
-        - "/usr/bin/site_perl"
-        - "/usr/bin/vendor_perl"
-        - "/usr/bin/core_perl"
-        - "/var/lib/snapd/snap/bin"
-        - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts"
-  -
-    kind: "find-v1"
-    backtrace:
-      - "/usr/share/cmake/Modules/CMakeDetermineCompiler.cmake:54 (find_program)"
-      - "/usr/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:69 (_cmake_find_compiler)"
-      - "CMakeLists.txt:2 (project)"
-    mode: "program"
-    variable: "CMAKE_CXX_COMPILER"
-    description: "CXX compiler"
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: true
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "c++"
-      - "CC"
-      - "g++"
-      - "aCC"
-      - "cl"
-      - "bcc"
-      - "xlC"
-      - "icpx"
-      - "icx"
-      - "clang++"
-    candidate_directories:
-      - "/usr/bin/"
-    found: "/usr/bin/c++"
-    search_context:
-      ENV{PATH}:
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli"
-        - "/home/dudeq/.local/bin"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli"
-        - "/usr/local/bin"
-        - "/usr/bin"
-        - "/bin"
-        - "/usr/local/sbin"
-        - "/var/lib/flatpak/exports/bin"
-        - "/usr/bin/site_perl"
-        - "/usr/bin/vendor_perl"
-        - "/usr/bin/core_perl"
-        - "/var/lib/snapd/snap/bin"
-        - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts"
   -
     kind: "find-v1"
     backtrace:
@@ -1120,12 +108,12 @@ events:
         - "/usr/bin"
         - "/bin"
         - "/usr/local/sbin"
-        - "/var/lib/flatpak/exports/bin"
         - "/usr/bin/site_perl"
         - "/usr/bin/vendor_perl"
         - "/usr/bin/core_perl"
         - "/var/lib/snapd/snap/bin"
         - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
   -
     kind: "message-v1"
     backtrace:
@@ -1149,194 +137,6 @@ events:
         /mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/4.3.2/CompilerIdCXX/a.out
       
   -
-    kind: "find-v1"
-    backtrace:
-      - "/usr/share/cmake/Modules/Compiler/GNU-FindBinUtils.cmake:18 (find_program)"
-      - "/usr/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:207 (include)"
-      - "CMakeLists.txt:2 (project)"
-    mode: "program"
-    variable: "CMAKE_CXX_COMPILER_AR"
-    description: "A wrapper around 'ar' adding the appropriate '--plugin' option for the GCC compiler"
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: false
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "gcc-ar-16.1"
-      - "gcc-ar-16"
-      - "gcc-ar16"
-      - "gcc-ar"
-    candidate_directories:
-      - "/usr/bin/"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/"
-      - "/home/dudeq/.local/bin/"
-      - "/usr/local/bin/"
-      - "/bin/"
-      - "/usr/local/sbin/"
-      - "/var/lib/flatpak/exports/bin/"
-      - "/usr/bin/site_perl/"
-      - "/usr/bin/vendor_perl/"
-      - "/usr/bin/core_perl/"
-      - "/var/lib/snapd/snap/bin/"
-      - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts/"
-    searched_directories:
-      - "/usr/bin/gcc-ar-16.1"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ar-16.1"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ar-16.1"
-      - "/home/dudeq/.local/bin/gcc-ar-16.1"
-      - "/usr/local/bin/gcc-ar-16.1"
-      - "/bin/gcc-ar-16.1"
-      - "/usr/local/sbin/gcc-ar-16.1"
-      - "/var/lib/flatpak/exports/bin/gcc-ar-16.1"
-      - "/usr/bin/site_perl/gcc-ar-16.1"
-      - "/usr/bin/vendor_perl/gcc-ar-16.1"
-      - "/usr/bin/core_perl/gcc-ar-16.1"
-      - "/var/lib/snapd/snap/bin/gcc-ar-16.1"
-      - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts/gcc-ar-16.1"
-      - "/usr/bin/gcc-ar-16"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ar-16"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ar-16"
-      - "/home/dudeq/.local/bin/gcc-ar-16"
-      - "/usr/local/bin/gcc-ar-16"
-      - "/bin/gcc-ar-16"
-      - "/usr/local/sbin/gcc-ar-16"
-      - "/var/lib/flatpak/exports/bin/gcc-ar-16"
-      - "/usr/bin/site_perl/gcc-ar-16"
-      - "/usr/bin/vendor_perl/gcc-ar-16"
-      - "/usr/bin/core_perl/gcc-ar-16"
-      - "/var/lib/snapd/snap/bin/gcc-ar-16"
-      - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts/gcc-ar-16"
-      - "/usr/bin/gcc-ar16"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ar16"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ar16"
-      - "/home/dudeq/.local/bin/gcc-ar16"
-      - "/usr/local/bin/gcc-ar16"
-      - "/bin/gcc-ar16"
-      - "/usr/local/sbin/gcc-ar16"
-      - "/var/lib/flatpak/exports/bin/gcc-ar16"
-      - "/usr/bin/site_perl/gcc-ar16"
-      - "/usr/bin/vendor_perl/gcc-ar16"
-      - "/usr/bin/core_perl/gcc-ar16"
-      - "/var/lib/snapd/snap/bin/gcc-ar16"
-      - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts/gcc-ar16"
-    found: "/usr/bin/gcc-ar"
-    search_context:
-      ENV{PATH}:
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli"
-        - "/home/dudeq/.local/bin"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli"
-        - "/usr/local/bin"
-        - "/usr/bin"
-        - "/bin"
-        - "/usr/local/sbin"
-        - "/var/lib/flatpak/exports/bin"
-        - "/usr/bin/site_perl"
-        - "/usr/bin/vendor_perl"
-        - "/usr/bin/core_perl"
-        - "/var/lib/snapd/snap/bin"
-        - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts"
-  -
-    kind: "find-v1"
-    backtrace:
-      - "/usr/share/cmake/Modules/Compiler/GNU-FindBinUtils.cmake:30 (find_program)"
-      - "/usr/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:207 (include)"
-      - "CMakeLists.txt:2 (project)"
-    mode: "program"
-    variable: "CMAKE_CXX_COMPILER_RANLIB"
-    description: "A wrapper around 'ranlib' adding the appropriate '--plugin' option for the GCC compiler"
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: false
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "gcc-ranlib-16.1"
-      - "gcc-ranlib-16"
-      - "gcc-ranlib16"
-      - "gcc-ranlib"
-    candidate_directories:
-      - "/usr/bin/"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/"
-      - "/home/dudeq/.local/bin/"
-      - "/usr/local/bin/"
-      - "/bin/"
-      - "/usr/local/sbin/"
-      - "/var/lib/flatpak/exports/bin/"
-      - "/usr/bin/site_perl/"
-      - "/usr/bin/vendor_perl/"
-      - "/usr/bin/core_perl/"
-      - "/var/lib/snapd/snap/bin/"
-      - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts/"
-    searched_directories:
-      - "/usr/bin/gcc-ranlib-16.1"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ranlib-16.1"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ranlib-16.1"
-      - "/home/dudeq/.local/bin/gcc-ranlib-16.1"
-      - "/usr/local/bin/gcc-ranlib-16.1"
-      - "/bin/gcc-ranlib-16.1"
-      - "/usr/local/sbin/gcc-ranlib-16.1"
-      - "/var/lib/flatpak/exports/bin/gcc-ranlib-16.1"
-      - "/usr/bin/site_perl/gcc-ranlib-16.1"
-      - "/usr/bin/vendor_perl/gcc-ranlib-16.1"
-      - "/usr/bin/core_perl/gcc-ranlib-16.1"
-      - "/var/lib/snapd/snap/bin/gcc-ranlib-16.1"
-      - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts/gcc-ranlib-16.1"
-      - "/usr/bin/gcc-ranlib-16"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ranlib-16"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ranlib-16"
-      - "/home/dudeq/.local/bin/gcc-ranlib-16"
-      - "/usr/local/bin/gcc-ranlib-16"
-      - "/bin/gcc-ranlib-16"
-      - "/usr/local/sbin/gcc-ranlib-16"
-      - "/var/lib/flatpak/exports/bin/gcc-ranlib-16"
-      - "/usr/bin/site_perl/gcc-ranlib-16"
-      - "/usr/bin/vendor_perl/gcc-ranlib-16"
-      - "/usr/bin/core_perl/gcc-ranlib-16"
-      - "/var/lib/snapd/snap/bin/gcc-ranlib-16"
-      - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts/gcc-ranlib-16"
-      - "/usr/bin/gcc-ranlib16"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ranlib16"
-      - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ranlib16"
-      - "/home/dudeq/.local/bin/gcc-ranlib16"
-      - "/usr/local/bin/gcc-ranlib16"
-      - "/bin/gcc-ranlib16"
-      - "/usr/local/sbin/gcc-ranlib16"
-      - "/var/lib/flatpak/exports/bin/gcc-ranlib16"
-      - "/usr/bin/site_perl/gcc-ranlib16"
-      - "/usr/bin/vendor_perl/gcc-ranlib16"
-      - "/usr/bin/core_perl/gcc-ranlib16"
-      - "/var/lib/snapd/snap/bin/gcc-ranlib16"
-      - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts/gcc-ranlib16"
-    found: "/usr/bin/gcc-ranlib"
-    search_context:
-      ENV{PATH}:
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli"
-        - "/home/dudeq/.local/bin"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli"
-        - "/usr/local/bin"
-        - "/usr/bin"
-        - "/bin"
-        - "/usr/local/sbin"
-        - "/var/lib/flatpak/exports/bin"
-        - "/usr/bin/site_perl"
-        - "/usr/bin/vendor_perl"
-        - "/usr/bin/core_perl"
-        - "/var/lib/snapd/snap/bin"
-        - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts"
-  -
     kind: "try_compile-v1"
     backtrace:
       - "/usr/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
@@ -1345,8 +145,8 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/CMakeScratch/TryCompile-kbG7Ve"
-      binary: "/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/CMakeScratch/TryCompile-kbG7Ve"
+      source: "/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/CMakeScratch/TryCompile-BIHJox"
+      binary: "/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/CMakeScratch/TryCompile-BIHJox"
     cmakeVariables:
       CMAKE_CXX_STDLIB_MODULES_JSON: ""
       CMAKE_C_FLAGS: ""
@@ -1356,13 +156,13 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: '/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/CMakeScratch/TryCompile-kbG7Ve'
+        Change Dir: '/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/CMakeScratch/TryCompile-BIHJox'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_6cb2c/fast
-        /usr/bin/make  -f CMakeFiles/cmTC_6cb2c.dir/build.make CMakeFiles/cmTC_6cb2c.dir/build
-        make[1]: Entering directory '/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/CMakeScratch/TryCompile-kbG7Ve'
-        Building C object CMakeFiles/cmTC_6cb2c.dir/CMakeCCompilerABI.c.o
-        /usr/bin/cc   -v -o CMakeFiles/cmTC_6cb2c.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake/Modules/CMakeCCompilerABI.c
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_eb069/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_eb069.dir/build.make CMakeFiles/cmTC_eb069.dir/build
+        make[1]: Entering directory '/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/CMakeScratch/TryCompile-BIHJox'
+        Building C object CMakeFiles/cmTC_eb069.dir/CMakeCCompilerABI.c.o
+        /usr/bin/cc   -v -o CMakeFiles/cmTC_eb069.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake/Modules/CMakeCCompilerABI.c
         Using built-in specs.
         COLLECT_GCC=/usr/bin/cc
         Target: x86_64-pc-linux-gnu
@@ -1370,8 +170,8 @@ events:
         Thread model: posix
         Supported LTO compression algorithms: zlib zstd
         gcc version 16.1.1 20260430 (GCC) 
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_6cb2c.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_6cb2c.dir/'
-         /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/cc1 -quiet -v /usr/share/cmake/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_6cb2c.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -o /tmp/ccUQ6FLI.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_eb069.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_eb069.dir/'
+         /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/cc1 -quiet -v /usr/share/cmake/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_eb069.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -o /tmp/ccOM636h.s
         GNU C23 (GCC) version 16.1.1 20260430 (x86_64-pc-linux-gnu)
         	compiled by GNU C version 16.1.1 20260430, GMP version 6.3.0, MPFR version 4.2.2, MPC version 1.4.1, isl version isl-0.27-GMP
         
@@ -1384,15 +184,15 @@ events:
          /usr/local/include
          /usr/include
         End of search list.
-        Compiler executable checksum: 94004f2eee725b67707de0382a8bca28
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_6cb2c.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_6cb2c.dir/'
-         as -v --64 -o CMakeFiles/cmTC_6cb2c.dir/CMakeCCompilerABI.c.o /tmp/ccUQ6FLI.s
+        Compiler executable checksum: 8e30ce17ad1eefe3f15199dda02dd603
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_eb069.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_eb069.dir/'
+         as -v --64 -o CMakeFiles/cmTC_eb069.dir/CMakeCCompilerABI.c.o /tmp/ccOM636h.s
         GNU assembler version 2.46.0 (x86_64-pc-linux-gnu) using BFD version (GNU Binutils) 2.46.0
         COMPILER_PATH=/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/:/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/
         LIBRARY_PATH=/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/:/lib/../lib/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../:/lib/:/usr/lib/
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_6cb2c.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_6cb2c.dir/CMakeCCompilerABI.c.'
-        Linking C executable cmTC_6cb2c
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6cb2c.dir/link.txt --verbose=1
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_eb069.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_eb069.dir/CMakeCCompilerABI.c.'
+        Linking C executable cmTC_eb069
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_eb069.dir/link.txt --verbose=1
         Using built-in specs.
         COLLECT_GCC=/usr/bin/cc
         COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/lto-wrapper
@@ -1403,14 +203,14 @@ events:
         gcc version 16.1.1 20260430 (GCC) 
         COMPILER_PATH=/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/:/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/
         LIBRARY_PATH=/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/:/lib/../lib/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../:/lib/:/usr/lib/
-        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_6cb2c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_6cb2c.'
-         /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccotrUdK.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s_asneeded -plugin-opt=-pass-through=-latomic_asneeded -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s_asneeded --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_6cb2c /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/Scrt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtbeginS.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../.. -L/lib -L/usr/lib -v CMakeFiles/cmTC_6cb2c.dir/CMakeCCompilerABI.c.o -lgcc -lgcc_s_asneeded -latomic_asneeded -lc -lgcc -lgcc_s_asneeded /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtendS.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crtn.o
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_eb069' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_eb069.'
+         /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccpeQ3Ba.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s_asneeded -plugin-opt=-pass-through=-latomic_asneeded -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s_asneeded --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_eb069 /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/Scrt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtbeginS.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../.. -L/lib -L/usr/lib -v CMakeFiles/cmTC_eb069.dir/CMakeCCompilerABI.c.o -lgcc -lgcc_s_asneeded -latomic_asneeded -lc -lgcc -lgcc_s_asneeded /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtendS.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crtn.o
         collect2 version 16.1.1 20260430
-        /usr/bin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccotrUdK.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s_asneeded -plugin-opt=-pass-through=-latomic_asneeded -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s_asneeded --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_6cb2c /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/Scrt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtbeginS.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../.. -L/lib -L/usr/lib -v CMakeFiles/cmTC_6cb2c.dir/CMakeCCompilerABI.c.o -lgcc -lgcc_s_asneeded -latomic_asneeded -lc -lgcc -lgcc_s_asneeded /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtendS.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crtn.o
+        /usr/bin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccpeQ3Ba.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s_asneeded -plugin-opt=-pass-through=-latomic_asneeded -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s_asneeded --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_eb069 /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/Scrt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtbeginS.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../.. -L/lib -L/usr/lib -v CMakeFiles/cmTC_eb069.dir/CMakeCCompilerABI.c.o -lgcc -lgcc_s_asneeded -latomic_asneeded -lc -lgcc -lgcc_s_asneeded /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtendS.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crtn.o
         GNU ld (GNU Binutils) 2.46.0
-        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_6cb2c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_6cb2c.'
-        /usr/bin/cc  -v -Wl,-v CMakeFiles/cmTC_6cb2c.dir/CMakeCCompilerABI.c.o -o cmTC_6cb2c
-        make[1]: Leaving directory '/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/CMakeScratch/TryCompile-kbG7Ve'
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_eb069' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_eb069.'
+        /usr/bin/cc  -v -Wl,-v CMakeFiles/cmTC_eb069.dir/CMakeCCompilerABI.c.o -o cmTC_eb069
+        make[1]: Leaving directory '/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/CMakeScratch/TryCompile-BIHJox'
         
       exitCode: 0
   -
@@ -1443,13 +243,13 @@ events:
       Parsed C implicit link information:
         link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
         linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
-        ignore line: [Change Dir: '/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/CMakeScratch/TryCompile-kbG7Ve']
+        ignore line: [Change Dir: '/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/CMakeScratch/TryCompile-BIHJox']
         ignore line: []
-        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_6cb2c/fast]
-        ignore line: [/usr/bin/make  -f CMakeFiles/cmTC_6cb2c.dir/build.make CMakeFiles/cmTC_6cb2c.dir/build]
-        ignore line: [make[1]: Entering directory '/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/CMakeScratch/TryCompile-kbG7Ve']
-        ignore line: [Building C object CMakeFiles/cmTC_6cb2c.dir/CMakeCCompilerABI.c.o]
-        ignore line: [/usr/bin/cc   -v -o CMakeFiles/cmTC_6cb2c.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake/Modules/CMakeCCompilerABI.c]
+        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_eb069/fast]
+        ignore line: [/usr/bin/make  -f CMakeFiles/cmTC_eb069.dir/build.make CMakeFiles/cmTC_eb069.dir/build]
+        ignore line: [make[1]: Entering directory '/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/CMakeScratch/TryCompile-BIHJox']
+        ignore line: [Building C object CMakeFiles/cmTC_eb069.dir/CMakeCCompilerABI.c.o]
+        ignore line: [/usr/bin/cc   -v -o CMakeFiles/cmTC_eb069.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake/Modules/CMakeCCompilerABI.c]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=/usr/bin/cc]
         ignore line: [Target: x86_64-pc-linux-gnu]
@@ -1457,8 +257,8 @@ events:
         ignore line: [Thread model: posix]
         ignore line: [Supported LTO compression algorithms: zlib zstd]
         ignore line: [gcc version 16.1.1 20260430 (GCC) ]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_6cb2c.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_6cb2c.dir/']
-        ignore line: [ /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/cc1 -quiet -v /usr/share/cmake/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_6cb2c.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -o /tmp/ccUQ6FLI.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_eb069.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_eb069.dir/']
+        ignore line: [ /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/cc1 -quiet -v /usr/share/cmake/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_eb069.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -o /tmp/ccOM636h.s]
         ignore line: [GNU C23 (GCC) version 16.1.1 20260430 (x86_64-pc-linux-gnu)]
         ignore line: [	compiled by GNU C version 16.1.1 20260430  GMP version 6.3.0  MPFR version 4.2.2  MPC version 1.4.1  isl version isl-0.27-GMP]
         ignore line: []
@@ -1471,15 +271,15 @@ events:
         ignore line: [ /usr/local/include]
         ignore line: [ /usr/include]
         ignore line: [End of search list.]
-        ignore line: [Compiler executable checksum: 94004f2eee725b67707de0382a8bca28]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_6cb2c.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_6cb2c.dir/']
-        ignore line: [ as -v --64 -o CMakeFiles/cmTC_6cb2c.dir/CMakeCCompilerABI.c.o /tmp/ccUQ6FLI.s]
+        ignore line: [Compiler executable checksum: 8e30ce17ad1eefe3f15199dda02dd603]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_eb069.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_eb069.dir/']
+        ignore line: [ as -v --64 -o CMakeFiles/cmTC_eb069.dir/CMakeCCompilerABI.c.o /tmp/ccOM636h.s]
         ignore line: [GNU assembler version 2.46.0 (x86_64-pc-linux-gnu) using BFD version (GNU Binutils) 2.46.0]
         ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/:/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/]
         ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/:/lib/../lib/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../:/lib/:/usr/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_6cb2c.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_6cb2c.dir/CMakeCCompilerABI.c.']
-        ignore line: [Linking C executable cmTC_6cb2c]
-        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6cb2c.dir/link.txt --verbose=1]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_eb069.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_eb069.dir/CMakeCCompilerABI.c.']
+        ignore line: [Linking C executable cmTC_eb069]
+        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_eb069.dir/link.txt --verbose=1]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=/usr/bin/cc]
         ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/lto-wrapper]
@@ -1490,13 +290,13 @@ events:
         ignore line: [gcc version 16.1.1 20260430 (GCC) ]
         ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/:/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/]
         ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/:/lib/../lib/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../:/lib/:/usr/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_6cb2c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_6cb2c.']
-        link line: [ /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccotrUdK.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s_asneeded -plugin-opt=-pass-through=-latomic_asneeded -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s_asneeded --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_6cb2c /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/Scrt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtbeginS.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../.. -L/lib -L/usr/lib -v CMakeFiles/cmTC_6cb2c.dir/CMakeCCompilerABI.c.o -lgcc -lgcc_s_asneeded -latomic_asneeded -lc -lgcc -lgcc_s_asneeded /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtendS.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crtn.o]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_eb069' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_eb069.']
+        link line: [ /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccpeQ3Ba.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s_asneeded -plugin-opt=-pass-through=-latomic_asneeded -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s_asneeded --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_eb069 /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/Scrt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtbeginS.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../.. -L/lib -L/usr/lib -v CMakeFiles/cmTC_eb069.dir/CMakeCCompilerABI.c.o -lgcc -lgcc_s_asneeded -latomic_asneeded -lc -lgcc -lgcc_s_asneeded /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtendS.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crtn.o]
           arg [/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/collect2] ==> ignore
           arg [-plugin] ==> ignore
           arg [/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/liblto_plugin.so] ==> ignore
           arg [-plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/lto-wrapper] ==> ignore
-          arg [-plugin-opt=-fresolution=/tmp/ccotrUdK.res] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/ccpeQ3Ba.res] ==> ignore
           arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
           arg [-plugin-opt=-pass-through=-lgcc_s_asneeded] ==> ignore
           arg [-plugin-opt=-pass-through=-latomic_asneeded] ==> ignore
@@ -1512,7 +312,7 @@ events:
           arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
           arg [-pie] ==> ignore
           arg [-o] ==> ignore
-          arg [cmTC_6cb2c] ==> ignore
+          arg [cmTC_eb069] ==> ignore
           arg [/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/Scrt1.o] ==> obj [/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/Scrt1.o]
           arg [/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crti.o] ==> obj [/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crti.o]
           arg [/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtbeginS.o] ==> obj [/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtbeginS.o]
@@ -1524,7 +324,7 @@ events:
           arg [-L/lib] ==> dir [/lib]
           arg [-L/usr/lib] ==> dir [/usr/lib]
           arg [-v] ==> ignore
-          arg [CMakeFiles/cmTC_6cb2c.dir/CMakeCCompilerABI.c.o] ==> ignore
+          arg [CMakeFiles/cmTC_eb069.dir/CMakeCCompilerABI.c.o] ==> ignore
           arg [-lgcc] ==> lib [gcc]
           arg [-lgcc_s_asneeded] ==> lib [gcc_s_asneeded]
           arg [-latomic_asneeded] ==> lib [atomic_asneeded]
@@ -1534,7 +334,7 @@ events:
           arg [/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtendS.o] ==> obj [/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtendS.o]
           arg [/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crtn.o] ==> obj [/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crtn.o]
         ignore line: [collect2 version 16.1.1 20260430]
-        ignore line: [/usr/bin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccotrUdK.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s_asneeded -plugin-opt=-pass-through=-latomic_asneeded -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s_asneeded --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_6cb2c /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/Scrt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtbeginS.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../.. -L/lib -L/usr/lib -v CMakeFiles/cmTC_6cb2c.dir/CMakeCCompilerABI.c.o -lgcc -lgcc_s_asneeded -latomic_asneeded -lc -lgcc -lgcc_s_asneeded /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtendS.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crtn.o]
+        ignore line: [/usr/bin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccpeQ3Ba.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s_asneeded -plugin-opt=-pass-through=-latomic_asneeded -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s_asneeded --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_eb069 /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/Scrt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtbeginS.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../.. -L/lib -L/usr/lib -v CMakeFiles/cmTC_eb069.dir/CMakeCCompilerABI.c.o -lgcc -lgcc_s_asneeded -latomic_asneeded -lc -lgcc -lgcc_s_asneeded /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtendS.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crtn.o]
         linker tool for 'C': /usr/bin/ld
         collapse obj [/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/Scrt1.o] ==> [/usr/lib/Scrt1.o]
         collapse obj [/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crti.o] ==> [/usr/lib/crti.o]
@@ -1571,8 +371,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/CMakeScratch/TryCompile-d5QvH8"
-      binary: "/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/CMakeScratch/TryCompile-d5QvH8"
+      source: "/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/CMakeScratch/TryCompile-thSdLb"
+      binary: "/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/CMakeScratch/TryCompile-thSdLb"
     cmakeVariables:
       CMAKE_CXX_FLAGS: ""
       CMAKE_CXX_FLAGS_DEBUG: "-g"
@@ -1583,13 +383,13 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: '/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/CMakeScratch/TryCompile-d5QvH8'
+        Change Dir: '/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/CMakeScratch/TryCompile-thSdLb'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_a841c/fast
-        /usr/bin/make  -f CMakeFiles/cmTC_a841c.dir/build.make CMakeFiles/cmTC_a841c.dir/build
-        make[1]: Entering directory '/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/CMakeScratch/TryCompile-d5QvH8'
-        Building CXX object CMakeFiles/cmTC_a841c.dir/CMakeCXXCompilerABI.cpp.o
-        /usr/bin/c++   -v -o CMakeFiles/cmTC_a841c.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_cb530/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_cb530.dir/build.make CMakeFiles/cmTC_cb530.dir/build
+        make[1]: Entering directory '/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/CMakeScratch/TryCompile-thSdLb'
+        Building CXX object CMakeFiles/cmTC_cb530.dir/CMakeCXXCompilerABI.cpp.o
+        /usr/bin/c++   -v -o CMakeFiles/cmTC_cb530.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp
         Using built-in specs.
         COLLECT_GCC=/usr/bin/c++
         Target: x86_64-pc-linux-gnu
@@ -1597,8 +397,8 @@ events:
         Thread model: posix
         Supported LTO compression algorithms: zlib zstd
         gcc version 16.1.1 20260430 (GCC) 
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_a841c.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_a841c.dir/'
-         /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/cc1plus -quiet -v -D_GNU_SOURCE /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_a841c.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -o /tmp/ccgKNeca.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_cb530.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_cb530.dir/'
+         /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/cc1plus -quiet -v -D_GNU_SOURCE /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_cb530.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -o /tmp/ccnNbyab.s
         GNU C++20 (GCC) version 16.1.1 20260430 (x86_64-pc-linux-gnu)
         	compiled by GNU C version 16.1.1 20260430, GMP version 6.3.0, MPFR version 4.2.2, MPC version 1.4.1, isl version isl-0.27-GMP
         
@@ -1614,15 +414,15 @@ events:
          /usr/local/include
          /usr/include
         End of search list.
-        Compiler executable checksum: f0f7bb416b1f535b61389f9c33e568a7
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_a841c.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_a841c.dir/'
-         as -v --64 -o CMakeFiles/cmTC_a841c.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccgKNeca.s
+        Compiler executable checksum: 01fb603e66dcb466f7fe3398b5ee0e67
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_cb530.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_cb530.dir/'
+         as -v --64 -o CMakeFiles/cmTC_cb530.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccnNbyab.s
         GNU assembler version 2.46.0 (x86_64-pc-linux-gnu) using BFD version (GNU Binutils) 2.46.0
         COMPILER_PATH=/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/:/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/
         LIBRARY_PATH=/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/:/lib/../lib/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../:/lib/:/usr/lib/
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_a841c.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_a841c.dir/CMakeCXXCompilerABI.cpp.'
-        Linking CXX executable cmTC_a841c
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a841c.dir/link.txt --verbose=1
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_cb530.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_cb530.dir/CMakeCXXCompilerABI.cpp.'
+        Linking CXX executable cmTC_cb530
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_cb530.dir/link.txt --verbose=1
         Using built-in specs.
         COLLECT_GCC=/usr/bin/c++
         COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/lto-wrapper
@@ -1633,14 +433,14 @@ events:
         gcc version 16.1.1 20260430 (GCC) 
         COMPILER_PATH=/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/:/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/
         LIBRARY_PATH=/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/:/lib/../lib/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../:/lib/:/usr/lib/
-        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_a841c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_a841c.'
-         /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccs6QLAx.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-latomic_asneeded -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_a841c /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/Scrt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtbeginS.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../.. -L/lib -L/usr/lib -v CMakeFiles/cmTC_a841c.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -latomic_asneeded -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtendS.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crtn.o
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_cb530' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_cb530.'
+         /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/cccVdMtJ.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-latomic_asneeded -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_cb530 /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/Scrt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtbeginS.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../.. -L/lib -L/usr/lib -v CMakeFiles/cmTC_cb530.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -latomic_asneeded -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtendS.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crtn.o
         collect2 version 16.1.1 20260430
-        /usr/bin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccs6QLAx.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-latomic_asneeded -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_a841c /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/Scrt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtbeginS.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../.. -L/lib -L/usr/lib -v CMakeFiles/cmTC_a841c.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -latomic_asneeded -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtendS.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crtn.o
+        /usr/bin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/cccVdMtJ.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-latomic_asneeded -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_cb530 /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/Scrt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtbeginS.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../.. -L/lib -L/usr/lib -v CMakeFiles/cmTC_cb530.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -latomic_asneeded -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtendS.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crtn.o
         GNU ld (GNU Binutils) 2.46.0
-        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_a841c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_a841c.'
-        /usr/bin/c++  -v -Wl,-v CMakeFiles/cmTC_a841c.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_a841c
-        make[1]: Leaving directory '/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/CMakeScratch/TryCompile-d5QvH8'
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_cb530' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_cb530.'
+        /usr/bin/c++  -v -Wl,-v CMakeFiles/cmTC_cb530.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_cb530
+        make[1]: Leaving directory '/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/CMakeScratch/TryCompile-thSdLb'
         
       exitCode: 0
   -
@@ -1679,13 +479,13 @@ events:
       Parsed CXX implicit link information:
         link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
         linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
-        ignore line: [Change Dir: '/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/CMakeScratch/TryCompile-d5QvH8']
+        ignore line: [Change Dir: '/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/CMakeScratch/TryCompile-thSdLb']
         ignore line: []
-        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_a841c/fast]
-        ignore line: [/usr/bin/make  -f CMakeFiles/cmTC_a841c.dir/build.make CMakeFiles/cmTC_a841c.dir/build]
-        ignore line: [make[1]: Entering directory '/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/CMakeScratch/TryCompile-d5QvH8']
-        ignore line: [Building CXX object CMakeFiles/cmTC_a841c.dir/CMakeCXXCompilerABI.cpp.o]
-        ignore line: [/usr/bin/c++   -v -o CMakeFiles/cmTC_a841c.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_cb530/fast]
+        ignore line: [/usr/bin/make  -f CMakeFiles/cmTC_cb530.dir/build.make CMakeFiles/cmTC_cb530.dir/build]
+        ignore line: [make[1]: Entering directory '/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/CMakeScratch/TryCompile-thSdLb']
+        ignore line: [Building CXX object CMakeFiles/cmTC_cb530.dir/CMakeCXXCompilerABI.cpp.o]
+        ignore line: [/usr/bin/c++   -v -o CMakeFiles/cmTC_cb530.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=/usr/bin/c++]
         ignore line: [Target: x86_64-pc-linux-gnu]
@@ -1693,8 +493,8 @@ events:
         ignore line: [Thread model: posix]
         ignore line: [Supported LTO compression algorithms: zlib zstd]
         ignore line: [gcc version 16.1.1 20260430 (GCC) ]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_a841c.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_a841c.dir/']
-        ignore line: [ /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/cc1plus -quiet -v -D_GNU_SOURCE /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_a841c.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -o /tmp/ccgKNeca.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_cb530.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_cb530.dir/']
+        ignore line: [ /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/cc1plus -quiet -v -D_GNU_SOURCE /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_cb530.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -o /tmp/ccnNbyab.s]
         ignore line: [GNU C++20 (GCC) version 16.1.1 20260430 (x86_64-pc-linux-gnu)]
         ignore line: [	compiled by GNU C version 16.1.1 20260430  GMP version 6.3.0  MPFR version 4.2.2  MPC version 1.4.1  isl version isl-0.27-GMP]
         ignore line: []
@@ -1710,15 +510,15 @@ events:
         ignore line: [ /usr/local/include]
         ignore line: [ /usr/include]
         ignore line: [End of search list.]
-        ignore line: [Compiler executable checksum: f0f7bb416b1f535b61389f9c33e568a7]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_a841c.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_a841c.dir/']
-        ignore line: [ as -v --64 -o CMakeFiles/cmTC_a841c.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccgKNeca.s]
+        ignore line: [Compiler executable checksum: 01fb603e66dcb466f7fe3398b5ee0e67]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_cb530.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_cb530.dir/']
+        ignore line: [ as -v --64 -o CMakeFiles/cmTC_cb530.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccnNbyab.s]
         ignore line: [GNU assembler version 2.46.0 (x86_64-pc-linux-gnu) using BFD version (GNU Binutils) 2.46.0]
         ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/:/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/]
         ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/:/lib/../lib/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../:/lib/:/usr/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_a841c.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_a841c.dir/CMakeCXXCompilerABI.cpp.']
-        ignore line: [Linking CXX executable cmTC_a841c]
-        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a841c.dir/link.txt --verbose=1]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_cb530.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_cb530.dir/CMakeCXXCompilerABI.cpp.']
+        ignore line: [Linking CXX executable cmTC_cb530]
+        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_cb530.dir/link.txt --verbose=1]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=/usr/bin/c++]
         ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/lto-wrapper]
@@ -1729,13 +529,13 @@ events:
         ignore line: [gcc version 16.1.1 20260430 (GCC) ]
         ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/:/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/]
         ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/:/lib/../lib/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../:/lib/:/usr/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_a841c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_a841c.']
-        link line: [ /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccs6QLAx.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-latomic_asneeded -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_a841c /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/Scrt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtbeginS.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../.. -L/lib -L/usr/lib -v CMakeFiles/cmTC_a841c.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -latomic_asneeded -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtendS.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crtn.o]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_cb530' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_cb530.']
+        link line: [ /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/cccVdMtJ.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-latomic_asneeded -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_cb530 /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/Scrt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtbeginS.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../.. -L/lib -L/usr/lib -v CMakeFiles/cmTC_cb530.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -latomic_asneeded -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtendS.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crtn.o]
           arg [/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/collect2] ==> ignore
           arg [-plugin] ==> ignore
           arg [/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/liblto_plugin.so] ==> ignore
           arg [-plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/lto-wrapper] ==> ignore
-          arg [-plugin-opt=-fresolution=/tmp/ccs6QLAx.res] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/cccVdMtJ.res] ==> ignore
           arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
           arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
           arg [-plugin-opt=-pass-through=-latomic_asneeded] ==> ignore
@@ -1751,7 +551,7 @@ events:
           arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
           arg [-pie] ==> ignore
           arg [-o] ==> ignore
-          arg [cmTC_a841c] ==> ignore
+          arg [cmTC_cb530] ==> ignore
           arg [/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/Scrt1.o] ==> obj [/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/Scrt1.o]
           arg [/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crti.o] ==> obj [/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crti.o]
           arg [/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtbeginS.o] ==> obj [/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtbeginS.o]
@@ -1763,7 +563,7 @@ events:
           arg [-L/lib] ==> dir [/lib]
           arg [-L/usr/lib] ==> dir [/usr/lib]
           arg [-v] ==> ignore
-          arg [CMakeFiles/cmTC_a841c.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+          arg [CMakeFiles/cmTC_cb530.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
           arg [-lstdc++] ==> lib [stdc++]
           arg [-lm] ==> lib [m]
           arg [-lgcc_s] ==> lib [gcc_s]
@@ -1775,7 +575,7 @@ events:
           arg [/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtendS.o] ==> obj [/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtendS.o]
           arg [/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crtn.o] ==> obj [/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crtn.o]
         ignore line: [collect2 version 16.1.1 20260430]
-        ignore line: [/usr/bin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccs6QLAx.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-latomic_asneeded -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_a841c /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/Scrt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtbeginS.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../.. -L/lib -L/usr/lib -v CMakeFiles/cmTC_a841c.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -latomic_asneeded -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtendS.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crtn.o]
+        ignore line: [/usr/bin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/cccVdMtJ.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-latomic_asneeded -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_cb530 /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/Scrt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtbeginS.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../.. -L/lib -L/usr/lib -v CMakeFiles/cmTC_cb530.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -latomic_asneeded -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtendS.o /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crtn.o]
         linker tool for 'CXX': /usr/bin/ld
         collapse obj [/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/Scrt1.o] ==> [/usr/lib/Scrt1.o]
         collapse obj [/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crti.o] ==> [/usr/lib/crti.o]
@@ -1803,258 +603,4 @@ events:
     message: |
       Running the CXX compiler's linker: "/usr/bin/ld" "-v"
       GNU ld (GNU Binutils) 2.46.0
-  -
-    kind: "try_compile-v1"
-    backtrace:
-      - "/usr/share/cmake/Modules/Internal/CheckSourceCompiles.cmake:104 (try_compile)"
-      - "/usr/share/cmake/Modules/CheckCSourceCompiles.cmake:103 (cmake_check_source_compiles)"
-      - "/usr/share/cmake/Modules/FindThreads.cmake:160 (check_c_source_compiles)"
-      - "/usr/share/cmake/Modules/FindThreads.cmake:226 (_threads_check_libc)"
-      - "/usr/share/cmake/Modules/CMakeFindDependencyMacro.cmake:93 (find_package)"
-      - "/usr/share/cmake/Modules/CMakeFindDependencyMacro.cmake:125 (__find_dependency_common)"
-      - "/usr/lib/cmake/GTest/GTestConfig.cmake:39 (find_dependency)"
-      - "/usr/share/cmake/Modules/FindGTest.cmake:345 (find_package)"
-      - "CMakeLists.txt:7 (find_package)"
-    directories:
-      source: "/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/CMakeScratch/TryCompile-ZsBFdS"
-      binary: "/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/CMakeScratch/TryCompile-ZsBFdS"
-    cmakeVariables:
-      CMAKE_CXX_STDLIB_MODULES_JSON: ""
-      CMAKE_C_FLAGS: ""
-      CMAKE_C_FLAGS_DEBUG: "-g"
-      CMAKE_EXE_LINKER_FLAGS: ""
-    buildResult:
-      variable: "CMAKE_HAVE_LIBC_PTHREAD"
-      cached: true
-      stdout: |
-        Change Dir: '/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/CMakeScratch/TryCompile-ZsBFdS'
-        
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_39678/fast
-        /usr/bin/make  -f CMakeFiles/cmTC_39678.dir/build.make CMakeFiles/cmTC_39678.dir/build
-        make[1]: Entering directory '/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/CMakeScratch/TryCompile-ZsBFdS'
-        Building C object CMakeFiles/cmTC_39678.dir/src.c.o
-        /usr/bin/cc -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_39678.dir/src.c.o -c /mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/CMakeScratch/TryCompile-ZsBFdS/src.c
-        Linking C executable cmTC_39678
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_39678.dir/link.txt --verbose=1
-        /usr/bin/cc CMakeFiles/cmTC_39678.dir/src.c.o -o cmTC_39678
-        make[1]: Leaving directory '/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/CMakeScratch/TryCompile-ZsBFdS'
-        
-      exitCode: 0
-  -
-    kind: "find_package-v1"
-    backtrace:
-      - "/usr/share/cmake/Modules/FindGTest.cmake:345 (find_package)"
-      - "CMakeLists.txt:7 (find_package)"
-    name: "GTest"
-    configs:
-      -
-        filename: "GTest.cps"
-        kind: "cps"
-      -
-        filename: "gtest.cps"
-        kind: "cps"
-      -
-        filename: "GTestConfig.cmake"
-        kind: "cmake"
-      -
-        filename: "gtest-config.cmake"
-        kind: "cmake"
-    version_request:
-      exact: false
-    settings:
-      required: "optional"
-      quiet: true
-      global: false
-      policy_scope: true
-      bypass_provider: false
-      names:
-        - "GTest"
-      path_suffixes:
-        - ""
-      paths:
-        CMAKE_FIND_USE_CMAKE_PATH: true
-        CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
-        CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-        CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-        CMAKE_FIND_USE_INSTALL_PREFIX: true
-        CMAKE_FIND_USE_PACKAGE_ROOT_PATH: true
-        CMAKE_FIND_USE_CMAKE_PACKAGE_REGISTRY: true
-        CMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY: true
-        CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
-    candidates:
-      -
-        path: "/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/pkgRedirects/GTestConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/pkgRedirects/gtest-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/pkgRedirects/lib/cps/GTest.cps"
-        mode: "cps"
-        reason: "no_exist"
-      -
-        path: "/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/pkgRedirects/lib/cps/gtest.cps"
-        mode: "cps"
-        reason: "no_exist"
-      -
-        path: "/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/pkgRedirects/share/cps/GTest.cps"
-        mode: "cps"
-        reason: "no_exist"
-      -
-        path: "/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY/CMakeFiles/pkgRedirects/share/cps/gtest.cps"
-        mode: "cps"
-        reason: "no_exist"
-      -
-        path: "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/GTestConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/gtest-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/lib/cps/GTest.cps"
-        mode: "cps"
-        reason: "no_exist"
-      -
-        path: "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/lib/cps/gtest.cps"
-        mode: "cps"
-        reason: "no_exist"
-      -
-        path: "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/share/cps/GTest.cps"
-        mode: "cps"
-        reason: "no_exist"
-      -
-        path: "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand/share/cps/gtest.cps"
-        mode: "cps"
-        reason: "no_exist"
-      -
-        path: "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/GTestConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/gtest-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/lib/cps/GTest.cps"
-        mode: "cps"
-        reason: "no_exist"
-      -
-        path: "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/lib/cps/gtest.cps"
-        mode: "cps"
-        reason: "no_exist"
-      -
-        path: "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/share/cps/GTest.cps"
-        mode: "cps"
-        reason: "no_exist"
-      -
-        path: "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli/share/cps/gtest.cps"
-        mode: "cps"
-        reason: "no_exist"
-      -
-        path: "/home/dudeq/.local/GTestConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/home/dudeq/.local/gtest-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/home/dudeq/.local/lib/cps/GTest.cps"
-        mode: "cps"
-        reason: "no_exist"
-      -
-        path: "/home/dudeq/.local/lib/cps/gtest.cps"
-        mode: "cps"
-        reason: "no_exist"
-      -
-        path: "/home/dudeq/.local/share/cps/GTest.cps"
-        mode: "cps"
-        reason: "no_exist"
-      -
-        path: "/home/dudeq/.local/share/cps/gtest.cps"
-        mode: "cps"
-        reason: "no_exist"
-      -
-        path: "/usr/local/GTestConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/usr/local/gtest-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/usr/local/lib/cps/GTest.cps"
-        mode: "cps"
-        reason: "no_exist"
-      -
-        path: "/usr/local/lib/cps/gtest.cps"
-        mode: "cps"
-        reason: "no_exist"
-      -
-        path: "/usr/local/share/cps/GTest.cps"
-        mode: "cps"
-        reason: "no_exist"
-      -
-        path: "/usr/local/share/cps/gtest.cps"
-        mode: "cps"
-        reason: "no_exist"
-      -
-        path: "/usr/GTestConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/usr/gtest-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/usr/lib/cps/GTest.cps"
-        mode: "cps"
-        reason: "no_exist"
-      -
-        path: "/usr/lib/cps/gtest.cps"
-        mode: "cps"
-        reason: "no_exist"
-      -
-        path: "/usr/share/cps/GTest.cps"
-        mode: "cps"
-        reason: "no_exist"
-      -
-        path: "/usr/share/cps/gtest.cps"
-        mode: "cps"
-        reason: "no_exist"
-    found:
-      path: "/usr/lib/cmake/GTest/GTestConfig.cmake"
-      mode: "config"
-      version: "1.17.0"
-    search_context:
-      ENV{PATH}:
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli"
-        - "/home/dudeq/.local/bin"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-        - "/home/dudeq/.config/Code/User/globalStorage/github.copilot-chat/copilotCli"
-        - "/usr/local/bin"
-        - "/usr/bin"
-        - "/bin"
-        - "/usr/local/sbin"
-        - "/var/lib/flatpak/exports/bin"
-        - "/usr/bin/site_perl"
-        - "/usr/bin/vendor_perl"
-        - "/usr/bin/core_perl"
-        - "/var/lib/snapd/snap/bin"
-        - "/home/dudeq/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts"
-      CMAKE_INSTALL_PREFIX: "/usr/local"
-      CMAKE_SYSTEM_PREFIX_PATH:
-        - "/usr/local"
-        - "/usr"
-        - "/"
-        - "/usr"
-        - "/usr/local"
-        - "/usr/X11R6"
-        - "/usr/pkg"
-        - "/opt"
 ...
