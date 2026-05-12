@@ -21,16 +21,16 @@ fi
 
 # Capture coverage from build dir (will collect .gcda files therein)
 # ignore-errors to avoid hard failure if some paths mismatch
-lcov --capture --directory "$BUILD_DIR" --output-file "$OUT_INFO" --rc lcov_branch_coverage=1 --ignore-errors inconsistent || true
+lcov --capture --directory "$BUILD_DIR" --output-file "$OUT_INFO" --rc branch_coverage=1 --ignore-errors mismatch,deprecated,inconsistent || true
 
 # Remove system and test files from report
-lcov --remove "$OUT_INFO" '/usr/*' '*/CMakeFiles/*' '*/test*' --output-file "$CLEAN_INFO" --rc lcov_branch_coverage=1 --ignore-errors inconsistent || true
+lcov --remove "$OUT_INFO" '/usr/*' '*/CMakeFiles/*' '*/test*' --output-file "$CLEAN_INFO" --rc branch_coverage=1 --ignore-errors mismatch,deprecated,inconsistent || true
 
 # Recreate HTML dir
 rm -rf "$HTML_DIR"
 mkdir -p "$HTML_DIR"
 
 # Generate HTML
-genhtml "$CLEAN_INFO" --output-directory "$HTML_DIR" --branch-coverage --ignore-errors inconsistent
+genhtml "$CLEAN_INFO" --output-directory "$HTML_DIR" --branch-coverage --ignore-errors missing,inconsistent || true
 
 echo "Coverage HTML generated at: $HTML_DIR/index.html"
