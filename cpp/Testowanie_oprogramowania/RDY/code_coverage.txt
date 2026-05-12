@@ -1,0 +1,3 @@
+lcov --capture --directory . --output-file coverage.info
+clean up 
+lcov --remove coverage.info '/usr/*' '*/CMakeFiles/*' '*/test_gmock.cpp' '*/test.cpp' --output-file coverage_cleaned.info;

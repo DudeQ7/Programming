@@ -24,3 +24,6 @@ Mocki
 Udaja sprzet ale nie daja kontroli nad soba 
 test.cpp same testy
 test_gmock.cpp - z pomoca google mock sam robi makra przy pomocy MOCK_METHOD 
+
+lcov + gcovr 
+sudo pacman -S lcov gcovr 
