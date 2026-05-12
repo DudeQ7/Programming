@@ -129,6 +129,19 @@ run_tests/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_tests.dir/build.make CMakeFiles/run_tests.dir/build
 .PHONY : run_tests/fast
 
+#=============================================================================
+# Target rules for targets named coverage
+
+# Build rule for target.
+coverage: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 coverage
+.PHONY : coverage
+
+# fast build rule for target.
+coverage/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/coverage.dir/build.make CMakeFiles/coverage.dir/build
+.PHONY : coverage/fast
+
 SpeedFormatter.o: SpeedFormatter.cpp.o
 .PHONY : SpeedFormatter.o
 
@@ -177,6 +190,30 @@ SpeedSource.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_tests.dir/build.make CMakeFiles/run_tests.dir/SpeedSource.cpp.s
 .PHONY : SpeedSource.cpp.s
 
+SpeedSourceInterface_test.o: SpeedSourceInterface_test.cpp.o
+.PHONY : SpeedSourceInterface_test.o
+
+# target to build an object file
+SpeedSourceInterface_test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_tests.dir/build.make CMakeFiles/run_tests.dir/SpeedSourceInterface_test.cpp.o
+.PHONY : SpeedSourceInterface_test.cpp.o
+
+SpeedSourceInterface_test.i: SpeedSourceInterface_test.cpp.i
+.PHONY : SpeedSourceInterface_test.i
+
+# target to preprocess a source file
+SpeedSourceInterface_test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_tests.dir/build.make CMakeFiles/run_tests.dir/SpeedSourceInterface_test.cpp.i
+.PHONY : SpeedSourceInterface_test.cpp.i
+
+SpeedSourceInterface_test.s: SpeedSourceInterface_test.cpp.s
+.PHONY : SpeedSourceInterface_test.s
+
+# target to generate assembly for a file
+SpeedSourceInterface_test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_tests.dir/build.make CMakeFiles/run_tests.dir/SpeedSourceInterface_test.cpp.s
+.PHONY : SpeedSourceInterface_test.cpp.s
+
 TestValues.o: TestValues.cpp.o
 .PHONY : TestValues.o
 
@@ -200,6 +237,30 @@ TestValues.s: TestValues.cpp.s
 TestValues.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_tests.dir/build.make CMakeFiles/run_tests.dir/TestValues.cpp.s
 .PHONY : TestValues.cpp.s
+
+test.o: test.cpp.o
+.PHONY : test.o
+
+# target to build an object file
+test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_tests.dir/build.make CMakeFiles/run_tests.dir/test.cpp.o
+.PHONY : test.cpp.o
+
+test.i: test.cpp.i
+.PHONY : test.i
+
+# target to preprocess a source file
+test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_tests.dir/build.make CMakeFiles/run_tests.dir/test.cpp.i
+.PHONY : test.cpp.i
+
+test.s: test.cpp.s
+.PHONY : test.s
+
+# target to generate assembly for a file
+test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_tests.dir/build.make CMakeFiles/run_tests.dir/test.cpp.s
+.PHONY : test.cpp.s
 
 test_gmock.o: test_gmock.cpp.o
 .PHONY : test_gmock.o
@@ -233,6 +294,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... coverage"
 	@echo "... run_tests"
 	@echo "... SpeedFormatter.o"
 	@echo "... SpeedFormatter.i"
@@ -240,9 +302,15 @@ help:
 	@echo "... SpeedSource.o"
 	@echo "... SpeedSource.i"
 	@echo "... SpeedSource.s"
+	@echo "... SpeedSourceInterface_test.o"
+	@echo "... SpeedSourceInterface_test.i"
+	@echo "... SpeedSourceInterface_test.s"
 	@echo "... TestValues.o"
 	@echo "... TestValues.i"
 	@echo "... TestValues.s"
+	@echo "... test.o"
+	@echo "... test.i"
+	@echo "... test.s"
 	@echo "... test_gmock.o"
 	@echo "... test_gmock.i"
 	@echo "... test_gmock.s"
