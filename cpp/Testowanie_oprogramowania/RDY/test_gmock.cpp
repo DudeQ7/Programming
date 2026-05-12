@@ -4,7 +4,6 @@
 #include "SpeedFormatter.hpp"
 #include "TestValues.hpp"
 using ::testing::Return;
-
 class MockUnitsG : public UnitsInterface
 {
 public:

@@ -7,7 +7,6 @@
 #include "MockSpeedSource.hpp"
 #include "MockImmediateSpeedSource.hpp"
 #include "TestValues.hpp"
-
 //R1 test
 TEST(SpeedFormatterTest,ShouldRoundSpeedCorrectly_R1)
 {
