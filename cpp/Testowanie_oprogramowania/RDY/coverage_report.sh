@@ -1,30 +1,67 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Usage: ./coverage_report.sh [build_dir] [out_info] [clean_info] [html_dir]
-# Defaults: build, coverage.info, coverage_cleaned.info, coverage_report
+# Run coverage generation inside build directory to avoid polluting repo root.
+# Usage: ./coverage_report.sh [build_dir]
 
 BUILD_DIR="${1:-build}"
-OUT_INFO="${2:-${BUILD_DIR}/coverage.info}"
-CLEAN_INFO="${3:-${BUILD_DIR}/coverage_cleaned.info}"
-HTML_DIR="${4:-${BUILD_DIR}/coverage_report}"
 
-# Ensure required tools are available
-command -v lcov >/dev/null 2>&1 || { echo "lcov not found. Install lcov."; exit 1; }
-command -v genhtml >/dev/null 2>&1 || { echo "genhtml not found. Install lcov (genhtml)."; exit 1; }
+echo "Using build dir: $BUILD_DIR"
+mkdir -p "$BUILD_DIR"
+cd "$BUILD_DIR"
 
-echo "Capturing coverage data from directory: $BUILD_DIR -> $OUT_INFO"
-# Enable branch coverage support if lcov was built with it
-lcov --capture --directory "$BUILD_DIR" --output-file "$OUT_INFO" --ignore-errors inconsistent,deprecated,mismatch --rc branch_coverage=1
+# Configure if needed
+if [ ! -f CMakeCache.txt ]; then
+  echo "Configuring project with cmake .."
+  cmake ..
+fi
 
-echo "Removing unwanted files from coverage: /usr/* and CMakeFiles and tests -> $CLEAN_INFO"
-lcov --remove "$OUT_INFO" '/usr/*' '*/CMakeFiles/*' '*/test_gmock.cpp' '*/test.cpp' --output-file "$CLEAN_INFO" --ignore-errors inconsistent,deprecated,unused --rc branch_coverage=1
+# Build
+echo "Building project (make -j)"
+make -j || make || true
 
-echo "Cleaning previous HTML output: $HTML_DIR"
-rm -rf "$HTML_DIR"
-mkdir -p "$HTML_DIR"
+# Prefer CMake-provided 'coverage' target if it exists
+if make -n coverage >/dev/null 2>&1; then
+  echo "Running 'make coverage'"
+  make coverage
+  echo "Coverage target finished. See: $BUILD_DIR/coverage_report/index.html"
+  exit 0
+fi
 
-echo "Generating HTML report in: $HTML_DIR"
-genhtml "$CLEAN_INFO" --output-directory "$HTML_DIR" --branch-coverage
+# Fallback: run tests and generate coverage via lcov/genhtml
+LCOV_BIN=$(command -v lcov || true)
+GENHTML_BIN=$(command -v genhtml || true)
 
-echo "Done. Open $HTML_DIR/index.html in a browser to view the report."
+if [ -z "$LCOV_BIN" ] || [ -z "$GENHTML_BIN" ]; then
+  echo "lcov or genhtml not found in PATH. Install lcov."
+  exit 1
+fi
+
+# Zero counters
+$LCOV_BIN --directory . --zerocounters
+
+# Run tests (expecting test binary at ./run_tests or ./runTests)
+if [ -x ./run_tests ]; then
+  ./run_tests
+elif [ -x ./runTests ]; then
+  ./runTests
+else
+  echo "No test binary found in $PWD. Build tests first."
+  exit 1
+fi
+
+# Capture coverage
+$LCOV_BIN --directory . --capture --output-file coverage.raw --rc lcov_branch_coverage=1 --ignore-errors inconsistent || true
+
+# Remove system and test files
+$LCOV_BIN --remove coverage.raw '/usr/*' '*/CMakeFiles/*' '*/test*' --output-file coverage_cleaned.info --rc lcov_branch_coverage=1 --ignore-errors inconsistent || true
+
+# Recreate HTML directory
+cmake -E remove_directory coverage_report
+cmake -E make_directory coverage_report
+
+# Generate HTML
+$GENHTML_BIN coverage_cleaned.info --output-directory coverage_report --branch-coverage --ignore-errors inconsistent
+
+echo "HTML report generated at: $PWD/coverage_report/index.html"
+exit 0
