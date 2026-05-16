@@ -1,34 +1,127 @@
-%to do:
-% Rozrysuj sobie drzewo na kartce (4 pokolenia), aby nie pogubić się w imionach.
-% Wypisz wszystkie fakty rodzic(..., ...). dla całej rodziny.
-% Dopisuj reguły po kolei (zacznij od matka, potem dziadek, aż do prawnuczka)
+kobieta(maria).
+kobieta(zofia).
+kobieta(katarzyna).
+kobieta(anna).
+kobieta(joanna).
+kobieta(karolina).
+kobieta(maja).
+kobieta(tili).
 
-
-%4 pokolenia
-%zdefiniuj każdego członka rodziny uwzględniając płeć, bycie rodzicem itp.
-%pokolenie 1 pradziadkowie
+mezczyzna(stefan).
+mezczyzna(wojciech).
+mezczyzna(henryk).
+mezczyzna(dariusz).
+mezczyzna(pawel).
+mezczyzna(lukasz).
+mezczyzna(douglas).
+%pradziadkowie
 rodzic(stefan,henryk).
 rodzic(maria,henryk).
-rodzic(stefan,henryk).
-rodzic(maria,henryk).
-
-rodzic(wojciech,henryk).
-
-rodzic(maria,katarzyna).
-%pokolenie 2 dziadkowie
-rodzic(henryk,dariusz). 
-rodzic(henryk,anna). 
+rodzic(wojciech,katarzyna).
+rodzic(zofia,katarzyna).
+%dziadkowie
+rodzic(henryk,dariusz).
+rodzic(henry,anna).
 rodzic(zofia,dariusz).
-rodzic(katarzyna,anna). 
-%pokolenie 3 rodzice 
-rodzic(dariusz,pawel). %moj tata 
-rodzic(dariusz,joanna). %moja siostra
-rodzic(dariusz,karolina). %moja siostra
-rodzic(anna,asia). %moja mama
-rodzic(anna,karolina). %moja mama
-rodzic(anna,pawel). %moja mama
-%pokolenie 4 dzieci
-rodzic(asia,maja).
+rodzic(katarzyna,anna).
+%rodzice
+rodzic(dariusz,joanna).
+rodzic(dariusz,pawel).
+rodzic(dariusz,karolina).
+rodzic(anna,joanna).
+rodzic(anna,pawel).
+rodzic(anna,karolina).
+%dzieci
+rodzic(joanna,maja).
 rodzic(lukasz,maja).
 rodzic(karolina,tili).
 rodzic(douglas,tili).
+%malzenstwo
+malzenstwo(stefan,maria).
+malzenstwo(wojciech,zofia).
+malzenstwo(henryk,katarzyna).
+malzenstwo(dariusz,anna).
+malzenstwo(lukasz,joanna).
+malzenstwo(X,Y) :- malzenstwo(Y,X).
+%reguly relacji 
+ojciec(X,Y) :- 
+    rodzic(X,Y),
+    mezczyzna(X).
+matka(X,Y) :- 
+    rodzic(X,Y),
+    kobieta(X). 
+rodzenstwo(X,Y) :-
+    rodzic(Z,X),
+    rodzic(Z,Y),
+    X \= Y.
+bratk(X,Y) :-
+    rodzenstwo(X,Y),
+    mezczyzna(X).
+siostra(X,Y) :-
+    rodzenstwo(X,Y),
+    kobieta(X).
+dziadek(X,Y) :-
+    rodzic(X,Z),
+    rodzic(Z,Y),
+    mezczyzna(X).
+babcia(X,Y) :-
+    rodzic(X,Z),
+    rodzic(Z,Y),
+    kobieta(X).
+maz(X,Y) :- 
+    malzenstwo(X,Y),
+    mezczyzna(X).
+zona(X,Y) :-
+    malzenstwo(X,Y),
+    kobieta(X).
+pradziadek(X,Y) :-
+    rodzic(X,Z),
+    dziadek(Z,Y),
+    mezczyzna(X).
+prababka(X,Y) :-
+    rodzic(X,Z),
+    babcia(Z,Y),
+    kobieta(X).
+wnuk(X,Y) :-
+    rodzic(Y,Z),
+    rodzic(Z,X),
+    mezczyzna(X).
+wnuczka(X,Y) :-
+    rodzic(Y,Z),
+    rodzic(Z,X),
+    kobieta(X).
+prawnuk(X,Y) :-
+    rodzic(Y,Z),
+    rodzic(Z,W),
+    rodzic(W,X),
+    mezczyzna(X).
+prawnuczka(X,Y) :-
+    rodzic(Y,Z),
+    rodzic(Z,W),
+    rodzic(W,X),
+    kobieta(X).
+
+kto_matka(Dziecko) :-
+    matka(X,Dziecko),
+    format('Matka osoby ~w to ~w~n', [Dziecko, X]),fail.
+kto_matka(_).
+
+kto_ojciec(Dziecko) :- 
+    ojciec(X,Dziecko),
+    format('Ojciec osoby ~w to ~w~n', [Dziecko, X]),fail.
+kto_ojciec(_).
+
+kto_brat(Osoba) :-
+    brat(X,Osoba),
+    format('Brat osoby ~w to ~w~n',[Osoba,X]),fail.
+kto_brat(_).
+
+kto_wnuk(DziadekBabcia) :-
+    wnuk(X,DziadekBabcia).
+    format('Wnukiem osoby ~w jest ~w~n',[DziadekBabcia,X]),fail.
+kto_wnuk(_).
+
+kto_prawnuczka(PradziadekPrababcia) :-
+    prawnuczka(X,PradziadekPrababcia),
+    format('Prawnuczką osoby ~w jest ~w~n',[PradziadekPrababcia,X]),fail.
+kto_prawnuczka(_).
