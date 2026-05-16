@@ -21,7 +21,7 @@ rodzic(wojciech,katarzyna).
 rodzic(zofia,katarzyna).
 %dziadkowie
 rodzic(henryk,dariusz).
-rodzic(henry,anna).
+rodzic(henryk,anna).
 rodzic(zofia,dariusz).
 rodzic(katarzyna,anna).
 %rodzice
@@ -54,7 +54,7 @@ rodzenstwo(X,Y) :-
     rodzic(Z,X),
     rodzic(Z,Y),
     X \= Y.
-bratk(X,Y) :-
+brat(X,Y) :-
     rodzenstwo(X,Y),
     mezczyzna(X).
 siostra(X,Y) :-
@@ -117,7 +117,7 @@ kto_brat(Osoba) :-
 kto_brat(_).
 
 kto_wnuk(DziadekBabcia) :-
-    wnuk(X,DziadekBabcia).
+    wnuk(X,DziadekBabcia),
     format('Wnukiem osoby ~w jest ~w~n',[DziadekBabcia,X]),fail.
 kto_wnuk(_).
 
