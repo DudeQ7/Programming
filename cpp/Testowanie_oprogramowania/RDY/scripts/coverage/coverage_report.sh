@@ -4,8 +4,22 @@ set -euo pipefail
 # Simple coverage HTML generator.
 # Usage: scripts/coverage/coverage_report.sh [build_dir]
 # This script DOES NOT run cmake or build; it expects coverage data (.gcda/.gcno) to already exist in build_dir.
+# If ZERO_COUNTERS=1 is set in the environment, lcov --zerocounters will be run before capture.
 
-BUILD_DIR="${1:-build}"
+REQUESTED_DIR="${1:-}"
+
+if [ -n "$REQUESTED_DIR" ]; then
+  BUILD_DIR="$REQUESTED_DIR"
+else
+  # try to find any .gcda/.gcno and use its directory
+  GCDA_PATH=$(find . -type f \( -name '*.gcda' -o -name '*.gcno' \) -print -quit || true)
+  if [ -n "$GCDA_PATH" ]; then
+    BUILD_DIR=$(dirname "$GCDA_PATH")
+  else
+    BUILD_DIR="."
+  fi
+fi
+
 OUT_INFO="$BUILD_DIR/coverage.info"
 CLEAN_INFO="$BUILD_DIR/coverage_cleaned.info"
 HTML_DIR="$BUILD_DIR/coverage_report"
@@ -19,18 +33,30 @@ if [ ! -d "$BUILD_DIR" ]; then
   echo "Build directory '$BUILD_DIR' does not exist. Run cmake and build first."; exit 1
 fi
 
-# Capture coverage from build dir (will collect .gcda files therein)
-# ignore-errors to avoid hard failure if some paths mismatch
-lcov --capture --directory "$BUILD_DIR" --output-file "$OUT_INFO" --rc branch_coverage=1 --ignore-errors mismatch,deprecated,inconsistent || true
+# Ensure there are coverage data files
+GC_COUNT=$(find "$BUILD_DIR" -type f \( -name '*.gcda' -o -name '*.gcno' \) | wc -l || true)
+if [ "${GC_COUNT:-0}" -eq 0 ]; then
+  echo "No .gcda or .gcno files found under '$BUILD_DIR'. Nothing to capture."; exit 1
+fi
 
-# Remove system and test files from report
-lcov --remove "$OUT_INFO" '/usr/*' '*/CMakeFiles/*' '*/test*' --output-file "$CLEAN_INFO" --rc branch_coverage=1 --ignore-errors mismatch,deprecated,inconsistent || true
+# Optionally zero counters if requested by environment
+if [ "${ZERO_COUNTERS:-0}" != "0" ]; then
+  echo "Zeroing coverage counters in $BUILD_DIR"
+  lcov --directory "$BUILD_DIR" --zerocounters --rc lcov_branch_coverage=1
+fi
 
-# Recreate HTML dir
+echo "Capturing coverage..."
+# Use correct rc key to enable branch coverage in lcov
+lcov --capture --directory "$BUILD_DIR" --output-file "$OUT_INFO" --rc lcov_branch_coverage=1
+
+echo "Filtering coverage..."
+# Be conservative when removing files from report
+lcov --remove "$OUT_INFO" '/usr/*' '*/CMakeFiles/*' '*/tests/*' '*/test/*' --output-file "$CLEAN_INFO" --rc lcov_branch_coverage=1
+
+echo "Generating HTML..."
 rm -rf "$HTML_DIR"
 mkdir -p "$HTML_DIR"
 
-# Generate HTML
-genhtml "$CLEAN_INFO" --output-directory "$HTML_DIR" --branch-coverage --ignore-errors missing,inconsistent || true
+genhtml "$CLEAN_INFO" --output-directory "$HTML_DIR" --branch-coverage
 
 echo "Coverage HTML generated at: $HTML_DIR/index.html"
