@@ -1,0 +1,2 @@
+Z: Rozpoznawanie butelek z systemu kaucyjnego 
++ jesli starszy czasu dodaj funkcjonalnosc ktora szuka systemu kaucyjnego na podstawie widea z kamerki 
