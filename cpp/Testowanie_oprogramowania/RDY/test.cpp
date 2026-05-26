@@ -69,7 +69,7 @@ TEST(MockSpeedSourceTest, PendingCommitAfterDelay)
 {
     MockSpeedSource source;
     EXPECT_EQ(source.getSpeed(), TV_speed_initial);
-    source.setSpeed(TV_speed_big_change); // choose a value within hysteresis threshold
+    source.setSpeed(TV_speed_big_change); 
     EXPECT_EQ(source.getSpeed(), TV_speed_initial);
     std::this_thread::sleep_for(std::chrono::seconds(1));
     EXPECT_EQ(source.getSpeed(), TV_speed_big_change);

@@ -12,7 +12,7 @@ class SpeedSource : public SpeedSourceInterface
         double m_pendingSpeed;
         bool   m_isWaiting;
         std::chrono::steady_clock::time_point m_lastChangeTime;
-        // Oscillation filtering parameters
+        // Oscillation  parameters
         double m_hysteresis;                 // km/h: ignore changes smaller than this when committing
         double m_immediateThreshold;         // km/h: changes above this (plus hysteresis) may apply immediately
         double m_stabilityDelaySeconds;      // seconds: how long a pending value must be stable before committing
