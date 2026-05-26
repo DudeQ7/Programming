@@ -7,7 +7,9 @@ SpeedSource::SpeedSource()
       m_isWaiting(false),
       m_hysteresis(0.5),
       m_immediateThreshold(2.0),
-      m_stabilityDelaySeconds(1.0)
+      m_stabilityDelaySeconds(1.0),
+      m_requiredStableSamples(3),
+      m_stableCount(0)
 {
     m_lastChangeTime = std::chrono::steady_clock::now();
 }
@@ -21,24 +23,46 @@ void SpeedSource::setSpeed(double newSpeed)
     {
         m_currentSpeed = newSpeed;
         m_isWaiting = false;
+        m_stableCount = 0;
         return;
     }
 
-    // Otherwise treat as a pending (debounced) change: require it to be stable for stability delay
-    if (!m_isWaiting || std::abs(newSpeed - m_pendingSpeed) > 0.001)
+    // Otherwise treat as a pending (debounced) change: require it to be stable for stability delay or for N samples
+    const double SAMPLE_TOLERANCE = 0.001;
+    auto now = std::chrono::steady_clock::now();
+
+    if (!m_isWaiting || std::abs(newSpeed - m_pendingSpeed) > SAMPLE_TOLERANCE)
     {
+        // new pending value, reset timer and counter
         m_pendingSpeed = newSpeed;
-        m_lastChangeTime = std::chrono::steady_clock::now();
+        m_lastChangeTime = now;
         m_isWaiting = true;
+        m_stableCount = 1;
+        return;
+    }
+
+    // same (or very close) as pending -> increment stable count
+    ++m_stableCount;
+
+    // if enough consecutive samples, commit immediately (subject to hysteresis)
+    if (m_stableCount >= m_requiredStableSamples)
+    {
+        if (std::abs(m_pendingSpeed - m_currentSpeed) >= m_hysteresis)
+        {
+            m_currentSpeed = m_pendingSpeed;
+        }
+        m_isWaiting = false;
+        m_stableCount = 0;
     }
 }
+
 double SpeedSource::getSpeed()
 {
     if (m_isWaiting)
     {
         auto now = std::chrono::steady_clock::now();
         std::chrono::duration<double> elapsed = now - m_lastChangeTime;
-        if (elapsed.count() >= m_stabilityDelaySeconds)
+        if (elapsed.count() >= m_stabilityDelaySeconds || m_stableCount >= m_requiredStableSamples)
         {
             // Commit pending only if it meaningfully differs from current (hysteresis)
             if (std::abs(m_pendingSpeed - m_currentSpeed) >= m_hysteresis)
@@ -46,6 +70,7 @@ double SpeedSource::getSpeed()
                 m_currentSpeed = m_pendingSpeed;
             }
             m_isWaiting = false;
+            m_stableCount = 0;
         }
     }
     return m_currentSpeed;

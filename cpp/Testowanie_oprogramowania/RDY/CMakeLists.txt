@@ -14,6 +14,7 @@ set(SOURCES
     test_gmock.cpp
     test.cpp
     SpeedSourceInterface_test.cpp
+    SpeedSource_oscillation_test.cpp
 )
 
 include_directories(${CMAKE_SOURCE_DIR})
@@ -48,18 +49,18 @@ if(LCOV_PATH AND GENHTML_PATH)
         # Uruchomienie testów
         COMMAND ./run_tests
 
-        # Zbieranie danych Z FLAGĄ --rc lcov_branch_coverage=1 (Wymusza Branch Coverage)
-        COMMAND ${LCOV_PATH} --directory . --capture --output-file coverage.raw --rc lcov_branch_coverage=1 --ignore-errors inconsistent
+        # Zbieranie danych (włącz branch coverage) i ignorowanie znanych warningów
+        COMMAND ${LCOV_PATH} --directory . --capture --output-file coverage.raw --rc branch_coverage=1 --ignore-errors mismatch,deprecated,inconsistent,unused
 
-        # Filtrowanie raportu (zapis do coverage_cleaned.info)
-        COMMAND ${LCOV_PATH} --remove coverage.raw '/usr/*' '*/CMakeFiles/*' '*/test*' --output-file coverage_cleaned.info --rc lcov_branch_coverage=1 --ignore-errors inconsistent
+        # Filtrowanie raportu (zapis do coverage_cleaned.info). --ignore-errors by nie kończyło się błędem gdy wzorce nie pasują
+        COMMAND ${LCOV_PATH} --remove coverage.raw '/usr/*' '*/test*' --output-file coverage_cleaned.info --rc branch_coverage=1 --ignore-errors mismatch,deprecated,inconsistent,unused
 
         # Usuń stary katalog HTML i utwórz nowy
         COMMAND ${CMAKE_COMMAND} -E remove_directory coverage_report
         COMMAND ${CMAKE_COMMAND} -E make_directory coverage_report
 
         # Generowanie HTML z widocznymi rozgałęzieniami (--branch-coverage)
-        COMMAND ${GENHTML_PATH} coverage_cleaned.info --output-directory coverage_report --branch-coverage --ignore-errors inconsistent
+        COMMAND ${GENHTML_PATH} coverage_cleaned.info --output-directory coverage_report --branch-coverage --ignore-errors mismatch,deprecated,inconsistent,unused
 
         COMMAND ${CMAKE_COMMAND} -E echo "Raport Branch Coverage gotowy: ${CMAKE_BINARY_DIR}/coverage_report/index.html"
 
