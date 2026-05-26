@@ -1,0 +1,4 @@
+To_do:
+oscylacja predkosci, jak sie zrobi np. 101 np. jak sie wartosc utrzyma przez jakis interwal czasu to wtedy bierzemy ja pod uwage 
+
+da to duze difference w code coverage'u 

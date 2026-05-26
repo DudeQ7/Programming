@@ -1,0 +1,4 @@
+yay -S --noconfirm robotframework
+sudo pacman -S jre-openjdk sigil gtest
+pip install robotframework-sikulilibrary
+
