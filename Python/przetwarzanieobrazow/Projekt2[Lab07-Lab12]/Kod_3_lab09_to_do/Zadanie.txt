@@ -1,0 +1,3 @@
+Zadanie
+
+Za pomocą poznanych metod przygotuj zdjęcie do rozpoznania obrazu.

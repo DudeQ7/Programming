@@ -1,3 +1,6 @@
-coverage_cleaned.info
+build/
 CMakeFiles/
-CMakeCache.txt
+cmake_install.cmake
+results.xml
+run_tests
+coverage_report/

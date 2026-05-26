@@ -214,6 +214,30 @@ SpeedSourceInterface_test.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_tests.dir/build.make CMakeFiles/run_tests.dir/SpeedSourceInterface_test.cpp.s
 .PHONY : SpeedSourceInterface_test.cpp.s
 
+SpeedSource_oscillation_test.o: SpeedSource_oscillation_test.cpp.o
+.PHONY : SpeedSource_oscillation_test.o
+
+# target to build an object file
+SpeedSource_oscillation_test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_tests.dir/build.make CMakeFiles/run_tests.dir/SpeedSource_oscillation_test.cpp.o
+.PHONY : SpeedSource_oscillation_test.cpp.o
+
+SpeedSource_oscillation_test.i: SpeedSource_oscillation_test.cpp.i
+.PHONY : SpeedSource_oscillation_test.i
+
+# target to preprocess a source file
+SpeedSource_oscillation_test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_tests.dir/build.make CMakeFiles/run_tests.dir/SpeedSource_oscillation_test.cpp.i
+.PHONY : SpeedSource_oscillation_test.cpp.i
+
+SpeedSource_oscillation_test.s: SpeedSource_oscillation_test.cpp.s
+.PHONY : SpeedSource_oscillation_test.s
+
+# target to generate assembly for a file
+SpeedSource_oscillation_test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_tests.dir/build.make CMakeFiles/run_tests.dir/SpeedSource_oscillation_test.cpp.s
+.PHONY : SpeedSource_oscillation_test.cpp.s
+
 TestValues.o: TestValues.cpp.o
 .PHONY : TestValues.o
 
@@ -305,6 +329,9 @@ help:
 	@echo "... SpeedSourceInterface_test.o"
 	@echo "... SpeedSourceInterface_test.i"
 	@echo "... SpeedSourceInterface_test.s"
+	@echo "... SpeedSource_oscillation_test.o"
+	@echo "... SpeedSource_oscillation_test.i"
+	@echo "... SpeedSource_oscillation_test.s"
 	@echo "... TestValues.o"
 	@echo "... TestValues.i"
 	@echo "... TestValues.s"
