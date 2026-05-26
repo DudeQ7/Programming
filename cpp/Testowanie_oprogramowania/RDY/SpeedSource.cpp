@@ -44,7 +44,7 @@ void SpeedSource::setSpeed(double newSpeed)
     // same (or very close) as pending -> increment stable count
     ++m_stableCount;
 
-    // if enough consecutive samples, commit immediately (subject to hysteresis)
+    // if enough consecutive samples, commit immediately 
     if (m_stableCount >= m_requiredStableSamples)
     {
         if (std::abs(m_pendingSpeed - m_currentSpeed) >= m_hysteresis)
@@ -64,7 +64,7 @@ double SpeedSource::getSpeed()
         std::chrono::duration<double> elapsed = now - m_lastChangeTime;
         if (elapsed.count() >= m_stabilityDelaySeconds || m_stableCount >= m_requiredStableSamples)
         {
-            // Commit pending only if it meaningfully differs from current (hysteresis)
+            // Commit pending only if it meaningfully differs from current speed
             if (std::abs(m_pendingSpeed - m_currentSpeed) >= m_hysteresis)
             {
                 m_currentSpeed = m_pendingSpeed;

@@ -2,3 +2,78 @@ To_do:
 oscylacja predkosci, jak sie zrobi np. 101 np. jak sie wartosc utrzyma przez jakis interwal czasu to wtedy bierzemy ja pod uwage 
 
 da to duze difference w code coverage'u 
+
+Done 
+Directly from MS TEAMS:
+[3/12 8:28 AM] Mariusz Popiołek
+Google Mock
+Wklejam, narazie na brudno, jak użyć Google Mocka. Bazuję na przykładzie z wykładu
+ 
+ 
+W VisualStudio trzeba dodać do pliku pch.h
+#include "gmock/gmock.h"
+ 
+ 
+Mockujemy konkretne metody poprzez użycie makra
+ 
+class NumberProviderMock : public NumberProviderInterface
+
+{
+
+public:
+	MOCK_METHOD(int, getNumber, (), (override));
+
+};
+ 
+Do makra podajemy:
+typ zwracany przez metodę (lub void gdy nic nie zwracamy)
+nazwę metody
+listę parametrów wejściowych do metody (lub puste nawiasy gdy brak wejścia)
+ewentualne modyfikatory metody (np. const), w naszym przypadku potrzebujemy override
+ 
+Użycie w testach
+ 
+TEST(AVERAGECOUNTUT, TestGetAverage)
+
+{
+
+	// Arrange
+
+	NumberProviderMock numberProviderMock;
+
+	NumberProviderInterface* interfacePointer = (NumberProviderInterface*)&numberProviderMock;
+
+	AverageCount averageCount(interfacePointer);
+
+	// Act
+
+	//numberProviderMock.setNumber(5);
+	EXPECT_CALL(numberProviderMock, getNumber).Times(10).WillOnce(Return(5)).WillRepeatedly(Return(5));
+
+	averageCount.getNumbers(10);
+
+	//numberProviderMock.setNumber(10);
+	EXPECT_CALL(numberProviderMock, getNumber).Times(10).WillOnce(Return(10)).WillRepeatedly(Return(10));
+
+	averageCount.getNumbers(10);
+
+	// Assert
+
+	EXPECT_EQ(averageCount.getAverage(), 7);
+
+}
+ 
+Makro EXPECT_CALL pozwala nam zadeklarować jak ma się zachowywać zamockowana metoda. W naszym przypadku chcemy spradzić czy faktycznie zostaniemy wywołani 10 razy. Za każdym wywołaniem możemy ustawić osobny oczekiwany wynik (WillOnce) albo możemy zwracać tą samą wartość (WillRepeteadly) aż do "wyczerpania" liczby wywołań.
+ 
+ Batch_2:
+ Należy wskazać folder z biblioteką statyczną - kod produkcyjny
+ Analiza pokrycia kodu
+ pokrycie plików / linii / bloków
+ Podział na biblioteki przy sztywnym wiązaniu
+ testy na liczbach zmiennoprzecinkowych (double)
+
+ Uzupełnienie do testów jednostkowych:
+Na ocenę 3/3+    - nie wymyśliłem nowego zadania, proszę po prostu pominąć wymaganie R3 (unikanie oscylacji prędkości)
+Udostępniłem Państwu dokument z ostatniego wykładu (notatki)
+Analiza pokrycia kodu. Trzeba włączyć dodatkową opcę w projekcie testów:
+Tworząc wiele testów sparametryzowanych proszę uważać na nazwy. Każdy zestaw testów sparametryzowanych musi mieć swoją klasę!
