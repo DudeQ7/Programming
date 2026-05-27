@@ -1,0 +1,1 @@
+Do oddania: plik nazwisko.txt (kod z Prolog'u) oraz nazwisko.docx (sprawozdanie) - wg. szablonu sprawozdania. 
