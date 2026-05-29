@@ -46,3 +46,9 @@ czy_pierwsza(N) :-
 %dowolne:
     maksimum(A,B,A) :- A >= B.
     maksimum(A,B,B) :- B > A.
+%nwd 
+nwd(A,0,A) :- A > 0.
+nwd(A,B,W) :- 
+    B > 0,
+    Reszta is A mod B,
+    nwd(B,Reszta,W).
