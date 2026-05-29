@@ -6,6 +6,13 @@ int main()
     std::cin >> a;
     std::cout << "Podaj liczbe numer_2: ";
     std::cin >> b;
-    std::cout <<"Suma to: "<<a+b;
+    if(a > b)
+    {
+        std::cout<<"Wieksza liczba to: "<<a;
+    }
+    else
+    {
+        std::cout<<"Wieksza liczba to: "<<b;
+    }
     return 0;
 }
