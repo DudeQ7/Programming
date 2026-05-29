@@ -1,7 +1,6 @@
 #include <iostream>
 int main()
 {
-    //nwd && suma
     int a,b;
     std::cout << "Podaj liczbe numer_1: ";
     std::cin >> a;
