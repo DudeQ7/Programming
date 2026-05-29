@@ -17,8 +17,13 @@ potega(X,Y,Wynik) :-
     X1 is X - 1,
     potega(X1,Y,PrevPotega),
     Wynik is Y * PrevPotega.
-%gdzie Wynik = Y^X
-liczba_cyfr(N,L).
+liczba_cyfr(N,1) :- N < 10. %regula ktora jesli podana liczba jest mniejsza od 10 to ma 1 cyfre 
+liczba_cyfr(N,L) :-
+    N >= 10,
+    Reszta is N //10, % usuniecie ostatniej cyfry
+    liczba_cyfr(Reszta,L1),
+    L is L1 + 1.
+
 czy_potega_dwojki(N).
 czy_pierwsza(N).
 %dowolne:
