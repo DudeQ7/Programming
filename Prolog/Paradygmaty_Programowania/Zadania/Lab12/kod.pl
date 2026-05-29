@@ -23,9 +23,14 @@ liczba_cyfr(N,L) :-
     Reszta is N //10, % usuniecie ostatniej cyfry
     liczba_cyfr(Reszta,L1),
     L is L1 + 1.
+czy_potega_dwojki(1).
+czy_potega_dwojki(N) :-
+    N > 1, 
+    0 is N mod 2,
+    N1 is N //2, % i-- 
+    czy_potega_dwojki(N1).
 
-czy_potega_dwojki(N).
-czy_pierwsza(N).
+%czy_pierwsza(N).
 %dowolne:
-nwd(A,B,W).
-maksimum(A,B,M).
+%nwd(A,B,W).
+%maksimum(A,B,M).
