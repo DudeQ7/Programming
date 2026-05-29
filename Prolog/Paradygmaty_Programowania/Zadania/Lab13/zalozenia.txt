@@ -1,0 +1,7 @@
+Do programu należy przygotować sprawozdanie w formacie PDF lub DOCX oraz plik txt z kodem programu
+Sprawozdanie powinno zawierać: 
+• Stronę tytułową
+• imię i nazwisko,
+• opis reprezentacji danych
+• testy programu (zapytania wykonane w SWISH, otrzymane wyniki, krótki komentarz, czy wynik jest zgodny z oczekiwaniami.)
+• Wnioski (czym różni się przetwarzanie list w Prologu od przetwarzania list w językach imperatywnych)
