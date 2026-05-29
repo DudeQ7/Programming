@@ -44,5 +44,5 @@ czy_pierwsza(N) :-
         D1 is D + 2,
         sprawdz_dzielniki(N,D1).
 %dowolne:
-%nwd(A,B,W).
-%maksimum(A,B,M).
+    maksimum(A,B,A) :- A >= B.
+    maksimum(A,B,B) :- B > A.
