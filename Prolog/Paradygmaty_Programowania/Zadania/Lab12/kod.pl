@@ -29,8 +29,20 @@ czy_potega_dwojki(N) :-
     0 is N mod 2,
     N1 is N //2, % i-- 
     czy_potega_dwojki(N1).
-
-%czy_pierwsza(N).
+%liczba pierwsza to taka ktora jest podzielna tylko przez 1 i przez siebie sama wieksza od 1
+czy_pierwsza(1) :- !,fail. % liczba 1 nie jest pierwsza 
+czy_pierwsza(2). %bazowa
+czy_pierwsza(N) :- 
+    N > 2, 
+    \+ (0 is N mod 2),
+    sprawdz_dzielniki(N,3).
+    sprawdz_dzielniki(N,D) :- 
+        D * D  > N.
+    sprawdz_dzielniki(N,D) :-
+        D * D =< N,
+        N mod D  =\= 0,
+        D1 is D + 2,
+        sprawdz_dzielniki(N,D1).
 %dowolne:
 %nwd(A,B,W).
 %maksimum(A,B,M).
