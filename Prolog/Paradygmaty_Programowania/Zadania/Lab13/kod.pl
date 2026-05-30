@@ -17,9 +17,20 @@ liczba_studentow([],0).
 liczba_studentow([_|T],N) :-
     liczba_studentow(T,N1),
     N is N1 + 1. 
-    
+
 srednia_punktow(Lista,Srednia) :-
     suma_punktow(Lista,S),
     liczba_studentow(Lista,N),
     N > 0, %failsafe przed dzieleniem przez 0 
     Srednia is S / N. 
+%case 1 - student spelnia warunek = lista wynikowa
+%case 2 - student nie spelnia warunku = pomijamy go
+zaliczeni([],[]).
+%case punkty >=10 
+zaliczeni([student(Imie,Punkty) | T],[student(Imie | Punkty)|TZal]) :-
+    Punkty >=10,
+    zaliczeni(T,TZal).
+%case punkty <10
+zaliczeni([student(_,Punkty) | T], TZal) :-
+    Punkty < 10,
+    zaliczeni(T,TZal).
