@@ -49,3 +49,15 @@ najlepszy_wynik([student(_,P)],P).
 najlepszy_wynik([student(_,P) | T],Max) :-
     najlepszy_wynik(T,MaxOgona),
     (P > MaxOgona -> Max = P ; Max = MaxOgona).
+
+najlepsi_studenci(Lista,WynikowaLista) :-
+    najlepszy_wynik(Lista,Max), 
+    znajdz_z_wynikiem(Lista,Max,WynikowaLista).
+
+znajdz_z_wynikiem([],_,[]).
+znajdz_z_wynikiem([student(Imie,Punkty) | T], Max,[student(Imie,Punkty) | TWynik]) :-
+    Punkty =:= Max,
+    znajdz_z_wynikiem(T,Max,TWynik).
+znajdz_z_wynikiem([student(_,Punkty) | T], Max, TWynik) :- 
+    Punkty =\= Max,
+    znajdz_z_wynikiem(T,Max,TWynik).
