@@ -27,10 +27,20 @@ srednia_punktow(Lista,Srednia) :-
 %case 2 - student nie spelnia warunku = pomijamy go
 zaliczeni([],[]).
 %case punkty >=10 
-zaliczeni([student(Imie,Punkty) | T],[student(Imie | Punkty)|TZal]) :-
+zaliczeni([student(Imie,Punkty) | T],[student(Imie,Punkty)|TZal]) :-
     Punkty >=10,
     zaliczeni(T,TZal).
 %case punkty <10
 zaliczeni([student(_,Punkty) | T], TZal) :-
     Punkty < 10,
     zaliczeni(T,TZal).
+
+niezaliczeni([],[]).
+%case punkty >=10 
+niezaliczeni([student(Imie,Punkty) | T],[student(Imie,Punkty)|TNiezal]) :-
+    Punkty < 10,
+    niezaliczeni(T,TNiezal).
+%case punkty <10
+niezaliczeni([student(_,Punkty) | T], TNiezal) :-
+    Punkty < 10,
+    niezaliczeni(T,TNiezal).
