@@ -10,5 +10,9 @@ student(maria,13).
 %max 20 pkt, powyzej 10 zalicza laboratorium
 suma_punktow([],0). %pusta lista = 0 pkt
 suma_punktow([student(_, Punkty) | T], Suma) :-
-    suma_punktow(T, Suma_additional),
-    Suma is Punkty + Suma_additional.
+    suma_punktow(T, SumaOgona),
+    Suma is Punkty + SumaOgona.
+liczba_studentow([],0).
+liczba_studentow([_|T],N) :-
+    liczba_studentow(T,N1),
+    N is N1 + 1. 
