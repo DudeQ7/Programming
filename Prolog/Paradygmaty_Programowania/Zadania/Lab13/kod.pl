@@ -44,3 +44,8 @@ niezaliczeni([student(Imie,Punkty) | T],[student(Imie,Punkty)|TNiezal]) :-
 niezaliczeni([student(_,Punkty) | T], TNiezal) :-
     Punkty < 10,
     niezaliczeni(T,TNiezal).
+%edge case = jeden student
+najlepszy_wynik([student(_,P)],P).
+najlepszy_wynik([student(_,P) | T],Max) :-
+    najlepszy_wynik(T,MaxOgona),
+    (P > MaxOgona -> Max = P ; Max = MaxOgona).
