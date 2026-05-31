@@ -1,0 +1,7 @@
+Struktura Head/Tail: W Prologu nie mamy dostępu do elementów listy poprzez indeksy (jak lista[5] w C++). Przetwarzanie zawsze zaczyna się od odizolowania pierwszego elementu (Head) od reszty (Tail) za pomocą zapisu [H|T].
+
+Brak pętli iteracyjnych: W językach imperatywnych (C++, Python) używamy pętli for lub while. W Prologu każda operacja na liście musi być zrealizowana za pomocą rekurencji, gdzie warunkiem stopu jest zazwyczaj napotkanie listy pustej [].
+
+Tworzenie, a nie modyfikacja: W C++ możemy zmienić element wewnątrz istniejącej listy. W Prologu listy są niezmienne. Aby usunąć lub zmienić element, musimy zbudować zupełnie nową listę wynikową, element po elemencie, w trakcie powrotu z rekurencji.
+
+Mechanizm unifikacji: Prolog pozwala na łatwe wyciąganie danych ze struktur wewnątrz listy (np. student(_, Punkty)) bezpośrednio w definicji reguły, co w językach obiektowych wymagałoby wywoływania getterów (np. student.getPoints()).
