@@ -1,29 +1,18 @@
 SpeedFormatter.cpp
-Potrzebne dla R1 i R2 
-- surowa predkosc ze źródla, przeliczenie na daną jednostke, zaokraglanie do calkowitych
-Zarzadzanie predkoscia + filtry:
+R1/R2:
+- surowa predkosc ze zrodla, przeliczenie na dana jednostke, a dopiero potem zaokraglanie
 
 R3:
-Decyduje czy nowa predkosc powinna byc od razu pokonanna , czy system czeka na wprowadzenie zmian 
-Duza zmiana - powyzej 2km/h predkosc jest aktuazliaowana natychiast dzieki m_currentSpeed = newSpeed - gwaltowne hamowanie/przyspieszenie
+- filtruje oscylacje predkosci w SpeedFormatter (SpeedSource tylko zwraca surowa wartosc)
+- duza zmiana (>= 2.0 km/h) jest akceptowana od razu
+- mala zmiana jest opozniona i akceptowana po 1 sekundzie stabilnej wartosci
 
-Mala zmiana - jesli przez sekunde nie zmieni sie gwaltownie wtedy getSpeed() przepisze te predkosc do zmiennej glownej , chroni to przez niepotrzebnym migotaniem licznika 
-
-test.cpp oraz test_gmock.cpp 
-Odpowiadaja za same testy i za to by kod spelnial wymagania 
-
-R1 Test: Wymusza prędkości typu 10.4 oraz 10.5 i sprawdza, czy formatter zwróci odpowiednio 10 i 11.
-
-R2 Test: Zmienia jednostki w trakcie pracy i sprawdza, czy mnożnik (np. 0.62 dla MPH) jest poprawnie nakładany na tę samą prędkość bazową.
-
-R3 Test: Symuluje upływ czasu (std::this_thread::sleep_for). Sprawdza, czy po zmianie o 1.5 km/h licznik stoi w miejscu, a rusza się dopiero po sekundzie.
-
-TesValues :
-trzymaja wartosci do testow 
-Mocki 
-Udaja sprzet ale nie daja kontroli nad soba 
-test.cpp same testy
-test_gmock.cpp - z pomoca google mock sam robi makra przy pomocy MOCK_METHOD 
+test_gmock.cpp
+Wszystkie testy sa w jednym pliku i uzywaja Google Mock:
+- R1: zaokraglanie (10.4 -> 10, 10.5 -> 11)
+- R2: zmiana mnoznika jednostek w trakcie pracy
+- R3: brak oscylacji przy naprzemiennych wartosciach, opoznienie 1 sekundy, natychmiastowy skok dla >=2.0
+- przypadki brzegowe: konwersja przed zaokraglaniem
 
 lcov + gcovr 
 sudo pacman -S lcov gcovr 

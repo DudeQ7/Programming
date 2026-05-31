@@ -1,0 +1,29 @@
+Opis kodu (one by one)
+
+1) SpeedSourceInterface.hpp
+   Interfejs z metodami setSpeed() i getSpeed(). Pozwala podlaczyc dowolne zrodlo predkosci.
+
+2) UnitsInterface.hpp
+   Interfejs jednostek: getSpeedUnit() zwraca jednostke, a getMultiplier() mnoznik do konwersji.
+
+3) SpeedSource.hpp / SpeedSource.cpp
+   Prosta implementacja zrodla predkosci. Trzyma tylko aktualna, surowa wartosc.
+   Nie filtruje oscylacji i nie wykonuje konwersji.
+
+4) SpeedFormatter.hpp / SpeedFormatter.cpp
+   Odpowiada za R1, R2 i R3.
+   - R1: zaokragla do najblizszej liczby calkowitej (std::round).
+   - R2: zawsze najpierw przelicza na jednostki (raw * mnoznik), a potem zaokragla.
+   - R3: filtruje oscylacje predkosci:
+       a) pierwsza wartosc staje sie aktualna,
+        b) duzy skok (>= 2.0 km/h) akceptuje od razu,
+        c) male zmiany sa akceptowane po 1 sekundzie stabilnej wartosci,
+        d) niewielkie odchylenia probek toleruje (0.001).
+
+5) test_gmock.cpp
+   Wszystkie testy w jednym pliku i z uzyciem Google Mock.
+   - R1: sprawdza zaokraglanie 10.4 -> 10 i 10.5 -> 11.
+   - R2: sprawdza zmiane mnoznika jednostek w trakcie pracy.
+   - R3: brak oscylacji przy naprzemiennych wartosciach, opoznienie 1 sekundy,
+         natychmiastowy skok przy duzej zmianie.
+   - przypadki brzegowe: konwersja przed zaokraglaniem.

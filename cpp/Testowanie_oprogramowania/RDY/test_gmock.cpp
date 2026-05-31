@@ -1,55 +1,122 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
-#include <cmath>
+#include <chrono>
+#include <thread>
 #include "SpeedFormatter.hpp"
-#include "TestValues.hpp"
+#include "SpeedSource.hpp"
+
 using ::testing::Return;
-class MockUnitsG : public UnitsInterface
+
+class MockUnits : public UnitsInterface
 {
 public:
     MOCK_METHOD(SpeedUnit, getSpeedUnit, (), (const, override));
     MOCK_METHOD(double, getMultiplier, (), (const, override));
 };
-class MockSpeedSourceG : public SpeedSourceInterface
+
+class MockSpeedSource : public SpeedSourceInterface
 {
 public:
     MOCK_METHOD(void, setSpeed, (double), (override));
     MOCK_METHOD(double, getSpeed, (), (override));
 };
-//R1 - Rounding
-TEST(SpeedFormatterGmock, ShouldRoundSpeedCorrectly_R1)
+
+TEST(SpeedFormatterGmock, R1_RoundsDownBelowHalf)
 {
-    MockUnitsG units;
-    MockSpeedSourceG source;
+    MockUnits units;
+    MockSpeedSource source;
     EXPECT_CALL(units, getMultiplier()).WillRepeatedly(Return(1.0));
     EXPECT_CALL(source, getSpeed()).WillOnce(Return(10.4));
     SpeedFormatter formatter(&source, &units, 1);
     EXPECT_EQ(formatter.getFormattedSpeed(), 10u);
+}
+
+TEST(SpeedFormatterGmock, R1_RoundsUpAtHalf)
+{
+    MockUnits units;
+    MockSpeedSource source;
+    EXPECT_CALL(units, getMultiplier()).WillRepeatedly(Return(1.0));
     EXPECT_CALL(source, getSpeed()).WillOnce(Return(10.5));
+    SpeedFormatter formatter(&source, &units, 1);
     EXPECT_EQ(formatter.getFormattedSpeed(), 11u);
 }
-//R2 - Actual Unit
-TEST(SpeedFormatterGmock, ShouldUseCurrentUnit_R2)
+
+TEST(SpeedFormatterGmock, R2_UsesCurrentUnitMultiplier)
 {
-    MockUnitsG units;
-    MockSpeedSourceG source;
-    EXPECT_CALL(source, getSpeed()).WillRepeatedly(Return(TV_speed_initial));
-    EXPECT_CALL(units, getMultiplier()).WillOnce(Return(TV_units_multiplier_kph));
+    MockUnits units;
+    MockSpeedSource source;
+    EXPECT_CALL(source, getSpeed()).WillRepeatedly(Return(54.0));
+    EXPECT_CALL(units, getMultiplier())
+        .WillOnce(Return(1.0))
+        .WillOnce(Return(0.621371));
     SpeedFormatter formatter(&source, &units, 1);
-    EXPECT_EQ(formatter.getFormattedSpeed(), static_cast<unsigned int>(std::round(TV_speed_initial * TV_units_multiplier_kph)));
+    EXPECT_EQ(formatter.getFormattedSpeed(), 54u);
+    EXPECT_EQ(formatter.getFormattedSpeed(), 34u);
 }
-//R3 - Hysteresis-like sequence
-TEST(SpeedSourceGmock, HysteresisLikeSequence_R3)
+
+TEST(SpeedFormatterGmock, ConvertsBeforeRounding)
 {
-    MockUnitsG units;
-    MockSpeedSourceG source;
+    MockUnits units;
+    MockSpeedSource source;
+    EXPECT_CALL(source, getSpeed()).WillOnce(Return(10.49));
+    EXPECT_CALL(units, getMultiplier()).WillOnce(Return(1.5));
+    SpeedFormatter formatter(&source, &units, 1);
+    EXPECT_EQ(formatter.getFormattedSpeed(), 16u);
+}
+
+TEST(SpeedFormatterGmock, R3_AlternatingSmallChangesDoNotOscillate)
+{
+    MockUnits units;
+    MockSpeedSource source;
     EXPECT_CALL(units, getMultiplier()).WillRepeatedly(Return(1.0));
     ::testing::InSequence s;
-    EXPECT_CALL(source, getSpeed()).WillOnce(Return(TV_speed_initial));
-    EXPECT_CALL(source, getSpeed()).WillOnce(Return(TV_speed_initial));
-    EXPECT_CALL(source, getSpeed()).WillOnce(Return(TV_speed_small_change));
+    EXPECT_CALL(source, getSpeed()).WillOnce(Return(100.0));
+    EXPECT_CALL(source, getSpeed()).WillOnce(Return(101.0));
+    EXPECT_CALL(source, getSpeed()).WillOnce(Return(100.0));
+    EXPECT_CALL(source, getSpeed()).WillOnce(Return(101.0));
+    EXPECT_CALL(source, getSpeed()).WillOnce(Return(100.0));
+    EXPECT_CALL(source, getSpeed()).WillOnce(Return(101.0));
+    SpeedFormatter formatter(&source, &units, 3);
+    EXPECT_EQ(formatter.getFormattedSpeed(), 100u);
+    EXPECT_EQ(formatter.getFormattedSpeed(), 100u);
+    EXPECT_EQ(formatter.getFormattedSpeed(), 100u);
+    EXPECT_EQ(formatter.getFormattedSpeed(), 100u);
+    EXPECT_EQ(formatter.getFormattedSpeed(), 100u);
+    EXPECT_EQ(formatter.getFormattedSpeed(), 100u);
+}
+
+TEST(SpeedFormatterGmock, R3_SmallChangeDelaysThenCommits)
+{
+    MockUnits units;
+    MockSpeedSource source;
+    EXPECT_CALL(units, getMultiplier()).WillRepeatedly(Return(1.0));
+    ::testing::InSequence s;
+    EXPECT_CALL(source, getSpeed()).WillOnce(Return(100.0));
+    EXPECT_CALL(source, getSpeed()).WillOnce(Return(101.0));
+    EXPECT_CALL(source, getSpeed()).WillOnce(Return(101.0));
     SpeedFormatter formatter(&source, &units, 1);
-    EXPECT_EQ(formatter.getFormattedSpeed(), static_cast<unsigned int>(std::round(TV_speed_initial)));
-    EXPECT_EQ(formatter.getFormattedSpeed(), static_cast<unsigned int>(std::round(TV_speed_initial)));
-    EXPECT_EQ(formatter.getFormattedSpeed(), static_cast<unsigned int>(std::round(TV_speed_small_change)));
+    EXPECT_EQ(formatter.getFormattedSpeed(), 100u);
+    EXPECT_EQ(formatter.getFormattedSpeed(), 100u);
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    EXPECT_EQ(formatter.getFormattedSpeed(), 101u);
+}
+
+TEST(SpeedFormatterGmock, R3_LargeJumpCommitsImmediately)
+{
+    MockUnits units;
+    MockSpeedSource source;
+    EXPECT_CALL(units, getMultiplier()).WillRepeatedly(Return(1.0));
+    ::testing::InSequence s;
+    EXPECT_CALL(source, getSpeed()).WillOnce(Return(100.0));
+    EXPECT_CALL(source, getSpeed()).WillOnce(Return(102.0));
+    SpeedFormatter formatter(&source, &units, 1);
+    EXPECT_EQ(formatter.getFormattedSpeed(), 100u);
+    EXPECT_EQ(formatter.getFormattedSpeed(), 102u);
+}
+
+TEST(SpeedSource, RawValuePassThrough)
+{
+    SpeedSource source;
+    source.setSpeed(123.4);
+    EXPECT_DOUBLE_EQ(source.getSpeed(), 123.4);
 }

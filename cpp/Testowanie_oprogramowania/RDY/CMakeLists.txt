@@ -7,14 +7,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 
-set(SOURCES
+set(PROD_SOURCES
     SpeedSource.cpp
     SpeedFormatter.cpp
-    TestValues.cpp
+)
+
+set(TEST_SOURCES
     test_gmock.cpp
-    test.cpp
-    SpeedSourceInterface_test.cpp
-    SpeedSource_oscillation_test.cpp
 )
 
 include_directories(${CMAKE_SOURCE_DIR})
@@ -27,9 +26,13 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
     add_link_options(--coverage)
 endif()
 
-add_executable(run_tests ${SOURCES})
+add_library(speedcore STATIC ${PROD_SOURCES})
+target_include_directories(speedcore PUBLIC ${CMAKE_SOURCE_DIR})
+
+add_executable(run_tests ${TEST_SOURCES})
 
 target_link_libraries(run_tests
+    speedcore
     GTest::GTest
     GTest::Main
     GTest::gmock_main
