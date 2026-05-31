@@ -4,23 +4,19 @@
 #include <thread>
 #include "SpeedFormatter.hpp"
 #include "SpeedSource.hpp"
-
 using ::testing::Return;
-
 class MockUnits : public UnitsInterface
 {
 public:
     MOCK_METHOD(SpeedUnit, getSpeedUnit, (), (const, override));
     MOCK_METHOD(double, getMultiplier, (), (const, override));
 };
-
 class MockSpeedSource : public SpeedSourceInterface
 {
 public:
     MOCK_METHOD(void, setSpeed, (double), (override));
     MOCK_METHOD(double, getSpeed, (), (override));
 };
-
 TEST(SpeedFormatterGmock, R1_RoundsDownBelowHalf)
 {
     MockUnits units;
@@ -30,7 +26,6 @@ TEST(SpeedFormatterGmock, R1_RoundsDownBelowHalf)
     SpeedFormatter formatter(&source, &units, 1);
     EXPECT_EQ(formatter.getFormattedSpeed(), 10u);
 }
-
 TEST(SpeedFormatterGmock, R1_RoundsUpAtHalf)
 {
     MockUnits units;
@@ -40,7 +35,6 @@ TEST(SpeedFormatterGmock, R1_RoundsUpAtHalf)
     SpeedFormatter formatter(&source, &units, 1);
     EXPECT_EQ(formatter.getFormattedSpeed(), 11u);
 }
-
 TEST(SpeedFormatterGmock, R2_UsesCurrentUnitMultiplier)
 {
     MockUnits units;
