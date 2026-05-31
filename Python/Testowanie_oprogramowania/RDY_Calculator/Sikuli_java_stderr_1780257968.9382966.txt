@@ -1,0 +1,11 @@
+SLF4J(W): No SLF4J providers were found.
+SLF4J(W): Defaulting to no-operation (NOP) logger implementation
+SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
+SLF4J(W): Class path contains SLF4J bindings targeting slf4j-api versions 1.7.x or earlier.
+SLF4J(W): Ignoring binding found at [jar:file:/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY_Calculator/venv/lib/python3.14/site-packages/SikuliLibrary/lib/SikuliLibrary.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J(W): See https://www.slf4j.org/codes.html#ignoredBindings for an explanation.
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by org.sikuli.script.support.RunTime in an unnamed module (file:/mnt/shared/Programming/cpp/Testowanie_oprogramowania/RDY_Calculator/venv/lib/python3.14/site-packages/SikuliLibrary/lib/SikuliLibrary.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+

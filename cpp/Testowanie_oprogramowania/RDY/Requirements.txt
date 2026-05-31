@@ -1,4 +1,0 @@
-Tests:
-R1 - Round values ,from 10.4 to 10 , 10.5 and higher to 11 
-R2 -  actual test unit KPH / MPH , the result should include the multiplier
-R3 -  if change <2 then don't change it instantly , afer 1 second change it , if change is 2 and even the the update should happen immediately 

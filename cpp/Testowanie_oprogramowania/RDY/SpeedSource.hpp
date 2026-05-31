@@ -1,6 +1,5 @@
 #pragma once 
 #include "SpeedSourceInterface.hpp"
-#include <chrono>
 class SpeedSource : public SpeedSourceInterface 
 {
     public:
@@ -8,14 +7,5 @@ class SpeedSource : public SpeedSourceInterface
         void setSpeed(double newSpeed) override;
         double getSpeed() override;
     private:
-        double m_currentSpeed;
-        double m_pendingSpeed;
-        bool   m_isWaiting;
-        std::chrono::steady_clock::time_point m_lastChangeTime;
-        // Oscillation  parameters
-        double m_hysteresis;                 // km/h: ignore changes smaller than this when committing
-        double m_immediateThreshold;         // km/h: changes above this (plus hysteresis) may apply immediately
-        double m_stabilityDelaySeconds;      // seconds: how long a pending value must be stable before committing
-        unsigned int m_requiredStableSamples; // number of consecutive similar samples required to commit
-        unsigned int m_stableCount;          // current count of consecutive similar pending samples
+        double m_speed;
 };
