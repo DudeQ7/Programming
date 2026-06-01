@@ -1,0 +1,6 @@
+main = 
+    print (2+3) >>
+    print(10 -4) >>
+    print(5 *6 ) >>
+    print(20/4) 
+    
