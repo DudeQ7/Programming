@@ -32,21 +32,21 @@ double SpeedFormatter::filterRawSpeed(double rawSpeed)
     }
 
     const double diff = std::abs(rawSpeed - m_currentSpeed);
-    if (diff >= kImmediateThreshold)
+    if (diff >= kImmediateThreshold) //Big change, immediate reaction 
     {
         m_currentSpeed = rawSpeed;
         m_isWaiting = false;
         return m_currentSpeed;
     }
 
-    if (diff <= kSampleTolerance)
+    if (diff <= kSampleTolerance) 
     {
         m_isWaiting = false;
         return m_currentSpeed;
     }
 
     auto now = std::chrono::steady_clock::now();
-    if (!m_isWaiting || std::abs(rawSpeed - m_pendingSpeed) > kSampleTolerance)
+    if (!m_isWaiting || std::abs(rawSpeed - m_pendingSpeed) > kSampleTolerance) //Minor change, start waiting for stability
     {
         m_pendingSpeed = rawSpeed;
         m_lastChangeTime = now;
@@ -54,7 +54,7 @@ double SpeedFormatter::filterRawSpeed(double rawSpeed)
         return m_currentSpeed;
     }
 
-    if (now - m_lastChangeTime >= m_stabilityDelay)
+    if (now - m_lastChangeTime >= m_stabilityDelay) //1 second waiting for stability, update current speed
     {
         m_currentSpeed = m_pendingSpeed;
         m_isWaiting = false;
