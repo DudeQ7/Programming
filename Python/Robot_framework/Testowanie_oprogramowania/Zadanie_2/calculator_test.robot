@@ -9,6 +9,7 @@ ${DISPLAY_VALUE}    /Window[@Name="Calculator"]/Pane/Text[@AutomationId="158"]
 ${BUTTON_DIGIT_5}    135
 ${BUTTON_DIGIT_7}    137
 ${BUTTON_ADD}    93
+${BUTTON_SUBTRACT}    94
 ${BUTTON_EQUAL}    121    
 *** Test Cases ***
 Addition In Calculator
@@ -19,7 +20,15 @@ Addition In Calculator
     Click Button By Automation Id    ${BUTTON_DIGIT_7}
     Click Button By Automation Id    ${BUTTON_EQUAL}
     Result Should Be    12
-
+*** Test Cases ***
+Subtraction In Calculator
+    [Teardown]    Close Calculator
+    Open Calculator
+    Click Button By Automation Id  ${BUTTON_DIGIT_7}
+    Click Button By Automation Id  ${BUTTON_SUBTRACT}
+    Click Button By Automation Id  ${BUTTON_DIGIT_5}
+    Click Button By Automation Id  ${BUTTON_EQUAL}
+    Result Should Be     2
 *** Keywords ***
 Open Calculator
     ${pid}=    Launch Application    ${CALCULATOR_EXE}
