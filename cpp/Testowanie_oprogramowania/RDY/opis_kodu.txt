@@ -1,3 +1,4 @@
+
 Opis kodu (one by one)
 
 1) SpeedSourceInterface.hpp
