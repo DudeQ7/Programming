@@ -1,5 +1,0 @@
-yay -S --noconfirm robotframework
-sudo pacman -S jre-openjdk sigil gtest kcalc imagemagick
-pip install robotframework-sikulilibrary robotframework-imagehorizonlibrary
-robot RDY_Calculator/tests/kcalc_basic.robot
-kcalc

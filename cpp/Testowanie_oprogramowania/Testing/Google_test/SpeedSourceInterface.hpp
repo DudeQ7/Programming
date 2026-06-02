@@ -1,8 +1,0 @@
-#pragma once
-
-class SpeedSourceInterface
-{
-public:
-    virtual ~SpeedSourceInterface() = default;
-    virtual double getSpeed() = 0; // this method returns the speed in km/h
-};
