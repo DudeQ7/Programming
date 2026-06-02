@@ -4,16 +4,14 @@ Library    FlaUILibrary
 *** Variables ***
 ${CALCULATOR_EXE}    C:\\Users\\DudeQ\\Documents\\Programming\\Python\\Robot_framework\\Testowanie_oprogramowania\\Zadanie_2\\Kalkulator\\Calculator.exe
 ${CALCULATOR_PID}    ${EMPTY}
-${CALCULATOR_WINDOW}    /Window[@Name="Kalkulator_klasyczny"]
-${DISPLAY_VALUE}    ${CALCULATOR_WINDOW}/Pane/Text[@AutomationId="158"]
+${CALCULATOR_WINDOW}    Calculator
+${DISPLAY_VALUE}    /Window[@Name="Calculator"]/Pane/Text[@AutomationId="158"]
 ${BUTTON_DIGIT_5}    135
 ${BUTTON_DIGIT_7}    137
 ${BUTTON_ADD}    93
 ${BUTTON_EQUAL}    121    
-${CALC_TYPE}    XP
-    
-    *** Test Cases ***
-    Addition In Calculator
+*** Test Cases ***
+Addition In Calculator
     [Teardown]    Close Calculator
     Open Calculator
     Click Button By Automation Id    ${BUTTON_DIGIT_5}
