@@ -1,9 +1,0 @@
-Java - https://statics.teams.cdn.office.net/evergreen-assets/safelinks/2/atp-safelinks.html
-Wymagania:
-
-Kalkulatory - https://teams.microsoft.com/l/message/19:xm_in55Xa1k2dBeGTYfuXrwzfSGkTD-KqCIGdqHeM_U1@thread.tacv2/1777499045438?tenantId=c6bbf2ff-cd5d-4c41-a0e5-fa73202de5e9&groupId=4fb16279-7dc7-427a-8f44-5411eb486a75&parentMessageId=1777447178716&teamName=Testowanie%20oprogramowania%202026&channelName=General&createdTime=1777499045438
-
-Drugie zadanie - RobotFramework
-Do wykonania testy kalkulatora wbudowanego (UWP) oraz klasycznego (z Windows XP). Udostępnię binarki.
-
-Test powinien być konfigurowalny - wybór który kalkulator ma być przetestowany.
