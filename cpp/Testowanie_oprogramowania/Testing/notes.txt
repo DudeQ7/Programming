@@ -1,4 +1,0 @@
-1. sprawdza czy obiekt nie jest nullem 
-2. kontener przechowuje wartosci ktore sprawdzasz w petli 
-3. wieksze testy niz mniejsze 
-4

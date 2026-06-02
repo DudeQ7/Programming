@@ -1,6 +1,0 @@
-❯ sudo pacman -S gtest base-devel cmake
-cd /build 
-rm -rf * 
-cmake .. 
-make 
-./run_tests

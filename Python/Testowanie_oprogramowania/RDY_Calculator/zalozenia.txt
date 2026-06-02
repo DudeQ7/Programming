@@ -1,9 +1,0 @@
-Trzecie zadanie - RobotFramework + rozpoznawanie obrazu
-W ramach trzeciego zadania testy z wykorzystaniem bibliotek Horizon i Sikuli.
-Mogą Państwo bazować na dotychczasowym kodzie, wystarczy przetestować jeden kalklulator. Ważne żeby wykorzystać Horizon i Sikuli.
-
-
-PRZYKLADY BRZEGOWE
-
-dzielenie przez 0 i wgl 
-fly pierwszy krok na windowsie reszta na linuxie 
