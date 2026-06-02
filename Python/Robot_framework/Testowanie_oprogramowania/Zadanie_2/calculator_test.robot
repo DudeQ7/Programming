@@ -2,9 +2,9 @@
 Library    FlaUILibrary
 
 *** Variables ***
-${CALCULATOR_EXE}    C:\\Users\\DudeQ\\Documents\\Programming\\Python\\Robot_framework\\Testowanie_oprogramowania\\Zadanie_2\\Kalkulator\\Calculator.exe
+${CALCULATOR_EXE}   ${CURDIR}/win32calc.exe
 ${CALCULATOR_PID}    ${EMPTY}
-${CALCULATOR_WINDOW}    Calculator
+${CALCULATOR_WINDOW}    /Window[@Name="Calculator"]
 ${DISPLAY_VALUE}    /Window[@Name="Calculator"]/Pane/Text[@AutomationId="158"]
 ${BUTTON_DIGIT_5}    135
 ${BUTTON_DIGIT_7}    137
