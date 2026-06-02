@@ -6,8 +6,10 @@ ${CALCULATOR_EXE}   ${CURDIR}/win32calc.exe
 ${CALCULATOR_PID}    ${EMPTY}
 ${CALCULATOR_WINDOW}    /Window[@Name="Calculator"]
 ${DISPLAY_VALUE}    /Window[@Name="Calculator"]/Pane/Text[@AutomationId="158"]
+${BUTTON_DIGIT_3}    133
 ${BUTTON_DIGIT_5}    135
 ${BUTTON_DIGIT_7}    137
+${BUTTON_DIGIT_9}    139
 ${BUTTON_SUBTRACT}   94
 ${BUTTON_ADD}        93
 ${BUTTON_MULTIPLY}   92
@@ -40,6 +42,15 @@ Multiplication In Calculator
     Click Button By Automation Id    ${BUTTON_DIGIT_5}
     Click Button By Automation Id    ${BUTTON_EQUAL}
     Result Should Be    35
+*** Test Cases ***
+Division In Calculator
+    [Teardown]     Close Calculator
+    Open Calculator 
+    Click Button By Automation Id    ${BUTTON_DIGIT_9}
+    Click Button By Automation Id    ${BUTTON_DIVIDE}
+    Click Button By Automation Id    ${BUTTON_DIGIT_3}
+    Click Button By Automation Id    ${BUTTON_EQUAL}
+    Result Should Be    3
 *** Keywords ***
 Open Calculator
     ${pid}=    Launch Application    ${CALCULATOR_EXE}
