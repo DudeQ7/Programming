@@ -1,4 +1,6 @@
 import cv2 as cv 
+import numpy as np
+import os 
 #webcam
 capture = cv.VideoCapture(0)
 if not capture.isOpened():
