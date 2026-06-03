@@ -10,6 +10,7 @@ ${BUTTON_DIGIT_5}    num5Button
 ${BUTTON_DIGIT_7}    num7Button
 ${BUTTTON_ADD}       plusButton
 ${BUTTON_SUBTRACT}   minusButton
+${BUTTON_MULTIPLY}   multiplyButton
 ${BUTTON_CLEAR}      clearButton
 ${BUTTON_EQUAL}      equalButton
 
@@ -33,7 +34,17 @@ Subtraction In Calculator
     Click Button By Automation Id    ${BUTTON_DIGIT_5}
     Click Button By Automation Id    ${BUTTON_EQUAL}
     Result Should Be    2
-
+*** Test Cases ***
+Multiplication In Calculator 
+    [Teardown]    Close Calculator
+    Open Calculator
+    Click Button By Automation Id    ${BUTTON_CLEAR}
+    Click Button By Automation Id    ${BUTTON_DIGIT_7}
+    Click Button By Automation Id    ${BUTTON_MULTIPLY}
+    Click Button By Automation ID    ${BUTTON_DIGIT_5}
+    Click Button By Automation Id    ${BUTTON_EQUAL}
+    Result Should Be    35
+    
 
 *** Keywords ***
 Open Calculator
