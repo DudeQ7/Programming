@@ -3,7 +3,7 @@ Library    FlaUILibrary
 Library    Process
 
 *** Variables ***
-${CALCULATOR_APP}  C:\Users\DudeQ\Documents\Programming\Python\Robot_framework\Testowanie_oprogramowania\Kalkulator
+${CALCULATOR_APP}       d:\\uczelnia\\calc\\win32calc.exe
 ${CALCULATOR_WINDOW}    /Window[@Name="Calkulator"]
 
 *** Test Cases ***
