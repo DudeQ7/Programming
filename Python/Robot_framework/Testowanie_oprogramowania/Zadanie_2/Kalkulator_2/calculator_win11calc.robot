@@ -9,6 +9,7 @@ ${DISPLAY_VALUE}    ${CALCULATOR_WINDOW}//Text[@AutomationId="CalculatorResults"
 ${BUTTON_DIGIT_5}    num5Button
 ${BUTTON_DIGIT_7}    num7Button
 ${BUTTTON_ADD}       plusButton
+${BUTTON_SUBTRACT}   minusButton
 ${BUTTON_CLEAR}      clearButton
 ${BUTTON_EQUAL}      equalButton
 
@@ -26,7 +27,14 @@ Addition In Calculator
 Subtraction In Calculator
     [Teardown]    Close Calculator    
     Open Calculator
-    
+    Click Button By Automation Id    ${BUTTON_CLEAR}
+    Click Button By Automation Id    ${BUTTON_DIGIT_7}
+    Click Button By Automation Id    ${BUTTON_SUBTRACT}
+    Click Button By Automation Id    ${BUTTON_DIGIT_5}
+    Click Button By Automation Id    ${BUTTON_EQUAL}
+    Result Should Be    2
+
+
 *** Keywords ***
 Open Calculator
     ${pid}=    Launch Application    ${CALCULATOR_EXE}
