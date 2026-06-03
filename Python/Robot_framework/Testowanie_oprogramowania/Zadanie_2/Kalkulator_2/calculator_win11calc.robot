@@ -13,6 +13,7 @@ ${BUTTON_DIGIT_3}    num3Button
 ${BUTTTON_ADD}       plusButton
 ${BUTTON_SUBTRACT}   minusButton
 ${BUTTON_MULTIPLY}   multiplyButton
+${BUTTON_NEGATE}     negateButton
 ${BUTTON_DIVIDE}     divideButton
 ${BUTTON_CLEAR}      clearButton
 ${BUTTON_EQUAL}      equalButton
@@ -55,7 +56,17 @@ Division In Calculator
     Click Button By Automation Id    ${BUTTON_DIGIT_3}
     Click Button By Automation Id    ${BUTTON_EQUAL}
     Result Should Be   3
-
+Negation In Calculator 
+    [Teardown]    Close Calculator
+    Open Calculator
+    Click Button By Automation Id    ${BUTTON_CLEAR}
+    Click Button By Automation Id    ${BUTTON_DIGIT_5}
+    Click Button By Automation Id    ${BUTTON_NEGATE}
+    Click Button By Automation Id    ${BUTTTON_ADD}
+    Click Button By Automation Id    ${BUTTON_DIGIT_7}
+    Click Button By Automation Id    ${BUTTON_EQUAL}
+    Result Should Be    2
+    
 *** Keywords ***
 Open Calculator
     ${pid}=    Launch Application    ${CALCULATOR_EXE}
