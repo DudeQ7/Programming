@@ -1,90 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.4.2 (Python 3.14.5 on win32)" generated="2026-06-03T23:58:58.092528" rpa="false" schemaversion="5">
+<robot generator="Robot 7.4.2 (Python 3.14.4 on win32)" generated="2026-06-04T16:22:54.967360" rpa="false" schemaversion="5">
 <suite id="s1" name="Calculator Win11Calc" source="C:\Users\DudeQ\Documents\Programming\Python\Robot_framework\Testowanie_oprogramowania\Zadanie_2\Kalkulator_2\calculator_win11calc.robot">
 <test id="s1-t1" name="Addition In Calculator" line="22">
 <kw name="Open Calculator">
 <kw name="Launch Application" owner="FlaUILibrary">
-<msg time="2026-06-03T23:58:59.777429" level="INFO">${pid} = 16748</msg>
+<msg time="2026-06-04T16:22:55.293471" level="INFO">${pid} = 6532</msg>
 <var>${pid}</var>
 <arg>${CALCULATOR_EXE}</arg>
 <doc>Launches an application.</doc>
-<status status="PASS" start="2026-06-03T23:58:59.429207" elapsed="0.348379"/>
+<status status="PASS" start="2026-06-04T16:22:55.245631" elapsed="0.047875"/>
 </kw>
 <kw name="Set Test Variable" owner="BuiltIn">
-<msg time="2026-06-03T23:58:59.779063" level="INFO">${CALCULATOR_PID} = 16748</msg>
+<msg time="2026-06-04T16:22:55.293823" level="INFO">${CALCULATOR_PID} = 6532</msg>
 <arg>${CALCULATOR_PID}</arg>
 <arg>${pid}</arg>
 <doc>Makes a variable available everywhere within the scope of the current test.</doc>
-<status status="PASS" start="2026-06-03T23:58:59.778331" elapsed="0.000820"/>
+<status status="PASS" start="2026-06-04T16:22:55.293610" elapsed="0.000240"/>
 </kw>
 <kw name="Wait Until Element Exist" owner="FlaUILibrary">
 <arg>${CALCULATOR_WINDOW}</arg>
 <doc>Waits until element exist or timeout was reached. If timeout was reached an FlaUIError occurred.</doc>
-<status status="PASS" start="2026-06-03T23:58:59.779363" elapsed="1.237960"/>
+<status status="PASS" start="2026-06-04T16:22:55.293912" elapsed="1.041534"/>
 </kw>
-<status status="PASS" start="2026-06-03T23:58:59.393650" elapsed="1.623926"/>
+<status status="PASS" start="2026-06-04T16:22:55.245301" elapsed="1.090258"/>
 </kw>
 <kw name="Click Button By Automation Id">
 <kw name="Click" owner="FlaUILibrary">
 <arg>${CALCULATOR_WINDOW}//Button[@AutomationId="${automation_id}"]</arg>
 <doc>Left click to element by an XPath.</doc>
-<status status="PASS" start="2026-06-03T23:59:01.018826" elapsed="0.256413"/>
+<status status="PASS" start="2026-06-04T16:22:56.336021" elapsed="0.161682"/>
 </kw>
 <arg>${BUTTON_CLEAR}</arg>
-<status status="PASS" start="2026-06-03T23:59:01.018240" elapsed="0.257255"/>
+<status status="PASS" start="2026-06-04T16:22:56.335805" elapsed="0.161990"/>
 </kw>
 <kw name="Click Button By Automation Id">
 <kw name="Click" owner="FlaUILibrary">
 <arg>${CALCULATOR_WINDOW}//Button[@AutomationId="${automation_id}"]</arg>
 <doc>Left click to element by an XPath.</doc>
-<status status="PASS" start="2026-06-03T23:59:01.276637" elapsed="0.194312"/>
+<status status="PASS" start="2026-06-04T16:22:56.498207" elapsed="0.143916"/>
 </kw>
 <arg>${BUTTON_DIGIT_5}</arg>
-<status status="PASS" start="2026-06-03T23:59:01.276087" elapsed="0.195136"/>
+<status status="PASS" start="2026-06-04T16:22:56.498020" elapsed="0.144168"/>
 </kw>
 <kw name="Click Button By Automation Id">
 <kw name="Click" owner="FlaUILibrary">
 <arg>${CALCULATOR_WINDOW}//Button[@AutomationId="${automation_id}"]</arg>
 <doc>Left click to element by an XPath.</doc>
-<status status="PASS" start="2026-06-03T23:59:01.472321" elapsed="0.181860"/>
+<status status="PASS" start="2026-06-04T16:22:56.642559" elapsed="0.123603"/>
 </kw>
 <arg>${BUTTTON_ADD}</arg>
-<status status="PASS" start="2026-06-03T23:59:01.471811" elapsed="0.182699"/>
+<status status="PASS" start="2026-06-04T16:22:56.642382" elapsed="0.123904"/>
 </kw>
 <kw name="Click Button By Automation Id">
 <kw name="Click" owner="FlaUILibrary">
 <arg>${CALCULATOR_WINDOW}//Button[@AutomationId="${automation_id}"]</arg>
 <doc>Left click to element by an XPath.</doc>
-<status status="PASS" start="2026-06-03T23:59:01.655642" elapsed="0.204951"/>
+<status status="PASS" start="2026-06-04T16:22:56.766758" elapsed="0.140726"/>
 </kw>
 <arg>${BUTTON_DIGIT_7}</arg>
-<status status="PASS" start="2026-06-03T23:59:01.655127" elapsed="0.205784"/>
+<status status="PASS" start="2026-06-04T16:22:56.766549" elapsed="0.141055"/>
 </kw>
 <kw name="Click Button By Automation Id">
 <kw name="Click" owner="FlaUILibrary">
 <arg>${CALCULATOR_WINDOW}//Button[@AutomationId="${automation_id}"]</arg>
 <doc>Left click to element by an XPath.</doc>
-<status status="PASS" start="2026-06-03T23:59:01.862221" elapsed="0.179725"/>
+<status status="PASS" start="2026-06-04T16:22:56.908101" elapsed="0.137599"/>
 </kw>
 <arg>${BUTTON_EQUAL}</arg>
-<status status="PASS" start="2026-06-03T23:59:01.861656" elapsed="0.180613"/>
+<status status="PASS" start="2026-06-04T16:22:56.907894" elapsed="0.137920"/>
 </kw>
 <kw name="Result Should Be">
 <kw name="Get Name From Element" owner="FlaUILibrary">
-<msg time="2026-06-03T23:59:02.092531" level="INFO">${result} = Display is 12</msg>
+<msg time="2026-06-04T16:22:57.056430" level="INFO">${result} = Display is 12</msg>
 <var>${result}</var>
 <arg>${DISPLAY_VALUE}</arg>
 <doc>Return name value from element.</doc>
-<status status="PASS" start="2026-06-03T23:59:02.043484" elapsed="0.049137"/>
+<status status="PASS" start="2026-06-04T16:22:57.046322" elapsed="0.010133"/>
 </kw>
 <kw name="Should Contain" owner="BuiltIn">
 <arg>${result}</arg>
 <arg>${expected}</arg>
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="PASS" start="2026-06-03T23:59:02.092907" elapsed="0.000927"/>
+<status status="PASS" start="2026-06-04T16:22:57.056524" elapsed="0.000311"/>
 </kw>
 <arg>12</arg>
-<status status="PASS" start="2026-06-03T23:59:02.042980" elapsed="0.051130"/>
+<status status="PASS" start="2026-06-04T16:22:57.046117" elapsed="0.010756"/>
 </kw>
 <kw name="Close Calculator" type="TEARDOWN">
 <kw name="Run Keyword And Return Status" owner="BuiltIn">
@@ -92,137 +92,136 @@
 <arg>${CALCULATOR_WINDOW}</arg>
 <doc>Checks if element exists. If element exists True will be returned otherwise False.
 If element could not be found by xpath False will be returned.</doc>
-<status status="PASS" start="2026-06-03T23:59:02.097099" elapsed="0.009635"/>
+<status status="PASS" start="2026-06-04T16:22:57.057368" elapsed="0.003254"/>
 </kw>
-<msg time="2026-06-03T23:59:02.106969" level="INFO">${exists} = True</msg>
+<msg time="2026-06-04T16:22:57.060695" level="INFO">${exists} = True</msg>
 <var>${exists}</var>
 <arg>Element Should Exist</arg>
 <arg>${CALCULATOR_WINDOW}</arg>
 <doc>Runs the specified keyword and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2026-06-03T23:59:02.096218" elapsed="0.010798"/>
+<status status="PASS" start="2026-06-04T16:22:57.057189" elapsed="0.003521"/>
 </kw>
 <kw name="Run Keyword If" owner="BuiltIn">
 <kw name="Close Window" owner="FlaUILibrary">
 <arg>${CALCULATOR_WINDOW}</arg>
 <doc>Try to close window from element.</doc>
-<status status="PASS" start="2026-06-03T23:59:02.107731" elapsed="0.075342"/>
+<status status="PASS" start="2026-06-04T16:22:57.060936" elapsed="0.020409"/>
 </kw>
 <arg>${exists}</arg>
 <arg>Close Window</arg>
 <arg>${CALCULATOR_WINDOW}</arg>
 <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" start="2026-06-03T23:59:02.107214" elapsed="0.076086"/>
+<status status="PASS" start="2026-06-04T16:22:57.060771" elapsed="0.020630"/>
 </kw>
 <kw name="Set Test Variable" owner="BuiltIn">
-<msg time="2026-06-03T23:59:02.184915" level="INFO">${CALCULATOR_PID} = </msg>
+<msg time="2026-06-04T16:22:57.081852" level="INFO">${CALCULATOR_PID} = </msg>
 <arg>${CALCULATOR_PID}</arg>
 <arg>${EMPTY}</arg>
 <doc>Makes a variable available everywhere within the scope of the current test.</doc>
-<status status="PASS" start="2026-06-03T23:59:02.183605" elapsed="0.001401"/>
+<status status="PASS" start="2026-06-04T16:22:57.081475" elapsed="0.000402"/>
 </kw>
 <kw name="Run Keyword If" owner="BuiltIn">
 <arg>'${CALCULATOR_PID}' != '${EMPTY}'</arg>
 <arg>Close Application</arg>
 <arg>${CALCULATOR_PID}</arg>
 <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" start="2026-06-03T23:59:02.185278" elapsed="0.001197"/>
+<status status="PASS" start="2026-06-04T16:22:57.081932" elapsed="0.000295"/>
 </kw>
 <kw name="Set Test Variable" owner="BuiltIn">
-<msg time="2026-06-03T23:59:02.188182" level="INFO">${CALCULATOR_PID} = </msg>
+<msg time="2026-06-04T16:22:57.082586" level="INFO">${CALCULATOR_PID} = </msg>
 <arg>${CALCULATOR_PID}</arg>
 <arg>${EMPTY}</arg>
 <doc>Makes a variable available everywhere within the scope of the current test.</doc>
-<status status="PASS" start="2026-06-03T23:59:02.186835" elapsed="0.001446"/>
+<status status="PASS" start="2026-06-04T16:22:57.082281" elapsed="0.000342"/>
 </kw>
-<status status="PASS" start="2026-06-03T23:59:02.095463" elapsed="0.093008"/>
+<status status="PASS" start="2026-06-04T16:22:57.057063" elapsed="0.025603"/>
 </kw>
-<status status="PASS" start="2026-06-03T23:58:59.392178" elapsed="2.796900"/>
+<status status="PASS" start="2026-06-04T16:22:55.244795" elapsed="1.837953"/>
 </test>
 <test id="s1-t2" name="Subtraction In Calculator" line="32">
 <kw name="Open Calculator">
 <kw name="Launch Application" owner="FlaUILibrary">
-<msg time="2026-06-03T23:59:02.253162" level="INFO">${pid} = 23320</msg>
+<msg time="2026-06-04T16:22:57.100308" level="INFO">${pid} = 13376</msg>
 <var>${pid}</var>
 <arg>${CALCULATOR_EXE}</arg>
 <doc>Launches an application.</doc>
-<status status="PASS" start="2026-06-03T23:59:02.192819" elapsed="0.060444"/>
+<status status="PASS" start="2026-06-04T16:22:57.083399" elapsed="0.016939"/>
 </kw>
 <kw name="Set Test Variable" owner="BuiltIn">
-<msg time="2026-06-03T23:59:02.254259" level="INFO">${CALCULATOR_PID} = 23320</msg>
+<msg time="2026-06-04T16:22:57.100632" level="INFO">${CALCULATOR_PID} = 13376</msg>
 <arg>${CALCULATOR_PID}</arg>
 <arg>${pid}</arg>
 <doc>Makes a variable available everywhere within the scope of the current test.</doc>
-<status status="PASS" start="2026-06-03T23:59:02.253591" elapsed="0.000761"/>
+<status status="PASS" start="2026-06-04T16:22:57.100422" elapsed="0.000249"/>
 </kw>
 <kw name="Wait Until Element Exist" owner="FlaUILibrary">
 <arg>${CALCULATOR_WINDOW}</arg>
 <doc>Waits until element exist or timeout was reached. If timeout was reached an FlaUIError occurred.</doc>
-<status status="PASS" start="2026-06-03T23:59:02.254581" elapsed="1.264957"/>
+<status status="PASS" start="2026-06-04T16:22:57.100743" elapsed="1.065696"/>
 </kw>
-<status status="PASS" start="2026-06-03T23:59:02.192234" elapsed="1.327471"/>
+<status status="PASS" start="2026-06-04T16:22:57.083279" elapsed="1.083257"/>
 </kw>
 <kw name="Click Button By Automation Id">
 <kw name="Click" owner="FlaUILibrary">
 <arg>${CALCULATOR_WINDOW}//Button[@AutomationId="${automation_id}"]</arg>
 <doc>Left click to element by an XPath.</doc>
-<status status="PASS" start="2026-06-03T23:59:03.520642" elapsed="0.300521"/>
+<status status="PASS" start="2026-06-04T16:22:58.166980" elapsed="0.129876"/>
 </kw>
 <arg>${BUTTON_CLEAR}</arg>
-<status status="PASS" start="2026-06-03T23:59:03.520155" elapsed="0.301185"/>
+<status status="PASS" start="2026-06-04T16:22:58.166773" elapsed="0.130205"/>
 </kw>
 <kw name="Click Button By Automation Id">
 <kw name="Click" owner="FlaUILibrary">
 <arg>${CALCULATOR_WINDOW}//Button[@AutomationId="${automation_id}"]</arg>
 <doc>Left click to element by an XPath.</doc>
-<status status="PASS" start="2026-06-03T23:59:03.822435" elapsed="0.267738"/>
+<status status="PASS" start="2026-06-04T16:22:58.297478" elapsed="0.132992"/>
 </kw>
 <arg>${BUTTON_DIGIT_7}</arg>
-<status status="PASS" start="2026-06-03T23:59:03.821924" elapsed="0.268549"/>
+<status status="PASS" start="2026-06-04T16:22:58.297260" elapsed="0.133328"/>
 </kw>
 <kw name="Click Button By Automation Id">
 <kw name="Click" owner="FlaUILibrary">
 <arg>${CALCULATOR_WINDOW}//Button[@AutomationId="${automation_id}"]</arg>
 <doc>Left click to element by an XPath.</doc>
-<status status="PASS" start="2026-06-03T23:59:04.091583" elapsed="0.335650"/>
+<status status="PASS" start="2026-06-04T16:22:58.431077" elapsed="0.134776"/>
 </kw>
 <arg>${BUTTON_SUBTRACT}</arg>
-<status status="PASS" start="2026-06-03T23:59:04.091110" elapsed="0.336616"/>
+<status status="PASS" start="2026-06-04T16:22:58.430847" elapsed="0.135071"/>
 </kw>
 <kw name="Click Button By Automation Id">
 <kw name="Click" owner="FlaUILibrary">
 <arg>${CALCULATOR_WINDOW}//Button[@AutomationId="${automation_id}"]</arg>
 <doc>Left click to element by an XPath.</doc>
-<status status="PASS" start="2026-06-03T23:59:04.429037" elapsed="0.195675"/>
+<status status="PASS" start="2026-06-04T16:22:58.566295" elapsed="0.139480"/>
 </kw>
 <arg>${BUTTON_DIGIT_5}</arg>
-<status status="PASS" start="2026-06-03T23:59:04.428485" elapsed="0.196751"/>
+<status status="PASS" start="2026-06-04T16:22:58.566109" elapsed="0.139778"/>
 </kw>
 <kw name="Click Button By Automation Id">
 <kw name="Click" owner="FlaUILibrary">
 <arg>${CALCULATOR_WINDOW}//Button[@AutomationId="${automation_id}"]</arg>
 <doc>Left click to element by an XPath.</doc>
-<status status="PASS" start="2026-06-03T23:59:04.626619" elapsed="0.185571"/>
+<status status="PASS" start="2026-06-04T16:22:58.706395" elapsed="0.136320"/>
 </kw>
 <arg>${BUTTON_EQUAL}</arg>
-<status status="PASS" start="2026-06-03T23:59:04.626077" elapsed="0.186368"/>
+<status status="PASS" start="2026-06-04T16:22:58.706169" elapsed="0.136606"/>
 </kw>
 <kw name="Result Should Be">
 <kw name="Get Name From Element" owner="FlaUILibrary">
-<msg time="2026-06-03T23:59:04.847209" level="INFO">${result} = Display is 5</msg>
+<msg time="2026-06-04T16:22:58.852684" level="INFO">${result} = Display is 2</msg>
 <var>${result}</var>
 <arg>${DISPLAY_VALUE}</arg>
 <doc>Return name value from element.</doc>
-<status status="PASS" start="2026-06-03T23:59:04.813869" elapsed="0.033437"/>
+<status status="PASS" start="2026-06-04T16:22:58.843135" elapsed="0.009573"/>
 </kw>
 <kw name="Should Contain" owner="BuiltIn">
-<msg time="2026-06-03T23:59:04.848409" level="FAIL">'Display is 5' does not contain '2'</msg>
 <arg>${result}</arg>
 <arg>${expected}</arg>
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="FAIL" start="2026-06-03T23:59:04.847612" elapsed="0.001208">'Display is 5' does not contain '2'</status>
+<status status="PASS" start="2026-06-04T16:22:58.852774" elapsed="0.000207"/>
 </kw>
 <arg>2</arg>
-<status status="FAIL" start="2026-06-03T23:59:04.813202" elapsed="0.035956">'Display is 5' does not contain '2'</status>
+<status status="PASS" start="2026-06-04T16:22:58.842971" elapsed="0.010047"/>
 </kw>
 <kw name="Close Calculator" type="TEARDOWN">
 <kw name="Run Keyword And Return Status" owner="BuiltIn">
@@ -230,136 +229,136 @@ If element could not be found by xpath False will be returned.</doc>
 <arg>${CALCULATOR_WINDOW}</arg>
 <doc>Checks if element exists. If element exists True will be returned otherwise False.
 If element could not be found by xpath False will be returned.</doc>
-<status status="PASS" start="2026-06-03T23:59:04.851125" elapsed="0.011284"/>
+<status status="PASS" start="2026-06-04T16:22:58.853662" elapsed="0.003294"/>
 </kw>
-<msg time="2026-06-03T23:59:04.862814" level="INFO">${exists} = True</msg>
+<msg time="2026-06-04T16:22:58.857029" level="INFO">${exists} = True</msg>
 <var>${exists}</var>
 <arg>Element Should Exist</arg>
 <arg>${CALCULATOR_WINDOW}</arg>
 <doc>Runs the specified keyword and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2026-06-03T23:59:04.850709" elapsed="0.012187"/>
+<status status="PASS" start="2026-06-04T16:22:58.853496" elapsed="0.003548"/>
 </kw>
 <kw name="Run Keyword If" owner="BuiltIn">
 <kw name="Close Window" owner="FlaUILibrary">
 <arg>${CALCULATOR_WINDOW}</arg>
 <doc>Try to close window from element.</doc>
-<status status="PASS" start="2026-06-03T23:59:04.864214" elapsed="0.023527"/>
+<status status="PASS" start="2026-06-04T16:22:58.857268" elapsed="0.006838"/>
 </kw>
 <arg>${exists}</arg>
 <arg>Close Window</arg>
 <arg>${CALCULATOR_WINDOW}</arg>
 <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" start="2026-06-03T23:59:04.863270" elapsed="0.024724"/>
+<status status="PASS" start="2026-06-04T16:22:58.857105" elapsed="0.007050"/>
 </kw>
 <kw name="Set Test Variable" owner="BuiltIn">
-<msg time="2026-06-03T23:59:04.889504" level="INFO">${CALCULATOR_PID} = </msg>
+<msg time="2026-06-04T16:22:58.864540" level="INFO">${CALCULATOR_PID} = </msg>
 <arg>${CALCULATOR_PID}</arg>
 <arg>${EMPTY}</arg>
 <doc>Makes a variable available everywhere within the scope of the current test.</doc>
-<status status="PASS" start="2026-06-03T23:59:04.888306" elapsed="0.001290"/>
+<status status="PASS" start="2026-06-04T16:22:58.864217" elapsed="0.000347"/>
 </kw>
 <kw name="Run Keyword If" owner="BuiltIn">
 <arg>'${CALCULATOR_PID}' != '${EMPTY}'</arg>
 <arg>Close Application</arg>
 <arg>${CALCULATOR_PID}</arg>
 <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" start="2026-06-03T23:59:04.889815" elapsed="0.000982"/>
+<status status="PASS" start="2026-06-04T16:22:58.864618" elapsed="0.000298"/>
 </kw>
 <kw name="Set Test Variable" owner="BuiltIn">
-<msg time="2026-06-03T23:59:04.891974" level="INFO">${CALCULATOR_PID} = </msg>
+<msg time="2026-06-04T16:22:58.865213" level="INFO">${CALCULATOR_PID} = </msg>
 <arg>${CALCULATOR_PID}</arg>
 <arg>${EMPTY}</arg>
 <doc>Makes a variable available everywhere within the scope of the current test.</doc>
-<status status="PASS" start="2026-06-03T23:59:04.890997" elapsed="0.001078"/>
+<status status="PASS" start="2026-06-04T16:22:58.864972" elapsed="0.000261"/>
 </kw>
-<status status="PASS" start="2026-06-03T23:59:04.850307" elapsed="0.041901"/>
+<status status="PASS" start="2026-06-04T16:22:58.853236" elapsed="0.012026"/>
 </kw>
-<status status="FAIL" start="2026-06-03T23:59:02.191281" elapsed="2.701311">'Display is 5' does not contain '2'</status>
+<status status="PASS" start="2026-06-04T16:22:57.083027" elapsed="1.782332"/>
 </test>
 <test id="s1-t3" name="Multiplication In Calculator" line="41">
 <kw name="Open Calculator">
 <kw name="Launch Application" owner="FlaUILibrary">
-<msg time="2026-06-03T23:59:04.962103" level="INFO">${pid} = 23136</msg>
+<msg time="2026-06-04T16:22:58.886652" level="INFO">${pid} = 8360</msg>
 <var>${pid}</var>
 <arg>${CALCULATOR_EXE}</arg>
 <doc>Launches an application.</doc>
-<status status="PASS" start="2026-06-03T23:59:04.898107" elapsed="0.064146"/>
+<status status="PASS" start="2026-06-04T16:22:58.866109" elapsed="0.020591"/>
 </kw>
 <kw name="Set Test Variable" owner="BuiltIn">
-<msg time="2026-06-03T23:59:04.963813" level="INFO">${CALCULATOR_PID} = 23136</msg>
+<msg time="2026-06-04T16:22:58.887048" level="INFO">${CALCULATOR_PID} = 8360</msg>
 <arg>${CALCULATOR_PID}</arg>
 <arg>${pid}</arg>
 <doc>Makes a variable available everywhere within the scope of the current test.</doc>
-<status status="PASS" start="2026-06-03T23:59:04.962768" elapsed="0.001197"/>
+<status status="PASS" start="2026-06-04T16:22:58.886804" elapsed="0.000273"/>
 </kw>
 <kw name="Wait Until Element Exist" owner="FlaUILibrary">
 <arg>${CALCULATOR_WINDOW}</arg>
 <doc>Waits until element exist or timeout was reached. If timeout was reached an FlaUIError occurred.</doc>
-<status status="PASS" start="2026-06-03T23:59:04.964396" elapsed="1.143560"/>
+<status status="PASS" start="2026-06-04T16:22:58.887189" elapsed="1.047776"/>
 </kw>
-<status status="PASS" start="2026-06-03T23:59:04.897357" elapsed="1.210820"/>
+<status status="PASS" start="2026-06-04T16:22:58.865929" elapsed="1.069138"/>
 </kw>
 <kw name="Click Button By Automation Id">
 <kw name="Click" owner="FlaUILibrary">
 <arg>${CALCULATOR_WINDOW}//Button[@AutomationId="${automation_id}"]</arg>
 <doc>Left click to element by an XPath.</doc>
-<status status="PASS" start="2026-06-03T23:59:06.109476" elapsed="0.212842"/>
+<status status="PASS" start="2026-06-04T16:22:59.935496" elapsed="0.132429"/>
 </kw>
 <arg>${BUTTON_CLEAR}</arg>
-<status status="PASS" start="2026-06-03T23:59:06.108818" elapsed="0.213728"/>
+<status status="PASS" start="2026-06-04T16:22:59.935293" elapsed="0.132732"/>
 </kw>
 <kw name="Click Button By Automation Id">
 <kw name="Click" owner="FlaUILibrary">
 <arg>${CALCULATOR_WINDOW}//Button[@AutomationId="${automation_id}"]</arg>
 <doc>Left click to element by an XPath.</doc>
-<status status="PASS" start="2026-06-03T23:59:06.323733" elapsed="0.189229"/>
+<status status="PASS" start="2026-06-04T16:23:00.068463" elapsed="0.144357"/>
 </kw>
 <arg>${BUTTON_DIGIT_7}</arg>
-<status status="PASS" start="2026-06-03T23:59:06.323163" elapsed="0.190157"/>
+<status status="PASS" start="2026-06-04T16:23:00.068268" elapsed="0.144637"/>
 </kw>
 <kw name="Click Button By Automation Id">
 <kw name="Click" owner="FlaUILibrary">
 <arg>${CALCULATOR_WINDOW}//Button[@AutomationId="${automation_id}"]</arg>
 <doc>Left click to element by an XPath.</doc>
-<status status="PASS" start="2026-06-03T23:59:06.514725" elapsed="0.182327"/>
+<status status="PASS" start="2026-06-04T16:23:00.213271" elapsed="0.139361"/>
 </kw>
 <arg>${BUTTON_MULTIPLY}</arg>
-<status status="PASS" start="2026-06-03T23:59:06.514028" elapsed="0.183330"/>
+<status status="PASS" start="2026-06-04T16:23:00.213090" elapsed="0.139661"/>
 </kw>
 <kw name="Click Button By Automation Id">
 <kw name="Click" owner="FlaUILibrary">
 <arg>${CALCULATOR_WINDOW}//Button[@AutomationId="${automation_id}"]</arg>
 <doc>Left click to element by an XPath.</doc>
-<status status="PASS" start="2026-06-03T23:59:06.698533" elapsed="0.190622"/>
+<status status="PASS" start="2026-06-04T16:23:00.353262" elapsed="0.137569"/>
 </kw>
 <arg>${BUTTON_DIGIT_5}</arg>
-<status status="PASS" start="2026-06-03T23:59:06.697944" elapsed="0.191450"/>
+<status status="PASS" start="2026-06-04T16:23:00.353038" elapsed="0.137910"/>
 </kw>
 <kw name="Click Button By Automation Id">
 <kw name="Click" owner="FlaUILibrary">
 <arg>${CALCULATOR_WINDOW}//Button[@AutomationId="${automation_id}"]</arg>
 <doc>Left click to element by an XPath.</doc>
-<status status="PASS" start="2026-06-03T23:59:06.890528" elapsed="0.183817"/>
+<status status="PASS" start="2026-06-04T16:23:00.491424" elapsed="0.137621"/>
 </kw>
 <arg>${BUTTON_EQUAL}</arg>
-<status status="PASS" start="2026-06-03T23:59:06.890003" elapsed="0.184640"/>
+<status status="PASS" start="2026-06-04T16:23:00.491209" elapsed="0.137949"/>
 </kw>
 <kw name="Result Should Be">
 <kw name="Get Name From Element" owner="FlaUILibrary">
-<msg time="2026-06-03T23:59:07.106273" level="INFO">${result} = Display is 35</msg>
+<msg time="2026-06-04T16:23:00.643089" level="INFO">${result} = Display is 35</msg>
 <var>${result}</var>
 <arg>${DISPLAY_VALUE}</arg>
 <doc>Return name value from element.</doc>
-<status status="PASS" start="2026-06-03T23:59:07.075738" elapsed="0.030627"/>
+<status status="PASS" start="2026-06-04T16:23:00.629697" elapsed="0.013427"/>
 </kw>
 <kw name="Should Contain" owner="BuiltIn">
 <arg>${result}</arg>
 <arg>${expected}</arg>
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="PASS" start="2026-06-03T23:59:07.106657" elapsed="0.000648"/>
+<status status="PASS" start="2026-06-04T16:23:00.643228" elapsed="0.000213"/>
 </kw>
 <arg>35</arg>
-<status status="PASS" start="2026-06-03T23:59:07.075272" elapsed="0.032152"/>
+<status status="PASS" start="2026-06-04T16:23:00.629465" elapsed="0.014014"/>
 </kw>
 <kw name="Close Calculator" type="TEARDOWN">
 <kw name="Run Keyword And Return Status" owner="BuiltIn">
@@ -367,136 +366,136 @@ If element could not be found by xpath False will be returned.</doc>
 <arg>${CALCULATOR_WINDOW}</arg>
 <doc>Checks if element exists. If element exists True will be returned otherwise False.
 If element could not be found by xpath False will be returned.</doc>
-<status status="PASS" start="2026-06-03T23:59:07.109588" elapsed="0.009045"/>
+<status status="PASS" start="2026-06-04T16:23:00.643918" elapsed="0.004273"/>
 </kw>
-<msg time="2026-06-03T23:59:07.118896" level="INFO">${exists} = True</msg>
+<msg time="2026-06-04T16:23:00.648279" level="INFO">${exists} = True</msg>
 <var>${exists}</var>
 <arg>Element Should Exist</arg>
 <arg>${CALCULATOR_WINDOW}</arg>
 <doc>Runs the specified keyword and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2026-06-03T23:59:07.109107" elapsed="0.009835"/>
+<status status="PASS" start="2026-06-04T16:23:00.643782" elapsed="0.004517"/>
 </kw>
 <kw name="Run Keyword If" owner="BuiltIn">
 <kw name="Close Window" owner="FlaUILibrary">
 <arg>${CALCULATOR_WINDOW}</arg>
 <doc>Try to close window from element.</doc>
-<status status="PASS" start="2026-06-03T23:59:07.119708" elapsed="0.036705"/>
+<status status="PASS" start="2026-06-04T16:23:00.648531" elapsed="0.008313"/>
 </kw>
 <arg>${exists}</arg>
 <arg>Close Window</arg>
 <arg>${CALCULATOR_WINDOW}</arg>
 <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" start="2026-06-03T23:59:07.119164" elapsed="0.037507"/>
+<status status="PASS" start="2026-06-04T16:23:00.648368" elapsed="0.008527"/>
 </kw>
 <kw name="Set Test Variable" owner="BuiltIn">
-<msg time="2026-06-03T23:59:07.158487" level="INFO">${CALCULATOR_PID} = </msg>
+<msg time="2026-06-04T16:23:00.657287" level="INFO">${CALCULATOR_PID} = </msg>
 <arg>${CALCULATOR_PID}</arg>
 <arg>${EMPTY}</arg>
 <doc>Makes a variable available everywhere within the scope of the current test.</doc>
-<status status="PASS" start="2026-06-03T23:59:07.156948" elapsed="0.001634"/>
+<status status="PASS" start="2026-06-04T16:23:00.656958" elapsed="0.000353"/>
 </kw>
 <kw name="Run Keyword If" owner="BuiltIn">
 <arg>'${CALCULATOR_PID}' != '${EMPTY}'</arg>
 <arg>Close Application</arg>
 <arg>${CALCULATOR_PID}</arg>
 <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" start="2026-06-03T23:59:07.158836" elapsed="0.001282"/>
+<status status="PASS" start="2026-06-04T16:23:00.657366" elapsed="0.000288"/>
 </kw>
 <kw name="Set Test Variable" owner="BuiltIn">
-<msg time="2026-06-03T23:59:07.162183" level="INFO">${CALCULATOR_PID} = </msg>
+<msg time="2026-06-04T16:23:00.657948" level="INFO">${CALCULATOR_PID} = </msg>
 <arg>${CALCULATOR_PID}</arg>
 <arg>${EMPTY}</arg>
 <doc>Makes a variable available everywhere within the scope of the current test.</doc>
-<status status="PASS" start="2026-06-03T23:59:07.160834" elapsed="0.001477"/>
+<status status="PASS" start="2026-06-04T16:23:00.657708" elapsed="0.000259"/>
 </kw>
-<status status="PASS" start="2026-06-03T23:59:07.108251" elapsed="0.054257"/>
+<status status="PASS" start="2026-06-04T16:23:00.643646" elapsed="0.014351"/>
 </kw>
-<status status="PASS" start="2026-06-03T23:59:04.896207" elapsed="2.266874"/>
+<status status="PASS" start="2026-06-04T16:22:58.865670" elapsed="1.792420"/>
 </test>
 <test id="s1-t4" name="Division In Calculator" line="50">
 <kw name="Open Calculator">
 <kw name="Launch Application" owner="FlaUILibrary">
-<msg time="2026-06-03T23:59:07.244650" level="INFO">${pid} = 15440</msg>
+<msg time="2026-06-04T16:23:00.679900" level="INFO">${pid} = 17436</msg>
 <var>${pid}</var>
 <arg>${CALCULATOR_EXE}</arg>
 <doc>Launches an application.</doc>
-<status status="PASS" start="2026-06-03T23:59:07.167414" elapsed="0.077388"/>
+<status status="PASS" start="2026-06-04T16:23:00.658809" elapsed="0.021122"/>
 </kw>
 <kw name="Set Test Variable" owner="BuiltIn">
-<msg time="2026-06-03T23:59:07.246213" level="INFO">${CALCULATOR_PID} = 15440</msg>
+<msg time="2026-06-04T16:23:00.680215" level="INFO">${CALCULATOR_PID} = 17436</msg>
 <arg>${CALCULATOR_PID}</arg>
 <arg>${pid}</arg>
 <doc>Makes a variable available everywhere within the scope of the current test.</doc>
-<status status="PASS" start="2026-06-03T23:59:07.245256" elapsed="0.001105"/>
+<status status="PASS" start="2026-06-04T16:23:00.680026" elapsed="0.000210"/>
 </kw>
 <kw name="Wait Until Element Exist" owner="FlaUILibrary">
 <arg>${CALCULATOR_WINDOW}</arg>
 <doc>Waits until element exist or timeout was reached. If timeout was reached an FlaUIError occurred.</doc>
-<status status="PASS" start="2026-06-03T23:59:07.246711" elapsed="1.114975"/>
+<status status="PASS" start="2026-06-04T16:23:00.680295" elapsed="1.044595"/>
 </kw>
-<status status="PASS" start="2026-06-03T23:59:07.166933" elapsed="1.194980"/>
+<status status="PASS" start="2026-06-04T16:23:00.658666" elapsed="1.066323"/>
 </kw>
 <kw name="Click Button By Automation Id">
 <kw name="Click" owner="FlaUILibrary">
 <arg>${CALCULATOR_WINDOW}//Button[@AutomationId="${automation_id}"]</arg>
 <doc>Left click to element by an XPath.</doc>
-<status status="PASS" start="2026-06-03T23:59:08.363042" elapsed="0.229667"/>
+<status status="PASS" start="2026-06-04T16:23:01.725425" elapsed="0.127730"/>
 </kw>
 <arg>${BUTTON_CLEAR}</arg>
-<status status="PASS" start="2026-06-03T23:59:08.362479" elapsed="0.230466"/>
+<status status="PASS" start="2026-06-04T16:23:01.725219" elapsed="0.128051"/>
 </kw>
 <kw name="Click Button By Automation Id">
 <kw name="Click" owner="FlaUILibrary">
 <arg>${CALCULATOR_WINDOW}//Button[@AutomationId="${automation_id}"]</arg>
 <doc>Left click to element by an XPath.</doc>
-<status status="PASS" start="2026-06-03T23:59:08.594248" elapsed="0.200119"/>
+<status status="PASS" start="2026-06-04T16:23:01.854060" elapsed="0.130896"/>
 </kw>
 <arg>${BUTTON_DIGIT_9}</arg>
-<status status="PASS" start="2026-06-03T23:59:08.593524" elapsed="0.201189"/>
+<status status="PASS" start="2026-06-04T16:23:01.853578" elapsed="0.131474"/>
 </kw>
 <kw name="Click Button By Automation Id">
 <kw name="Click" owner="FlaUILibrary">
 <arg>${CALCULATOR_WINDOW}//Button[@AutomationId="${automation_id}"]</arg>
 <doc>Left click to element by an XPath.</doc>
-<status status="PASS" start="2026-06-03T23:59:08.796019" elapsed="0.175178"/>
+<status status="PASS" start="2026-06-04T16:23:01.985520" elapsed="0.128127"/>
 </kw>
 <arg>${BUTTON_DIVIDE}</arg>
-<status status="PASS" start="2026-06-03T23:59:08.795465" elapsed="0.175980"/>
+<status status="PASS" start="2026-06-04T16:23:01.985302" elapsed="0.128455"/>
 </kw>
 <kw name="Click Button By Automation Id">
 <kw name="Click" owner="FlaUILibrary">
 <arg>${CALCULATOR_WINDOW}//Button[@AutomationId="${automation_id}"]</arg>
 <doc>Left click to element by an XPath.</doc>
-<status status="PASS" start="2026-06-03T23:59:08.972526" elapsed="0.206225"/>
+<status status="PASS" start="2026-06-04T16:23:02.114525" elapsed="0.131807"/>
 </kw>
 <arg>${BUTTON_DIGIT_3}</arg>
-<status status="PASS" start="2026-06-03T23:59:08.972019" elapsed="0.206976"/>
+<status status="PASS" start="2026-06-04T16:23:02.114120" elapsed="0.132346"/>
 </kw>
 <kw name="Click Button By Automation Id">
 <kw name="Click" owner="FlaUILibrary">
 <arg>${CALCULATOR_WINDOW}//Button[@AutomationId="${automation_id}"]</arg>
 <doc>Left click to element by an XPath.</doc>
-<status status="PASS" start="2026-06-03T23:59:09.180236" elapsed="0.183673"/>
+<status status="PASS" start="2026-06-04T16:23:02.247002" elapsed="0.130604"/>
 </kw>
 <arg>${BUTTON_EQUAL}</arg>
-<status status="PASS" start="2026-06-03T23:59:09.179765" elapsed="0.184446"/>
+<status status="PASS" start="2026-06-04T16:23:02.246773" elapsed="0.131009"/>
 </kw>
 <kw name="Result Should Be">
 <kw name="Get Name From Element" owner="FlaUILibrary">
-<msg time="2026-06-03T23:59:09.396485" level="INFO">${result} = Display is 3</msg>
+<msg time="2026-06-04T16:23:02.387681" level="INFO">${result} = Display is 3</msg>
 <var>${result}</var>
 <arg>${DISPLAY_VALUE}</arg>
 <doc>Return name value from element.</doc>
-<status status="PASS" start="2026-06-03T23:59:09.365446" elapsed="0.031156"/>
+<status status="PASS" start="2026-06-04T16:23:02.378366" elapsed="0.009343"/>
 </kw>
 <kw name="Should Contain" owner="BuiltIn">
 <arg>${result}</arg>
 <arg>${expected}</arg>
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="PASS" start="2026-06-03T23:59:09.396969" elapsed="0.001020"/>
+<status status="PASS" start="2026-06-04T16:23:02.387777" elapsed="0.000206"/>
 </kw>
 <arg>3</arg>
-<status status="PASS" start="2026-06-03T23:59:09.364845" elapsed="0.033283"/>
+<status status="PASS" start="2026-06-04T16:23:02.378103" elapsed="0.009916"/>
 </kw>
 <kw name="Close Calculator" type="TEARDOWN">
 <kw name="Run Keyword And Return Status" owner="BuiltIn">
@@ -504,145 +503,145 @@ If element could not be found by xpath False will be returned.</doc>
 <arg>${CALCULATOR_WINDOW}</arg>
 <doc>Checks if element exists. If element exists True will be returned otherwise False.
 If element could not be found by xpath False will be returned.</doc>
-<status status="PASS" start="2026-06-03T23:59:09.399672" elapsed="0.007367"/>
+<status status="PASS" start="2026-06-04T16:23:02.388548" elapsed="0.003681"/>
 </kw>
-<msg time="2026-06-03T23:59:09.407243" level="INFO">${exists} = True</msg>
+<msg time="2026-06-04T16:23:02.392314" level="INFO">${exists} = True</msg>
 <var>${exists}</var>
 <arg>Element Should Exist</arg>
 <arg>${CALCULATOR_WINDOW}</arg>
 <doc>Runs the specified keyword and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2026-06-03T23:59:09.399252" elapsed="0.008032"/>
+<status status="PASS" start="2026-06-04T16:23:02.388371" elapsed="0.003972"/>
 </kw>
 <kw name="Run Keyword If" owner="BuiltIn">
 <kw name="Close Window" owner="FlaUILibrary">
 <arg>${CALCULATOR_WINDOW}</arg>
 <doc>Try to close window from element.</doc>
-<status status="PASS" start="2026-06-03T23:59:09.407919" elapsed="0.022348"/>
+<status status="PASS" start="2026-06-04T16:23:02.392619" elapsed="0.007166"/>
 </kw>
 <arg>${exists}</arg>
 <arg>Close Window</arg>
 <arg>${CALCULATOR_WINDOW}</arg>
 <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" start="2026-06-03T23:59:09.407462" elapsed="0.023229"/>
+<status status="PASS" start="2026-06-04T16:23:02.392431" elapsed="0.007401"/>
 </kw>
 <kw name="Set Test Variable" owner="BuiltIn">
-<msg time="2026-06-03T23:59:09.432641" level="INFO">${CALCULATOR_PID} = </msg>
+<msg time="2026-06-04T16:23:02.400218" level="INFO">${CALCULATOR_PID} = </msg>
 <arg>${CALCULATOR_PID}</arg>
 <arg>${EMPTY}</arg>
 <doc>Makes a variable available everywhere within the scope of the current test.</doc>
-<status status="PASS" start="2026-06-03T23:59:09.431118" elapsed="0.001659"/>
+<status status="PASS" start="2026-06-04T16:23:02.399893" elapsed="0.000363"/>
 </kw>
 <kw name="Run Keyword If" owner="BuiltIn">
 <arg>'${CALCULATOR_PID}' != '${EMPTY}'</arg>
 <arg>Close Application</arg>
 <arg>${CALCULATOR_PID}</arg>
 <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" start="2026-06-03T23:59:09.433098" elapsed="0.001190"/>
+<status status="PASS" start="2026-06-04T16:23:02.400312" elapsed="0.000303"/>
 </kw>
 <kw name="Set Test Variable" owner="BuiltIn">
-<msg time="2026-06-03T23:59:09.435714" level="INFO">${CALCULATOR_PID} = </msg>
+<msg time="2026-06-04T16:23:02.400925" level="INFO">${CALCULATOR_PID} = </msg>
 <arg>${CALCULATOR_PID}</arg>
 <arg>${EMPTY}</arg>
 <doc>Makes a variable available everywhere within the scope of the current test.</doc>
-<status status="PASS" start="2026-06-03T23:59:09.434554" elapsed="0.001281"/>
+<status status="PASS" start="2026-06-04T16:23:02.400669" elapsed="0.000277"/>
 </kw>
-<status status="PASS" start="2026-06-03T23:59:09.398804" elapsed="0.037232"/>
+<status status="PASS" start="2026-06-04T16:23:02.388224" elapsed="0.012753"/>
 </kw>
-<status status="PASS" start="2026-06-03T23:59:07.165669" elapsed="2.272280"/>
+<status status="PASS" start="2026-06-04T16:23:00.658429" elapsed="1.742633"/>
 </test>
 <test id="s1-t5" name="Negation In Calculator" line="59">
 <kw name="Open Calculator">
 <kw name="Launch Application" owner="FlaUILibrary">
-<msg time="2026-06-03T23:59:09.523279" level="INFO">${pid} = 24404</msg>
+<msg time="2026-06-04T16:23:02.418161" level="INFO">${pid} = 4656</msg>
 <var>${pid}</var>
 <arg>${CALCULATOR_EXE}</arg>
 <doc>Launches an application.</doc>
-<status status="PASS" start="2026-06-03T23:59:09.442670" elapsed="0.080701"/>
+<status status="PASS" start="2026-06-04T16:23:02.401730" elapsed="0.016459"/>
 </kw>
 <kw name="Set Test Variable" owner="BuiltIn">
-<msg time="2026-06-03T23:59:09.524518" level="INFO">${CALCULATOR_PID} = 24404</msg>
+<msg time="2026-06-04T16:23:02.418443" level="INFO">${CALCULATOR_PID} = 4656</msg>
 <arg>${CALCULATOR_PID}</arg>
 <arg>${pid}</arg>
 <doc>Makes a variable available everywhere within the scope of the current test.</doc>
-<status status="PASS" start="2026-06-03T23:59:09.523721" elapsed="0.000935"/>
+<status status="PASS" start="2026-06-04T16:23:02.418271" elapsed="0.000193"/>
 </kw>
 <kw name="Wait Until Element Exist" owner="FlaUILibrary">
 <arg>${CALCULATOR_WINDOW}</arg>
 <doc>Waits until element exist or timeout was reached. If timeout was reached an FlaUIError occurred.</doc>
-<status status="PASS" start="2026-06-03T23:59:09.524972" elapsed="1.077992"/>
+<status status="PASS" start="2026-06-04T16:23:02.418519" elapsed="1.062035"/>
 </kw>
-<status status="PASS" start="2026-06-03T23:59:09.442056" elapsed="1.161127"/>
+<status status="PASS" start="2026-06-04T16:23:02.401599" elapsed="1.079063"/>
 </kw>
 <kw name="Click Button By Automation Id">
 <kw name="Click" owner="FlaUILibrary">
 <arg>${CALCULATOR_WINDOW}//Button[@AutomationId="${automation_id}"]</arg>
 <doc>Left click to element by an XPath.</doc>
-<status status="PASS" start="2026-06-03T23:59:10.604201" elapsed="0.230208"/>
+<status status="PASS" start="2026-06-04T16:23:03.481103" elapsed="0.128788"/>
 </kw>
 <arg>${BUTTON_CLEAR}</arg>
-<status status="PASS" start="2026-06-03T23:59:10.603679" elapsed="0.231001"/>
+<status status="PASS" start="2026-06-04T16:23:03.480894" elapsed="0.129097"/>
 </kw>
 <kw name="Click Button By Automation Id">
 <kw name="Click" owner="FlaUILibrary">
 <arg>${CALCULATOR_WINDOW}//Button[@AutomationId="${automation_id}"]</arg>
 <doc>Left click to element by an XPath.</doc>
-<status status="PASS" start="2026-06-03T23:59:10.835796" elapsed="0.191551"/>
+<status status="PASS" start="2026-06-04T16:23:03.610574" elapsed="0.128200"/>
 </kw>
 <arg>${BUTTON_DIGIT_5}</arg>
-<status status="PASS" start="2026-06-03T23:59:10.835284" elapsed="0.192361"/>
+<status status="PASS" start="2026-06-04T16:23:03.610343" elapsed="0.128495"/>
 </kw>
 <kw name="Click Button By Automation Id">
 <kw name="Click" owner="FlaUILibrary">
 <arg>${CALCULATOR_WINDOW}//Button[@AutomationId="${automation_id}"]</arg>
 <doc>Left click to element by an XPath.</doc>
-<status status="PASS" start="2026-06-03T23:59:11.028897" elapsed="0.197656"/>
+<status status="PASS" start="2026-06-04T16:23:03.739391" elapsed="0.140845"/>
 </kw>
 <arg>${BUTTON_NEGATE}</arg>
-<status status="PASS" start="2026-06-03T23:59:11.028253" elapsed="0.198530"/>
+<status status="PASS" start="2026-06-04T16:23:03.739128" elapsed="0.141241"/>
 </kw>
 <kw name="Click Button By Automation Id">
 <kw name="Click" owner="FlaUILibrary">
 <arg>${CALCULATOR_WINDOW}//Button[@AutomationId="${automation_id}"]</arg>
 <doc>Left click to element by an XPath.</doc>
-<status status="PASS" start="2026-06-03T23:59:11.227889" elapsed="0.180546"/>
+<status status="PASS" start="2026-06-04T16:23:03.881187" elapsed="0.137296"/>
 </kw>
 <arg>${BUTTTON_ADD}</arg>
-<status status="PASS" start="2026-06-03T23:59:11.227417" elapsed="0.181285"/>
+<status status="PASS" start="2026-06-04T16:23:03.880720" elapsed="0.137901"/>
 </kw>
 <kw name="Click Button By Automation Id">
 <kw name="Click" owner="FlaUILibrary">
 <arg>${CALCULATOR_WINDOW}//Button[@AutomationId="${automation_id}"]</arg>
 <doc>Left click to element by an XPath.</doc>
-<status status="PASS" start="2026-06-03T23:59:11.409784" elapsed="0.182347"/>
+<status status="PASS" start="2026-06-04T16:23:04.019200" elapsed="0.137557"/>
 </kw>
 <arg>${BUTTON_DIGIT_7}</arg>
-<status status="PASS" start="2026-06-03T23:59:11.409256" elapsed="0.183133"/>
+<status status="PASS" start="2026-06-04T16:23:04.018932" elapsed="0.137958"/>
 </kw>
 <kw name="Click Button By Automation Id">
 <kw name="Click" owner="FlaUILibrary">
 <arg>${CALCULATOR_WINDOW}//Button[@AutomationId="${automation_id}"]</arg>
 <doc>Left click to element by an XPath.</doc>
-<status status="PASS" start="2026-06-03T23:59:11.593435" elapsed="0.190572"/>
+<status status="PASS" start="2026-06-04T16:23:04.157471" elapsed="0.122962"/>
 </kw>
 <arg>${BUTTON_EQUAL}</arg>
-<status status="PASS" start="2026-06-03T23:59:11.592945" elapsed="0.191534"/>
+<status status="PASS" start="2026-06-04T16:23:04.157197" elapsed="0.123398"/>
 </kw>
 <kw name="Result Should Be">
 <kw name="Get Name From Element" owner="FlaUILibrary">
-<msg time="2026-06-03T23:59:11.818029" level="INFO">${result} = Display is 2</msg>
+<msg time="2026-06-04T16:23:04.290743" level="INFO">${result} = Display is 2</msg>
 <var>${result}</var>
 <arg>${DISPLAY_VALUE}</arg>
 <doc>Return name value from element.</doc>
-<status status="PASS" start="2026-06-03T23:59:11.785772" elapsed="0.032347"/>
+<status status="PASS" start="2026-06-04T16:23:04.281146" elapsed="0.009622"/>
 </kw>
 <kw name="Should Contain" owner="BuiltIn">
 <arg>${result}</arg>
 <arg>${expected}</arg>
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="PASS" start="2026-06-03T23:59:11.818422" elapsed="0.000751"/>
+<status status="PASS" start="2026-06-04T16:23:04.290839" elapsed="0.000209"/>
 </kw>
 <arg>2</arg>
-<status status="PASS" start="2026-06-03T23:59:11.785282" elapsed="0.034086"/>
+<status status="PASS" start="2026-06-04T16:23:04.280895" elapsed="0.010202"/>
 </kw>
 <kw name="Close Calculator" type="TEARDOWN">
 <kw name="Run Keyword And Return Status" owner="BuiltIn">
@@ -650,62 +649,62 @@ If element could not be found by xpath False will be returned.</doc>
 <arg>${CALCULATOR_WINDOW}</arg>
 <doc>Checks if element exists. If element exists True will be returned otherwise False.
 If element could not be found by xpath False will be returned.</doc>
-<status status="PASS" start="2026-06-03T23:59:11.821062" elapsed="0.009794"/>
+<status status="PASS" start="2026-06-04T16:23:04.291609" elapsed="0.003325"/>
 </kw>
-<msg time="2026-06-03T23:59:11.831120" level="INFO">${exists} = True</msg>
+<msg time="2026-06-04T16:23:04.295005" level="INFO">${exists} = True</msg>
 <var>${exists}</var>
 <arg>Element Should Exist</arg>
 <arg>${CALCULATOR_WINDOW}</arg>
 <doc>Runs the specified keyword and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2026-06-03T23:59:11.820602" elapsed="0.010568"/>
+<status status="PASS" start="2026-06-04T16:23:04.291445" elapsed="0.003577"/>
 </kw>
 <kw name="Run Keyword If" owner="BuiltIn">
 <kw name="Close Window" owner="FlaUILibrary">
 <arg>${CALCULATOR_WINDOW}</arg>
 <doc>Try to close window from element.</doc>
-<status status="PASS" start="2026-06-03T23:59:11.831943" elapsed="0.020967"/>
+<status status="PASS" start="2026-06-04T16:23:04.295247" elapsed="0.007069"/>
 </kw>
 <arg>${exists}</arg>
 <arg>Close Window</arg>
 <arg>${CALCULATOR_WINDOW}</arg>
 <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" start="2026-06-03T23:59:11.831401" elapsed="0.021751"/>
+<status status="PASS" start="2026-06-04T16:23:04.295086" elapsed="0.007279"/>
 </kw>
 <kw name="Set Test Variable" owner="BuiltIn">
-<msg time="2026-06-03T23:59:11.855298" level="INFO">${CALCULATOR_PID} = </msg>
+<msg time="2026-06-04T16:23:04.302753" level="INFO">${CALCULATOR_PID} = </msg>
 <arg>${CALCULATOR_PID}</arg>
 <arg>${EMPTY}</arg>
 <doc>Makes a variable available everywhere within the scope of the current test.</doc>
-<status status="PASS" start="2026-06-03T23:59:11.853466" elapsed="0.001967"/>
+<status status="PASS" start="2026-06-04T16:23:04.302428" elapsed="0.000357"/>
 </kw>
 <kw name="Run Keyword If" owner="BuiltIn">
 <arg>'${CALCULATOR_PID}' != '${EMPTY}'</arg>
 <arg>Close Application</arg>
 <arg>${CALCULATOR_PID}</arg>
 <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" start="2026-06-03T23:59:11.855736" elapsed="0.001281"/>
+<status status="PASS" start="2026-06-04T16:23:04.302841" elapsed="0.000286"/>
 </kw>
 <kw name="Set Test Variable" owner="BuiltIn">
-<msg time="2026-06-03T23:59:11.858546" level="INFO">${CALCULATOR_PID} = </msg>
+<msg time="2026-06-04T16:23:04.303421" level="INFO">${CALCULATOR_PID} = </msg>
 <arg>${CALCULATOR_PID}</arg>
 <arg>${EMPTY}</arg>
 <doc>Makes a variable available everywhere within the scope of the current test.</doc>
-<status status="PASS" start="2026-06-03T23:59:11.857305" elapsed="0.001339"/>
+<status status="PASS" start="2026-06-04T16:23:04.303181" elapsed="0.000260"/>
 </kw>
-<status status="PASS" start="2026-06-03T23:59:11.820095" elapsed="0.038713"/>
+<status status="PASS" start="2026-06-04T16:23:04.291293" elapsed="0.012177"/>
 </kw>
-<status status="PASS" start="2026-06-03T23:59:09.440378" elapsed="2.424972"/>
+<status status="PASS" start="2026-06-04T16:23:02.401342" elapsed="1.902273"/>
 </test>
-<status status="FAIL" start="2026-06-03T23:58:58.096791" elapsed="13.770129"/>
+<status status="PASS" start="2026-06-04T16:22:54.968179" elapsed="9.335798"/>
 </suite>
 <statistics>
 <total>
-<stat pass="4" fail="1" skip="0">All Tests</stat>
+<stat pass="5" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat name="Calculator Win11Calc" id="s1" pass="4" fail="1" skip="0">Calculator Win11Calc</stat>
+<stat name="Calculator Win11Calc" id="s1" pass="5" fail="0" skip="0">Calculator Win11Calc</stat>
 </suite>
 </statistics>
 <errors>
