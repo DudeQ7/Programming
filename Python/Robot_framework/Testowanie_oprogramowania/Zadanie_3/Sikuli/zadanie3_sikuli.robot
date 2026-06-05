@@ -50,6 +50,7 @@ Multiplication In Calculator
     Screen Should Contain    result_35.png
 *** Keywords ***
 Reset Environment
+    Set Min Similarity    0.90
     # Zamykamy procesy biblioteką
     Terminate All Processes
     # Wymuszamy zamknięcie przez system operacyjny
