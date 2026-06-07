@@ -44,3 +44,19 @@ emerytura wiek plec = case plec of
         show (60 - wiek) ++ " lat"
         else "Jestes na emeryturze od: " ++ show(wiek-60) ++ " lat"
     _ -> "Nieprawidlowa plec"
+-- Miesiac
+miesiac__jako_pora_roku :: Int -> String
+miesiac__jako_pora_roku miesiac = case miesiac of
+    12 -> "zima"
+    1 -> "zima"
+    2 -> "zima"
+    3 -> "wiosna"
+    4 -> "wiosna"
+    5 -> "wiosna"
+    6 -> "lato"
+    7 -> "lato"
+    8 -> "lato"
+    9 -> "jesien"
+    10 -> "jesien" 
+    11 -> "jesien" 
+    _ -> "Bledny miesiac"
