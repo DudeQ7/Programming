@@ -30,3 +30,17 @@ rabat cena
     | cena <= 100 = "Rabat 10%"
     | cena <= 200 = "Rabat 12%"
     | otherwise = "Rabat 13%"
+-- Rok 
+rok :: Int -> String 
+rok r = if r `mod` 4 == 0 && (r `mod` 100 /= 0 || r `mod` 400 == 0) then "Rok przestepny" else "Rok nieprzestepny"
+-- Emerytura
+emerytura :: Int -> String -> String 
+emerytura wiek plec = case plec of
+    "m" -> if wiek <65
+        then "Do emerytury pozostalo: " ++ show (65 - wiek)  ++ " lat"
+        else "Jestes na emeryturze od: " ++ show(wiek-65) ++ " lat"
+    "k" -> if wiek <60 
+        then "Do emerytury pozostalo: " ++ 
+        show (60 - wiek) ++ " lat"
+        else "Jestes na emeryturze od: " ++ show(wiek-60) ++ " lat"
+    _ -> "Nieprawidlowa plec"
