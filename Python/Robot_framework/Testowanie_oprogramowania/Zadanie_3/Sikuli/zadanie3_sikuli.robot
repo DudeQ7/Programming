@@ -38,14 +38,14 @@ ${SIKULI_STARTED}       ${FALSE}
 Test Addition 7 + 5
     Execute Arithmetic Operation    ${BTN_7}    ${BTN_ADD}    ${BTN_5}    wynik_12.png
 
-Test Division 5 / 2
-    Execute Arithmetic Operation    ${BTN_5}    ${BTN_DIV}    ${BTN_2}    wynik_2.5.png
+Test Subtraction 7 - 3
+    Execute Arithmetic Operation    ${BTN_7}    ${BTN_DIV}    ${BTN_3}    wynik_4.png
 
 Test Multiplication 6 * 7
     Execute Arithmetic Operation    ${BTN_6}    ${BTN_MULT}    ${BTN_7}    wynik_42.png
 
 Test Division 8 / 2
-    Execute Arithmetic Operation    ${BTN_8}    ${BTN_DIV}    ${BTN_2}    wynik_4.png
+    Execute Arithmetic Operation    ${BTN_8}    ${BTN_SUB}    ${BTN_2}    wynik_4.png
 
 *** Keywords ***
 Configure Sikuli
