@@ -23,4 +23,10 @@ dziencase dzien = case dzien of --deklaracja case'a
 -- Funkcja parzysta 
 parzysta :: Int -> String 
 parzysta n = if even n then "Parzysta" else "Nieparzysta"
-
+-- Rabat 
+rabat :: Float -> String 
+rabat cena 
+    | cena < 0 = "Kwota jest ujemna"
+    | cena <= 100 = "Rabat 10%"
+    | cena <= 200 = "Rabat 12%"
+    | otherwise = "Rabat 13%"
