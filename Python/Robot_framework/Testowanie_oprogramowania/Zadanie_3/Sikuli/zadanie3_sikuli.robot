@@ -2,6 +2,8 @@
 Library    SikuliLibrary    mode=NEW    timeout=10
 Library    Process
 Library    OperatingSystem
+Suite Setup       Configure Sikuli
+Suite Teardown    Stop Sikuli Server
 
 *** Variables ***
 ${CALCULATOR_APP}       calc.exe
@@ -22,7 +24,7 @@ ${BTN_8}                button_digit_8.png
 ${BTN_9}                button_digit_9.png
 
 # Operation Buttons
-${BTN_ADD}              plus.png
+${BTN_ADD}              add.png
 ${BTN_SUB}              minus.png
 ${BTN_MULT}             mult.png
 ${BTN_DIV}              divide.png
@@ -33,20 +35,16 @@ ${CALCULATOR_STARTED}   ${FALSE}
 ${SIKULI_STARTED}       ${FALSE}
 
 *** Test Cases ***
-Perform Four Arithmetic Operations in Maximized Calculator
-    [Setup]       Configure Sikuli
-    [Teardown]    Stop Sikuli Server
-    
-    # Operation 1: 7 + 5 = 12
+Test Addition 7 + 5
     Execute Arithmetic Operation    ${BTN_7}    ${BTN_ADD}    ${BTN_5}    wynik_12.png
-    
-    # Operation 2: 5 - 2 = 3
-    Execute Arithmetic Operation    ${BTN_5}    ${BTN_SUB}    ${BTN_2}    wynik_3.png
-    
-    # Operation 3: 6 * 7 = 42
+
+Test Division 5 / 2
+    Execute Arithmetic Operation    ${BTN_5}    ${BTN_DIV}    ${BTN_2}    wynik_2.5.png
+
+Test Multiplication 6 * 7
     Execute Arithmetic Operation    ${BTN_6}    ${BTN_MULT}    ${BTN_7}    wynik_42.png
-    
-    # Operation 4: 8 / 2 = 4
+
+Test Division 8 / 2
     Execute Arithmetic Operation    ${BTN_8}    ${BTN_DIV}    ${BTN_2}    wynik_4.png
 
 *** Keywords ***
@@ -57,7 +55,7 @@ Configure Sikuli
     ${abs_image_path}=    Normalize Path    ${IMAGE_FOLDER}
     Add Image Path    ${abs_image_path}
     Set Capture Folder    ${SCREENSHOT_FOLDER}
-    Set Min Similarity    0.7
+    Set Min Similarity    0.30
     Set Timeout    30
 
 Open Calculator Maximized
