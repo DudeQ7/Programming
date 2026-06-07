@@ -1,6 +1,6 @@
--- Sprawdza podana liczbe i zwraca odpowiedni dzien tygodnia 
+-- 1.Funkcja zwracajaca dzien tygodnia z if'ami 
 dzienif :: Int -> String
-dzienif dzien = 
+dzienif dzien =
     if dzien == 1 then "Poniedzialek"
     else if dzien == 2 then "Wtorek"
     else if dzien == 3 then "Sroda"
@@ -9,7 +9,7 @@ dzienif dzien =
     else if dzien == 6 then "Sobota"
     else if dzien == 7 then "Niedziela"
     else "Nie ma takiego dnia tygodnia"
-
+--2. Funkcja zwracajaca dzien tygodnia z case'ami
 dziencase :: Int -> String
 dziencase dzien = case dzien of --deklaracja case'a 
     1 -> "Poniedzialek"
@@ -20,20 +20,20 @@ dziencase dzien = case dzien of --deklaracja case'a
     6 -> "Sobota"
     7 -> "Niedziela"
     _ -> "Nie ma takiego dnia tygodnia"
--- Funkcja parzysta 
+--3. Funkcja parzysta wykorzystujaca if'a
 parzysta :: Int -> String 
 parzysta n = if even n then "Parzysta" else "Nieparzysta"
--- Rabat 
+--4. Rabat z obsluga liczb ujemnych  
 rabat :: Float -> String 
 rabat cena 
     | cena < 0 = "Kwota jest ujemna"
     | cena <= 100 = "Rabat 10%"
     | cena <= 200 = "Rabat 12%"
     | otherwise = "Rabat 13%"
--- Rok 
+-- 5. Funkcja sprawdzajaca czy rok jest przystepny
 rok :: Int -> String 
 rok r = if r `mod` 4 == 0 && (r `mod` 100 /= 0 || r `mod` 400 == 0) then "Rok przestepny" else "Rok nieprzestepny"
--- Emerytura
+-- 6. Funkcja sprawdzajaca czy osoba jest juz na emeryturze czy nie, z roznieniem dla plci
 emerytura :: Int -> String -> String 
 emerytura wiek plec = case plec of
     "m" -> if wiek <65
@@ -44,9 +44,9 @@ emerytura wiek plec = case plec of
         show (60 - wiek) ++ " lat"
         else "Jestes na emeryturze od: " ++ show(wiek-60) ++ " lat"
     _ -> "Nieprawidlowa plec"
--- Miesiac
-miesiac__jako_pora_roku :: Int -> String
-miesiac__jako_pora_roku miesiac = case miesiac of
+-- 7. Przypisanie miesiecy jako por roku 
+miesiacjakoporaRoku :: Int -> String
+miesiacjakoporaRoku miesiac = case miesiac of
     12 -> "zima"
     1 -> "zima"
     2 -> "zima"
@@ -60,10 +60,10 @@ miesiac__jako_pora_roku miesiac = case miesiac of
     10 -> "jesien" 
     11 -> "jesien" 
     _ -> "Bledny miesiac"
--- Przelicz jednostki 
-przelicz_jednostki :: Float -> String -> Float
-przelicz_jednostki metry jednostka = case jednostka of 
+-- 8. Przeliczanie jednostek z wykorzystaniem case'a 
+przeliczJednostki :: Float -> String -> Float
+przeliczJednostki metry jednostka = case jednostka of 
     "cm" -> metry * 100
     "mm" -> metry * 1000
-    "km" -> metry * 1000
+    "km" -> metry / 1000
     _    -> 0 
