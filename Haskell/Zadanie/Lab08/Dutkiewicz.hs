@@ -60,3 +60,10 @@ miesiac__jako_pora_roku miesiac = case miesiac of
     10 -> "jesien" 
     11 -> "jesien" 
     _ -> "Bledny miesiac"
+-- Przelicz jednostki 
+przelicz_jednostki :: Float -> String -> Float
+przelicz_jednostki metry jednostka = case jednostka of 
+    "cm" -> metry * 100
+    "mm" -> metry * 1000
+    "km" -> metry * 1000
+    _    -> 0 
