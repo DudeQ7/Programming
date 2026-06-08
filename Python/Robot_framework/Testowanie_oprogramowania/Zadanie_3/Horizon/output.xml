@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.4.2 (Python 3.14.5 on win32)" generated="2026-06-08T21:16:28.363576" rpa="false" schemaversion="5">
+<suite id="s1" name="Zadanie3 Horizon" source="C:\Users\DudeQ\Documents\Programming\Python\Robot_framework\Testowanie_oprogramowania\Zadanie_3\Horizon\zadanie3_horizon.robot">
+<test id="s1-t1" name="Test Dodawania Horizon" line="13">
+<kw name="Start Process" owner="Process">
+<msg time="2026-06-08T21:16:28.881043" level="INFO">Starting process:
+C:\Users\DudeQ\Documents\Programming\Python\Robot_framework\Testowanie_oprogramowania\Zadanie_3\Horizon\calc.exe</msg>
+<arg>${APP}</arg>
+<doc>Starts a new process on background.</doc>
+<status status="PASS" start="2026-06-08T21:16:28.880145" elapsed="0.043363"/>
+</kw>
+<kw name="Set Reference Folder" owner="ImageHorizonLibrary">
+<arg>${IMAGE_FOLDER}</arg>
+<doc>Sets where all reference images are stored.</doc>
+<status status="PASS" start="2026-06-08T21:16:28.924231" elapsed="0.000418"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" owner="BuiltIn">
+<kw name="Set Confidence" owner="ImageHorizonLibrary">
+<arg>0.8</arg>
+<doc>Sets the accuracy when finding images.</doc>
+<status status="PASS" start="2026-06-08T21:16:28.925749" elapsed="0.000162"/>
+</kw>
+<arg>Set Confidence</arg>
+<arg>0.8</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<status status="PASS" start="2026-06-08T21:16:28.925065" elapsed="0.000915"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-06-08T21:16:33.927350" level="INFO">Slept 5 seconds.</msg>
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-06-08T21:16:28.926286" elapsed="5.001332"/>
+</kw>
+<kw name="Click Image" owner="ImageHorizonLibrary">
+<msg time="2026-06-08T21:16:34.147648" level="FAIL">ImageNotFoundException</msg>
+<arg>6_2.png</arg>
+<doc>Finds the reference image on screen and clicks it once.</doc>
+<status status="FAIL" start="2026-06-08T21:16:33.928158" elapsed="0.225013">ImageNotFoundException</status>
+</kw>
+<kw name="Click Image" owner="ImageHorizonLibrary">
+<arg>plus.png</arg>
+<doc>Finds the reference image on screen and clicks it once.</doc>
+<status status="NOT RUN" start="2026-06-08T21:16:34.153876" elapsed="0.000048"/>
+</kw>
+<kw name="Click Image" owner="ImageHorizonLibrary">
+<arg>przycisk_2.png</arg>
+<doc>Finds the reference image on screen and clicks it once.</doc>
+<status status="NOT RUN" start="2026-06-08T21:16:34.154313" elapsed="0.000042"/>
+</kw>
+<kw name="Click Image" owner="ImageHorizonLibrary">
+<arg>rownosc.png</arg>
+<doc>Finds the reference image on screen and clicks it once.</doc>
+<status status="NOT RUN" start="2026-06-08T21:16:34.154915" elapsed="0.000081"/>
+</kw>
+<kw name="Wait For" owner="ImageHorizonLibrary">
+<arg>trzy.png</arg>
+<doc>Tries to locate given image from the screen for given time.</doc>
+<status status="NOT RUN" start="2026-06-08T21:16:34.155268" elapsed="0.000033"/>
+</kw>
+<status status="FAIL" start="2026-06-08T21:16:28.878737" elapsed="5.277322">ImageNotFoundException</status>
+</test>
+<test id="s1-t2" name="Test Odejmowania Horizon" line="30">
+<kw name="Start Process" owner="Process">
+<msg time="2026-06-08T21:16:34.158135" level="INFO">Starting process:
+C:\Users\DudeQ\Documents\Programming\Python\Robot_framework\Testowanie_oprogramowania\Zadanie_3\Horizon\calc.exe</msg>
+<arg>${APP}</arg>
+<doc>Starts a new process on background.</doc>
+<status status="PASS" start="2026-06-08T21:16:34.157625" elapsed="0.040336"/>
+</kw>
+<kw name="Set Reference Folder" owner="ImageHorizonLibrary">
+<arg>${IMAGE_FOLDER}</arg>
+<doc>Sets where all reference images are stored.</doc>
+<status status="PASS" start="2026-06-08T21:16:34.198622" elapsed="0.000441"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" owner="BuiltIn">
+<kw name="Set Confidence" owner="ImageHorizonLibrary">
+<arg>0.8</arg>
+<doc>Sets the accuracy when finding images.</doc>
+<status status="PASS" start="2026-06-08T21:16:34.200203" elapsed="0.000182"/>
+</kw>
+<arg>Set Confidence</arg>
+<arg>0.8</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<status status="PASS" start="2026-06-08T21:16:34.199522" elapsed="0.000964"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-06-08T21:16:39.201680" level="INFO">Slept 5 seconds.</msg>
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-06-08T21:16:34.200781" elapsed="5.001174"/>
+</kw>
+<kw name="Click Image" owner="ImageHorizonLibrary">
+<msg time="2026-06-08T21:16:39.400369" level="FAIL">ImageNotFoundException</msg>
+<arg>piec.png</arg>
+<doc>Finds the reference image on screen and clicks it once.</doc>
+<status status="FAIL" start="2026-06-08T21:16:39.202529" elapsed="0.200133">ImageNotFoundException</status>
+</kw>
+<kw name="Click Image" owner="ImageHorizonLibrary">
+<arg>minus.png</arg>
+<doc>Finds the reference image on screen and clicks it once.</doc>
+<status status="NOT RUN" start="2026-06-08T21:16:39.403242" elapsed="0.000048"/>
+</kw>
+<kw name="Click Image" owner="ImageHorizonLibrary">
+<arg>przycisk_1.png</arg>
+<doc>Finds the reference image on screen and clicks it once.</doc>
+<status status="NOT RUN" start="2026-06-08T21:16:39.403575" elapsed="0.000044"/>
+</kw>
+<kw name="Click Image" owner="ImageHorizonLibrary">
+<arg>rownosc.png</arg>
+<doc>Finds the reference image on screen and clicks it once.</doc>
+<status status="NOT RUN" start="2026-06-08T21:16:39.403864" elapsed="0.000042"/>
+</kw>
+<kw name="Wait For" owner="ImageHorizonLibrary">
+<arg>wynik_4.png</arg>
+<doc>Tries to locate given image from the screen for given time.</doc>
+<status status="NOT RUN" start="2026-06-08T21:16:39.404145" elapsed="0.000041"/>
+</kw>
+<status status="FAIL" start="2026-06-08T21:16:34.157019" elapsed="5.247778">ImageNotFoundException</status>
+</test>
+<test id="s1-t3" name="Test Mnozenia Horizon" line="47">
+<kw name="Start Process" owner="Process">
+<msg time="2026-06-08T21:16:39.406431" level="INFO">Starting process:
+C:\Users\DudeQ\Documents\Programming\Python\Robot_framework\Testowanie_oprogramowania\Zadanie_3\Horizon\calc.exe</msg>
+<arg>${APP}</arg>
+<doc>Starts a new process on background.</doc>
+<status status="PASS" start="2026-06-08T21:16:39.405942" elapsed="0.042016"/>
+</kw>
+<kw name="Set Reference Folder" owner="ImageHorizonLibrary">
+<arg>${IMAGE_FOLDER}</arg>
+<doc>Sets where all reference images are stored.</doc>
+<status status="PASS" start="2026-06-08T21:16:39.448583" elapsed="0.000392"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" owner="BuiltIn">
+<kw name="Set Confidence" owner="ImageHorizonLibrary">
+<arg>0.8</arg>
+<doc>Sets the accuracy when finding images.</doc>
+<status status="PASS" start="2026-06-08T21:16:39.450064" elapsed="0.000136"/>
+</kw>
+<arg>Set Confidence</arg>
+<arg>0.8</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<status status="PASS" start="2026-06-08T21:16:39.449340" elapsed="0.000930"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-06-08T21:16:44.451501" level="INFO">Slept 5 seconds.</msg>
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-06-08T21:16:39.450589" elapsed="5.001180"/>
+</kw>
+<kw name="Click Image" owner="ImageHorizonLibrary">
+<msg time="2026-06-08T21:16:44.693572" level="FAIL">ImageNotFoundException</msg>
+<arg>szesc.png</arg>
+<doc>Finds the reference image on screen and clicks it once.</doc>
+<status status="FAIL" start="2026-06-08T21:16:44.452490" elapsed="0.245006">ImageNotFoundException</status>
+</kw>
+<kw name="Click Image" owner="ImageHorizonLibrary">
+<arg>mnozenie.png</arg>
+<doc>Finds the reference image on screen and clicks it once.</doc>
+<status status="NOT RUN" start="2026-06-08T21:16:44.698336" elapsed="0.000085"/>
+</kw>
+<kw name="Click Image" owner="ImageHorizonLibrary">
+<arg>siedem.png</arg>
+<doc>Finds the reference image on screen and clicks it once.</doc>
+<status status="NOT RUN" start="2026-06-08T21:16:44.698719" elapsed="0.000042"/>
+</kw>
+<kw name="Click Image" owner="ImageHorizonLibrary">
+<arg>rownosc.png</arg>
+<doc>Finds the reference image on screen and clicks it once.</doc>
+<status status="NOT RUN" start="2026-06-08T21:16:44.699146" elapsed="0.000044"/>
+</kw>
+<kw name="Wait For" owner="ImageHorizonLibrary">
+<arg>czterydwa.png</arg>
+<doc>Tries to locate given image from the screen for given time.</doc>
+<status status="NOT RUN" start="2026-06-08T21:16:44.699461" elapsed="0.000031"/>
+</kw>
+<status status="FAIL" start="2026-06-08T21:16:39.405464" elapsed="5.294683">ImageNotFoundException</status>
+</test>
+<test id="s1-t4" name="Test Dzielenia Horizon" line="64">
+<kw name="Start Process" owner="Process">
+<msg time="2026-06-08T21:16:44.702538" level="INFO">Starting process:
+C:\Users\DudeQ\Documents\Programming\Python\Robot_framework\Testowanie_oprogramowania\Zadanie_3\Horizon\calc.exe</msg>
+<arg>${APP}</arg>
+<doc>Starts a new process on background.</doc>
+<status status="PASS" start="2026-06-08T21:16:44.701990" elapsed="0.049680"/>
+</kw>
+<kw name="Set Reference Folder" owner="ImageHorizonLibrary">
+<arg>${IMAGE_FOLDER}</arg>
+<doc>Sets where all reference images are stored.</doc>
+<status status="PASS" start="2026-06-08T21:16:44.752288" elapsed="0.000357"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" owner="BuiltIn">
+<kw name="Set Confidence" owner="ImageHorizonLibrary">
+<arg>0.8</arg>
+<doc>Sets the accuracy when finding images.</doc>
+<status status="PASS" start="2026-06-08T21:16:44.753756" elapsed="0.000208"/>
+</kw>
+<arg>Set Confidence</arg>
+<arg>0.8</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<status status="PASS" start="2026-06-08T21:16:44.753039" elapsed="0.001037"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-06-08T21:16:49.755282" level="INFO">Slept 5 seconds.</msg>
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-06-08T21:16:44.754445" elapsed="5.001194"/>
+</kw>
+<kw name="Click Image" owner="ImageHorizonLibrary">
+<msg time="2026-06-08T21:16:49.987196" level="FAIL">ImageNotFoundException</msg>
+<arg>szesc.png</arg>
+<doc>Finds the reference image on screen and clicks it once.</doc>
+<status status="FAIL" start="2026-06-08T21:16:49.756401" elapsed="0.234561">ImageNotFoundException</status>
+</kw>
+<kw name="Click Image" owner="ImageHorizonLibrary">
+<arg>dziel.png</arg>
+<doc>Finds the reference image on screen and clicks it once.</doc>
+<status status="NOT RUN" start="2026-06-08T21:16:49.991612" elapsed="0.000063"/>
+</kw>
+<kw name="Click Image" owner="ImageHorizonLibrary">
+<arg>p_3.png</arg>
+<doc>Finds the reference image on screen and clicks it once.</doc>
+<status status="NOT RUN" start="2026-06-08T21:16:49.992157" elapsed="0.000059"/>
+</kw>
+<kw name="Click Image" owner="ImageHorizonLibrary">
+<arg>rownosc.png</arg>
+<doc>Finds the reference image on screen and clicks it once.</doc>
+<status status="NOT RUN" start="2026-06-08T21:16:49.992572" elapsed="0.000050"/>
+</kw>
+<kw name="Wait For" owner="ImageHorizonLibrary">
+<arg>wynik_2.png</arg>
+<doc>Tries to locate given image from the screen for given time.</doc>
+<status status="NOT RUN" start="2026-06-08T21:16:49.993063" elapsed="0.000044"/>
+</kw>
+<status status="FAIL" start="2026-06-08T21:16:44.701335" elapsed="5.292507">ImageNotFoundException</status>
+</test>
+<status status="FAIL" start="2026-06-08T21:16:28.366201" elapsed="21.628879"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="4" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Zadanie3 Horizon" id="s1" pass="0" fail="4" skip="0">Zadanie3 Horizon</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

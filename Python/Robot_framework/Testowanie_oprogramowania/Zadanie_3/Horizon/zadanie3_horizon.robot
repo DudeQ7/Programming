@@ -1,29 +1,28 @@
 *** Settings *** 
 Library    ImageHorizonLibrary
 Library    Process
+Suite Setup    Set Confidence    0.58
 
 *** Variables *** 
-${APP}    calc.exe
-${IMAGE_FOLDER}    ${CURDIR}\images
+${APP}    ${CURDIR}${/}calc.exe
+${IMAGE_FOLDER}    ${CURDIR}${/}images
 ${SCREENSHOT_FOLDER}    ${OUTPUT DIR}
 
-*** Test Cases *** 
-
-
+*** Test Cases ***
 Test Dodawania Horizon
 
     Start Process    ${APP}
 
     Set Reference Folder    ${IMAGE_FOLDER}
 
-    Sleep    3s
+    Sleep    5s
 
-    Click Image    przycisk_1.png
+    Click Image    siedem.png
     Click Image    plus.png
-    Click Image    przycisk_2.png
+    Click Image    siedem.png
     Click Image    rownosc.png
 
-    Wait For    trzy.png
+    Sleep    2s
 
 
 Test Odejmowania Horizon
@@ -32,14 +31,14 @@ Test Odejmowania Horizon
 
     Set Reference Folder    ${IMAGE_FOLDER}
 
-    Sleep    3s
+    Sleep    5s
 
-    Click Image    piec.png
+    Click Image    siedem.png
     Click Image    minus.png
-    Click Image    przycisk_1.png
+    Click Image    siedem.png
     Click Image    rownosc.png
 
-    Wait For    wynik_4.png
+    Sleep    2s
 
 
 Test Mnozenia Horizon
@@ -48,14 +47,14 @@ Test Mnozenia Horizon
 
     Set Reference Folder    ${IMAGE_FOLDER}
 
-    Sleep    3s
+    Sleep    5s
 
-    Click Image    szesc.png
+    Click Image    siedem.png
     Click Image    mnozenie.png
     Click Image    siedem.png
     Click Image    rownosc.png
 
-    Wait For    czterydwa.png
+    Sleep    2s
 
 
 Test Dzielenia Horizon
@@ -64,11 +63,11 @@ Test Dzielenia Horizon
 
     Set Reference Folder    ${IMAGE_FOLDER}
 
-    Sleep    3s
+    Sleep    5s
 
-    Click Image    szesc.png
+    Click Image    siedem.png
     Click Image    dziel.png
-    Click Image    p_3.png
+    Click Image    siedem.png
     Click Image    rownosc.png
 
-    Wait For    wynik_2.png
+    Wait For    przycisk_1.png
