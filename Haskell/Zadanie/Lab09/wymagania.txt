@@ -1,0 +1,6 @@
+Plik kodu powinien mieć nazwę nazwisko.hs.
+• Każda funkcja musi mieć deklarację typu.
+• Nie wolno usuwać danych startowych, ale można dopisać własne dane testowe.
+• W kodzie należy użyć co najmniej trzech z funkcji: map, filter, foldl, foldr, zip, zipWith.
+• Kod powinien uruchamiać się bez błędów po załadowaniu w WinHugs.
+• W komentarzach należy dopisać przykładowe wywołania oraz spodziewane wyniki.

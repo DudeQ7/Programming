@@ -25,7 +25,7 @@ ${BTN_9}                button_digit_9.png
 
 # Operation Buttons
 ${BTN_ADD}              add.png
-${BTN_SUB}              minus.png
+${BTN_SUB}              sub.png
 ${BTN_MULT}             mult.png
 ${BTN_DIV}              divide.png
 ${BTN_EQUALS}           equals.png
@@ -39,13 +39,13 @@ Test Addition 7 + 5
     Execute Arithmetic Operation    ${BTN_7}    ${BTN_ADD}    ${BTN_5}    wynik_12.png
 
 Test Subtraction 7 - 3
-    Execute Arithmetic Operation    ${BTN_7}    ${BTN_DIV}    ${BTN_3}    wynik_4.png
+    Execute Arithmetic Operation    ${BTN_7}    ${BTN_SUB}    ${BTN_3}    wynik_4.png
 
 Test Multiplication 6 * 7
     Execute Arithmetic Operation    ${BTN_6}    ${BTN_MULT}    ${BTN_7}    wynik_42.png
 
 Test Division 8 / 2
-    Execute Arithmetic Operation    ${BTN_8}    ${BTN_SUB}    ${BTN_2}    wynik_4.png
+    Execute Arithmetic Operation    ${BTN_8}    ${BTN_DIV}    ${BTN_2}    wynik_4.png
 
 *** Keywords ***
 Configure Sikuli

@@ -1,4 +1,5 @@
 -- 1.Funkcja zwracajaca dzien tygodnia z if'ami 
+{- HLINT ignore "Use guards" -}
 dzienif :: Int -> String
 dzienif dzien =
     if dzien == 1 then "Poniedzialek"
