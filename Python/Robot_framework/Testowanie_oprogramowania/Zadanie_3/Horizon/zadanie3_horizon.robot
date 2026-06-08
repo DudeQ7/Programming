@@ -4,7 +4,8 @@ Library    Process
 
 *** Variables ***
 ${APP}    calc.exe
-${IMAGE_FOLDER}    ${CURDIR}${/}images
+${IMAGE_PATH}    ${CURDIR}${/}images
+${IMAGE_FOLDER}    ${IMAGE_PATH}
 
 *** Test Cases ***
 
