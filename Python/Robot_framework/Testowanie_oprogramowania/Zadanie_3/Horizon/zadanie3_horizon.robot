@@ -3,30 +3,39 @@ Library    ImageHorizonLibrary
 Library    Process
 
 *** Variables ***
-${APP}    ${CURDIR}${/}calc.exe
+${APP}    calc.exe
 ${IMAGE_FOLDER}    ${CURDIR}${/}images
 
 *** Test Cases ***
-Addition Stable
-    [Documentation]    Stable test using 1 + 2 = 3
-    Run Process    cmd.exe    /c    start /max ${APP}
-    Sleep    3s
-    Set Reference Folder    ${IMAGE_FOLDER}
-    Set Confidence    0.58
-    Click Image    przycisk_1.png
-    Click Image    plus.png
-    Click Image    przycisk_2.png
-    Click Image    rownosc.png
-    Wait For    trzy.png    timeout=10
 
-Subtraction Stable
-    [Documentation]    Stable test using 2 - 1 = 1
+Test mnozenia 7x7
     Run Process    cmd.exe    /c    start /max ${APP}
     Sleep    3s
     Set Reference Folder    ${IMAGE_FOLDER}
+    Set Confidence    0.52
+    Wait For    siedem.png    timeout=20
+    Click Image    siedem.png
     Set Confidence    0.58
-    Click Image    przycisk_2.png
-    Click Image    minus.png
-    Click Image    przycisk_1.png
+    Click Image    mnozenie.png
+    Set Confidence    0.52
+    Click Image    siedem.png
+    Set Confidence    0.58
     Click Image    rownosc.png
-    Wait For    przycisk_1.png    timeout=10
+    Wait For    wynik_49.png    timeout=15
+
+Test dzielenia 7/7
+    Run Process    cmd.exe    /c    start /max ${APP}
+    Sleep    3s
+    Set Reference Folder    ${IMAGE_FOLDER}
+    Set Confidence    0.52
+    Wait For    siedem.png    timeout=20
+    Click Image    siedem.png
+    Set Confidence    0.58
+    Click Image    dziel.png
+    Set Confidence    0.52
+    Click Image    siedem.png
+    Set Confidence    0.58
+    Click Image    rownosc.png
+    Wait For    przycisk_1.png    timeout=15
+
+
