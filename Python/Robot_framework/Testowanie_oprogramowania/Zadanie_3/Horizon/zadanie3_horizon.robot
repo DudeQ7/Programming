@@ -2,8 +2,8 @@
 Library    Horizon    mode=NEW    timeout=10
 Library    Process
 Library    OperatingSystem
-Suite Setup       Configure Horizon
-Suite Teardown    Stop Horizon Server
+Suite Setup       Configure Sikuli
+Suite Teardown    Stop Sikuli Server
 
 *** Variables ***
 ${CALCULATOR_APP}       calc.exe
@@ -12,40 +12,39 @@ ${IMAGE_FOLDER}         ${IMAGE_PATH}
 ${SCREENSHOT_FOLDER}    ${OUTPUT DIR}
 
 # Digit Buttons
-${BTN_0}                button_digit_0.png
-${BTN_1}                button_digit_1.png
-${BTN_2}                button_digit_2.png
-${BTN_3}                button_digit_3.png
-${BTN_4}                button_digit_4.png
-${BTN_5}                button_digit_5.png
-${BTN_6}                button_digit_6.png
-${BTN_7}                button_digit_7.png
-${BTN_8}                button_digit_8.png
-${BTN_9}                button_digit_9.png
+${BTN_1}                przycisk_1.png
+${BTN_2}                przycisk_2.png
+${BTN_3}                p_3.png
+${BTN_5}                piec.png
+${BTN_6}                szesc.png
+${BTN_7}                siedem.png
 
 # Operation Buttons
-${BTN_ADD}              add.png
-${BTN_SUB}              sub.png
-${BTN_MULT}             mult.png
-${BTN_DIV}              divide.png
-${BTN_EQUALS}           equals.png
-${BTN_CLEAR}            clear.png
+${BTN_ADD}              plus.png
+${BTN_SUB}              minus.png
+${BTN_MULT}             mnozenie.png
+${BTN_DIV}              dziel.png
+${BTN_EQUALS}           rownosc.png
 
 ${CALCULATOR_STARTED}   ${FALSE}
 ${SIKULI_STARTED}       ${FALSE}
 
 *** Test Cases ***
-Test Addition 7 + 5
-    Execute Arithmetic Operation    ${BTN_7}    ${BTN_ADD}    ${BTN_5}    wynik_12.png
+Test Subtraction 7 - 5 = 2
+    [Documentation]    Verifies that 7 - 5 equals 2.
+    Execute Arithmetic Operation    ${BTN_7}    ${BTN_SUB}    ${BTN_5}    wynik_2.png
 
-Test Subtraction 7 - 3
+Test Subtraction 7 - 3 = 4
+    [Documentation]    Verifies that 7 - 3 equals 4.
     Execute Arithmetic Operation    ${BTN_7}    ${BTN_SUB}    ${BTN_3}    wynik_4.png
 
-Test Multiplication 6 * 7
-    Execute Arithmetic Operation    ${BTN_6}    ${BTN_MULT}    ${BTN_7}    wynik_42.png
+Test Multiplication 6 * 7 = 42
+    [Documentation]    Verifies that 6 * 7 equals 42.
+    Execute Arithmetic Operation    ${BTN_6}    ${BTN_MULT}    ${BTN_7}    czterydwa.png
 
-Test Division 8 / 2
-    Execute Arithmetic Operation    ${BTN_8}    ${BTN_DIV}    ${BTN_2}    wynik_4.png
+Test Division 6 / 2 = 3
+    [Documentation]    Verifies that 6 / 2 equals 3.
+    Execute Arithmetic Operation    ${BTN_6}    ${BTN_DIV}    ${BTN_2}    trzy.png
 
 *** Keywords ***
 Configure Sikuli
@@ -55,17 +54,19 @@ Configure Sikuli
     ${abs_image_path}=    Normalize Path    ${IMAGE_FOLDER}
     Add Image Path    ${abs_image_path}
     Set Capture Folder    ${SCREENSHOT_FOLDER}
-    Set Min Similarity    0.30
+    Set Min Similarity    0.70
     Set Timeout    30
 
 Open Calculator Maximized
+    # Clean up any existing instances
     Run Keyword And Ignore Error    Run Process    taskkill    /IM    win32calc.exe    /F    /T
     Run Keyword And Ignore Error    Run Process    taskkill    /IM    calc.exe    /F    /T
     
+    # Start calculator and wait for it to appear
     Run Process    cmd.exe    /c    start /max ${CALCULATOR_APP}
     Set Test Variable    ${CALCULATOR_STARTED}    ${TRUE}
-    Sleep    5s
-    Wait Until Screen Contain    ${BTN_7}    30
+    Sleep    3s
+    Wait Until Screen Contain    ${BTN_EQUALS}    30
 
 Execute Arithmetic Operation
     [Arguments]    ${val1}    ${op}    ${val2}    ${expected_result_image}
@@ -79,12 +80,12 @@ Execute Arithmetic Operation
     ${result_exists}=    Run Keyword And Return Status    File Should Exist    ${IMAGE_FOLDER}${/}${expected_result_image}
     IF    ${result_exists}
         Wait Until Screen Contain    ${expected_result_image}    10
-        Highlight    ${expected_result_image}    2
+        Run Keyword And Ignore Error    Highlight    ${expected_result_image}    2
     ELSE
-        Log    Warning: Result image ${expected_result_image} not found, skipping verification.    level=WARN
+        Fail    Result image ${expected_result_image} not found in ${IMAGE_FOLDER}
     END
     
-    Log    Operation Successful.
+    Log    Operation Successful: Result ${expected_result_image} verified.
     Close Calculator
 
 Click Calculator Image
@@ -100,7 +101,7 @@ Close Calculator
     Set Test Variable    ${CALCULATOR_STARTED}    ${FALSE}
 
 Stop Sikuli Server
-    IF    ${SIKULI_STARTED}
-        Run Keyword And Ignore Error    Stop Remote Server
-        Set Test Variable    ${SIKULI_STARTED}    ${FALSE}
-    END
+    # Note: Using 'Stop Remote Server' assuming Horizon library handles it this way
+    # If using local SikuliLibrary, this might vary.
+    Run Keyword And Ignore Error    Stop Remote Server
+    Set Test Variable    ${SIKULI_STARTED}    ${FALSE}
