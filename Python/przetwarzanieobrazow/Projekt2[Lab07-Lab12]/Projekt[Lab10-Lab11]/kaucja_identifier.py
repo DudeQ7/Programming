@@ -5,33 +5,24 @@ import sys
 import re
 
 def natural_sort_key(s):
-    """
-    Key for natural sorting (e.g. 1.jpg, 2.jpg, 10.jpg, butelki.jpg)
-    """
+   #sortowanie zdjec 
     return [int(text) if text.isdigit() else text.lower()
             for text in re.split('([0-9]+)', s)]
 
 def detect_kaucja(target_img, ref_img, sift, flann, min_matches=8):
-    """
-    Enhanced detection for Grade 5: Handles low contrast and small labels.
-    """
     if target_img is None or ref_img is None:
         return target_img, False, None, None, (0, 0)
-
-    # Preprocessing: Convert to gray and apply CLAHE
+    # Preprocessing: Zamiana na szary, dodanie CLAHE dla lepszej detekcji w trudnych warunkach
     def preprocess(img):
         gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY) if len(img.shape) == 3 else img
         clahe = cv.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
         return clahe.apply(gray)
-
     gray_ref = preprocess(ref_img)
     kp1, des1 = sift.detectAndCompute(gray_ref, None)
-
     if des1 is None:
         return target_img, False, None, None, (0, 0)
-
     scales = [1.0, 0.5, 1.5]
-    
+
     for scale in scales:
         if scale == 1.0:
             current_target = target_img
@@ -39,20 +30,14 @@ def detect_kaucja(target_img, ref_img, sift, flann, min_matches=8):
             w = int(target_img.shape[1] * scale)
             h = int(target_img.shape[0] * scale)
             current_target = cv.resize(target_img, (w, h))
-
         gray_target = preprocess(current_target)
         kp2, des2 = sift.detectAndCompute(gray_target, None)
-
         if des2 is None: continue
-
         matches = flann.knnMatch(des1, des2, k=2)
         good = [m for m, n in matches if m.distance < 0.75 * n.distance]
-
         if len(good) >= min_matches:
-            # Visualization of matches
             match_vis = cv.drawMatches(ref_img, kp1, current_target, kp2, good, None, 
                                      flags=cv.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS)
-
             src_pts = np.float32([kp1[m.queryIdx].pt for m in good]).reshape(-1, 1, 2)
             dst_pts = np.float32([kp2[m.trainIdx].pt for m in good]).reshape(-1, 1, 2)
 
@@ -68,8 +53,7 @@ def detect_kaucja(target_img, ref_img, sift, flann, min_matches=8):
                 target_img_res = target_img.copy()
                 target_img_res = cv.polylines(target_img_res, [np.int32(dst)], True, (0, 255, 0), 3, cv.LINE_AA)
 
-                # Confidence calculation: based on number of good matches
-                # 8 is min_matches, 30+ is very strong
+                # Oblicznie pewnosci na podstawie liczby dobrych dopasowan (min_matches to 8, 30+ to bardzo silne dopasowanie)
                 confidence = min(100, int((len(good) / 25.0) * 100))
 
                 return target_img_res, True, dst, match_vis, (confidence, len(good))
@@ -77,10 +61,9 @@ def detect_kaucja(target_img, ref_img, sift, flann, min_matches=8):
     return target_img, False, None, None, (0, 0)
 
 def main():
-    # Get the directory where the script is located
     script_dir = os.path.dirname(os.path.abspath(__file__))
     
-    # Setup SIFT and FLANN
+    # Sift i FLANN
     sift = cv.SIFT_create()
     
     FLANN_INDEX_KDTREE = 1
@@ -88,7 +71,6 @@ def main():
     search_params = dict(checks=50)
     flann = cv.FlannBasedMatcher(index_params, search_params)
 
-    # Load reference image using absolute path relative to script
     ref_path = os.path.join(script_dir, "zdjecia", "kaucja.png")
     if not os.path.exists(ref_path):
         print(f"Error: Reference image {ref_path} not found.")
@@ -190,10 +172,14 @@ def main():
                 print("Nie mozna pobrac klatki z kamerki.")
                 break
             
-            result_frame, found, _, _ = detect_kaucja(frame, ref_img, sift, flann)
+            result_frame, found, _, match_vis, conf_data = detect_kaucja(frame, ref_img, sift, flann)
             
             if found:
-                cv.putText(result_frame, "KAUCJA WYKRYTA", (10, 30), cv.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+                conf_val, _ = conf_data
+                cv.putText(result_frame, f"KAUCJA WYKRYTA ({conf_val}%)", (10, 30), 
+                           cv.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+                if match_vis is not None:
+                    cv.imshow("Dopasowania SIFT", match_vis)
             
             cv.imshow("Webcam - Identyfikacja Kaucji", result_frame)
             
