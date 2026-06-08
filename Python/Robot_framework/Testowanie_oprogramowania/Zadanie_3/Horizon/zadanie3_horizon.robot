@@ -1,15 +1,14 @@
 *** Settings ***
-Library    Horizon    mode=NEW    timeout=10
+Library    ImageHorizonLibrary    mode=NEW    timeout=10
 Library    Process
 Library    OperatingSystem
-Suite Setup       Configure Sikuli
-Suite Teardown    Stop Sikuli Server
+Suite Setup       Setup Horizon
+Suite Teardown    Close Calculator
 
 *** Variables ***
 ${CALCULATOR_APP}       calc.exe
 ${IMAGE_PATH}           ${CURDIR}${/}images
 ${IMAGE_FOLDER}         ${IMAGE_PATH}
-${SCREENSHOT_FOLDER}    ${OUTPUT DIR}
 
 # Digit Buttons
 ${BTN_1}                przycisk_1.png
@@ -25,9 +24,6 @@ ${BTN_SUB}              minus.png
 ${BTN_MULT}             mnozenie.png
 ${BTN_DIV}              dziel.png
 ${BTN_EQUALS}           rownosc.png
-
-${CALCULATOR_STARTED}   ${FALSE}
-${SIKULI_STARTED}       ${FALSE}
 
 *** Test Cases ***
 Test Subtraction 7 - 5 = 2
@@ -47,40 +43,36 @@ Test Division 6 / 2 = 3
     Execute Arithmetic Operation    ${BTN_6}    ${BTN_DIV}    ${BTN_2}    trzy.png
 
 *** Keywords ***
-Configure Sikuli
+Setup Horizon
     Directory Should Exist    ${IMAGE_FOLDER}
-    Start Sikuli Process
-    Set Test Variable    ${SIKULI_STARTED}    ${TRUE}
     ${abs_image_path}=    Normalize Path    ${IMAGE_FOLDER}
-    Add Image Path    ${abs_image_path}
-    Set Capture Folder    ${SCREENSHOT_FOLDER}
-    Set Min Similarity    0.70
-    Set Timeout    30
+    # Using official ImageHorizonLibrary keywords
+    Set Reference Folder    ${abs_image_path}
+    Run Keyword And Ignore Error    Set Confidence    0.80
 
 Open Calculator Maximized
     # Clean up any existing instances
     Run Keyword And Ignore Error    Run Process    taskkill    /IM    win32calc.exe    /F    /T
     Run Keyword And Ignore Error    Run Process    taskkill    /IM    calc.exe    /F    /T
     
-    # Start calculator and wait for it to appear
+    # Start calculator
     Run Process    cmd.exe    /c    start /max ${CALCULATOR_APP}
-    Set Test Variable    ${CALCULATOR_STARTED}    ${TRUE}
     Sleep    3s
-    Wait Until Screen Contain    ${BTN_EQUALS}    30
+    Wait For    ${BTN_EQUALS}    timeout=10
 
 Execute Arithmetic Operation
     [Arguments]    ${val1}    ${op}    ${val2}    ${expected_result_image}
     Open Calculator Maximized
-    Click Calculator Image    ${val1}
-    Click Calculator Image    ${op}
-    Click Calculator Image    ${val2}
-    Click Calculator Image    ${BTN_EQUALS}
     
-    # Verify result if the image exists
+    Click Horizon Image    ${val1}
+    Click Horizon Image    ${op}
+    Click Horizon Image    ${val2}
+    Click Horizon Image    ${BTN_EQUALS}
+    
+    # Verify result
     ${result_exists}=    Run Keyword And Return Status    File Should Exist    ${IMAGE_FOLDER}${/}${expected_result_image}
     IF    ${result_exists}
-        Wait Until Screen Contain    ${expected_result_image}    10
-        Run Keyword And Ignore Error    Highlight    ${expected_result_image}    2
+        Wait For    ${expected_result_image}    timeout=10
     ELSE
         Fail    Result image ${expected_result_image} not found in ${IMAGE_FOLDER}
     END
@@ -88,20 +80,12 @@ Execute Arithmetic Operation
     Log    Operation Successful: Result ${expected_result_image} verified.
     Close Calculator
 
-Click Calculator Image
+Click Horizon Image
     [Arguments]    ${image_name}
-    Wait Until Screen Contain    ${image_name}    15
-    Run Keyword And Ignore Error    Highlight    ${image_name}    1
-    Click    ${image_name}
+    Wait For    ${image_name}    timeout=10
+    Click Image    ${image_name}
     Sleep    0.5s
 
 Close Calculator
     Run Keyword And Ignore Error    Run Process    taskkill    /IM    win32calc.exe    /F    /T
     Run Keyword And Ignore Error    Run Process    taskkill    /IM    calc.exe    /F    /T
-    Set Test Variable    ${CALCULATOR_STARTED}    ${FALSE}
-
-Stop Sikuli Server
-    # Note: Using 'Stop Remote Server' assuming Horizon library handles it this way
-    # If using local SikuliLibrary, this might vary.
-    Run Keyword And Ignore Error    Stop Remote Server
-    Set Test Variable    ${SIKULI_STARTED}    ${FALSE}
