@@ -16,7 +16,7 @@ def detect_kaucja(target_img, ref_img, sift, flann, min_matches=8):
     Enhanced detection for Grade 5: Handles low contrast and small labels.
     """
     if target_img is None or ref_img is None:
-        return target_img, False, None, None
+        return target_img, False, None, None, (0, 0)
 
     # Preprocessing: Convert to gray and apply CLAHE
     def preprocess(img):
@@ -28,7 +28,7 @@ def detect_kaucja(target_img, ref_img, sift, flann, min_matches=8):
     kp1, des1 = sift.detectAndCompute(gray_ref, None)
 
     if des1 is None:
-        return target_img, False, None, None
+        return target_img, False, None, None, (0, 0)
 
     scales = [1.0, 0.5, 1.5]
     
@@ -50,7 +50,7 @@ def detect_kaucja(target_img, ref_img, sift, flann, min_matches=8):
 
         if len(good) >= min_matches:
             # Visualization of matches
-            match_img = cv.drawMatches(ref_img, kp1, current_target, kp2, good, None, 
+            match_vis = cv.drawMatches(ref_img, kp1, current_target, kp2, good, None, 
                                      flags=cv.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS)
 
             src_pts = np.float32([kp1[m.queryIdx].pt for m in good]).reshape(-1, 1, 2)
@@ -61,15 +61,20 @@ def detect_kaucja(target_img, ref_img, sift, flann, min_matches=8):
                 h_ref, w_ref = gray_ref.shape
                 pts = np.float32([[0, 0], [0, h_ref - 1], [w_ref - 1, h_ref - 1], [w_ref - 1, 0]]).reshape(-1, 1, 2)
                 dst = cv.perspectiveTransform(pts, M)
-                
+
                 if scale != 1.0:
                     dst = dst / scale
 
                 target_img_res = target_img.copy()
                 target_img_res = cv.polylines(target_img_res, [np.int32(dst)], True, (0, 255, 0), 3, cv.LINE_AA)
-                return target_img_res, True, dst, match_img
-    
-    return target_img, False, None, None
+
+                # Confidence calculation: based on number of good matches
+                # 8 is min_matches, 30+ is very strong
+                confidence = min(100, int((len(good) / 25.0) * 100))
+
+                return target_img_res, True, dst, match_vis, (confidence, len(good))
+
+    return target_img, False, None, None, (0, 0)
 
 def main():
     # Get the directory where the script is located
@@ -135,19 +140,22 @@ def main():
             else:
                 img_disp = img.copy()
 
-            result_img, found, _, match_vis = detect_kaucja(img_disp, ref_img, sift, flann)
+            result_img, found, _, match_vis, conf_data = detect_kaucja(img_disp, ref_img, sift, flann)
+            conf_val, match_count = conf_data
             
             if found:
                 stats["found"] += 1
-                print("-> [ZNALEZIONO]")
-                cv.putText(result_img, f"PLIK: {filename} - KAUCJA OK", (10, 30), 
+                print(f"-> [ZNALEZIONO] Pewnosc: {conf_val}%")
+                cv.putText(result_img, f"KAUCJA WYKRYTA ({conf_val}%)", (10, 30), 
                            cv.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
+                cv.putText(result_img, f"Punkty: {match_count}", (10, 60), 
+                           cv.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 0), 1)
                 
                 cv.imshow("Krok 1: Dopasowanie punktow (SIFT)", match_vis)
                 cv.imshow("Krok 2: Detekcja (Homografia)", result_img)
             else:
                 print("-> [NIE ZNALEZIONO]")
-                cv.putText(result_img, f"PLIK: {filename} - BRAK", (10, 30), 
+                cv.putText(result_img, f"BRAK KAUCJI", (10, 30), 
                            cv.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
                 cv.imshow("Krok 2: Detekcja (Homografia)", result_img)
 
