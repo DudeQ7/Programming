@@ -2,15 +2,23 @@ import cv2 as cv
 import numpy as np
 import os
 import sys
+import re
+
+def natural_sort_key(s):
+    """
+    Key for natural sorting (e.g. 1.jpg, 2.jpg, 10.jpg, butelki.jpg)
+    """
+    return [int(text) if text.isdigit() else text.lower()
+            for text in re.split('([0-9]+)', s)]
 
 def detect_kaucja(target_img, ref_img, sift, flann, min_matches=8):
     """
     Enhanced detection for Grade 5: Handles low contrast and small labels.
     """
     if target_img is None or ref_img is None:
-        return target_img, False, None
+        return target_img, False, None, None
 
-    # Preprocessing: Convert to gray and apply CLAHE for better contrast in difficult lighting
+    # Preprocessing: Convert to gray and apply CLAHE
     def preprocess(img):
         gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY) if len(img.shape) == 3 else img
         clahe = cv.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
@@ -20,14 +28,10 @@ def detect_kaucja(target_img, ref_img, sift, flann, min_matches=8):
     kp1, des1 = sift.detectAndCompute(gray_ref, None)
 
     if des1 is None:
-        return target_img, False, None
+        return target_img, False, None, None
 
-    # Multi-scale approach: if not found at original size, try scaling up/down
-    scales = [1.0, 0.5, 1.5] # Try different scales for small/large labels
+    scales = [1.0, 0.5, 1.5]
     
-    best_dst = None
-    found_any = False
-
     for scale in scales:
         if scale == 1.0:
             current_target = target_img
@@ -45,27 +49,32 @@ def detect_kaucja(target_img, ref_img, sift, flann, min_matches=8):
         good = [m for m, n in matches if m.distance < 0.75 * n.distance]
 
         if len(good) >= min_matches:
+            # Visualization of matches
+            match_img = cv.drawMatches(ref_img, kp1, current_target, kp2, good, None, 
+                                     flags=cv.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS)
+
             src_pts = np.float32([kp1[m.queryIdx].pt for m in good]).reshape(-1, 1, 2)
             dst_pts = np.float32([kp2[m.trainIdx].pt for m in good]).reshape(-1, 1, 2)
 
             M, mask = cv.findHomography(src_pts, dst_pts, cv.RANSAC, 5.0)
             if M is not None:
-                # Basic validation: ensure the homography produces a sane shape (non-degenerate)
                 h_ref, w_ref = gray_ref.shape
                 pts = np.float32([[0, 0], [0, h_ref - 1], [w_ref - 1, h_ref - 1], [w_ref - 1, 0]]).reshape(-1, 1, 2)
                 dst = cv.perspectiveTransform(pts, M)
                 
-                # Rescale coordinates back to original image size
                 if scale != 1.0:
                     dst = dst / scale
 
-                # Draw on the original image
-                target_img = cv.polylines(target_img, [np.int32(dst)], True, (0, 255, 0), 3, cv.LINE_AA)
-                return target_img, True, dst
+                target_img_res = target_img.copy()
+                target_img_res = cv.polylines(target_img_res, [np.int32(dst)], True, (0, 255, 0), 3, cv.LINE_AA)
+                return target_img_res, True, dst, match_img
     
-    return target_img, False, None
+    return target_img, False, None, None
 
 def main():
+    # Get the directory where the script is located
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    
     # Setup SIFT and FLANN
     sift = cv.SIFT_create()
     
@@ -74,8 +83,8 @@ def main():
     search_params = dict(checks=50)
     flann = cv.FlannBasedMatcher(index_params, search_params)
 
-    # Load reference image
-    ref_path = os.path.join("zdjecia", "kaucja.png")
+    # Load reference image using absolute path relative to script
+    ref_path = os.path.join(script_dir, "zdjecia", "kaucja.png")
     if not os.path.exists(ref_path):
         print(f"Error: Reference image {ref_path} not found.")
         return
@@ -85,16 +94,25 @@ def main():
         print(f"Error: Could not read reference image {ref_path}.")
         return
 
-    print("=== System Rozpoznawania Etykiet Kaucyjnych ===")
-    print("1. Identyfikacja automatyczna (z folderu 'zdjecia')")
+    print("=== System Rozpoznawania Etykiet Kaucyjnych (OCENA 5) ===")
+    print("1. Identyfikacja automatyczna krok po kroku (z folderu 'zdjecia')")
     print("2. Identyfikacja na żywo (webcam)")
     
     choice = input("Wybierz opcje (1/2): ")
 
     if choice == '1':
-        print("\nUruchamiam identyfikacje automatyczna...")
-        img_dir = "zdjecia"
-        images = [f for f in os.listdir(img_dir) if f.lower().endswith(('.png', '.jpg', '.jpeg', '.webp'))]
+        print("\n" + "="*50)
+        print("URUCHAMIAM IDENTYFIKACJE AUTOMATYCZNA")
+        print("="*50)
+        print("Instrukcja: Dowolny klawisz - nastepne zdjecie, 'q' - przerwij.")
+        print("AUTOMATYCZNE PRZEWIJANIE: Co 5 sekund.\n")
+        
+        img_dir = os.path.join(script_dir, "zdjecia")
+        # Pobieramy i sortujemy pliki, aby szly kolejno (1, 2, 3...)
+        images = sorted([f for f in os.listdir(img_dir) if f.lower().endswith(('.png', '.jpg', '.jpeg', '.webp'))],
+                        key=natural_sort_key)
+        
+        stats = {"total": 0, "found": 0}
         
         for filename in images:
             if filename == "kaucja.png":
@@ -105,33 +123,50 @@ def main():
             if img is None:
                 continue
             
-            print(f"Przetwarzanie: {filename}...", end=" ", flush=True)
+            stats["total"] += 1
+            print(f"[{stats['total']}/{len(images)-1}] Przetwarzanie: {filename:<20}", end=" ", flush=True)
             
-            # Optional: resize very large images for faster processing
+            # Przeskalowanie do wyswietlania (zachowujemy proporcje)
             h, w = img.shape[:2]
-            if max(h, w) > 1200:
-                scale = 1200 / max(h, w)
-                img = cv.resize(img, (int(w * scale), int(h * scale)))
+            max_dim = 800
+            if max(h, w) > max_dim:
+                scale_disp = max_dim / max(h, w)
+                img_disp = cv.resize(img, (int(w * scale_disp), int(h * scale_disp)))
+            else:
+                img_disp = img.copy()
 
-            result_img, found, _ = detect_kaucja(img, ref_img, sift, flann)
+            result_img, found, _, match_vis = detect_kaucja(img_disp, ref_img, sift, flann)
             
             if found:
-                print("ZNALEZIONO!")
-                cv.putText(result_img, "KAUCJA WYKRYTA", (10, 30), cv.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+                stats["found"] += 1
+                print("-> [ZNALEZIONO]")
+                cv.putText(result_img, f"PLIK: {filename} - KAUCJA OK", (10, 30), 
+                           cv.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
+                
+                cv.imshow("Krok 1: Dopasowanie punktow (SIFT)", match_vis)
+                cv.imshow("Krok 2: Detekcja (Homografia)", result_img)
             else:
-                print("Nie znaleziono.")
-                cv.putText(result_img, "Brak kaucji", (10, 30), cv.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+                print("-> [NIE ZNALEZIONO]")
+                cv.putText(result_img, f"PLIK: {filename} - BRAK", (10, 30), 
+                           cv.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
+                cv.imshow("Krok 2: Detekcja (Homografia)", result_img)
 
-            # Display result
-            cv.imshow("Identyfikacja - " + filename, result_img)
-            key = cv.waitKey(0)
-            cv.destroyWindow("Identyfikacja - " + filename)
+            # Czekamy 5 sekund (5000ms) lub na klawisz
+            key = cv.waitKey(5000)
+            cv.destroyAllWindows()
             
             if key == ord('q'):
+                print("\nPrzerwano przez uzytkownika.")
                 break
         
-        cv.destroyAllWindows()
-        print("\nZakonczono przetwarzanie folderu.")
+        print("\n" + "="*50)
+        print("PODSUMOWANIE PRZETWARZANIA")
+        print(f"Przetworzono plikow: {stats['total']}")
+        print(f"Wykryto znaczkow:     {stats['found']}")
+        print(f"Skutecznosc:          {(stats['found']/stats['total']*100 if stats['total']>0 else 0):.1f}%")
+        print("="*50)
+        print("Nacisnij dowolny klawisz, aby zakonczyc.")
+        cv.waitKey(0)
 
     elif choice == '2':
         print("\nUruchamiam identyfikacje z kamerki... (Nacisnij 'q' aby wyjsc)")
@@ -147,7 +182,7 @@ def main():
                 print("Nie mozna pobrac klatki z kamerki.")
                 break
             
-            result_frame, found, _ = detect_kaucja(frame, ref_img, sift, flann)
+            result_frame, found, _, _ = detect_kaucja(frame, ref_img, sift, flann)
             
             if found:
                 cv.putText(result_frame, "KAUCJA WYKRYTA", (10, 30), cv.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
