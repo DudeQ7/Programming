@@ -1,0 +1,1 @@
+#script which allow the user to choose if they want to run siculli or horizon 
