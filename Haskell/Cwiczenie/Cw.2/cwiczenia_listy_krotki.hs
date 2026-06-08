@@ -23,3 +23,14 @@ bezDwochPierwszych = drop 2 temperatury
 maxMin :: (Double, Double)
 maxMin = (maximum temperatury, minimum temperatury)
 
+--Zadanie 2 
+-- Cieple Dni = pozostawia temperatury większe lub równe 20.0 = Done 
+ciepleDni :: [Double] -> [Double]
+ciepleDni = filter (>=20.0) 
+-- zaokraglone = zamienia temperatury na liczby całkowite funkcją round = Done 
+zaokraglone :: [Double] -> [Int]
+zaokraglone = map round
+--rozniceOd20 = oblicza różnicę każdego pomiaru względem wartości 20.0 = Done 
+rozniceOd20 :: [Double] -> [Double]
+rozniceOd20 = map (\t -> t - 20.0)
+
