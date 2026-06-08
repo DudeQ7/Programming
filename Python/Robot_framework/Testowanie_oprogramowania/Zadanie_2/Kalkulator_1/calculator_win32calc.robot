@@ -2,21 +2,24 @@
 Library    FlaUILibrary
 
 *** Variables ***
-${CALCULATOR_EXE}   ${CURDIR}/win32calc.exe
-${CALCULATOR_PID}    ${EMPTY}
-${CALCULATOR_WINDOW}    /Window[@Name="Calculator"]
-${DISPLAY_VALUE}    /Window[@Name="Calculator"]/Pane/Text[@AutomationId="158"]
-${BUTTON_DIGIT_3}    133
-${BUTTON_DIGIT_5}    135
-${BUTTON_DIGIT_7}    137
-${BUTTON_DIGIT_9}    139
-${BUTTON_SUBTRACT}   94
-${BUTTON_ADD}        93
-${BUTTON_MULTIPLY}   92
-${BUTTON_DIVIDE}     91
-${BUTTON_EQUAL}      121    
-${BUTTON_NEGATE}     80
-${BUTTON_CLEAR}      81
+${CALCULATOR_EXE}       ${CURDIR}/win32calc.exe
+${WINDOW_NAME}          Calculator
+${CALCULATOR_PID}       ${EMPTY}
+# Use a flexible locator for English or Polish OS
+${CALCULATOR_WINDOW}    /Window[contains(@Name, "alculator") or contains(@Name, "alkulator")]
+# Old calc might not have a Pane, using deep search //
+${DISPLAY_VALUE}        ${CALCULATOR_WINDOW}//Text[@AutomationId="158"]
+${BUTTON_DIGIT_3}       133
+${BUTTON_DIGIT_5}       135
+${BUTTON_DIGIT_7}       137
+${BUTTON_DIGIT_9}       139
+${BUTTON_SUBTRACT}      94
+${BUTTON_ADD}           93
+${BUTTON_MULTIPLY}      92
+${BUTTON_DIVIDE}        91
+${BUTTON_EQUAL}         121    
+${BUTTON_NEGATE}        80
+${BUTTON_CLEAR}         81
 *** Test Cases ***
 Addition In Calculator
     [Teardown]    Close Calculator
@@ -27,17 +30,17 @@ Addition In Calculator
     Click Button By Automation Id    ${BUTTON_DIGIT_7}
     Click Button By Automation Id    ${BUTTON_EQUAL}
     Result Should Be    12
-*** Test Cases ***
+
 Subtraction In Calculator
     [Teardown]    Close Calculator
     Open Calculator
-    Click Button By Automation Id  ${BUTTON_CLEAR}
-    Click Button By Automation Id  ${BUTTON_DIGIT_7}
-    Click Button By Automation Id  ${BUTTON_SUBTRACT}
-    Click Button By Automation Id  ${BUTTON_DIGIT_5}
-    Click Button By Automation Id  ${BUTTON_EQUAL}
-    Result Should Be     2
-*** Test Cases ***
+    Click Button By Automation Id    ${BUTTON_CLEAR}
+    Click Button By Automation Id    ${BUTTON_DIGIT_7}
+    Click Button By Automation Id    ${BUTTON_SUBTRACT}
+    Click Button By Automation Id    ${BUTTON_DIGIT_5}
+    Click Button By Automation Id    ${BUTTON_EQUAL}
+    Result Should Be    2
+
 Multiplication In Calculator
     [Teardown]    Close Calculator
     Open Calculator
@@ -47,7 +50,7 @@ Multiplication In Calculator
     Click Button By Automation Id    ${BUTTON_DIGIT_5}
     Click Button By Automation Id    ${BUTTON_EQUAL}
     Result Should Be    35
-*** Test Cases ***
+
 Division In Calculator
     [Teardown]     Close Calculator
     Open Calculator 
@@ -57,7 +60,7 @@ Division In Calculator
     Click Button By Automation Id    ${BUTTON_DIGIT_3}
     Click Button By Automation Id    ${BUTTON_EQUAL}
     Result Should Be    3
-*** Test Cases ***
+
 Negation In Calculator
     [Teardown]    Close Calculator 
     Open Calculator
@@ -68,6 +71,7 @@ Negation In Calculator
     Click Button By Automation Id    ${BUTTON_DIGIT_7}
     Click Button By Automation Id    ${BUTTON_EQUAL}
     Result Should Be    2
+
 *** Keywords ***
 Open Calculator
     ${pid}=    Launch Application    ${CALCULATOR_EXE}
@@ -76,7 +80,7 @@ Open Calculator
 
 Click Button By Automation Id
     [Arguments]    ${automation_id}
-    Click    ${CALCULATOR_WINDOW}/Pane/Button[@AutomationId="${automation_id}"]
+    Click    ${CALCULATOR_WINDOW}//Button[@AutomationId="${automation_id}"]
 
 Close Calculator
     Run Keyword If    '${CALCULATOR_PID}' != '${EMPTY}'    Close Application    ${CALCULATOR_PID}
