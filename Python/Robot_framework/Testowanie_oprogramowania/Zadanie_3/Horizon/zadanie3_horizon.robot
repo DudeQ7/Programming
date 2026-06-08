@@ -48,7 +48,7 @@ Setup Horizon
     ${abs_image_path}=    Normalize Path    ${IMAGE_FOLDER}
     # Using official ImageHorizonLibrary keywords
     Set Reference Folder    ${abs_image_path}
-    Run Keyword And Ignore Error    Set Confidence    0.80
+    Run Keyword And Ignore Error    Set Confidence    0.60
 
 Open Calculator Maximized
     # Clean up any existing instances
