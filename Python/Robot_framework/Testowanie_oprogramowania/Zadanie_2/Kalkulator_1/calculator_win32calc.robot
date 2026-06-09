@@ -7,7 +7,7 @@ ${WINDOW_NAME}          Calculator
 ${CALCULATOR_PID}       ${EMPTY}
 # Use a flexible locator for English or Polish OS
 ${CALCULATOR_WINDOW}    /Window[contains(@Name, "alculator") or contains(@Name, "alkulator")]
-# Old calc might not have a Pane, using deep search //
+#  using deep search //
 ${DISPLAY_VALUE}        ${CALCULATOR_WINDOW}//Text[@AutomationId="158"]
 ${BUTTON_DIGIT_3}       133
 ${BUTTON_DIGIT_5}       135
