@@ -63,8 +63,9 @@ najlepsi xs =
  
 -- TODO 8: przygotuj raport tekstowy 
 raport :: [Uczestnik] -> [String] 
-raport xs = undefined 
- 
+raport xs = map (\u -> "Uczestnik: " ++ pobierzNazwe u ++ ", Grupa: " ++ pobierzGrupe u ++ ", Wynik: " ++ show (sumaPunktow u)) xs 
+
+
 -- Przykladowe testy w interpreterze: 
 -- sumaPunktow (head uczestnicy) 
 -- sredniaPunktow (head uczestnicy) 
