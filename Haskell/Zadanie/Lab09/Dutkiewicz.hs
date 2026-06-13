@@ -29,7 +29,11 @@ sumaPunktow uczestnik = sum(pobierzPunkty uczestnik)
  
 -- TODO 2: oblicz srednia punktow jednego uczestnika 
 sredniaPunktow :: Uczestnik -> Double 
-sredniaPunktow uczestnik = undefined 
+sredniaPunktow uczestnik = 
+    let punkty = pobierzPunkty uczestnik
+        suma = fromIntegral (sum punkty)
+        ilosc = fromIntegral (length punkty)
+    in if ilosc == 0 then 0.0 else suma / ilosc
  
 -- TODO 3: zwroc liste par (nazwa uczestnika, suma punktow) 
 wyniki :: [Uczestnik] -> [(String, Int)] 
