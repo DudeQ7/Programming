@@ -25,7 +25,7 @@ pobierzPunkty (_, _, punkty) = punkty
  
 -- TODO 1: oblicz sume punktow jednego uczestnika 
 sumaPunktow :: Uczestnik -> Int 
-sumaPunktow uczestnik = undefined 
+sumaPunktow uczestnik = sum(pobierzPunkty uczestnik)
  
 -- TODO 2: oblicz srednia punktow jednego uczestnika 
 sredniaPunktow :: Uczestnik -> Double 
