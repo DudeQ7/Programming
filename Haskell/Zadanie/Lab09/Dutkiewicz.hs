@@ -65,13 +65,28 @@ najlepsi xs =
 raport :: [Uczestnik] -> [String] 
 raport xs = map (\u -> "Uczestnik: " ++ pobierzNazwe u ++ ", Grupa: " ++ pobierzGrupe u ++ ", Wynik: " ++ show (sumaPunktow u)) xs 
 
-
 -- Przykladowe testy w interpreterze: 
--- sumaPunktow (head uczestnicy) 
--- sredniaPunktow (head uczestnicy) 
--- wyniki uczestnicy 
--- zakwalifikowani uczestnicy 
--- uczestnicyGrupy "INF3A" uczestnicy 
--- najlepszyWynik uczestnicy 
--- najlepsi uczestnicy 
--- raport uczestnicy
+
+-- Wywolanie: sumaPunktow (head uczestnicy) 
+--Wynik: 70
+
+-- Wywolanie: sredniaPunktow (head uczestnicy) 
+-- Wynik: 17.5
+
+-- Wywolanie: wyniki uczestnicy 
+-- Wynik: [("Anna Nowak",70),("Jan Kowalski",44),("Ola Mazur",77),("Piotr Lis",60),("Ewa Zielinska",72)]
+
+-- Wywolanie: zakwalifikowani uczestnicy 
+-- Wynik: [("Anna Nowak","INF3A",[18,20,17,15]),("Ola Mazur","INF3A",[20,19,18,20]),("Piotr Lis","INF3C",[15,15,16,14]),("Ewa Zielinska","INF3B",[19,18,17,18])]
+
+-- Wywolanie: uczestnicyGrupy "INF3A" uczestnicy 
+-- Wynik: [("Anna Nowak","INF3A",[18,20,17,15]),("Ola Mazur","INF3A",[20,19,18,20])]
+
+-- Wywolanie: najlepszyWynik uczestnicy 
+-- Wynik: 77
+
+-- Wywolanie: najlepsi uczestnicy
+-- Wynik: [("Ola Mazur","INF3A",[20,19,18,20])]
+
+-- Wywolanie: raport uczestnicy
+-- Wynik: ["Uczestnik: Anna Nowak, Grupa: INF3A, Wynik: 70","Uczestnik: Jan Kowalski, Grupa: INF3B, Wynik: 44","Uczestnik: Ola Mazur, Grupa: INF3A, Wynik: 77","Uczestnik: Piotr Lis, Grupa: INF3C, Wynik: 60","Uczestnik: Ewa Zielinska, Grupa: INF3B, Wynik: 72"]
