@@ -47,7 +47,7 @@ zakwalifikowani xs = filter (\u -> sumaPunktow u >= 60) xs
  
 -- TODO 5: filtruj uczestnikow po grupie, np. "INF3A" 
 uczestnicyGrupy :: String -> [Uczestnik] -> [Uczestnik] 
-uczestnicyGrupy grupa xs = undefined 
+uczestnicyGrupy grupa xs = filter(\u -> pobierzGrupe u == grupa) xs  
  
 -- TODO 6: znajdz najlepszy wynik punktowy 
 najlepszyWynik :: [Uczestnik] -> Int 
