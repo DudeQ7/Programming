@@ -35,13 +35,15 @@ sredniaPunktow uczestnik =
         ilosc = fromIntegral (length punkty)
     in if ilosc == 0 then 0.0 else suma / ilosc
  
--- TODO 3: zwroc liste par (nazwa uczestnika, suma punktow) 
+-- TODO 3: zwroc liste par (nazwa uczestnika, suma punktow)
+-- Map to idealna funkcja w celu, przeksztalcenia listy elementu listy wejsciowej na inny element w liscie wyjsciowej  
 wyniki :: [Uczestnik] -> [(String, Int)] 
 wyniki xs = map (\u -> (pobierzNazwe u, sumaPunktow u)) xs
  
--- TODO 4: zostaw uczestnikow z wynikiem co najmniej 60 punktow 
+-- TODO 4: zostaw uczestnikow z wynikiem co najmniej 60 punktow  
+-- filter, zwraca tylko te elementy, ktore spelniaja warunek logiczny w tym wypadku wieksze lub rowne 60 punktow
 zakwalifikowani :: [Uczestnik] -> [Uczestnik] 
-zakwalifikowani xs = undefined 
+zakwalifikowani xs = filter (\u -> sumaPunktow u >= 60) xs
  
 -- TODO 5: filtruj uczestnikow po grupie, np. "INF3A" 
 uczestnicyGrupy :: String -> [Uczestnik] -> [Uczestnik] 
