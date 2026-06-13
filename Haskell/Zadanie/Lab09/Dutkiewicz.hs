@@ -55,8 +55,11 @@ najlepszyWynik xs = foldl max 0 (map sumaPunktow xs)
  -- map, na podstawie listy uczestnikow towrzy liste wynikow w typie liczby calkowitej, potem foldl, ktory z pomoca funkcji max znajduje maksymalna wartosc w tej konkretnej liscie 
 
 -- TODO 7: zwroc wszystkich uczestnikow, ktorzy maja najlepszy wynik 
+-- najpierw liczymy, ktory wynik jest najlepszy by nastepnie sama liste przepuscic przez filter, ktory zwroci tylko najlepszych uczestnikow
 najlepsi :: [Uczestnik] -> [Uczestnik] 
-najlepsi xs = undefined 
+najlepsi xs = 
+    let naj_wynik =  najlepszyWynik xs
+    in filter (\u -> sumaPunktow u == naj_wynik) xs
  
 -- TODO 8: przygotuj raport tekstowy 
 raport :: [Uczestnik] -> [String] 
