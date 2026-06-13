@@ -51,8 +51,9 @@ uczestnicyGrupy grupa xs = filter(\u -> pobierzGrupe u == grupa) xs
  
 -- TODO 6: znajdz najlepszy wynik punktowy 
 najlepszyWynik :: [Uczestnik] -> Int 
-najlepszyWynik xs = undefined 
- 
+najlepszyWynik xs = foldl max 0 (map sumaPunktow xs) 
+ -- map, na podstawie listy uczestnikow towrzy liste wynikow w typie liczby calkowitej, potem foldl, ktory z pomoca funkcji max znajduje maksymalna wartosc w tej konkretnej liscie 
+
 -- TODO 7: zwroc wszystkich uczestnikow, ktorzy maja najlepszy wynik 
 najlepsi :: [Uczestnik] -> [Uczestnik] 
 najlepsi xs = undefined 
