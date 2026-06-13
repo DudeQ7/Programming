@@ -1,0 +1,92 @@
+-- Projekt domowy: Analizator wynikow turnieju programistycznego 
+-- Przedmiot: Paradygmaty programowania 
+-- Zakres: listy, krotki, funkcje map/filter/fold/zip 
+ 
+type Uczestnik = (String, String, [Int]) 
+-- (imie i nazwisko, grupa, punkty z kolejnych zadan) 
+ 
+uczestnicy :: [Uczestnik] 
+uczestnicy = 
+    [ ("Anna Nowak", "INF3A", [18, 20, 17, 15]) 
+    , ("Jan Kowalski", "INF3B", [12, 14, 10, 8]) 
+    , ("Ola Mazur", "INF3A", [20, 19, 18, 20]) 
+    , ("Piotr Lis", "INF3C", [15, 15, 16, 14]) 
+    , ("Ewa Zielinska", "INF3B", [19, 18, 17, 18]) 
+    ] 
+ 
+pobierzNazwe :: Uczestnik -> String 
+pobierzNazwe (nazwa, _, _) = nazwa 
+ 
+pobierzGrupe :: Uczestnik -> String 
+pobierzGrupe (_, grupa, _) = grupa 
+ 
+pobierzPunkty :: Uczestnik -> [Int] 
+pobierzPunkty (_, _, punkty) = punkty 
+ 
+-- TODO 1: oblicz sume punktow jednego uczestnika 
+sumaPunktow :: Uczestnik -> Int 
+sumaPunktow uczestnik = sum(pobierzPunkty uczestnik)
+ 
+-- TODO 2: oblicz srednia punktow jednego uczestnika 
+sredniaPunktow :: Uczestnik -> Double 
+sredniaPunktow uczestnik = 
+    let punkty = pobierzPunkty uczestnik
+        suma = fromIntegral (sum punkty) --w Haskellu przy dzieleniu liczb calkowitych trzeba rzutowac na Double, zeby otrzymac wynik zmiennoprzecinkowy, po to korzystamy z funkcji fromIntegral, ktora konwertuje liczbe calkowita na Double
+        ilosc = fromIntegral (length punkty)
+    in if ilosc == 0 then 0.0 else suma / ilosc
+ 
+-- TODO 3: zwroc liste par (nazwa uczestnika, suma punktow)
+-- Map to idealna funkcja w celu, przeksztalcenia listy elementu listy wejsciowej na inny element w liscie wyjsciowej  
+wyniki :: [Uczestnik] -> [(String, Int)] 
+wyniki xs = map (\u -> (pobierzNazwe u, sumaPunktow u)) xs
+ 
+-- TODO 4: zostaw uczestnikow z wynikiem co najmniej 60 punktow  
+-- filter, zwraca tylko te elementy, ktore spelniaja warunek logiczny w tym wypadku wieksze lub rowne 60 punktow
+zakwalifikowani :: [Uczestnik] -> [Uczestnik] 
+zakwalifikowani xs = filter (\u -> sumaPunktow u >= 60) xs
+ 
+-- TODO 5: filtruj uczestnikow po grupie, np. "INF3A" 
+uczestnicyGrupy :: String -> [Uczestnik] -> [Uczestnik] 
+uczestnicyGrupy grupa xs = filter(\u -> pobierzGrupe u == grupa) xs  
+ 
+-- TODO 6: znajdz najlepszy wynik punktowy 
+najlepszyWynik :: [Uczestnik] -> Int 
+najlepszyWynik xs = foldl max 0 (map sumaPunktow xs) 
+ -- map, na podstawie listy uczestnikow towrzy liste wynikow w typie liczby calkowitej, potem foldl, ktory z pomoca funkcji max znajduje maksymalna wartosc w tej konkretnej liscie 
+
+-- TODO 7: zwroc wszystkich uczestnikow, ktorzy maja najlepszy wynik 
+-- najpierw liczymy, ktory wynik jest najlepszy by nastepnie sama liste przepuscic przez filter, ktory zwroci tylko najlepszych uczestnikow
+najlepsi :: [Uczestnik] -> [Uczestnik] 
+najlepsi xs = 
+    let naj_wynik =  najlepszyWynik xs
+    in filter (\u -> sumaPunktow u == naj_wynik) xs
+ 
+-- TODO 8: przygotuj raport tekstowy 
+raport :: [Uczestnik] -> [String] 
+raport xs = map (\u -> "Uczestnik: " ++ pobierzNazwe u ++ ", Grupa: " ++ pobierzGrupe u ++ ", Wynik: " ++ show (sumaPunktow u)) xs 
+
+-- Przykladowe testy w interpreterze: 
+
+-- Wywolanie: sumaPunktow (head uczestnicy) 
+--Wynik: 70
+
+-- Wywolanie: sredniaPunktow (head uczestnicy) 
+-- Wynik: 17.5
+
+-- Wywolanie: wyniki uczestnicy 
+-- Wynik: [("Anna Nowak",70),("Jan Kowalski",44),("Ola Mazur",77),("Piotr Lis",60),("Ewa Zielinska",72)]
+
+-- Wywolanie: zakwalifikowani uczestnicy 
+-- Wynik: [("Anna Nowak","INF3A",[18,20,17,15]),("Ola Mazur","INF3A",[20,19,18,20]),("Piotr Lis","INF3C",[15,15,16,14]),("Ewa Zielinska","INF3B",[19,18,17,18])]
+
+-- Wywolanie: uczestnicyGrupy "INF3A" uczestnicy 
+-- Wynik: [("Anna Nowak","INF3A",[18,20,17,15]),("Ola Mazur","INF3A",[20,19,18,20])]
+
+-- Wywolanie: najlepszyWynik uczestnicy 
+-- Wynik: 77
+
+-- Wywolanie: najlepsi uczestnicy
+-- Wynik: [("Ola Mazur","INF3A",[20,19,18,20])]
+
+-- Wywolanie: raport uczestnicy
+-- Wynik: ["Uczestnik: Anna Nowak, Grupa: INF3A, Wynik: 70","Uczestnik: Jan Kowalski, Grupa: INF3B, Wynik: 44","Uczestnik: Ola Mazur, Grupa: INF3A, Wynik: 77","Uczestnik: Piotr Lis, Grupa: INF3C, Wynik: 60","Uczestnik: Ewa Zielinska, Grupa: INF3B, Wynik: 72"]
