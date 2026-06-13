@@ -31,13 +31,13 @@ sumaPunktow uczestnik = sum(pobierzPunkty uczestnik)
 sredniaPunktow :: Uczestnik -> Double 
 sredniaPunktow uczestnik = 
     let punkty = pobierzPunkty uczestnik
-        suma = fromIntegral (sum punkty)
+        suma = fromIntegral (sum punkty) --w Haskellu przy dzieleniu liczb calkowitych trzeba rzutowac na Double, zeby otrzymac wynik zmiennoprzecinkowy, po to korzystamy z funkcji fromIntegral, ktora konwertuje liczbe calkowita na Double
         ilosc = fromIntegral (length punkty)
     in if ilosc == 0 then 0.0 else suma / ilosc
  
 -- TODO 3: zwroc liste par (nazwa uczestnika, suma punktow) 
 wyniki :: [Uczestnik] -> [(String, Int)] 
-wyniki xs = undefined 
+wyniki xs = map (\u -> (pobierzNazwe u, sumaPunktow u)) xs
  
 -- TODO 4: zostaw uczestnikow z wynikiem co najmniej 60 punktow 
 zakwalifikowani :: [Uczestnik] -> [Uczestnik] 
