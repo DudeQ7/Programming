@@ -42,8 +42,10 @@ class TestAppium(unittest.TestCase):
 if __name__ == '__main__':
     import os
     import sys
-    if not os.path.exists("results"):
-        os.makedirs("results")
+    
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    results_dir = os.path.join(script_dir, "results")
+    os.makedirs(results_dir, exist_ok=True)
     
     class Tee(object):
         def __init__(self, *files):
@@ -56,7 +58,8 @@ if __name__ == '__main__':
             for f in self.files:
                 f.flush()
 
-    with open("results/hello_test_results.txt", "w") as f:
+    results_file = os.path.join(results_dir, "hello_test_results.txt")
+    with open(results_file, "w") as f:
         # Stream to both terminal (stderr) and file
         original_stderr = sys.stderr
         sys.stderr = Tee(sys.stderr, f)

@@ -1,10 +1,24 @@
 import time
 import sys
+import os
 from appium import webdriver
 from appium.options.android import UiAutomator2Options
 from appium.webdriver.common.appiumby import AppiumBy
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
+
+# Setup results directory relative to the script location
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+RESULTS_DIR = os.path.join(SCRIPT_DIR, "results")
+
+os.makedirs(RESULTS_DIR, exist_ok=True)
+
+LOG_FILE = os.path.join(RESULTS_DIR, "menu_results.txt")
+
+def log_result(message):
+    print(message)
+    with open(LOG_FILE, "a", encoding="utf-8") as f:
+        f.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')} - {message}\n")
 
 appium_server_url = "http://localhost:4723"
 calculator_package = "com.google.android.calculator"
@@ -69,7 +83,7 @@ class CalculatorController:
         self._tap("op_add")
         self._tap("digit_2")
         self._tap("eq")
-        print(f"Result (2 + 2): {self._get_result()}")
+        log_result(f"Result (2 + 2): {self._get_result()}")
 
     def op_7_times_7(self):
         self.prepare_app()
@@ -77,7 +91,7 @@ class CalculatorController:
         self._tap("op_mul")
         self._tap("digit_7")
         self._tap("eq")
-        print(f"Result (7 * 7): {self._get_result()}")
+        log_result(f"Result (7 * 7): {self._get_result()}")
 
     def op_8_minus_3(self):
         self.prepare_app()
@@ -85,7 +99,7 @@ class CalculatorController:
         self._tap("op_sub")
         self._tap("digit_3")
         self._tap("eq")
-        print(f"Result (8 - 3): {self._get_result()}")
+        log_result(f"Result (8 - 3): {self._get_result()}")
 
     def op_9_per_3(self):
         self.prepare_app()
@@ -93,7 +107,7 @@ class CalculatorController:
         self._tap("op_div")
         self._tap("digit_3")
         self._tap("eq")
-        print(f"Result (9 / 3): {self._get_result()}")
+        log_result(f"Result (9 / 3): {self._get_result()}")
 
     def op_negation_5_plus_3(self):
         self.prepare_app()
@@ -102,7 +116,7 @@ class CalculatorController:
         self._tap("op_add")
         self._tap("digit_3")
         self._tap("eq")
-        print(f"Result (-5 + 3): {self._get_result()}")
+        log_result(f"Result (-5 + 3): {self._get_result()}")
 
 def main():
     try:

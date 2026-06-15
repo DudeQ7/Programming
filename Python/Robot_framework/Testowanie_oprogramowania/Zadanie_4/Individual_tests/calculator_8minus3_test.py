@@ -73,8 +73,10 @@ class TestGoogleCalculator8Minus3(unittest.TestCase):
 if __name__ == "__main__":
     import os
     import sys
-    if not os.path.exists("results"):
-        os.makedirs("results")
+    
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    results_dir = os.path.join(base_dir, "results")
+    os.makedirs(results_dir, exist_ok=True)
     
     class Tee(object):
         def __init__(self, *files):
@@ -87,7 +89,8 @@ if __name__ == "__main__":
             for f in self.files:
                 f.flush()
 
-    with open("results/calculator_8_minus_3_results.txt", "w") as f:
+    results_file = os.path.join(results_dir, "calculator_8_minus_3_results.txt")
+    with open(results_file, "w") as f:
         # Stream to both terminal (stderr) and file
         original_stderr = sys.stderr
         sys.stderr = Tee(sys.stderr, f)
