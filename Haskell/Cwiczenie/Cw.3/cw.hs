@@ -8,12 +8,12 @@ silnia:: Integer -> Integer
 silnia 0 = 1 
 silnia n = n*silnia(n-1)
 
-silnia2:: Integer -> Maybe Integer
-silnia2 n 
-    | n < 0 =Nothing
-    | n==0 = Just 1
-    | otherwise = Just (n * fromJust (silnia2 (n-1)))
 
-potega:: Integer -> Integer -> Integer
-    potega a 0 = 1
-    potega a b = a * potega a (b-1)
+potega:: Integer -> Integer 
+potega 0 = 1
+potega x = x * potega (x-1)
+
+potega2:: Integer -> Integer -> Integer
+potega2 _ 0  = 1
+potega2 x n = x * potega2 x (n-1)
+
