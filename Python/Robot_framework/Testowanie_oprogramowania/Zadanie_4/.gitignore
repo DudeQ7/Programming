@@ -1,3 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+
+# Results and Logs
 results/
-tempCodeRunnerFile/
+*.log
 *.txt
+report.html
+log.html
+output.xml
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+tempCodeRunnerFile*
+
+# OS
+.DS_Store
+Thumbs.db
