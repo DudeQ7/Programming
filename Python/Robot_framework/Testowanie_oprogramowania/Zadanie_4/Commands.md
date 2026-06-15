@@ -1,6 +1,6 @@
 # pip install robotframework-appiumlibrary selenium Appium-Python-Client\
 Linux:
-sudo pacman -S nodejs npm 
+sudo pacman -S nodejs npm android-tools android-udev
 sudo npm install -g appium 
 appium driver install uiautomator2 
 
