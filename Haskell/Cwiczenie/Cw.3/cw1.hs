@@ -29,3 +29,10 @@ poprawWynik g (nazwa,punkty) = (nazwa,punkty+g)
 sumaPunktow :: [Wynik] -> Int
 sumaPunktow [] = 0 
 sumaPunktow((_,punkty):xs) = punkty + sumaPunktow xs 
+--najlepszy wynik
+najlepszyWynik :: [Wynik] -> Maybe Wynik 
+najlepszyWynik [] = Nothing 
+najlepszyWynik [x] = Just x 
+najlepszyWynik (x:y:xs)
+    | snd x >= snd y = najlepszyWynik (x:xs)
+    | otherwise = najlepszyWynik (y:xs)
