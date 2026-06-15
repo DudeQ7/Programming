@@ -30,9 +30,17 @@ class TestGoogleCalculator(unittest.TestCase):
         self._tap("op_add")
         self._tap("digit_2")
         self._tap("eq")
-        result = self.wait.until(
-            lambda driver: driver.find_element(AppiumBy.ID, self._id("result_final"))
-        )
+        
+        # Try finding result_final first, then result_preview
+        try:
+            result = self.wait.until(
+                lambda driver: driver.find_element(AppiumBy.ID, self._id("result_final"))
+            )
+        except:
+            result = self.wait.until(
+                lambda driver: driver.find_element(AppiumBy.ID, self._id("result_preview"))
+            )
+            
         self.assertEqual("4", result.text)
     def _tap(self, resource_name: str) -> None:
         element = self.wait.until(
@@ -47,4 +55,10 @@ class TestGoogleCalculator(unittest.TestCase):
     def _id(self, resource_name: str) -> str:
         return f"{calculator_package}:id/{resource_name}"
 if __name__ == "__main__":
-    unittest.main()
+    import os
+    if not os.path.exists("results"):
+        os.makedirs("results")
+    
+    with open("results/calculator_test_results.txt", "w") as f:
+        runner = unittest.TextTestRunner(stream=f, verbosity=2)
+        unittest.main(testRunner=runner)
