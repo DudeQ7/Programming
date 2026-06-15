@@ -41,9 +41,26 @@ class TestAppium(unittest.TestCase):
 
 if __name__ == '__main__':
     import os
+    import sys
     if not os.path.exists("results"):
         os.makedirs("results")
     
+    class Tee(object):
+        def __init__(self, *files):
+            self.files = files
+        def write(self, obj):
+            for f in self.files:
+                f.write(obj)
+                f.flush()
+        def flush(self):
+            for f in self.files:
+                f.flush()
+
     with open("results/hello_test_results.txt", "w") as f:
-        runner = unittest.TextTestRunner(stream=f, verbosity=2)
-        unittest.main(testRunner=runner)
+        # Stream to both terminal (stderr) and file
+        original_stderr = sys.stderr
+        sys.stderr = Tee(sys.stderr, f)
+        try:
+            unittest.main()
+        finally:
+            sys.stderr = original_stderr
