@@ -21,4 +21,7 @@ usunWartosc _ [] = []
 usunWartosc v (x:xs)
     | v == x = usunWartosc v xs 
     | otherwise = x:usunWartosc v xs 
-    
+--Praca na Krotce
+type Wynik = (String,Int)
+poprawWynik :: Int -> Wynik -> Wynik 
+poprawWynik g (nazwa,punkty) = (nazwa,punkty+g)
