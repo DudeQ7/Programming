@@ -11,7 +11,8 @@ capabilities = dict(
     appPackage='com.android.settings',
     appActivity='.Settings',
     language='en',
-    locale='US'
+    locale='US',
+    noReset=True
 )
 
 appium_server_url = 'http://localhost:4723'
@@ -25,18 +26,41 @@ class TestAppium(unittest.TestCase):
         if self.driver:
             self.driver.quit()
 
-    def test_find_battery(self) -> None:
-        # el = self.driver.find_element(by=AppiumBy.XPATH, value='//*[@text="Battery"]')
-        el = self.driver.find_element(by=AppiumBy.XPATH, value='//*[@text="Sounds and vibration"]')
-        el.click()
-        el = self.driver.find_element(by=AppiumBy.XPATH, value='//*[@text="Call vibration"]')
-        el.click()
+    def test_find_sound_settings(self) -> None:
+        # Restart settings to ensure we are on the main screen
+        self.driver.terminate_app("com.android.settings")
+        self.driver.activate_app("com.android.settings")
+        time.sleep(2)
 
-        sounds = ['Heartbeat', 'Ticktock', 'Waltz', 'Siren', 'Basic call']
-        for sound in sounds:
-            el = self.driver.find_element(by=AppiumBy.XPATH, value=f'//*[@text="{sound}"]')
-            el.click()
-            time.sleep(3)
+        # Scroll to and click "Sound & vibration"
+        scroll_view = 'new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().textContains("Sound & vibration"))'
+        el = self.driver.find_element(by=AppiumBy.ANDROID_UIAUTOMATOR, value=scroll_view)
+        el.click()
+        print("Successfully clicked Sound & vibration")
+        time.sleep(2)
 
 if __name__ == '__main__':
-    unittest.main()
+    import os
+    import sys
+    if not os.path.exists("results"):
+        os.makedirs("results")
+    
+    class Tee(object):
+        def __init__(self, *files):
+            self.files = files
+        def write(self, obj):
+            for f in self.files:
+                f.write(obj)
+                f.flush()
+        def flush(self):
+            for f in self.files:
+                f.flush()
+
+    with open("results/hello_test_results.txt", "w") as f:
+        # Stream to both terminal (stderr) and file
+        original_stderr = sys.stderr
+        sys.stderr = Tee(sys.stderr, f)
+        try:
+            unittest.main()
+        finally:
+            sys.stderr = original_stderr
