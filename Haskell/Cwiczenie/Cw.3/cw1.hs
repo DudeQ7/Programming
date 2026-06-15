@@ -25,3 +25,7 @@ usunWartosc v (x:xs)
 type Wynik = (String,Int)
 poprawWynik :: Int -> Wynik -> Wynik 
 poprawWynik g (nazwa,punkty) = (nazwa,punkty+g)
+--Lista Krotek 
+sumaPunktow :: [Wynik] -> Int
+sumaPunktow [] = 0 
+sumaPunktow((_,punkty):xs) = punkty + sumaPunktow xs 
