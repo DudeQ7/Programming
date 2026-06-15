@@ -15,3 +15,10 @@ wszystkie _ [] = True
 wszystkie p (x:xs)
     | p x = wszystkie p xs 
     | otherwise = False 
+-- Usuwanie wartosci
+usunWartosc :: Eq a => a -> [a] -> [a]
+usunWartosc _ [] = []
+usunWartosc v (x:xs)
+    | v == x = usunWartosc v xs 
+    | otherwise = x:usunWartosc v xs 
+    
