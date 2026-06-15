@@ -1,4 +1,5 @@
 import unittest
+import time
 from appium import webdriver
 from appium.options.android import UiAutomator2Options
 from appium.webdriver.common.appiumby import AppiumBy
@@ -25,12 +26,16 @@ class TestGoogleCalculator(unittest.TestCase):
         if self.driver:
             self.driver.quit()
     def test_two_plus_two_equals_four(self) -> None:
+        # Force restart calculator to ensure it's in the foreground
+        self.driver.terminate_app(calculator_package)
+        self.driver.activate_app(calculator_package)
+        time.sleep(2)
+
         self._tap_if_present("clr")
         self._tap("digit_2")
         self._tap("op_add")
         self._tap("digit_2")
         self._tap("eq")
-        
         # Try finding result_final first, then result_preview
         try:
             result = self.wait.until(
@@ -42,6 +47,7 @@ class TestGoogleCalculator(unittest.TestCase):
             )
             
         self.assertEqual("4", result.text)
+        print(f"Test Passed: 2 + 2 = {result.text} OK")
     def _tap(self, resource_name: str) -> None:
         element = self.wait.until(
             lambda driver: driver.find_element(AppiumBy.ID, self._id(resource_name))
@@ -56,9 +62,26 @@ class TestGoogleCalculator(unittest.TestCase):
         return f"{calculator_package}:id/{resource_name}"
 if __name__ == "__main__":
     import os
+    import sys
     if not os.path.exists("results"):
         os.makedirs("results")
     
+    class Tee(object):
+        def __init__(self, *files):
+            self.files = files
+        def write(self, obj):
+            for f in self.files:
+                f.write(obj)
+                f.flush()
+        def flush(self):
+            for f in self.files:
+                f.flush()
+
     with open("results/calculator_test_results.txt", "w") as f:
-        runner = unittest.TextTestRunner(stream=f, verbosity=2)
-        unittest.main(testRunner=runner)
+        # Stream to both terminal (stderr) and file
+        original_stderr = sys.stderr
+        sys.stderr = Tee(sys.stderr, f)
+        try:
+            unittest.main()
+        finally:
+            sys.stderr = original_stderr
