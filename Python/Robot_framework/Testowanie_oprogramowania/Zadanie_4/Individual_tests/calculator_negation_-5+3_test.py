@@ -30,14 +30,12 @@ class TestGoogleCalculatorNegation(unittest.TestCase):
         self.driver.terminate_app(calculator_package)
         self.driver.activate_app(calculator_package)
         time.sleep(2)
-
         self._tap_if_present("clr")
         self._tap("op_sub")
         self._tap("digit_5")
         self._tap("op_add")
         self._tap("digit_3")
         self._tap("eq")
-        
         # Try finding result_final first, then result_preview
         try:
             result = self.wait.until(
@@ -47,10 +45,8 @@ class TestGoogleCalculatorNegation(unittest.TestCase):
             result = self.wait.until(
                 lambda driver: driver.find_element(AppiumBy.ID, self._id("result_preview"))
             )
-            
         self.assertEqual("−2", result.text)
         print(f"Test Passed: -5 + 3 = {result.text} OK")
-
     def _tap(self, resource_name: str) -> None:
         element = self.wait.until(
             lambda driver: driver.find_element(AppiumBy.ID, self._id(resource_name))
