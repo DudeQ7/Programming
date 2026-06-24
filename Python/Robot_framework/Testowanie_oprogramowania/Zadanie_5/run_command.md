@@ -1,0 +1,4 @@
+  - npx playwright test — wszystkie testy (3 przeglądarki, 84 testy)
+  - npx playwright test --project=chromium — tylko Chrome
+  - npx playwright test --ui — interaktywny interfejs
+  - npx playwright show-report — HTML raport po testach
