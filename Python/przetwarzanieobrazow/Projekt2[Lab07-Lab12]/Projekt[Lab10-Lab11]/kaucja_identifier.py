@@ -1,61 +1,28 @@
-"""
-Rozpoznawanie znaku systemu kaucyjnego
-Wielostopniowa detekcja:
-  1. SIFT + FLANN - dopasowanie cech z testem proporcji Lowe'a
-  2. Walidacja geometrii homografii (inliery RANSAC, kształt czworokąta)
-  3. Weryfikacja strukturalna - globalne NCC + regionalne NCC po wyrównaniu
-     perspektywicznym (odrzuca obrazy z samym słowem 'kaucja' bez strzałek)
-"""
-
 import cv2 as cv
 import numpy as np
 import os
 import re
-
-# ---------------------------------------------------------------------------
-# Konfiguracja
-# ---------------------------------------------------------------------------
-
 REF_FILENAMES = ("kaucja.png", "kaucja50.jpg")
-MIN_REF_DIM = 300        # upscaluj referencje mniejsze niż ta wartość
-MIN_INLIERS = 18         # minimalna liczba geometrycznie spójnych inlierów RANSAC
-RATIO_TEST = 0.65        # próg Lowe'a (ostrzejszy - odrzuca słabe dopasowania)
-MIN_INLIER_RATIO = 0.35  # min. frakcja inlierów wśród kandydatów
-MAX_QUAD_AREA_FRAC = 0.95  # maks. frakcja obszaru obrazu dla wykrytego kwadratu
+MIN_REF_DIM = 300
+MIN_INLIERS = 18
+RATIO_TEST = 0.65
+MIN_INLIER_RATIO = 0.35
+MAX_QUAD_AREA_FRAC = 0.95
 SCALES = (1.0, 0.75, 0.5, 1.5, 2.0)
-
-# Regiony weryfikacji strukturalnej - skupione tam gdzie faktycznie jest treść znaku
-# Obraz referencyjny ma treść w y: 20-70%, x: 20-80%
-# Strzałki/logo recyklingu w górnej części treści, tekst KAUCJA w dolnej
 STRUCT_ROIS = [
-    (0.22, 0.50, 0.22, 0.55),   # górna lewa część znaku (logo/strzałki)
-    (0.22, 0.50, 0.50, 0.78),   # górna prawa część znaku
-    (0.50, 0.70, 0.22, 0.78),   # dolna część znaku (tekst KAUCJA)
+    (0.22, 0.50, 0.22, 0.55),
+    (0.22, 0.50, 0.50, 0.78),
+    (0.50, 0.70, 0.22, 0.78),
 ]
-
-# Progi weryfikacji strukturalnej
-# Wartości dla prawdziwych znaków (po poprawce M_inv): global~0.88-0.92, region~0.83-0.94
-# Próg 0.60 odrzuca obrazy bez strzałek (tekst-only), ale przepuszcza prawdziwe znaki
-GLOBAL_NCC_MIN = 0.60    # globalne NCC po wyrównaniu perspektywicznym
-REGION_NCC_MIN = 0.60    # NCC dla regionalnych sprawdzeń
-
-
-# ---------------------------------------------------------------------------
-# Pomocnicze funkcje
-# ---------------------------------------------------------------------------
-
+GLOBAL_NCC_MIN = 0.60
+REGION_NCC_MIN = 0.60
 def natural_sort_key(s: str) -> list:
     return [int(t) if t.isdigit() else t.lower() for t in re.split(r'([0-9]+)', s)]
-
-
 def preprocess(img: np.ndarray) -> np.ndarray:
-    """Skala szarości + CLAHE dla lepszego kontrastu przy detekcji."""
     gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY) if img.ndim == 3 else img.copy()
     return cv.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8)).apply(gray)
 
-
 def load_references(img_dir: str) -> list:
-    """Ładuje obrazy referencyjne, upscalując te zbyt małe dla SIFT."""
     refs = []
     for fname in REF_FILENAMES:
         path = os.path.join(img_dir, fname)
@@ -69,21 +36,13 @@ def load_references(img_dir: str) -> list:
             img = cv.resize(img, (int(w * s), int(h * s)), interpolation=cv.INTER_CUBIC)
         refs.append(img)
     return refs
-
-
-# ---------------------------------------------------------------------------
-# Walidacja geometryczna
-# ---------------------------------------------------------------------------
-
 def homography_ok(M: np.ndarray) -> bool:
     if M is None:
         return False
     det = np.linalg.det(M[:2, :2])
     return 0.01 <= abs(det) <= 1000
 
-
 def quad_ok(dst: np.ndarray, img_h: int, img_w: int) -> bool:
-    """Sprawdza czy wykryty czworokąt ma sens geometryczny dla znaku kaucji."""
     pts = dst.reshape(4, 2).astype(np.float32)
 
     area = cv.contourArea(pts)
@@ -104,33 +63,16 @@ def quad_ok(dst: np.ndarray, img_h: int, img_w: int) -> bool:
         return False
 
     return True
-
-
-# ---------------------------------------------------------------------------
-# Weryfikacja strukturalna
-# ---------------------------------------------------------------------------
-
 def ncc(a: np.ndarray, b: np.ndarray) -> float:
-    """Znormalizowana korelacja wzajemna."""
     af, bf = a.astype(float), b.astype(float)
     ra = (af - af.mean()) / (af.std() + 1e-6)
     rb = (bf - bf.mean()) / (bf.std() + 1e-6)
     return float((ra * rb).mean())
 
-
 def structural_verify(g_target: np.ndarray, g_ref: np.ndarray, M: np.ndarray) -> bool:
-    """
-    Weryfikacja strukturalna po wyrównaniu perspektywicznym (M_inv).
 
-    Sprawdza globalne NCC i regionalne NCC w 3 strefach znaku.
-    Obrazy z samym tekstem 'KAUCJA' mają puste strefy strzałek w górnej
-    części po wyrównaniu → niskie NCC → odrzucenie.
-    """
     h_ref, w_ref = g_ref.shape[:2]
 
-    # M mapuje ref→target; warpPerspective potrzebuje odwrotnego kierunku (target→ref),
-    # dlatego używamy M_inv, żeby dla każdego piksela wyjściowego (w ref-space)
-    # znaleźć odpowiedni piksel w g_target.
     M_inv = np.linalg.inv(M)
     warped = cv.warpPerspective(g_target, M_inv, (w_ref, h_ref))
 
@@ -138,12 +80,10 @@ def structural_verify(g_target: np.ndarray, g_ref: np.ndarray, M: np.ndarray) ->
     ref_eq = clahe.apply(g_ref)
     war_eq = clahe.apply(warped)
 
-    # 1. Globalne NCC całego obrazu po wyrównaniu
     global_score = ncc(ref_eq, war_eq)
     if global_score < GLOBAL_NCC_MIN:
         return False
 
-    # 2. Regionalne NCC - różne strefy znaku muszą wszystkie pasować
     for (y0, y1, x0, x1) in STRUCT_ROIS:
         ys, ye = int(h_ref * y0), int(h_ref * y1)
         xs, xe = int(w_ref * x0), int(w_ref * x1)
@@ -159,18 +99,7 @@ def structural_verify(g_target: np.ndarray, g_ref: np.ndarray, M: np.ndarray) ->
 
     return True
 
-
-# ---------------------------------------------------------------------------
-# Główna funkcja detekcji
-# ---------------------------------------------------------------------------
-
 def detect_kaucja(img: np.ndarray, refs: list, sift, flann) -> tuple:
-    """
-    Wykrywa znak kaucji na obrazie.
-
-    Zwraca:
-        (result_img, found, dst_quad, match_vis, (confidence, inlier_count))
-    """
     if img is None or not refs:
         return img, False, None, None, (0, 0)
 
@@ -217,21 +146,18 @@ def detect_kaucja(img: np.ndarray, refs: list, sift, flann) -> tuple:
             if n_inliers < MIN_INLIERS or n_inliers / len(good) < MIN_INLIER_RATIO:
                 continue
 
-            # Transformuj narożniki referencji na współrzędne obrazu docelowego
             h_r, w_r = g_ref.shape[:2]
             corners_ref = np.float32(
                 [[0, 0], [0, h_r - 1], [w_r - 1, h_r - 1], [w_r - 1, 0]]
             ).reshape(-1, 1, 2)
             dst_quad = cv.perspectiveTransform(corners_ref, M)
 
-            # Przenieś z powrotem do skali oryginalnego obrazu
             if scale != 1.0:
                 dst_quad = dst_quad / scale
 
             if not quad_ok(dst_quad, img.shape[0], img.shape[1]):
                 continue
 
-            # Wielopoziomowa weryfikacja strukturalna
             if not structural_verify(g_target, g_ref, M):
                 continue
 
@@ -253,11 +179,6 @@ def detect_kaucja(img: np.ndarray, refs: list, sift, flann) -> tuple:
 
     return img, False, None, None, (0, 0)
 
-
-# ---------------------------------------------------------------------------
-# Interfejs użytkownika
-# ---------------------------------------------------------------------------
-
 def display_result(result_img: np.ndarray, found: bool, match_vis,
                    filename: str, conf: int, inliers: int) -> None:
     if found:
@@ -271,7 +192,6 @@ def display_result(result_img: np.ndarray, found: bool, match_vis,
                    (10, 30), cv.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 220), 2)
 
     cv.imshow(f"Wynik: {filename}", result_img)
-
 
 def main() -> None:
     script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -317,7 +237,6 @@ def main() -> None:
         label = f"[{stats['total']:>2}/{len(images)}]"
         print(f"{label} {filename:<30}", end=" ", flush=True)
 
-        # Detekcja na oryginalnym obrazie (nie skalowanym do wyświetlania)
         result_img, found, _, match_vis, (conf, inliers) = detect_kaucja(
             img, refs, sift, flann
         )
@@ -328,7 +247,6 @@ def main() -> None:
         else:
             print("-> BRAK")
 
-        # Skaluj do wyświetlania (tylko do prezentacji)
         h, w = result_img.shape[:2]
         disp_scale = min(1.0, 900 / max(h, w))
         disp_img = cv.resize(result_img, (int(w * disp_scale), int(h * disp_scale))) \
@@ -350,7 +268,6 @@ def main() -> None:
     print(f"  Skutecznosc:  {pct:.1f}%")
     print("=" * 55)
     input("Nacisnij Enter aby zakonczyc...")
-
 
 if __name__ == "__main__":
     main()
