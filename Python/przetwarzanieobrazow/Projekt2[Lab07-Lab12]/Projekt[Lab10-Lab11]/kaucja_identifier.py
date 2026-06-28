@@ -1,10 +1,10 @@
 """
 Rozpoznawanie znaku systemu kaucyjnego
 Wielostopniowa detekcja:
-  1. SIFT + FLANN - dopasowanie cech
+  1. SIFT + FLANN - dopasowanie cech z testem proporcji Lowe'a
   2. Walidacja geometrii homografii (inliery RANSAC, kształt czworokąta)
-  3. Weryfikacja strukturalna - sprawdzenie obecności strzałek w znalezionym regionie
-     (kluczowe dla odrzucenia obrazów z samym słowem 'kaucja' bez strzałek/ramki)
+  3. Weryfikacja strukturalna - globalne NCC + regionalne NCC po wyrównaniu
+     perspektywicznym (odrzuca obrazy z samym słowem 'kaucja' bez strzałek)
 """
 
 import cv2 as cv
@@ -18,19 +18,26 @@ import re
 
 REF_FILENAMES = ("kaucja.png", "kaucja50.jpg")
 MIN_REF_DIM = 300        # upscaluj referencje mniejsze niż ta wartość
-MIN_INLIERS = 12         # minimalna liczba geometrycznie spójnych inlierów RANSAC
-RATIO_TEST = 0.70        # próg Lowe'a (ostrzejszy niż standardowe 0.75)
-MIN_INLIER_RATIO = 0.30  # min. frakcja inlierów wśród kandydatów
-SCALES = (1.0, 0.5, 1.5, 2.0)
+MIN_INLIERS = 18         # minimalna liczba geometrycznie spójnych inlierów RANSAC
+RATIO_TEST = 0.65        # próg Lowe'a (ostrzejszy - odrzuca słabe dopasowania)
+MIN_INLIER_RATIO = 0.35  # min. frakcja inlierów wśród kandydatów
+MAX_QUAD_AREA_FRAC = 0.95  # maks. frakcja obszaru obrazu dla wykrytego kwadratu
+SCALES = (1.0, 0.75, 0.5, 1.5, 2.0)
 
-# Regiony strzałek jako frakcje rozmiaru obrazu referencyjnego.
-# Znak kaucji ma strzałkę (→) w górnej części i (←) w dolnej -
-# to one odróżniają znak od zwykłego tekstu "KAUCJA".
-ARROW_ROIS = [
-    (0.05, 0.40, 0.08, 0.45),   # górna strzałka (→)
-    (0.60, 0.95, 0.55, 0.92),   # dolna strzałka (←)
+# Regiony weryfikacji strukturalnej - skupione tam gdzie faktycznie jest treść znaku
+# Obraz referencyjny ma treść w y: 20-70%, x: 20-80%
+# Strzałki/logo recyklingu w górnej części treści, tekst KAUCJA w dolnej
+STRUCT_ROIS = [
+    (0.22, 0.50, 0.22, 0.55),   # górna lewa część znaku (logo/strzałki)
+    (0.22, 0.50, 0.50, 0.78),   # górna prawa część znaku
+    (0.50, 0.70, 0.22, 0.78),   # dolna część znaku (tekst KAUCJA)
 ]
-ARROW_NCC_MIN = 0.05  # minimalne NCC - przy pustym/białym regionie daje ≈ 0
+
+# Progi weryfikacji strukturalnej
+# Wartości dla prawdziwych znaków (po poprawce M_inv): global~0.88-0.92, region~0.83-0.94
+# Próg 0.60 odrzuca obrazy bez strzałek (tekst-only), ale przepuszcza prawdziwe znaki
+GLOBAL_NCC_MIN = 0.60    # globalne NCC po wyrównaniu perspektywicznym
+REGION_NCC_MIN = 0.60    # NCC dla regionalnych sprawdzeń
 
 
 # ---------------------------------------------------------------------------
@@ -85,7 +92,7 @@ def quad_ok(dst: np.ndarray, img_h: int, img_w: int) -> bool:
         return False
 
     img_area = img_h * img_w
-    if not (img_area * 0.005 <= area <= img_area * 0.99):
+    if not (img_area * 0.005 <= area <= img_area * MAX_QUAD_AREA_FRAC):
         return False
 
     _, _, w, h = cv.boundingRect(pts.astype(np.int32))
@@ -100,7 +107,7 @@ def quad_ok(dst: np.ndarray, img_h: int, img_w: int) -> bool:
 
 
 # ---------------------------------------------------------------------------
-# Weryfikacja strukturalna - strzałki
+# Weryfikacja strukturalna
 # ---------------------------------------------------------------------------
 
 def ncc(a: np.ndarray, b: np.ndarray) -> float:
@@ -111,24 +118,33 @@ def ncc(a: np.ndarray, b: np.ndarray) -> float:
     return float((ra * rb).mean())
 
 
-def arrows_present(g_target: np.ndarray, g_ref: np.ndarray, M: np.ndarray) -> bool:
+def structural_verify(g_target: np.ndarray, g_ref: np.ndarray, M: np.ndarray) -> bool:
     """
-    Dopasowuje region celu do przestrzeni referencji i sprawdza NCC w regionach
-    strzałek. Obrazy z samym tekstem 'KAUCJA' (bez strzałek i ramki) mają pusty
-    biały region w tych miejscach → NCC ≈ 0, co powoduje odrzucenie.
-    Prawdziwy znak kaucji ma strzałki → NCC > ARROW_NCC_MIN.
+    Weryfikacja strukturalna po wyrównaniu perspektywicznym (M_inv).
 
-    Uwaga: M mapuje ref→scaled_target, więc warpPerspective(g_target, M, ref_size)
-    daje obraz celu wyrównany do przestrzeni referencji.
+    Sprawdza globalne NCC i regionalne NCC w 3 strefach znaku.
+    Obrazy z samym tekstem 'KAUCJA' mają puste strefy strzałek w górnej
+    części po wyrównaniu → niskie NCC → odrzucenie.
     """
     h_ref, w_ref = g_ref.shape[:2]
-    warped = cv.warpPerspective(g_target, M, (w_ref, h_ref))
+
+    # M mapuje ref→target; warpPerspective potrzebuje odwrotnego kierunku (target→ref),
+    # dlatego używamy M_inv, żeby dla każdego piksela wyjściowego (w ref-space)
+    # znaleźć odpowiedni piksel w g_target.
+    M_inv = np.linalg.inv(M)
+    warped = cv.warpPerspective(g_target, M_inv, (w_ref, h_ref))
 
     clahe = cv.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
     ref_eq = clahe.apply(g_ref)
     war_eq = clahe.apply(warped)
 
-    for (y0, y1, x0, x1) in ARROW_ROIS:
+    # 1. Globalne NCC całego obrazu po wyrównaniu
+    global_score = ncc(ref_eq, war_eq)
+    if global_score < GLOBAL_NCC_MIN:
+        return False
+
+    # 2. Regionalne NCC - różne strefy znaku muszą wszystkie pasować
+    for (y0, y1, x0, x1) in STRUCT_ROIS:
         ys, ye = int(h_ref * y0), int(h_ref * y1)
         xs, xe = int(w_ref * x0), int(w_ref * x1)
 
@@ -138,7 +154,7 @@ def arrows_present(g_target: np.ndarray, g_ref: np.ndarray, M: np.ndarray) -> bo
         if r_roi.size == 0 or w_roi.size == 0:
             return False
 
-        if ncc(r_roi, w_roi) < ARROW_NCC_MIN:
+        if ncc(r_roi, w_roi) < REGION_NCC_MIN:
             return False
 
     return True
@@ -215,8 +231,8 @@ def detect_kaucja(img: np.ndarray, refs: list, sift, flann) -> tuple:
             if not quad_ok(dst_quad, img.shape[0], img.shape[1]):
                 continue
 
-            # Weryfikacja strukturalna: czy w znalezionym regionie są strzałki?
-            if not arrows_present(g_target, g_ref, M):
+            # Wielopoziomowa weryfikacja strukturalna
+            if not structural_verify(g_target, g_ref, M):
                 continue
 
             if n_inliers > best_n:
@@ -284,6 +300,8 @@ def main() -> None:
     print("  Rozpoznawanie znaku systemu kaucyjnego")
     print(f"  Obrazy referencyjne: {len(refs)} szt.")
     print(f"  Obrazy do analizy:   {len(images)} szt.")
+    print(f"  Progi: inliers>={MIN_INLIERS}, ratio={RATIO_TEST}, "
+          f"global_ncc>={GLOBAL_NCC_MIN}, region_ncc>={REGION_NCC_MIN}")
     print("=" * 55)
     print("Sterowanie: dowolny klawisz = nastepny  |  q = koniec\n")
 
@@ -299,14 +317,9 @@ def main() -> None:
         label = f"[{stats['total']:>2}/{len(images)}]"
         print(f"{label} {filename:<30}", end=" ", flush=True)
 
-        # Skaluj wyświetlanie do rozsądnych wymiarów (detekcja i tak na oryginale)
-        h, w = img.shape[:2]
-        disp_scale = min(1.0, 800 / max(h, w))
-        img_disp = cv.resize(img, (int(w * disp_scale), int(h * disp_scale))) \
-            if disp_scale < 1.0 else img.copy()
-
+        # Detekcja na oryginalnym obrazie (nie skalowanym do wyświetlania)
         result_img, found, _, match_vis, (conf, inliers) = detect_kaucja(
-            img_disp, refs, sift, flann
+            img, refs, sift, flann
         )
 
         if found:
@@ -315,7 +328,13 @@ def main() -> None:
         else:
             print("-> BRAK")
 
-        display_result(result_img, found, match_vis, filename, conf, inliers)
+        # Skaluj do wyświetlania (tylko do prezentacji)
+        h, w = result_img.shape[:2]
+        disp_scale = min(1.0, 900 / max(h, w))
+        disp_img = cv.resize(result_img, (int(w * disp_scale), int(h * disp_scale))) \
+            if disp_scale < 1.0 else result_img
+
+        display_result(disp_img, found, match_vis, filename, conf, inliers)
 
         key = cv.waitKey(5000) & 0xFF
         cv.destroyAllWindows()
