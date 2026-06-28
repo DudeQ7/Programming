@@ -117,10 +117,6 @@ class TestDzielenie:
         """5 ÷ 0 → wyświetla 'Błąd'"""
         nacisnij(page, "5", "/", "0", "=")
         assert wynik(page) == "Błąd"
-
-
-# ── liczby ujemne / negacja ───────────────────────────────────────────────────
-
 class TestLiczbyUjemne:
     def test_negacja_liczby_dodatniej(self, page: Page):
         """5 → +/- = -5"""
