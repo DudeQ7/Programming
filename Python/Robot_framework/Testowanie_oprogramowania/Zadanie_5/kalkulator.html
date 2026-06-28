@@ -24,6 +24,12 @@
     .btn-equals  { background: #27ae60; color: white; }
     .btn-clear   { background: #c0392b; color: white; }
     .btn-special { background: #2c3e6e; color: #e2e8f0; }
+    button.btn-pressed {
+      filter: brightness(2);
+      box-shadow: 0 0 16px 6px rgba(255, 255, 255, 0.55);
+      transform: scale(0.96);
+      transition: filter 0.05s, box-shadow 0.05s;
+    }
   </style>
 </head>
 <body>
@@ -135,6 +141,13 @@
       }
     }
   }
+
+  document.querySelectorAll('button').forEach(function(btn) {
+    btn.addEventListener('mousedown', function() {
+      btn.classList.add('btn-pressed');
+      setTimeout(function() { btn.classList.remove('btn-pressed'); }, 500);
+    });
+  });
 
   function oblicz() {
     var a = parseFloat(previousValue);

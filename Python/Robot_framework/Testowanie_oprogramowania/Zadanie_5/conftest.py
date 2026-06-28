@@ -10,7 +10,7 @@ def otworz_kalkulator(page: Page):
     page.goto(KALKULATOR_URL)
     page.wait_for_selector("#display")
     yield
-    page.wait_for_timeout(2000)
+    page.wait_for_timeout(3500)
     page.locator("#btn-ac").click()
 
 

@@ -16,6 +16,7 @@ PRZYCISKI = {
 def nacisnij(page: Page, *klawisze: str) -> None:
     for k in klawisze:
         page.locator(PRZYCISKI[k]).click()
+        page.wait_for_timeout(1200)
 
 
 def wynik(page: Page) -> str:
