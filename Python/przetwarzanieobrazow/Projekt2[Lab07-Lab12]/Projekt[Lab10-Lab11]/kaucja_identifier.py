@@ -1,196 +1,273 @@
 import cv2 as cv
 import numpy as np
 import os
-import sys
 import re
+REF_FILENAMES = ("kaucja.png", "kaucja50.jpg")
+MIN_REF_DIM = 300
+MIN_INLIERS = 18
+RATIO_TEST = 0.65
+MIN_INLIER_RATIO = 0.35
+MAX_QUAD_AREA_FRAC = 0.95
+SCALES = (1.0, 0.75, 0.5, 1.5, 2.0)
+STRUCT_ROIS = [
+    (0.22, 0.50, 0.22, 0.55),
+    (0.22, 0.50, 0.50, 0.78),
+    (0.50, 0.70, 0.22, 0.78),
+]
+GLOBAL_NCC_MIN = 0.60
+REGION_NCC_MIN = 0.60
+def natural_sort_key(s: str) -> list:
+    return [int(t) if t.isdigit() else t.lower() for t in re.split(r'([0-9]+)', s)]
+def preprocess(img: np.ndarray) -> np.ndarray:
+    gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY) if img.ndim == 3 else img.copy()
+    return cv.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8)).apply(gray)
 
-def natural_sort_key(s):
-   #sortowanie zdjec 
-    return [int(text) if text.isdigit() else text.lower()
-            for text in re.split('([0-9]+)', s)]
+def load_references(img_dir: str) -> list:
+    refs = []
+    for fname in REF_FILENAMES:
+        path = os.path.join(img_dir, fname)
+        img = cv.imread(path)
+        if img is None:
+            print(f"[WARN] Brak referencji: {fname}")
+            continue
+        h, w = img.shape[:2]
+        if max(h, w) < MIN_REF_DIM:
+            s = MIN_REF_DIM / max(h, w)
+            img = cv.resize(img, (int(w * s), int(h * s)), interpolation=cv.INTER_CUBIC)
+        refs.append(img)
+    return refs
+def homography_ok(M: np.ndarray) -> bool:
+    if M is None:
+        return False
+    det = np.linalg.det(M[:2, :2])
+    return 0.01 <= abs(det) <= 1000
 
-def detect_kaucja(target_img, ref_img, sift, flann, min_matches=8):
-    if target_img is None or ref_img is None:
-        return target_img, False, None, None, (0, 0)
-    # Preprocessing: Zamiana na szary, dodanie CLAHE dla lepszej detekcji w trudnych warunkach
-    def preprocess(img):
-        gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY) if len(img.shape) == 3 else img
-        clahe = cv.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
-        return clahe.apply(gray)
-    gray_ref = preprocess(ref_img)
-    kp1, des1 = sift.detectAndCompute(gray_ref, None)
-    if des1 is None:
-        return target_img, False, None, None, (0, 0)
-    scales = [1.0, 0.5, 1.5]
+def quad_ok(dst: np.ndarray, img_h: int, img_w: int) -> bool:
+    pts = dst.reshape(4, 2).astype(np.float32)
 
-    for scale in scales:
-        if scale == 1.0:
-            current_target = target_img
-        else:
-            w = int(target_img.shape[1] * scale)
-            h = int(target_img.shape[0] * scale)
-            current_target = cv.resize(target_img, (w, h))
-        gray_target = preprocess(current_target)
-        kp2, des2 = sift.detectAndCompute(gray_target, None)
-        if des2 is None: continue
-        matches = flann.knnMatch(des1, des2, k=2)
-        good = [m for m, n in matches if m.distance < 0.75 * n.distance]
-        if len(good) >= min_matches:
-            match_vis = cv.drawMatches(ref_img, kp1, current_target, kp2, good, None, 
-                                     flags=cv.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS)
-            src_pts = np.float32([kp1[m.queryIdx].pt for m in good]).reshape(-1, 1, 2)
-            dst_pts = np.float32([kp2[m.trainIdx].pt for m in good]).reshape(-1, 1, 2)
+    area = cv.contourArea(pts)
+    hull_area = cv.contourArea(cv.convexHull(pts))
+    if hull_area < 1 or area / hull_area < 0.80:
+        return False
+
+    img_area = img_h * img_w
+    if not (img_area * 0.005 <= area <= img_area * MAX_QUAD_AREA_FRAC):
+        return False
+
+    _, _, w, h = cv.boundingRect(pts.astype(np.int32))
+    if min(w, h) <= 0 or max(w, h) / min(w, h) > 6:
+        return False
+
+    sides = [np.linalg.norm(pts[(i + 1) % 4] - pts[i]) for i in range(4)]
+    if min(sides) < 5 or max(sides) / max(min(sides), 1e-6) > 20:
+        return False
+
+    return True
+def ncc(a: np.ndarray, b: np.ndarray) -> float:
+    af, bf = a.astype(float), b.astype(float)
+    ra = (af - af.mean()) / (af.std() + 1e-6)
+    rb = (bf - bf.mean()) / (bf.std() + 1e-6)
+    return float((ra * rb).mean())
+
+def structural_verify(g_target: np.ndarray, g_ref: np.ndarray, M: np.ndarray) -> bool:
+
+    h_ref, w_ref = g_ref.shape[:2]
+
+    M_inv = np.linalg.inv(M)
+    warped = cv.warpPerspective(g_target, M_inv, (w_ref, h_ref))
+
+    clahe = cv.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
+    ref_eq = clahe.apply(g_ref)
+    war_eq = clahe.apply(warped)
+
+    global_score = ncc(ref_eq, war_eq)
+    if global_score < GLOBAL_NCC_MIN:
+        return False
+
+    for (y0, y1, x0, x1) in STRUCT_ROIS:
+        ys, ye = int(h_ref * y0), int(h_ref * y1)
+        xs, xe = int(w_ref * x0), int(w_ref * x1)
+
+        r_roi = ref_eq[ys:ye, xs:xe]
+        w_roi = war_eq[ys:ye, xs:xe]
+
+        if r_roi.size == 0 or w_roi.size == 0:
+            return False
+
+        if ncc(r_roi, w_roi) < REGION_NCC_MIN:
+            return False
+
+    return True
+
+def detect_kaucja(img: np.ndarray, refs: list, sift, flann) -> tuple:
+    if img is None or not refs:
+        return img, False, None, None, (0, 0)
+
+    best_n = 0
+    best = None
+
+    for ref in refs:
+        g_ref = preprocess(ref)
+        kp_ref, des_ref = sift.detectAndCompute(g_ref, None)
+        if des_ref is None or len(des_ref) < MIN_INLIERS:
+            continue
+
+        for scale in SCALES:
+            if scale == 1.0:
+                target = img
+            else:
+                target = cv.resize(img, (int(img.shape[1] * scale),
+                                         int(img.shape[0] * scale)))
+
+            g_target = preprocess(target)
+            kp_t, des_t = sift.detectAndCompute(g_target, None)
+            if des_t is None or len(des_t) < MIN_INLIERS:
+                continue
+
+            raw_matches = flann.knnMatch(des_ref, des_t, k=2)
+            good = [m for pair in raw_matches
+                    if len(pair) == 2
+                    for m, n in [pair]
+                    if m.distance < RATIO_TEST * n.distance]
+
+            if len(good) < MIN_INLIERS:
+                continue
+
+            src_pts = np.float32([kp_ref[m.queryIdx].pt for m in good]).reshape(-1, 1, 2)
+            dst_pts = np.float32([kp_t[m.trainIdx].pt  for m in good]).reshape(-1, 1, 2)
 
             M, mask = cv.findHomography(src_pts, dst_pts, cv.RANSAC, 5.0)
-            if M is not None:
-                h_ref, w_ref = gray_ref.shape
-                pts = np.float32([[0, 0], [0, h_ref - 1], [w_ref - 1, h_ref - 1], [w_ref - 1, 0]]).reshape(-1, 1, 2)
-                dst = cv.perspectiveTransform(pts, M)
-
-                if scale != 1.0:
-                    dst = dst / scale
-
-                target_img_res = target_img.copy()
-                target_img_res = cv.polylines(target_img_res, [np.int32(dst)], True, (0, 255, 0), 3, cv.LINE_AA)
-
-                # Oblicznie pewnosci na podstawie liczby dobrych dopasowan (min_matches to 8, 30+ to bardzo silne dopasowanie)
-                confidence = min(100, int((len(good) / 25.0) * 100))
-
-                return target_img_res, True, dst, match_vis, (confidence, len(good))
-
-    return target_img, False, None, None, (0, 0)
-
-def main():
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    
-    # Sift i FLANN
-    sift = cv.SIFT_create()
-    
-    FLANN_INDEX_KDTREE = 1
-    index_params = dict(algorithm=FLANN_INDEX_KDTREE, trees=5)
-    search_params = dict(checks=50)
-    flann = cv.FlannBasedMatcher(index_params, search_params)
-
-    ref_path = os.path.join(script_dir, "zdjecia", "kaucja.png")
-    if not os.path.exists(ref_path):
-        print(f"Error: Reference image {ref_path} not found.")
-        return
-    
-    ref_img = cv.imread(ref_path)
-    if ref_img is None:
-        print(f"Error: Could not read reference image {ref_path}.")
-        return
-
-    print("=== System Rozpoznawania Etykiet Kaucyjnych (OCENA 5) ===")
-    print("1. Identyfikacja automatyczna krok po kroku (z folderu 'zdjecia')")
-    print("2. Identyfikacja na żywo (webcam)")
-    
-    choice = input("Wybierz opcje (1/2): ")
-
-    if choice == '1':
-        print("\n" + "="*50)
-        print("URUCHAMIAM IDENTYFIKACJE AUTOMATYCZNA")
-        print("="*50)
-        print("Instrukcja: Dowolny klawisz - nastepne zdjecie, 'q' - przerwij.")
-        print("AUTOMATYCZNE PRZEWIJANIE: Co 5 sekund.\n")
-        
-        img_dir = os.path.join(script_dir, "zdjecia")
-        # Pobieramy i sortujemy pliki, aby szly kolejno (1, 2, 3...)
-        images = sorted([f for f in os.listdir(img_dir) if f.lower().endswith(('.png', '.jpg', '.jpeg', '.webp'))],
-                        key=natural_sort_key)
-        
-        stats = {"total": 0, "found": 0}
-        
-        for filename in images:
-            if filename == "kaucja.png":
+            if not homography_ok(M) or mask is None:
                 continue
-            
-            img_path = os.path.join(img_dir, filename)
-            img = cv.imread(img_path)
-            if img is None:
+
+            inlier_mask = mask.ravel().astype(bool)
+            n_inliers = int(inlier_mask.sum())
+
+            if n_inliers < MIN_INLIERS or n_inliers / len(good) < MIN_INLIER_RATIO:
                 continue
-            
-            stats["total"] += 1
-            print(f"[{stats['total']}/{len(images)-1}] Przetwarzanie: {filename:<20}", end=" ", flush=True)
-            
-            # Przeskalowanie do wyswietlania (zachowujemy proporcje)
-            h, w = img.shape[:2]
-            max_dim = 800
-            if max(h, w) > max_dim:
-                scale_disp = max_dim / max(h, w)
-                img_disp = cv.resize(img, (int(w * scale_disp), int(h * scale_disp)))
-            else:
-                img_disp = img.copy()
 
-            result_img, found, _, match_vis, conf_data = detect_kaucja(img_disp, ref_img, sift, flann)
-            conf_val, match_count = conf_data
-            
-            if found:
-                stats["found"] += 1
-                print(f"-> [ZNALEZIONO] Pewnosc: {conf_val}%")
-                cv.putText(result_img, f"KAUCJA WYKRYTA ({conf_val}%)", (10, 30), 
-                           cv.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
-                cv.putText(result_img, f"Punkty: {match_count}", (10, 60), 
-                           cv.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 0), 1)
-                
-                cv.imshow("Krok 1: Dopasowanie punktow (SIFT)", match_vis)
-                cv.imshow("Krok 2: Detekcja (Homografia)", result_img)
-            else:
-                print("-> [NIE ZNALEZIONO]")
-                cv.putText(result_img, f"BRAK KAUCJI", (10, 30), 
-                           cv.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
-                cv.imshow("Krok 2: Detekcja (Homografia)", result_img)
+            h_r, w_r = g_ref.shape[:2]
+            corners_ref = np.float32(
+                [[0, 0], [0, h_r - 1], [w_r - 1, h_r - 1], [w_r - 1, 0]]
+            ).reshape(-1, 1, 2)
+            dst_quad = cv.perspectiveTransform(corners_ref, M)
 
-            # Czekamy 5 sekund (5000ms) lub na klawisz
-            key = cv.waitKey(5000)
-            cv.destroyAllWindows()
-            
-            if key == ord('q'):
-                print("\nPrzerwano przez uzytkownika.")
-                break
-        
-        print("\n" + "="*50)
-        print("PODSUMOWANIE PRZETWARZANIA")
-        print(f"Przetworzono plikow: {stats['total']}")
-        print(f"Wykryto znaczkow:     {stats['found']}")
-        print(f"Skutecznosc:          {(stats['found']/stats['total']*100 if stats['total']>0 else 0):.1f}%")
-        print("="*50)
-        print("Nacisnij dowolny klawisz, aby zakonczyc.")
-        cv.waitKey(0)
+            if scale != 1.0:
+                dst_quad = dst_quad / scale
 
-    elif choice == '2':
-        print("\nUruchamiam identyfikacje z kamerki... (Nacisnij 'q' aby wyjsc)")
-        cap = cv.VideoCapture(0)
-        
-        if not cap.isOpened():
-            print("Blad: Nie mozna otworzyc kamerki.")
-            return
+            if not quad_ok(dst_quad, img.shape[0], img.shape[1]):
+                continue
 
-        while True:
-            ret, frame = cap.read()
-            if not ret:
-                print("Nie mozna pobrac klatki z kamerki.")
-                break
-            
-            result_frame, found, _, match_vis, conf_data = detect_kaucja(frame, ref_img, sift, flann)
-            
-            if found:
-                conf_val, _ = conf_data
-                cv.putText(result_frame, f"KAUCJA WYKRYTA ({conf_val}%)", (10, 30), 
-                           cv.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-                if match_vis is not None:
-                    cv.imshow("Dopasowania SIFT", match_vis)
-            
-            cv.imshow("Webcam - Identyfikacja Kaucji", result_frame)
-            
-            if cv.waitKey(1) & 0xFF == ord('q'):
-                break
-        
-        cap.release()
-        cv.destroyAllWindows()
-    
+            if not structural_verify(g_target, g_ref, M):
+                continue
+
+            if n_inliers > best_n:
+                best_n = n_inliers
+                inlier_matches = [good[i] for i in range(len(good)) if inlier_mask[i]]
+                match_vis = cv.drawMatches(
+                    ref, kp_ref, target, kp_t, inlier_matches, None,
+                    flags=cv.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS,
+                )
+                confidence = min(100, int(n_inliers / 25.0 * 100))
+                best = (dst_quad, match_vis, confidence, n_inliers)
+
+    if best:
+        dst_quad, match_vis, confidence, n_inliers = best
+        result = img.copy()
+        cv.polylines(result, [np.int32(dst_quad)], True, (0, 255, 0), 3, cv.LINE_AA)
+        return result, True, dst_quad, match_vis, (confidence, n_inliers)
+
+    return img, False, None, None, (0, 0)
+
+def display_result(result_img: np.ndarray, found: bool, match_vis,
+                   filename: str, conf: int, inliers: int) -> None:
+    if found:
+        cv.putText(result_img, f"KAUCJA WYKRYTA  ({conf}%)",
+                   (10, 30), cv.FONT_HERSHEY_SIMPLEX, 0.7, (0, 200, 0), 2)
+        cv.putText(result_img, f"RANSAC inliers: {inliers}",
+                   (10, 58), cv.FONT_HERSHEY_SIMPLEX, 0.55, (0, 200, 100), 1)
+        cv.imshow("Dopasowanie cech (inliery SIFT)", match_vis)
     else:
-        print("Nieprawidlowy wybor.")
+        cv.putText(result_img, "BRAK ZNAKU KAUCJI",
+                   (10, 30), cv.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 220), 2)
+
+    cv.imshow(f"Wynik: {filename}", result_img)
+
+def main() -> None:
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    img_dir = os.path.join(script_dir, "zdjecia")
+
+    refs = load_references(img_dir)
+    if not refs:
+        print("BLAD: Brak obrazow referencyjnych w folderze 'zdjecia'.")
+        return
+
+    sift = cv.SIFT_create()
+    flann = cv.FlannBasedMatcher(
+        dict(algorithm=1, trees=5),
+        dict(checks=50),
+    )
+
+    ref_set = set(REF_FILENAMES)
+    all_files = sorted(
+        [f for f in os.listdir(img_dir)
+         if f.lower().endswith((".png", ".jpg", ".jpeg", ".webp"))],
+        key=natural_sort_key,
+    )
+    images = [f for f in all_files if f not in ref_set]
+
+    print("=" * 55)
+    print("  Rozpoznawanie znaku systemu kaucyjnego")
+    print(f"  Obrazy referencyjne: {len(refs)} szt.")
+    print(f"  Obrazy do analizy:   {len(images)} szt.")
+    print(f"  Progi: inliers>={MIN_INLIERS}, ratio={RATIO_TEST}, "
+          f"global_ncc>={GLOBAL_NCC_MIN}, region_ncc>={REGION_NCC_MIN}")
+    print("=" * 55)
+    print("Sterowanie: dowolny klawisz = nastepny  |  q = koniec\n")
+
+    stats = {"total": 0, "found": 0}
+
+    for filename in images:
+        img_path = os.path.join(img_dir, filename)
+        img = cv.imread(img_path)
+        if img is None:
+            continue
+
+        stats["total"] += 1
+        label = f"[{stats['total']:>2}/{len(images)}]"
+        print(f"{label} {filename:<30}", end=" ", flush=True)
+
+        result_img, found, _, match_vis, (conf, inliers) = detect_kaucja(
+            img, refs, sift, flann
+        )
+
+        if found:
+            stats["found"] += 1
+            print(f"-> ZNALEZIONO  pewnosc={conf}%  inliers={inliers}")
+        else:
+            print("-> BRAK")
+
+        h, w = result_img.shape[:2]
+        disp_scale = min(1.0, 900 / max(h, w))
+        disp_img = cv.resize(result_img, (int(w * disp_scale), int(h * disp_scale))) \
+            if disp_scale < 1.0 else result_img
+
+        display_result(disp_img, found, match_vis, filename, conf, inliers)
+
+        key = cv.waitKey(5000) & 0xFF
+        cv.destroyAllWindows()
+        if key == ord('q'):
+            print("\nPrzerwano.")
+            break
+
+    print("\n" + "=" * 55)
+    print("PODSUMOWANIE")
+    print(f"  Przetworzono: {stats['total']}")
+    print(f"  Wykryto:      {stats['found']}")
+    pct = stats['found'] / stats['total'] * 100 if stats['total'] else 0
+    print(f"  Skutecznosc:  {pct:.1f}%")
+    print("=" * 55)
+    input("Nacisnij Enter aby zakonczyc...")
 
 if __name__ == "__main__":
     main()
