@@ -5,3 +5,5 @@
 npx playwright test            [--headed --ui]
 npx playwright show-report
 python -m playwright install 
+
+samodzielene testy na podstawie strony internetowej z kalkulatorem na podstawie online-calculator.com 
