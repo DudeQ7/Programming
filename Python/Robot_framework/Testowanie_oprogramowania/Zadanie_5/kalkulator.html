@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Kalkulator</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { display: flex; justify-content: center; align-items: center; min-height: 100vh; background: #1a1a2e; font-family: 'Segoe UI', sans-serif; }
+    .calculator { background: #16213e; border-radius: 16px; padding: 24px; width: 300px; box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
+    #display {
+      width: 100%; background: #0f3460; color: #e2e8f0; font-size: 2rem;
+      text-align: right; padding: 16px; border: none; border-radius: 8px;
+      margin-bottom: 16px; outline: none; cursor: default;
+      min-height: 64px; overflow: hidden; white-space: nowrap;
+    }
+    .buttons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    button {
+      padding: 18px 10px; font-size: 1.1rem; border: none; border-radius: 8px;
+      cursor: pointer; transition: opacity 0.1s, transform 0.1s; font-weight: 600;
+    }
+    button:active { opacity: 0.7; transform: scale(0.96); }
+    .btn-digit   { background: #1a4a7a; color: #e2e8f0; }
+    .btn-op      { background: #e67e22; color: white; }
+    .btn-equals  { background: #27ae60; color: white; }
+    .btn-clear   { background: #c0392b; color: white; }
+    .btn-special { background: #2c3e6e; color: #e2e8f0; }
+    button.btn-pressed {
+      filter: brightness(2);
+      box-shadow: 0 0 16px 6px rgba(255, 255, 255, 0.55);
+      transform: scale(0.96);
+      transition: filter 0.05s, box-shadow 0.05s;
+    }
+  </style>
+</head>
+<body>
+<div class="calculator">
+  <input id="display" type="text" readonly value="0" aria-label="wyświetlacz">
+  <div class="buttons">
+    <button id="btn-ac"    class="btn-clear"   onclick="nacisnij('AC')">AC</button>
+    <button id="btn-sign"  class="btn-special" onclick="nacisnij('+/-')">+/-</button>
+    <button id="btn-pct"   class="btn-special" onclick="nacisnij('%')">%</button>
+    <button id="btn-div"   class="btn-op"      onclick="nacisnij('/')">÷</button>
+
+    <button id="btn-7"     class="btn-digit"   onclick="nacisnij('7')">7</button>
+    <button id="btn-8"     class="btn-digit"   onclick="nacisnij('8')">8</button>
+    <button id="btn-9"     class="btn-digit"   onclick="nacisnij('9')">9</button>
+    <button id="btn-mul"   class="btn-op"      onclick="nacisnij('*')">×</button>
+
+    <button id="btn-4"     class="btn-digit"   onclick="nacisnij('4')">4</button>
+    <button id="btn-5"     class="btn-digit"   onclick="nacisnij('5')">5</button>
+    <button id="btn-6"     class="btn-digit"   onclick="nacisnij('6')">6</button>
+    <button id="btn-sub"   class="btn-op"      onclick="nacisnij('-')">−</button>
+
+    <button id="btn-1"     class="btn-digit"   onclick="nacisnij('1')">1</button>
+    <button id="btn-2"     class="btn-digit"   onclick="nacisnij('2')">2</button>
+    <button id="btn-3"     class="btn-digit"   onclick="nacisnij('3')">3</button>
+    <button id="btn-add"   class="btn-op"      onclick="nacisnij('+')">+</button>
+
+    <button id="btn-0"     class="btn-digit"   style="grid-column: span 2;" onclick="nacisnij('0')">0</button>
+    <button id="btn-dot"   class="btn-digit"   onclick="nacisnij('.')">.</button>
+    <button id="btn-eq"    class="btn-equals"  onclick="nacisnij('=')">=</button>
+  </div>
+</div>
+
+<script>
+  var currentValue = '0';
+  var previousValue = '';
+  var operator = null;
+  var shouldResetDisplay = false;
+
+  function updateDisplay(val) {
+    document.getElementById('display').value = val;
+    currentValue = val;
+  }
+
+  function nacisnij(key) {
+    if (key === 'AC') {
+      currentValue = '0';
+      previousValue = '';
+      operator = null;
+      shouldResetDisplay = false;
+      updateDisplay('0');
+      return;
+    }
+
+    if (key === '+/-') {
+      var num = parseFloat(currentValue);
+      if (!isNaN(num) && num !== 0) {
+        updateDisplay(String(-num));
+      }
+      return;
+    }
+
+    if (key === '%') {
+      var num = parseFloat(currentValue);
+      if (!isNaN(num)) {
+        updateDisplay(String(num / 100));
+      }
+      return;
+    }
+
+    if (['+', '-', '*', '/'].includes(key)) {
+      if (operator !== null && !shouldResetDisplay) {
+        oblicz();
+      }
+      previousValue = currentValue;
+      operator = key;
+      shouldResetDisplay = true;
+      return;
+    }
+
+    if (key === '=') {
+      if (operator !== null && previousValue !== '') {
+        oblicz();
+        operator = null;
+        previousValue = '';
+        shouldResetDisplay = true;
+      }
+      return;
+    }
+
+    if (key === '.') {
+      if (shouldResetDisplay) {
+        updateDisplay('0.');
+        shouldResetDisplay = false;
+        return;
+      }
+      if (!currentValue.includes('.')) {
+        updateDisplay(currentValue + '.');
+      }
+      return;
+    }
+
+    // digit
+    if (shouldResetDisplay || currentValue === '0') {
+      updateDisplay(key);
+      shouldResetDisplay = false;
+    } else {
+      if (currentValue.replace('-', '').length < 15) {
+        updateDisplay(currentValue + key);
+      }
+    }
+  }
+
+  document.querySelectorAll('button').forEach(function(btn) {
+    btn.addEventListener('mousedown', function() {
+      btn.classList.add('btn-pressed');
+      setTimeout(function() { btn.classList.remove('btn-pressed'); }, 500);
+    });
+  });
+
+  function oblicz() {
+    var a = parseFloat(previousValue);
+    var b = parseFloat(currentValue);
+    var result;
+    if (operator === '+') result = a + b;
+    else if (operator === '-') result = a - b;
+    else if (operator === '*') result = a * b;
+    else if (operator === '/') {
+      if (b === 0) { updateDisplay('Błąd'); operator = null; return; }
+      result = a / b;
+    }
+    // Clean up floating point noise
+    result = parseFloat(result.toPrecision(12));
+    updateDisplay(String(result));
+  }
+</script>
+</body>
+</html>
