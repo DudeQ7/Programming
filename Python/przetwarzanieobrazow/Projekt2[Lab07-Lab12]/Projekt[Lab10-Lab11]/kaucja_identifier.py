@@ -1,316 +1,336 @@
+"""
+Rozpoznawanie znaku systemu kaucyjnego
+Wielostopniowa detekcja:
+  1. SIFT + FLANN - dopasowanie cech
+  2. Walidacja geometrii homografii (inliery RANSAC, kształt czworokąta)
+  3. Weryfikacja strukturalna - sprawdzenie obecności strzałek w znalezionym regionie
+     (kluczowe dla odrzucenia obrazów z samym słowem 'kaucja' bez strzałek/ramki)
+"""
+
 import cv2 as cv
 import numpy as np
 import os
 import re
 
+# ---------------------------------------------------------------------------
+# Konfiguracja
+# ---------------------------------------------------------------------------
 
-def natural_sort_key(s):
-    return [int(text) if text.isdigit() else text.lower()
-            for text in re.split('([0-9]+)', s)]
+REF_FILENAMES = ("kaucja.png", "kaucja50.jpg")
+MIN_REF_DIM = 300        # upscaluj referencje mniejsze niż ta wartość
+MIN_INLIERS = 12         # minimalna liczba geometrycznie spójnych inlierów RANSAC
+RATIO_TEST = 0.70        # próg Lowe'a (ostrzejszy niż standardowe 0.75)
+MIN_INLIER_RATIO = 0.30  # min. frakcja inlierów wśród kandydatów
+SCALES = (1.0, 0.5, 1.5, 2.0)
 
-
-def is_valid_quadrilateral(dst, img_shape):
-    """Validate that detected region makes geometric sense for a kaucja sign."""
-    pts = dst.reshape(4, 2)
-
-    # Must be at least 80% convex (no extreme concavities)
-    area = cv.contourArea(np.float32(pts))
-    hull_area = cv.contourArea(cv.convexHull(np.float32(pts)))
-    if hull_area < 1:
-        return False
-    if area / hull_area < 0.80:
-        return False
-
-    img_area = img_shape[0] * img_shape[1]
-
-    # Sign must occupy at least 0.5% of the image
-    # Upper bound is 99%: a full-frame kaucja photo (like 16.jpg) is valid
-    if area < img_area * 0.005 or area > img_area * 0.99:
-        return False
-
-    # Bounding box aspect ratio: kaucja sign is ~4:3, allow up to 6:1
-    _, _, w, h = cv.boundingRect(np.int32(pts))
-    if min(w, h) <= 0:
-        return False
-    if max(w, h) / min(w, h) > 6:
-        return False
-
-    # No side should be degenerate or wildly different from the others
-    sides = [np.linalg.norm(pts[(i + 1) % 4] - pts[i]) for i in range(4)]
-    if min(sides) < 5:
-        return False
-    if max(sides) / max(min(sides), 1) > 20:
-        return False
-
-    return True
+# Regiony strzałek jako frakcje rozmiaru obrazu referencyjnego.
+# Znak kaucji ma strzałkę (→) w górnej części i (←) w dolnej -
+# to one odróżniają znak od zwykłego tekstu "KAUCJA".
+ARROW_ROIS = [
+    (0.05, 0.40, 0.08, 0.45),   # górna strzałka (→)
+    (0.60, 0.95, 0.55, 0.92),   # dolna strzałka (←)
+]
+ARROW_NCC_MIN = 0.05  # minimalne NCC - przy pustym/białym regionie daje ≈ 0
 
 
-def validate_homography_matrix(M):
-    """Check that the homography matrix is not degenerate."""
+# ---------------------------------------------------------------------------
+# Pomocnicze funkcje
+# ---------------------------------------------------------------------------
+
+def natural_sort_key(s: str) -> list:
+    return [int(t) if t.isdigit() else t.lower() for t in re.split(r'([0-9]+)', s)]
+
+
+def preprocess(img: np.ndarray) -> np.ndarray:
+    """Skala szarości + CLAHE dla lepszego kontrastu przy detekcji."""
+    gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY) if img.ndim == 3 else img.copy()
+    return cv.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8)).apply(gray)
+
+
+def load_references(img_dir: str) -> list:
+    """Ładuje obrazy referencyjne, upscalując te zbyt małe dla SIFT."""
+    refs = []
+    for fname in REF_FILENAMES:
+        path = os.path.join(img_dir, fname)
+        img = cv.imread(path)
+        if img is None:
+            print(f"[WARN] Brak referencji: {fname}")
+            continue
+        h, w = img.shape[:2]
+        if max(h, w) < MIN_REF_DIM:
+            s = MIN_REF_DIM / max(h, w)
+            img = cv.resize(img, (int(w * s), int(h * s)), interpolation=cv.INTER_CUBIC)
+        refs.append(img)
+    return refs
+
+
+# ---------------------------------------------------------------------------
+# Walidacja geometryczna
+# ---------------------------------------------------------------------------
+
+def homography_ok(M: np.ndarray) -> bool:
     if M is None:
         return False
     det = np.linalg.det(M[:2, :2])
-    # Determinant near zero = collapsed / flipped transformation
-    if abs(det) < 0.01 or abs(det) > 1000:
+    return 0.01 <= abs(det) <= 1000
+
+
+def quad_ok(dst: np.ndarray, img_h: int, img_w: int) -> bool:
+    """Sprawdza czy wykryty czworokąt ma sens geometryczny dla znaku kaucji."""
+    pts = dst.reshape(4, 2).astype(np.float32)
+
+    area = cv.contourArea(pts)
+    hull_area = cv.contourArea(cv.convexHull(pts))
+    if hull_area < 1 or area / hull_area < 0.80:
         return False
+
+    img_area = img_h * img_w
+    if not (img_area * 0.005 <= area <= img_area * 0.99):
+        return False
+
+    _, _, w, h = cv.boundingRect(pts.astype(np.int32))
+    if min(w, h) <= 0 or max(w, h) / min(w, h) > 6:
+        return False
+
+    sides = [np.linalg.norm(pts[(i + 1) % 4] - pts[i]) for i in range(4)]
+    if min(sides) < 5 or max(sides) / max(min(sides), 1e-6) > 20:
+        return False
+
     return True
 
 
-def detect_kaucja(target_img, ref_imgs, sift, flann, min_inliers=12):
+# ---------------------------------------------------------------------------
+# Weryfikacja strukturalna - strzałki
+# ---------------------------------------------------------------------------
+
+def ncc(a: np.ndarray, b: np.ndarray) -> float:
+    """Znormalizowana korelacja wzajemna."""
+    af, bf = a.astype(float), b.astype(float)
+    ra = (af - af.mean()) / (af.std() + 1e-6)
+    rb = (bf - bf.mean()) / (bf.std() + 1e-6)
+    return float((ra * rb).mean())
+
+
+def arrows_present(g_target: np.ndarray, g_ref: np.ndarray, M: np.ndarray) -> bool:
     """
-    Detect kaucja sign using multiple references and strict geometric validation.
+    Dopasowuje region celu do przestrzeni referencji i sprawdza NCC w regionach
+    strzałek. Obrazy z samym tekstem 'KAUCJA' (bez strzałek i ramki) mają pusty
+    biały region w tych miejscach → NCC ≈ 0, co powoduje odrzucenie.
+    Prawdziwy znak kaucji ma strzałki → NCC > ARROW_NCC_MIN.
 
-    Key difference from naive SIFT matching: we validate RANSAC inlier count
-    (geometrically consistent matches), not just putative feature matches.
-    This prevents false positives from images that contain the word 'kaucja'
-    but lack the characteristic arrow+rectangle structure.
+    Uwaga: M mapuje ref→scaled_target, więc warpPerspective(g_target, M, ref_size)
+    daje obraz celu wyrównany do przestrzeni referencji.
     """
-    if target_img is None:
-        return target_img, False, None, None, (0, 0)
+    h_ref, w_ref = g_ref.shape[:2]
+    warped = cv.warpPerspective(g_target, M, (w_ref, h_ref))
 
-    def preprocess(img):
-        gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY) if len(img.shape) == 3 else img
-        clahe = cv.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
-        return clahe.apply(gray)
+    clahe = cv.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
+    ref_eq = clahe.apply(g_ref)
+    war_eq = clahe.apply(warped)
 
-    best_result = None
-    best_inliers = 0
+    for (y0, y1, x0, x1) in ARROW_ROIS:
+        ys, ye = int(h_ref * y0), int(h_ref * y1)
+        xs, xe = int(w_ref * x0), int(w_ref * x1)
 
-    for ref_img in ref_imgs:
-        if ref_img is None:
+        r_roi = ref_eq[ys:ye, xs:xe]
+        w_roi = war_eq[ys:ye, xs:xe]
+
+        if r_roi.size == 0 or w_roi.size == 0:
+            return False
+
+        if ncc(r_roi, w_roi) < ARROW_NCC_MIN:
+            return False
+
+    return True
+
+
+# ---------------------------------------------------------------------------
+# Główna funkcja detekcji
+# ---------------------------------------------------------------------------
+
+def detect_kaucja(img: np.ndarray, refs: list, sift, flann) -> tuple:
+    """
+    Wykrywa znak kaucji na obrazie.
+
+    Zwraca:
+        (result_img, found, dst_quad, match_vis, (confidence, inlier_count))
+    """
+    if img is None or not refs:
+        return img, False, None, None, (0, 0)
+
+    best_n = 0
+    best = None
+
+    for ref in refs:
+        g_ref = preprocess(ref)
+        kp_ref, des_ref = sift.detectAndCompute(g_ref, None)
+        if des_ref is None or len(des_ref) < MIN_INLIERS:
             continue
 
-        gray_ref = preprocess(ref_img)
-        kp1, des1 = sift.detectAndCompute(gray_ref, None)
-        if des1 is None or len(des1) < min_inliers:
-            continue
-
-        for scale in [1.0, 0.5, 1.5, 2.0]:
+        for scale in SCALES:
             if scale == 1.0:
-                current_target = target_img
+                target = img
             else:
-                w = int(target_img.shape[1] * scale)
-                h = int(target_img.shape[0] * scale)
-                current_target = cv.resize(target_img, (w, h))
+                target = cv.resize(img, (int(img.shape[1] * scale),
+                                         int(img.shape[0] * scale)))
 
-            gray_target = preprocess(current_target)
-            kp2, des2 = sift.detectAndCompute(gray_target, None)
-            if des2 is None or len(des2) < min_inliers:
+            g_target = preprocess(target)
+            kp_t, des_t = sift.detectAndCompute(g_target, None)
+            if des_t is None or len(des_t) < MIN_INLIERS:
                 continue
 
-            matches = flann.knnMatch(des1, des2, k=2)
+            raw_matches = flann.knnMatch(des_ref, des_t, k=2)
+            good = [m for pair in raw_matches
+                    if len(pair) == 2
+                    for m, n in [pair]
+                    if m.distance < RATIO_TEST * n.distance]
 
-            # Stricter Lowe ratio test (0.70 vs 0.75) reduces spurious matches
-            good = []
-            for pair in matches:
-                if len(pair) == 2:
-                    m, n = pair
-                    if m.distance < 0.70 * n.distance:
-                        good.append(m)
-
-            # Need enough candidates before even attempting homography
-            if len(good) < min_inliers:
+            if len(good) < MIN_INLIERS:
                 continue
 
-            src_pts = np.float32([kp1[m.queryIdx].pt for m in good]).reshape(-1, 1, 2)
-            dst_pts = np.float32([kp2[m.trainIdx].pt for m in good]).reshape(-1, 1, 2)
+            src_pts = np.float32([kp_ref[m.queryIdx].pt for m in good]).reshape(-1, 1, 2)
+            dst_pts = np.float32([kp_t[m.trainIdx].pt  for m in good]).reshape(-1, 1, 2)
 
             M, mask = cv.findHomography(src_pts, dst_pts, cv.RANSAC, 5.0)
-            if M is None or mask is None:
+            if not homography_ok(M) or mask is None:
                 continue
 
-            if not validate_homography_matrix(M):
-                continue
-
-            # CRITICAL: count only geometrically consistent RANSAC inliers,
-            # not the putative good matches — this is what the old code got wrong
             inlier_mask = mask.ravel().astype(bool)
-            inlier_count = int(inlier_mask.sum())
+            n_inliers = int(inlier_mask.sum())
 
-            # Inlier ratio: if too few candidates survive RANSAC, it's unreliable
-            inlier_ratio = inlier_count / len(good)
-            if inlier_count < min_inliers or inlier_ratio < 0.30:
+            if n_inliers < MIN_INLIERS or n_inliers / len(good) < MIN_INLIER_RATIO:
                 continue
 
-            h_ref, w_ref = gray_ref.shape
-            pts_ref = np.float32([[0, 0], [0, h_ref - 1],
-                                   [w_ref - 1, h_ref - 1], [w_ref - 1, 0]]).reshape(-1, 1, 2)
-            dst = cv.perspectiveTransform(pts_ref, M)
+            # Transformuj narożniki referencji na współrzędne obrazu docelowego
+            h_r, w_r = g_ref.shape[:2]
+            corners_ref = np.float32(
+                [[0, 0], [0, h_r - 1], [w_r - 1, h_r - 1], [w_r - 1, 0]]
+            ).reshape(-1, 1, 2)
+            dst_quad = cv.perspectiveTransform(corners_ref, M)
 
+            # Przenieś z powrotem do skali oryginalnego obrazu
             if scale != 1.0:
-                dst = dst / scale
+                dst_quad = dst_quad / scale
 
-            if not is_valid_quadrilateral(dst, target_img.shape[:2]):
+            if not quad_ok(dst_quad, img.shape[0], img.shape[1]):
                 continue
 
-            if inlier_count > best_inliers:
-                best_inliers = inlier_count
-                inlier_good = [good[i] for i in range(len(good)) if inlier_mask[i]]
+            # Weryfikacja strukturalna: czy w znalezionym regionie są strzałki?
+            if not arrows_present(g_target, g_ref, M):
+                continue
+
+            if n_inliers > best_n:
+                best_n = n_inliers
+                inlier_matches = [good[i] for i in range(len(good)) if inlier_mask[i]]
                 match_vis = cv.drawMatches(
-                    ref_img, kp1, current_target, kp2, inlier_good, None,
-                    flags=cv.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS
+                    ref, kp_ref, target, kp_t, inlier_matches, None,
+                    flags=cv.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS,
                 )
-                confidence = min(100, int((inlier_count / 25.0) * 100))
-                best_result = (dst, match_vis, confidence, inlier_count)
+                confidence = min(100, int(n_inliers / 25.0 * 100))
+                best = (dst_quad, match_vis, confidence, n_inliers)
 
-    if best_result is not None:
-        dst, match_vis, confidence, inlier_count = best_result
-        result_img = target_img.copy()
-        result_img = cv.polylines(result_img, [np.int32(dst)], True, (0, 255, 0), 3, cv.LINE_AA)
-        return result_img, True, dst, match_vis, (confidence, inlier_count)
+    if best:
+        dst_quad, match_vis, confidence, n_inliers = best
+        result = img.copy()
+        cv.polylines(result, [np.int32(dst_quad)], True, (0, 255, 0), 3, cv.LINE_AA)
+        return result, True, dst_quad, match_vis, (confidence, n_inliers)
 
-    return target_img, False, None, None, (0, 0)
+    return img, False, None, None, (0, 0)
 
 
-def main():
+# ---------------------------------------------------------------------------
+# Interfejs użytkownika
+# ---------------------------------------------------------------------------
+
+def display_result(result_img: np.ndarray, found: bool, match_vis,
+                   filename: str, conf: int, inliers: int) -> None:
+    if found:
+        cv.putText(result_img, f"KAUCJA WYKRYTA  ({conf}%)",
+                   (10, 30), cv.FONT_HERSHEY_SIMPLEX, 0.7, (0, 200, 0), 2)
+        cv.putText(result_img, f"RANSAC inliers: {inliers}",
+                   (10, 58), cv.FONT_HERSHEY_SIMPLEX, 0.55, (0, 200, 100), 1)
+        cv.imshow("Dopasowanie cech (inliery SIFT)", match_vis)
+    else:
+        cv.putText(result_img, "BRAK ZNAKU KAUCJI",
+                   (10, 30), cv.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 220), 2)
+
+    cv.imshow(f"Wynik: {filename}", result_img)
+
+
+def main() -> None:
     script_dir = os.path.dirname(os.path.abspath(__file__))
-
-    sift = cv.SIFT_create()
-    FLANN_INDEX_KDTREE = 1
-    index_params = dict(algorithm=FLANN_INDEX_KDTREE, trees=5)
-    search_params = dict(checks=50)
-    flann = cv.FlannBasedMatcher(index_params, search_params)
-
     img_dir = os.path.join(script_dir, "zdjecia")
-    # kaucja50.jpg (113x79 px) is too small for reliable structural matching —
-    # its SIFT features are almost entirely from text, not arrows/frame.
-    # We upscale it so the structural features are preserved.
-    REF_NAMES = {"kaucja.png", "kaucja50.jpg"}
 
-    ref_imgs = []
-    for name in REF_NAMES:
-        path = os.path.join(img_dir, name)
-        img = cv.imread(path)
-        if img is None:
-            print(f"Ostrzezenie: nie mozna wczytac referencji {name}")
-            continue
-        # Upscale small references so arrow structures are visible to SIFT
-        h_r, w_r = img.shape[:2]
-        if max(h_r, w_r) < 300:
-            scale_up = 300 / max(h_r, w_r)
-            img = cv.resize(img, (int(w_r * scale_up), int(h_r * scale_up)),
-                            interpolation=cv.INTER_CUBIC)
-        ref_imgs.append(img)
-
-    if not ref_imgs:
-        print("Blad: brak obrazow referencyjnych.")
+    refs = load_references(img_dir)
+    if not refs:
+        print("BLAD: Brak obrazow referencyjnych w folderze 'zdjecia'.")
         return
 
-    print(f"=== System Rozpoznawania Etykiet Kaucyjnych ===")
-    print(f"Zaladowano {len(ref_imgs)} obraz(ow) referencyjnych.")
-    print("1. Identyfikacja automatyczna krok po kroku (folder 'zdjecia')")
-    print("2. Identyfikacja na zywo (webcam)")
+    sift = cv.SIFT_create()
+    flann = cv.FlannBasedMatcher(
+        dict(algorithm=1, trees=5),
+        dict(checks=50),
+    )
 
-    choice = input("Wybierz opcje (1/2): ")
+    ref_set = set(REF_FILENAMES)
+    all_files = sorted(
+        [f for f in os.listdir(img_dir)
+         if f.lower().endswith((".png", ".jpg", ".jpeg", ".webp"))],
+        key=natural_sort_key,
+    )
+    images = [f for f in all_files if f not in ref_set]
 
-    if choice == '1':
-        print("\n" + "=" * 50)
-        print("URUCHAMIAM IDENTYFIKACJE AUTOMATYCZNA")
-        print("=" * 50)
-        print("Instrukcja: Dowolny klawisz - nastepne zdjecie, 'q' - przerwij.")
-        print("AUTOMATYCZNE PRZEWIJANIE: Co 5 sekund.\n")
+    print("=" * 55)
+    print("  Rozpoznawanie znaku systemu kaucyjnego")
+    print(f"  Obrazy referencyjne: {len(refs)} szt.")
+    print(f"  Obrazy do analizy:   {len(images)} szt.")
+    print("=" * 55)
+    print("Sterowanie: dowolny klawisz = nastepny  |  q = koniec\n")
 
-        all_files = sorted(
-            [f for f in os.listdir(img_dir)
-             if f.lower().endswith(('.png', '.jpg', '.jpeg', '.webp'))],
-            key=natural_sort_key
+    stats = {"total": 0, "found": 0}
+
+    for filename in images:
+        img_path = os.path.join(img_dir, filename)
+        img = cv.imread(img_path)
+        if img is None:
+            continue
+
+        stats["total"] += 1
+        label = f"[{stats['total']:>2}/{len(images)}]"
+        print(f"{label} {filename:<30}", end=" ", flush=True)
+
+        # Skaluj wyświetlanie do rozsądnych wymiarów (detekcja i tak na oryginale)
+        h, w = img.shape[:2]
+        disp_scale = min(1.0, 800 / max(h, w))
+        img_disp = cv.resize(img, (int(w * disp_scale), int(h * disp_scale))) \
+            if disp_scale < 1.0 else img.copy()
+
+        result_img, found, _, match_vis, (conf, inliers) = detect_kaucja(
+            img_disp, refs, sift, flann
         )
-        images = [f for f in all_files if f not in REF_NAMES]
 
-        stats = {"total": 0, "found": 0}
+        if found:
+            stats["found"] += 1
+            print(f"-> ZNALEZIONO  pewnosc={conf}%  inliers={inliers}")
+        else:
+            print("-> BRAK")
 
-        for filename in images:
-            img_path = os.path.join(img_dir, filename)
-            img = cv.imread(img_path)
-            if img is None:
-                continue
+        display_result(result_img, found, match_vis, filename, conf, inliers)
 
-            stats["total"] += 1
-            print(f"[{stats['total']}/{len(images)}] Przetwarzanie: {filename:<25}", end=" ", flush=True)
-
-            h, w = img.shape[:2]
-            max_dim = 800
-            if max(h, w) > max_dim:
-                scale_disp = max_dim / max(h, w)
-                img_disp = cv.resize(img, (int(w * scale_disp), int(h * scale_disp)))
-            else:
-                img_disp = img.copy()
-
-            result_img, found, _, match_vis, conf_data = detect_kaucja(
-                img_disp, ref_imgs, sift, flann
-            )
-            conf_val, match_count = conf_data
-
-            if found:
-                stats["found"] += 1
-                print(f"-> [ZNALEZIONO] Inliery: {match_count}, Pewnosc: {conf_val}%")
-                cv.putText(result_img, f"KAUCJA WYKRYTA ({conf_val}%)", (10, 30),
-                           cv.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
-                cv.putText(result_img, f"Inliery RANSAC: {match_count}", (10, 60),
-                           cv.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 0), 1)
-                cv.imshow("Krok 1: Dopasowanie punktow (SIFT - inliery)", match_vis)
-                cv.imshow("Krok 2: Detekcja (Homografia)", result_img)
-            else:
-                print("-> [NIE ZNALEZIONO]")
-                cv.putText(result_img, "BRAK KAUCJI", (10, 30),
-                           cv.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
-                cv.imshow("Krok 2: Detekcja (Homografia)", result_img)
-
-            key = cv.waitKey(5000)
-            cv.destroyAllWindows()
-
-            if key == ord('q'):
-                print("\nPrzerwano przez uzytkownika.")
-                break
-
-        print("\n" + "=" * 50)
-        print("PODSUMOWANIE PRZETWARZANIA")
-        print(f"Przetworzono plikow: {stats['total']}")
-        print(f"Wykryto znakow:      {stats['found']}")
-        print(f"Skutecznosc:         {(stats['found'] / stats['total'] * 100 if stats['total'] > 0 else 0):.1f}%")
-        print("=" * 50)
-        cv.waitKey(0)
-
-    elif choice == '2':
-        print("\nUruchamiam identyfikacje z kamerki... (Nacisnij 'q' aby wyjsc)")
-        cap = cv.VideoCapture(0)
-
-        if not cap.isOpened():
-            print("Blad: Nie mozna otworzyc kamerki.")
-            return
-
-        while True:
-            ret, frame = cap.read()
-            if not ret:
-                print("Nie mozna pobrac klatki.")
-                break
-
-            result_frame, found, _, match_vis, conf_data = detect_kaucja(
-                frame, ref_imgs, sift, flann
-            )
-
-            if found:
-                conf_val, match_count = conf_data
-                cv.putText(result_frame, f"KAUCJA WYKRYTA ({conf_val}%)", (10, 30),
-                           cv.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-                cv.putText(result_frame, f"Inliery: {match_count}", (10, 65),
-                           cv.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 0), 2)
-                if match_vis is not None:
-                    cv.imshow("Dopasowania SIFT (inliery)", match_vis)
-            else:
-                cv.putText(result_frame, "BRAK KAUCJI", (10, 30),
-                           cv.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
-
-            cv.imshow("Webcam - Identyfikacja Kaucji", result_frame)
-
-            if cv.waitKey(1) & 0xFF == ord('q'):
-                break
-
-        cap.release()
+        key = cv.waitKey(5000) & 0xFF
         cv.destroyAllWindows()
+        if key == ord('q'):
+            print("\nPrzerwano.")
+            break
 
-    else:
-        print("Nieprawidlowy wybor.")
+    print("\n" + "=" * 55)
+    print("PODSUMOWANIE")
+    print(f"  Przetworzono: {stats['total']}")
+    print(f"  Wykryto:      {stats['found']}")
+    pct = stats['found'] / stats['total'] * 100 if stats['total'] else 0
+    print(f"  Skutecznosc:  {pct:.1f}%")
+    print("=" * 55)
+    input("Nacisnij Enter aby zakonczyc...")
 
 
 if __name__ == "__main__":
